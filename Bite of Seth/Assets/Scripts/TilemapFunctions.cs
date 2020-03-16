@@ -7,6 +7,8 @@ public class TilemapFunctions : MonoBehaviour
     public Tilemap tilemapReference = null;
     public Tile wallTile = null;
     public Tile checkpointTile = null;
+    public Tile startTile = null;
+    List<Tilemap> slicedTilemaps = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,13 @@ public class TilemapFunctions : MonoBehaviour
 
     void SliceTilemap(Tilemap tilemapToSlice)
     {
-        List<Tilemap> slicedTilemaps = new List<Tilemap>();
+        slicedTilemaps = new List<Tilemap>();
 
         tilemapReference.gameObject.SetActive(false);
 
         Tilemap wallMap = Instantiate(tilemapToSlice, transform);
-        wallMap.gameObject.SetActive(false);
+        wallMap.gameObject.SetActive(true);
+        wallMap.gameObject.name = "Walls tilemap";
 
         // turn checkpoints to walls then clear non-walls
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
@@ -30,10 +33,6 @@ public class TilemapFunctions : MonoBehaviour
             if (tile != wallTile && tile != checkpointTile)
             {
                 wallMap.SetTile(localPlace, null);
-            }
-            else
-            {
-                //wallMap.SetTile(localPlace, wallTile);
             }
         }
         
@@ -48,30 +47,101 @@ public class TilemapFunctions : MonoBehaviour
                     Tilemap newRoom = Instantiate(wallMap, transform);
                     newRoom.FloodFill(localPlace, wallTile);
                     newRoom.gameObject.SetActive(true);
+                    newRoom.gameObject.name = "room " + slicedTilemaps.Count.ToString();
                     slicedTilemaps.Add(newRoom);
                 }
             }            
         }
 
+        Tilemap startingTilemap = null;
+
         // clear wallmap from rooms
         foreach(Tilemap tilemap in slicedTilemaps)
         {
-            foreach (var pos in wallMap.cellBounds.allPositionsWithin)
+            // remove wall map to get only fill
+            foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+            {
+                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+                if (wallMap.HasTile(localPlace))
+                {
+                    tilemap.SetTile(localPlace, null);
+                }
+            }
+
+            Tilemap readdTilemap = Instantiate(tilemap);
+            // readd the borders
+            foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+            {
+                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+                if (wallMap.HasTile(localPlace) && HasNeighbor(tilemap, localPlace))
+                {
+                    readdTilemap.SetTile(localPlace, wallMap.GetTile(localPlace));
+                }
+            }
+            foreach (var pos in readdTilemap.cellBounds.allPositionsWithin)
+            {
+                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+                if (readdTilemap.HasTile(localPlace))
+                {
+                    tilemap.SetTile(localPlace, readdTilemap.GetTile(localPlace));
+                }
+            }
+            Destroy(readdTilemap.gameObject);
+
+
+            foreach (var pos in tilemap.cellBounds.allPositionsWithin)
             {
                 Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
                 if (tilemap.HasTile(localPlace))
                 {
-                    tilemap.SetTile(localPlace, tilemapToSlice.GetTile(localPlace));
-                    if (wallMap.GetTile(localPlace) == wallTile)
+                    TileBase originalTile = tilemapToSlice.GetTile(localPlace);
+                    if (originalTile == startTile)
                     {
-                        tilemap.SetTile(localPlace, null);
+                        startingTilemap = tilemap;
                     }
+                    tilemap.SetTile(localPlace, originalTile);                    
                 }
             }
         }
+        SetCheckpoit(startingTilemap,new List<Tilemap>(slicedTilemaps), Vector3Int.one);
 
-        //Destroy(wallMap.gameObject);
+        foreach (var pos in wallMap.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+            if (wallMap.GetTile(localPlace) == checkpointTile)
+            {
+                wallMap.SetTile(localPlace, null);
+            }
+        }
+
     }
+    void SetCheckpoit(Tilemap thisMap,List<Tilemap> mapsToSetCheckpoint, Vector3Int checkpoint)
+    {
+            foreach (var pos in thisMap.cellBounds.allPositionsWithin)
+            {
+                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+                if (thisMap.GetTile(localPlace) == checkpointTile)
+                {
+                    if(localPlace == checkpoint)
+                    {
+                    // instantiate checkpoint
+                    slicedTilemaps.Remove(thisMap);
+                    }
+                    else
+                    {
+                        thisMap.SetTile(localPlace, null);
+                        foreach (Tilemap tilemap in mapsToSetCheckpoint)
+                        {
+                            if (tilemap.HasTile(localPlace))
+                            {
+                            SetCheckpoit(tilemap, new List<Tilemap>(slicedTilemaps), localPlace);
+                            }                            
+                        }
+                    }      
+                }
+            }
+    }
+
     bool tileInMaps(List<Tilemap> maps, Vector3Int pos)
     {
         foreach(Tilemap tilemap in maps)
@@ -80,6 +150,27 @@ public class TilemapFunctions : MonoBehaviour
             {
                 return true;
             }
+        }
+        return false;
+    }
+
+    bool HasNeighbor(Tilemap map, Vector3Int pos)
+    {
+        if (map.GetTile(pos + Vector3Int.right))
+        {
+            return true;
+        }
+        if (map.GetTile(pos + Vector3Int.left))
+        {
+            return true;
+        }
+        if (map.GetTile(pos + Vector3Int.up))
+        {
+            return true;
+        }
+        if (map.GetTile(pos + Vector3Int.down))
+        {
+            return true;
         }
         return false;
     }
