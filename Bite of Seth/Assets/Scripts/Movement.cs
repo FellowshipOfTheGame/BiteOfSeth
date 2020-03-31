@@ -113,7 +113,7 @@ public class Movement : MonoBehaviour
     private void moveTo(Vector2 targetPosition)
     {
         Vector3 increment = new Vector3(targetPosition.x, targetPosition.y, 0) - transform.position;
-        if (increment.magnitude > 0.05f) // max diference between position and target position to consider
+        if (increment.magnitude > 0.02f) // max diference between position and target position to consider
         {
             increment = increment.normalized * Time.fixedDeltaTime * movementSpeed;
             rigidbody.MovePosition(transform.position + increment);
@@ -121,7 +121,7 @@ public class Movement : MonoBehaviour
         else
         {
             isMoving = false;
-            //rigidbody.MovePosition(targetPosition); // final move so the rigidbody ends exactly on the target point
+            rigidbody.MovePosition(targetPosition); // final move so the rigidbody ends exactly on the target point
         }
         
     }

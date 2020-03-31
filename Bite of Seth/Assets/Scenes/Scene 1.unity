@@ -2894,7 +2894,7 @@ Transform:
   m_Children:
   - {fileID: 269975614}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1112426379
 MonoBehaviour:
@@ -2912,6 +2912,63 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
   checkpointTile: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
   startTile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
+--- !u!1 &1355029864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1355029865}
+  - component: {fileID: 1355029866}
+  m_Layer: 0
+  m_Name: TileAutoSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1355029865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355029864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1355029866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355029864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9604be91dbf39442a3ed7f7c35487d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 16862623}
+  tileObjects:
+  - tile: {fileID: 11400000, guid: 6ee7b1a28eb053d4ba47a67e2a991baf, type: 2}
+    objectToSpawn: {fileID: 4107798111967972465, guid: 4c0b7fe80b013b842aa277855c9b7b04,
+      type: 3}
+  - tile: {fileID: 11400000, guid: c51cf2f0b3ab8ba47882e1c23d374abc, type: 2}
+    objectToSpawn: {fileID: 4107798111967972465, guid: 4c0b7fe80b013b842aa277855c9b7b04,
+      type: 3}
+  - tile: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
+    objectToSpawn: {fileID: 4107798111967972465, guid: 4c0b7fe80b013b842aa277855c9b7b04,
+      type: 3}
+  - tile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
+    objectToSpawn: {fileID: 4107798111967972465, guid: 4c0b7fe80b013b842aa277855c9b7b04,
+      type: 3}
 --- !u!1 &1540656666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,7 +3091,7 @@ Transform:
   m_Children:
   - {fileID: 16862621}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1918771778
 Tilemap:
@@ -3105,7 +3162,7 @@ Transform:
   m_Children:
   - {fileID: 1540656667}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2028807248
 Rigidbody2D:
