@@ -5,8 +5,8 @@ using UnityEngine;
 public class FallMovement : MonoBehaviour
 {
 
-    public float gravity = 10f;
-    //private float movementSpeed;
+    //public float gravity = 10f;
+    public float movementSpeed = 1f;
 
     private new Rigidbody2D rigidbody;
 
@@ -52,20 +52,21 @@ public class FallMovement : MonoBehaviour
             if (ValidateMovement(desiredMovement = new Vector2(0f, -gridSize.y))) {
                 targetPosition = RoundPosition(transform.position) + desiredMovement;
                 isMoving = true;
-                sideMove = false;
             }
             //If it failed, verify if can move left and left/down
              else if (!sideMove && ValidateMovement((desiredMovement = new Vector2(-gridSize.x, 0f)))
-                    && ValidateMovement((desiredMovement = new Vector2(-gridSize.x, -gridSize.y)))) {
+                      && ValidateMovement((desiredMovement = new Vector2(-gridSize.x, -gridSize.y)))) {
                 targetPosition = RoundPosition(transform.position) + desiredMovement;
                 isMoving = true;
+                //Move only one tile in diagonal
                 sideMove = true;
             }
             //If it failed, verify if can move right and right/down
             else if (!sideMove && ValidateMovement((desiredMovement = new Vector2(gridSize.x, 0f))) 
-                    && ValidateMovement((desiredMovement = new Vector2(gridSize.x, -gridSize.y)))) {
+                     && ValidateMovement((desiredMovement = new Vector2(gridSize.x, -gridSize.y)))) {
                 targetPosition = RoundPosition(transform.position) + desiredMovement;
                 isMoving = true;
+                //Move only one tile in diagonal
                 sideMove = true;
             }
         } else {
@@ -78,7 +79,7 @@ public class FallMovement : MonoBehaviour
     {
         //raycast to see if there are colliders on the way of movement
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, desiredMovement, desiredMovement.magnitude);
-        //Debug.DrawRay(transform.position, desiredMovement, Color.blue);
+        Debug.DrawRay(transform.position, desiredMovement, Color.blue);
         //hit array has at least, automaticaly, one element that is the collider of this rigidbody.
         //Then, if hit has more than one element, it means that the desiredMovement is not valid.
         //Otherwise, if hit has just one element, then the desiredMovement is valid:
@@ -96,12 +97,15 @@ public class FallMovement : MonoBehaviour
     private void MoveTo(Vector2 targetPosition)
     {
         Vector3 increment = new Vector3(targetPosition.x, targetPosition.y, 0) - transform.position;
-        if (increment.magnitude > 0.02f) // max diference between position and target position to consider
+        if (increment.magnitude > 0.1f) // max diference between position and target position to consider
         {
-            increment = increment.normalized * Mathf.Pow(Time.fixedDeltaTime, 2) * gravity / 2; /// S = (g * t^2) / 2
+            //increment = increment.normalized * Mathf.Pow(Time.fixedDeltaTime, 2) * gravity / 2; /// S = (g * t^2) / 2
+            increment = increment.normalized * Time.fixedDeltaTime * movementSpeed;
             rigidbody.MovePosition(transform.position + increment);
         } else {
             isMoving = false;
+            //Move only one tile in diagonal
+            sideMove = false;
             rigidbody.MovePosition(targetPosition); // final move so the rigidbody ends exactly on the target point
         }
 
