@@ -16,7 +16,8 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private Vector2 gridOffset = Vector2.zero;    
     private Vector2 targetPosition = Vector2.zero;
-    private bool isMoving = false;
+    public bool isMoving = false;
+    public Vector2 facingDirection = Vector2.zero;
 
     void Awake()
     {
@@ -43,15 +44,18 @@ public class Movement : MonoBehaviour
         {
             Vector2 desiredMovement = checkInput();
             bool shouldMove = false;
+
             if (desiredMovement != Vector2.zero)
             {
                 shouldMove = validateMovement(desiredMovement);
-            }            
+            }           
             if (shouldMove)
             {
                 targetPosition = roundPosition(transform.position) + desiredMovement;
                 isMoving = true;
             }
+
+            
         }
         else
         {
@@ -76,6 +80,7 @@ public class Movement : MonoBehaviour
             {
                 desiredMovement.x = -gridSize.x;
             }
+            facingDirection = desiredMovement;
         }
         else if (vertical != 0)
         {
@@ -87,7 +92,9 @@ public class Movement : MonoBehaviour
             {
                 desiredMovement.y = -gridSize.y;
             }
+            facingDirection = desiredMovement;
         }
+        
         return desiredMovement;
     }
     
@@ -125,4 +132,5 @@ public class Movement : MonoBehaviour
         }
         
     }
+
 }
