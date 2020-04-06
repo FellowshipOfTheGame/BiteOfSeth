@@ -6,17 +6,17 @@ public class DetectItem : MonoBehaviour
 {
     public GameObject item = null;
     public Vector2 facingDirection = Vector2.zero;
-    private bool itemDetected = false;
-    public bool isMoving;
-    private Vector2 lastPositionScanned;
-    private Vector2 nextPositionScan;
+    public bool itemDetected = false;
+    public bool isMoving = false;
+    private Vector2 lastPositionScanned = Vector2.zero;
+    private Vector2 nextPositionScan = Vector2.zero;
 
     void Awake(){
         facingDirection = gameObject.GetComponent<Movement>().facingDirection;
         isMoving = gameObject.GetComponent<Movement>().isMoving;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         facingDirection = gameObject.GetComponent<Movement>().facingDirection;
         isMoving = gameObject.GetComponent<Movement>().isMoving;
@@ -24,11 +24,8 @@ public class DetectItem : MonoBehaviour
         nextPositionScan.x = transform.position.x + facingDirection.x;
         nextPositionScan.y = transform.position.y + facingDirection.y;
 
-        if(nextPositionScan != lastPositionScanned){
+        if(nextPositionScan != lastPositionScanned && isMoving == false){
             itemDetected = checkForStatue(facingDirection);
-        }
-        if(itemDetected == true) {
-            allowInteraction();
         }
 
     }
@@ -52,9 +49,6 @@ public class DetectItem : MonoBehaviour
         return false;
     }
 
-    private void allowInteraction(){
-
-    }
 
 
 }
