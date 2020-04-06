@@ -2810,7 +2810,7 @@ GameObject:
   - component: {fileID: 424343917}
   m_Layer: 0
   m_Name: Statue
-  m_TagString: Untagged
+  m_TagString: Statue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2822,10 +2822,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424343913}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2912,10 +2912,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424343913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.50444746}
@@ -3412,6 +3412,7 @@ GameObject:
   - component: {fileID: 2028807248}
   - component: {fileID: 2028807250}
   - component: {fileID: 2028807249}
+  - component: {fileID: 2028807251}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3493,7 +3494,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64e77bccc422fc4ca5f7904d8d268a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 5
   grid: {fileID: 1918771776}
   gridSize: {x: 1, y: 1}
   gridOffset: {x: 0.5, y: 0.5}
+  isMoving: 0
+  facingDirection: {x: 0, y: 0}
+--- !u!114 &2028807251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028807246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34728012b21dee94bac1870b59caa1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  facingDirection: {x: 0, y: 0}
+  isMoving: 0
