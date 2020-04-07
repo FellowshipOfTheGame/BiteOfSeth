@@ -2,39 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+
+[RequireComponent(typeof(Movable))]
 public class PlayerController : MonoBehaviour
 {
+    private Movable movable = null;
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
-    private new Rigidbody2D rigidbody;
-    private bool isMoving = false;
-    private Vector2 targetPosition = Vector2.zero;
-    void Awake()
+
+    private void Awake()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        movable = gameObject.GetComponent<Movable>();
     }
     private void FixedUpdate()
     {
-        if (isMoving == false)
+        if (!movable.isMoving)
         {
             Vector2 desiredMovement = CheckInput();
-            bool shouldMove = false;
             if (desiredMovement != Vector2.zero)
             {
-                shouldMove = GridNav.GetObjectsInPath(rigidbody.position, desiredMovement, movementCollisionMask).Count == 0;
-            }
-            if (shouldMove)
-            {
-                targetPosition = GridNav.WorldToGridPosition(transform.position) + desiredMovement;
-                isMoving = true;
+                List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, movementCollisionMask, gameObject);
+                if (objects.Count == 0)
+                {
+                    // nothing on the way, move freely
+                    movable.StartMovement(desiredMovement, movementSpeed);
+                }
+                else if (objects.Count == 1)
+                {
+                    // object ahead, pushable?
+                    PushableBehavior pushable = objects[0].GetComponent<PushableBehavior>();
+                    if (pushable != null)
+                    {
+                        bool pushed = pushable.Push(desiredMovement, movementSpeed);
+                        if (pushed)
+                        {
+                            movable.StartMovement(desiredMovement, movementSpeed);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning(" more than 1 object ahead");
+                }  
             }
         }
-        else
-        {
-            // isMoving == true
-            isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, movementSpeed);
-        }
+        
     }
     private Vector2 CheckInput()
     {

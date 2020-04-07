@@ -6,48 +6,39 @@ using UnityEngine;
 public class FallBehavior : MonoBehaviour
 {
     // THE ROCK 'N' ROLL SCRIPT
-    public float speed = 1f;
+    private Movable movable = null;
     public LayerMask fallMask;
     public LayerMask rollMask;
-    private new Rigidbody2D rigidbody;
-    private bool isMoving = false;
-    private Vector2 targetPosition = Vector2.zero;
+    public float fallSpeed = 3f;
 
     void Awake()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        movable = gameObject.GetComponent<Movable>();
     }
 
     private void FixedUpdate()
     {        
-        if (!isMoving)
+        if (!movable.isMoving)
         {
             // check if should fall
-            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
+            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
             {
-                targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + GridNav.down;
-                isMoving = true;
+                movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
-            else if (GridNav.GetObjectsInPath(rigidbody.position, GridNav.down, rollMask, gameObject).Count > 0)
+            else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, rollMask, gameObject).Count > 0)
             {
                 // room to roll left
-                if (GridNav.GetObjectsInPath(rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
+                if (GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + GridNav.down / 2 + GridNav.left;
-                    isMoving = true;
+                    movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
                 }
                 // room to roll right
-                else if (GridNav.GetObjectsInPath(rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
+                else if (GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + GridNav.down / 2 + GridNav.right;
-                    isMoving = true;
+                    movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                 }            
             }
-        }
-        if (isMoving)
-        {
-            isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
         }
     }
 }
