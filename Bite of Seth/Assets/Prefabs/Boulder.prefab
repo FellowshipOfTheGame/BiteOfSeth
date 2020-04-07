@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 498664437692522341}
   - component: {fileID: 5615844421084837}
   - component: {fileID: 1801673339601229862}
-  - component: {fileID: 7350900012639903611}
-  m_Layer: 0
-  m_Name: Stone
+  - component: {fileID: 754011300465007239}
+  m_Layer: 10
+  m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &7350900012639903611
+--- !u!114 &754011300465007239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3296024696174100633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bfa1d26622d0124dac9530975808d63, type: 3}
+  m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  grid: {fileID: 0}
-  gridSize: {x: 1, y: 1}
-  gridOffset: {x: 0.5, y: 0.5}
+  fallSpeed: 1
+  fallCollisionMask:
+    serializedVersion: 2
+    m_Bits: 1537
+  roll: 0
