@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 1
-  fallCollisionMask:
+  fallSpeed: 3
+  fallMask:
     serializedVersion: 2
-    m_Bits: 1537
-  roll: 0
+    m_Bits: 3585
+  rollMask:
+    serializedVersion: 2
+    m_Bits: 3072

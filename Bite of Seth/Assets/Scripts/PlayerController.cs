@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
             bool shouldMove = false;
             if (desiredMovement != Vector2.zero)
             {
-                shouldMove = GridNav.GetObjectsInPath(rigidbody, desiredMovement, movementCollisionMask).Count == 0;
+                shouldMove = GridNav.GetObjectsInPath(rigidbody.position, desiredMovement, movementCollisionMask).Count == 0;
             }
             if (shouldMove)
             {

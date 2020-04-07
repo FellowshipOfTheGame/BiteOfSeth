@@ -94,27 +94,28 @@ public static class GridNav
         }
     }
 
-    public static List<GameObject> GetObjectsInPath(Rigidbody2D rigidbody, Vector2 desiredMovement)
+    public static List<GameObject> GetObjectsInPath(Vector2 origin, Vector2 desiredMovement, params GameObject[] objectsToIgnore)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(rigidbody.position, desiredMovement, desiredMovement.magnitude);
-        return MakeListFromHits(hits, rigidbody.gameObject);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, desiredMovement, desiredMovement.magnitude);
+        Debug.DrawRay(origin, desiredMovement, Color.red);
+        return MakeListFromHits(hits, objectsToIgnore);
     }
-    public static List<GameObject> GetObjectsInPath(Rigidbody2D rigidbody, Vector2 desiredMovement, LayerMask layerMask)
+    public static List<GameObject> GetObjectsInPath(Vector2 origin, Vector2 desiredMovement, LayerMask layerMask, params GameObject[] objectsToIgnore)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(rigidbody.position, desiredMovement, desiredMovement.magnitude, layerMask);
-        return MakeListFromHits(hits, rigidbody.gameObject);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, desiredMovement, desiredMovement.magnitude, layerMask);
+        Debug.DrawRay(origin, desiredMovement, Color.blue);
+        return MakeListFromHits(hits, objectsToIgnore);
     }
-    private static List<GameObject> MakeListFromHits(RaycastHit2D[] hits, GameObject casterObject)
+    private static List<GameObject> MakeListFromHits(RaycastHit2D[] hits, GameObject[] objectsToIgnore)
     {
         List<GameObject> objectsInPath = new List<GameObject>();
         foreach (RaycastHit2D h in hits)
         {
-            // ignores hit in colliders of the caster object
-            GameObject obj = h.transform.gameObject;
-            if (obj != casterObject)
-            {
-                objectsInPath.Add(obj);
-            }            
+            objectsInPath.Add(h.transform.gameObject);
+        }
+        foreach (GameObject o in objectsToIgnore)
+        {
+            objectsInPath.Remove(o);
         }
         return objectsInPath;
     }
