@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1801673339601229862}
   - component: {fileID: 5771504162434163340}
   - component: {fileID: 754011300465007239}
+  - component: {fileID: -5926556322554335977}
   m_Layer: 10
   m_Name: Diamond
   m_TagString: Untagged
@@ -165,3 +166,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   fallSpeed: 3
+--- !u!114 &-5926556322554335977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296024696174100633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e795f023493b3334380fce821207281e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collected: 0
