@@ -39,6 +39,13 @@ public class PlayerController : MonoBehaviour
                             movable.StartMovement(desiredMovement, movementSpeed);
                         }
                     }
+
+                    // object ahead, collectible?
+                    CollectibleBehavior collectible = objects[0].GetComponent<CollectibleBehavior>();
+                    if (collectible != null) {
+                        collectible.Collect();
+                        movable.StartMovement(desiredMovement, movementSpeed);
+                    }
                 }
                 else
                 {
