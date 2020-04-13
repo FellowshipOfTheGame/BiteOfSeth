@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2488760661818198447}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2488760661818198450}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   movementSpeed: 3
   movementCollisionMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
 --- !u!1 &2488760662337676262
 GameObject:
   m_ObjectHideFlags: 0
