@@ -18,7 +18,7 @@ public class Movable : MonoBehaviour
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
         isMoving = true;
         speed = _speed;
-}
+    }
     private void FixedUpdate()
     {
         if (isMoving)

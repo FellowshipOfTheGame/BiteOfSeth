@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b775f1e520b782a418564feab771dab3, type: 3}
-  m_Color: {r: 0.7169812, g: 0.6865433, b: 0.6865433, a: 1}
+  m_Color: {r: 0.7264151, g: 0.6719504, b: 0.3186632, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 3296024696174100633}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
@@ -161,11 +161,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMask:
     serializedVersion: 2
-    m_Bits: 3585
+    m_Bits: 16129
   rollMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 5120
   fallSpeed: 3
+  canKillPlayer: 1
 --- !u!114 &6702001781502399326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 7680
