@@ -51,7 +51,7 @@ public class FallBehavior : MonoBehaviour
                     //check if is standing on the player
                     if (LayerMask.LayerToName(go.layer) == "Player")
                     {
-                        go.GetComponent<Life>().Kill();
+                        go.GetComponent<PlayerLife>().Kill();
                     }
                 }
             }

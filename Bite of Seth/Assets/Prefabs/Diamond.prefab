@@ -96,7 +96,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 3296024696174100633}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMask:
     serializedVersion: 2
-    m_Bits: 7681
+    m_Bits: 7937
   rollMask:
     serializedVersion: 2
     m_Bits: 5120
@@ -179,3 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e795f023493b3334380fce821207281e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 1

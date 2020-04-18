@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Life : MonoBehaviour
+public class PlayerLife : MonoBehaviour
 {
     public void Kill()
     {
