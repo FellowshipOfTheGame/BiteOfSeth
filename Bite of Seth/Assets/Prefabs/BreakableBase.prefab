@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 498664437692522341}
   - component: {fileID: 5615844421084837}
   - component: {fileID: 1801673339601229862}
-  - component: {fileID: 5771504162434163340}
-  - component: {fileID: 754011300465007239}
-  - component: {fileID: -5926556322554335977}
-  m_Layer: 12
-  m_Name: Diamond
+  - component: {fileID: 2523370250469276555}
+  - component: {fileID: -2629369981191548536}
+  m_Layer: 13
+  m_Name: BreakableBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b775f1e520b782a418564feab771dab3, type: 3}
-  m_Color: {r: 0.383277, g: 0.9339623, b: 0.87852144, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9c0c4df499a0f6a41b9cfd6fead15c3a, type: 3}
+  m_Color: {r: 0.8584906, g: 0.8099747, b: 0.49808654, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,7 +93,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296024696174100633}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -133,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &5771504162434163340
+--- !u!114 &2523370250469276555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,41 +141,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3296024696174100633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277cb427d22468449a3367c35386e354, type: 3}
+  m_Script: {fileID: 11500000, guid: 843325fc4079c7a439fe40402558a94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propagationTimeInterval: 0.5
+--- !u!114 &-2629369981191548536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296024696174100633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902a1ed613fd2e748b54add94dac2e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
-  isMoving: 0
---- !u!114 &754011300465007239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMask:
+  breakMask:
     serializedVersion: 2
-    m_Bits: 16129
-  rollMask:
-    serializedVersion: 2
-    m_Bits: 5120
-  fallSpeed: 3
-  canKillPlayer: 0
---- !u!114 &-5926556322554335977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e795f023493b3334380fce821207281e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: 1
+    m_Bits: 8192
