@@ -10,6 +10,9 @@ public class FallBehavior : MonoBehaviour
     public LayerMask fallMask;
     public LayerMask rollMask;
     public float fallSpeed = 3f;
+    public bool canKillPlayer;
+    private List<GameObject> objectsInPath;
+    private GameObject player;
 
     void Awake()
     {
@@ -20,8 +23,9 @@ public class FallBehavior : MonoBehaviour
     {        
         if (!movable.isMoving)
         {
+
             // check if should fall
-            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
+            if ((objectsInPath = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject)).Count == 0)
             {
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
@@ -38,6 +42,18 @@ public class FallBehavior : MonoBehaviour
                 {
                     movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                 }            
+            }
+            //check if can kill the player
+            else if (canKillPlayer) 
+            {
+                foreach(GameObject go in objectsInPath) 
+                {
+                    //check if is standing on the player
+                    if (LayerMask.LayerToName(go.layer) == "Player")
+                    {
+                        go.GetComponent<Life>().Kill();
+                    }
+                }
             }
         }
     }

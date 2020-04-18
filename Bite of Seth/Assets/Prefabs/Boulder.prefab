@@ -161,11 +161,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMask:
     serializedVersion: 2
-    m_Bits: 7681
+    m_Bits: 7937
   rollMask:
     serializedVersion: 2
     m_Bits: 5120
   fallSpeed: 3
+  canKillPlayer: 1
 --- !u!114 &6702001781502399326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 7680
