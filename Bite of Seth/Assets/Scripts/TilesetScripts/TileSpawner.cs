@@ -39,9 +39,3 @@ public class TileSpawner : MonoBehaviour
         }
     }
 }
-
-[System.Serializable]
-public class TileObject {
-    public TileBase tile = null;
-    public UnityEngine.Object objectToSpawn = null;
-}

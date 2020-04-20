@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a648f5a78e9684a967f799c337dede, type: 3}
+  m_Name: PlaceholderTiles
+  m_EditorClassIdentifier: 
+  wallTile: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
+  checkpointTile: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
+  startTile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
+  tileObjects:
+  - tile: {fileID: 11400000, guid: c51cf2f0b3ab8ba47882e1c23d374abc, type: 2}
+    objectToSpawn: {fileID: 3296024696174100633, guid: a44373a88380c1e4c93f88f99048956c,
+      type: 3}
