@@ -26,7 +26,7 @@ public class CheckpointBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision");
+        //Debug.Log("collision");
         PlayerController p = collision.collider.gameObject.GetComponent<PlayerController>();
         if (p != null)
         {

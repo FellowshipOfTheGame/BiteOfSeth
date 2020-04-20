@@ -11,7 +11,7 @@ public class FallBehavior : MonoBehaviour
     public LayerMask rollMask;
     public float fallSpeed = 3f;
 
-    void Awake()
+    void Start()
     {
         movable = gameObject.GetComponent<Movable>();
     }
@@ -39,7 +39,8 @@ public class FallBehavior : MonoBehaviour
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
                 {
                     movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
-                }            
+                }
+
             }
             /*
             //check if can kill the player
@@ -55,6 +56,7 @@ public class FallBehavior : MonoBehaviour
                 }
             }
             */
+
         }
     }
 }
