@@ -84,6 +84,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movable movable = null;
+    private Vector2 lookingDirection = Vector2.right;
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
     private CheckpointBehavior currentCheckpoint = null;
@@ -101,6 +102,18 @@ public class PlayerController : MonoBehaviour
             if (currentCheckpoint != null)
             {
                 currentCheckpoint.RewindRoom();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, lookingDirection, gameObject);
+            foreach (GameObject g in objects)
+            {
+                BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
+                if (breakable != null)
+                {
+                    breakable.Break();
+                }
             }
         }
     }
@@ -144,7 +157,6 @@ public class PlayerController : MonoBehaviour
                 }  
             }
         }
-        
     }
     
     private Vector2 CheckInput()
@@ -175,6 +187,10 @@ public class PlayerController : MonoBehaviour
                 desiredMovement = GridNav.down;
             }
         }
+        if (desiredMovement != Vector2.zero)
+        {
+            lookingDirection = desiredMovement;
+        }        
         return desiredMovement;
     }
 

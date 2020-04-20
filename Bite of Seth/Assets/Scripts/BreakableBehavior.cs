@@ -5,12 +5,6 @@ using UnityEngine;
 public class BreakableBehavior : MonoBehaviour
 {
     public float propagationTimeInterval = 0.5f;
-    private Breaker br;
-
-    private void Awake()
-    {
-        br = GetComponent<Breaker>();
-    }
 
     public void Break()
     {
@@ -22,10 +16,22 @@ public class BreakableBehavior : MonoBehaviour
 
     private void BreakPropagation()
     {
-        br.Break(GridNav.up);
-        br.Break(GridNav.down);
-        br.Break(GridNav.left);
-        br.Break(GridNav.right);
+        TryBreakAtDirection(GridNav.up);
+        TryBreakAtDirection(GridNav.down);
+        TryBreakAtDirection(GridNav.left);
+        TryBreakAtDirection(GridNav.right);
     }
 
+    private void TryBreakAtDirection(Vector2 direction)
+    {
+        List<GameObject> objects = GridNav.GetObjectsInPath(transform.position, direction, gameObject);
+        foreach (GameObject g in objects)
+        {
+            BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
+            if (breakable != null)
+            {
+                breakable.Break();
+            }
+        }
+    }
 }

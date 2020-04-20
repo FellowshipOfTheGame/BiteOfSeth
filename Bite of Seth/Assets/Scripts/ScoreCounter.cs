@@ -11,6 +11,4 @@ public class ScoreCounter : MonoBehaviour
         currentPoints += points;
         Debug.Log(currentPoints);
     }
-
-
 }
