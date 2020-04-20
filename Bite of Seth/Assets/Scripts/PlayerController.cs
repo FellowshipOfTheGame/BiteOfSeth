@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
+        gameObject.transform.parent = null;
     }
     private void FixedUpdate()
     {

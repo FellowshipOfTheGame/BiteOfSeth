@@ -11,7 +11,7 @@ public class TilesetObjects: ScriptableObject
     public Tile checkpointTile = null;
     public Tile startTile = null;
     [Header("Objects to spawn by tile")]
-    public TileObject[] tileObjects = null;
+    public TileObject[] objectsToSpawn = null;
 }
 
 [System.Serializable]
