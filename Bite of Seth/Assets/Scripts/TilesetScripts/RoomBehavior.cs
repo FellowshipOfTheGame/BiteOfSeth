@@ -73,9 +73,9 @@ public class RoomBehavior : MonoBehaviour
             {
                 // ignore and don't destroy the backup tilemap object
             }
-            else if (child.GetComponent<CollectibleBehavior>() != null)
+            else if (child.GetComponent<CollectableBehavior>() != null)
             {
-                // TODO: de-collect collectable
+                child.GetComponent<CollectableBehavior>().Decollect();
                 Destroy(child.gameObject);
             }
             else

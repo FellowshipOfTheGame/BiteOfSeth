@@ -131,10 +131,10 @@ public class PlayerController : MonoBehaviour
                         }
                     }
 
-                    // object ahead, collectible?
-                    CollectibleBehavior collectible = objects[0].GetComponent<CollectibleBehavior>();
-                    if (collectible != null) {
-                        //collectible.Collect();
+                    // object ahead, collectable?
+                    CollectableBehavior collectable = objects[0].GetComponent<CollectableBehavior>();
+                    if (collectable != null) {
+                        collectable.Collect();
                         movable.StartMovement(desiredMovement, movementSpeed);
                     }
                 }
