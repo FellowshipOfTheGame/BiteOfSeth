@@ -1,62 +1,82 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilemapFunctions : MonoBehaviour
+public class TilemapSlicer : MonoBehaviour
 {
-    public Tilemap tilemapReference = null;
-    public Tile wallTile = null;
-    public Tile checkpointTile = null;
-    public Tile startTile = null;
-    List<Tilemap> slicedTilemaps = null;
-    // Start is called before the first frame update
+    public Tilemap tilemapToSlice = null;
+    public TilesetObjects tilesetObjects = null;
+    List<Tilemap> workingTilemaps = null;
+    List<GameObject> rooms = null;
+
     void Start()
     {
-        SliceTilemap(tilemapReference);
+        if (tilemapToSlice == null || tilesetObjects == null)
+        {
+            Debug.LogError("Slicer with null arguments");
+        }
+        else
+        {
+            SliceTilemap(tilemapToSlice, tilesetObjects);
+            foreach(GameObject t in rooms)
+            {
+                RoomBehavior r = t.gameObject.GetComponent<RoomBehavior>();
+                if (r != null)
+                {
+                    r.SpawnRoom(tilesetObjects);
+                }
+            }
+        }
     }
 
-    void SliceTilemap(Tilemap tilemapToSlice)
+    void SliceTilemap(Tilemap tilemapToSlice, TilesetObjects tilesetObjects)
     {
-        slicedTilemaps = new List<Tilemap>();
+        workingTilemaps = new List<Tilemap>();
 
-        tilemapReference.gameObject.SetActive(false);
+        tilemapToSlice.gameObject.SetActive(false);
 
         Tilemap wallMap = Instantiate(tilemapToSlice, transform);
         wallMap.gameObject.SetActive(true);
-        wallMap.gameObject.name = "Walls tilemap";
+        wallMap.gameObject.name = "walls";
 
         // turn checkpoints to walls then clear non-walls
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             TileBase tile = wallMap.GetTile(localPlace);
-            if (tile != wallTile && tile != checkpointTile)
+            if (tile != tilesetObjects.wallTile && tile != tilesetObjects.checkpointTile)
             {
                 wallMap.SetTile(localPlace, null);
             }
         }
-        
+
         // create tilemaps for each room with FloodFill
+        rooms = new List<GameObject>();
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             if (true)
             {
-                if (tileInMaps(slicedTilemaps, localPlace) == false)
+                if (tileInMaps(workingTilemaps, localPlace) == false)
                 {
-                    Tilemap newRoom = Instantiate(wallMap, transform);
-                    newRoom.FloodFill(localPlace, wallTile);
-                    newRoom.gameObject.SetActive(true);
-                    newRoom.gameObject.name = "room " + slicedTilemaps.Count.ToString();
-                    slicedTilemaps.Add(newRoom);
+                    GameObject newRoom = new GameObject("room " + workingTilemaps.Count.ToString());
+                    newRoom.transform.parent = transform;
+                    newRoom.AddComponent<RoomBehavior>();
+                    Tilemap newRoomTilemap = Instantiate(wallMap, newRoom.transform);
+                    newRoomTilemap.FloodFill(localPlace, tilesetObjects.wallTile);
+                    newRoomTilemap.gameObject.SetActive(true);
+                    newRoomTilemap.gameObject.name = "base tilemap";
+                    workingTilemaps.Add(newRoomTilemap);
+                    rooms.Add(newRoom);
                 }
-            }            
+            }
         }
 
         Tilemap startingTilemap = null;
 
         // clear wallmap from rooms
-        foreach(Tilemap tilemap in slicedTilemaps)
+        foreach (Tilemap tilemap in workingTilemaps)
         {
             // remove wall map to get only fill
             foreach (var pos in tilemap.cellBounds.allPositionsWithin)
@@ -95,56 +115,56 @@ public class TilemapFunctions : MonoBehaviour
                 if (tilemap.HasTile(localPlace))
                 {
                     TileBase originalTile = tilemapToSlice.GetTile(localPlace);
-                    if (originalTile == startTile)
+                    if (originalTile == tilesetObjects.startTile)
                     {
                         startingTilemap = tilemap;
                     }
-                    tilemap.SetTile(localPlace, originalTile);                    
+                    tilemap.SetTile(localPlace, originalTile);
                 }
             }
         }
-        SetCheckpoit(startingTilemap,new List<Tilemap>(slicedTilemaps), Vector3Int.one);
+        SetCheckpoit(startingTilemap, new List<Tilemap>(workingTilemaps), Vector3Int.one);
 
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            if (wallMap.GetTile(localPlace) == checkpointTile)
+            if (wallMap.GetTile(localPlace) == tilesetObjects.checkpointTile)
             {
                 wallMap.SetTile(localPlace, null);
             }
         }
 
     }
-    void SetCheckpoit(Tilemap thisMap,List<Tilemap> mapsToSetCheckpoint, Vector3Int checkpoint)
+    void SetCheckpoit(Tilemap thisMap, List<Tilemap> mapsToSetCheckpoint, Vector3Int checkpoint)
     {
-            foreach (var pos in thisMap.cellBounds.allPositionsWithin)
+        foreach (var pos in thisMap.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+            if (thisMap.GetTile(localPlace) == tilesetObjects.checkpointTile)
             {
-                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-                if (thisMap.GetTile(localPlace) == checkpointTile)
+                if (localPlace == checkpoint)
                 {
-                    if(localPlace == checkpoint)
-                    {
                     // instantiate checkpoint
-                    slicedTilemaps.Remove(thisMap);
-                    }
-                    else
+                    workingTilemaps.Remove(thisMap);
+                }
+                else
+                {
+                    thisMap.SetTile(localPlace, null);
+                    foreach (Tilemap tilemap in mapsToSetCheckpoint)
                     {
-                        thisMap.SetTile(localPlace, null);
-                        foreach (Tilemap tilemap in mapsToSetCheckpoint)
+                        if (tilemap.HasTile(localPlace))
                         {
-                            if (tilemap.HasTile(localPlace))
-                            {
-                            SetCheckpoit(tilemap, new List<Tilemap>(slicedTilemaps), localPlace);
-                            }                            
+                            SetCheckpoit(tilemap, new List<Tilemap>(workingTilemaps), localPlace);
                         }
-                    }      
+                    }
                 }
             }
+        }
     }
 
     bool tileInMaps(List<Tilemap> maps, Vector3Int pos)
     {
-        foreach(Tilemap tilemap in maps)
+        foreach (Tilemap tilemap in maps)
         {
             if (tilemap.HasTile(pos))
             {
