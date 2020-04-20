@@ -9,12 +9,25 @@ public class PlayerController : MonoBehaviour
     private Movable movable = null;
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
+    private CheckpointBehavior currentCheckpoint = null;
 
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
         gameObject.transform.parent = null;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (currentCheckpoint != null)
+            {
+                currentCheckpoint.RewindRoom();
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!movable.isMoving)
@@ -56,6 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    
     private Vector2 CheckInput()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -87,4 +101,8 @@ public class PlayerController : MonoBehaviour
         return desiredMovement;
     }
 
+    public void AssignCheckpoint(CheckpointBehavior c)
+    {
+        currentCheckpoint = c;
+    }
 }

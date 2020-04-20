@@ -7,7 +7,6 @@ public class RoomBehavior : MonoBehaviour
 {
     private Tilemap backupTilemap = null;
     private TilesetObjects tilesetObjects = null;
-    private Tilemap spawnedTilemap = null;
 
     public void SpawnRoom(TilesetObjects _tilesetObjects)
     {
@@ -17,10 +16,12 @@ public class RoomBehavior : MonoBehaviour
 
     public void SpawnRoom()
     {
+        bool isFirstSpawn = false;
         if (backupTilemap == null)
         {
             backupTilemap = GetComponentInChildren<Tilemap>();
             backupTilemap.gameObject.SetActive(false);
+            isFirstSpawn = true;
         }
 
         Tilemap tempTilemap = Instantiate(backupTilemap, transform);
@@ -38,7 +39,18 @@ public class RoomBehavior : MonoBehaviour
                         if (tilesetObjects.objectsToSpawn[i].objectToSpawn != null)
                         {
                             Vector3 objectPlace = localPlace + tempTilemap.layoutGrid.cellSize / 2;
-                            Instantiate(tilesetObjects.objectsToSpawn[i].objectToSpawn, objectPlace, Quaternion.identity, gameObject.transform);
+                            GameObject g = Instantiate(tilesetObjects.objectsToSpawn[i].objectToSpawn, objectPlace, Quaternion.identity, gameObject.transform) as GameObject;
+                            if (tile == tilesetObjects.checkpointTile)
+                            {
+                                if (isFirstSpawn)
+                                {
+                                    g.GetComponent<CheckpointBehavior>().SetRoom(this);
+                                }
+                                else
+                                {
+                                    Destroy(g);
+                                }                                
+                            }
                         }
                         tempTilemap.SetTile(localPlace, null);
                         break;
@@ -47,5 +59,29 @@ public class RoomBehavior : MonoBehaviour
             }
         }
         Destroy(tempTilemap.gameObject);
+    }
+
+    public void DespawnRoom()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<CheckpointBehavior>() != null)
+            {
+                // ignore and don't destroy the checkpoint object
+            }
+            else if (child.gameObject == backupTilemap.gameObject)
+            {
+                // ignore and don't destroy the backup tilemap object
+            }
+            else if (child.GetComponent<CollectibleBehavior>() != null)
+            {
+                // TODO: de-collect collectable
+                Destroy(child.gameObject);
+            }
+            else
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }
