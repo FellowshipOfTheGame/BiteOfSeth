@@ -19,8 +19,14 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueName;
     public Text dialogueText;
     public Image dialoguePortrait;
+    public float delay = 0.001f;
 
     public Queue<DialogueBase.Info> dialogueInfo = new Queue<DialogueBase.Info>();
+
+    private bool isCurrentlyTyping;
+    private string completeText;
+
+    private Coroutine inst;
     
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
@@ -34,21 +40,52 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void DequeueDialogue(){
+        DialogueBase.Info Info = null;
+
         //need to add code that detects when there is no more dialogue and return
-        if(dialogueInfo.Count == 0){
-            endOfDialogue();
+        if(dialogueInfo.Count == 0 && isCurrentlyTyping){
+            CompleteText();
+            StopCoroutine(inst);
+            isCurrentlyTyping = false;
+            return;
+        } else if (dialogueInfo.Count == 0 && isCurrentlyTyping == false){
+            EndOfDialogue();
+            return;
+        }
+
+        if(isCurrentlyTyping == true){
+            CompleteText();
+            StopCoroutine(inst);
+            isCurrentlyTyping = false;
             return;
         }
 
 
-        DialogueBase.Info Info = dialogueInfo.Dequeue();
+        Info = dialogueInfo.Dequeue();
+        completeText = Info.myText;
 
         dialogueName.text = Info.characterName;
         dialogueText.text = Info.myText;
         dialoguePortrait.sprite = Info.portrait;
+
+        dialogueText.text = "";
+        inst = StartCoroutine(TypeText(Info));
     }
 
-    public void endOfDialogue(){
+    IEnumerator TypeText(DialogueBase.Info info){
+        isCurrentlyTyping = true;
+        foreach(char c in info.myText.ToCharArray()){
+            yield return new WaitForSeconds(delay);
+            dialogueText.text += c;
+        }
+        isCurrentlyTyping = false;
+    }
+
+    private void CompleteText(){
+        dialogueText.text = completeText;
+    }
+
+    public void EndOfDialogue(){
         dialogueBox.SetActive(false);
     }
 

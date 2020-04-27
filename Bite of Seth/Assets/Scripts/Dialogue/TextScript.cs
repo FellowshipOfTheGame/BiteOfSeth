@@ -7,7 +7,7 @@ public class TextScript : MonoBehaviour
     public DialogueBase dialogue;
     public bool playerInRange;
 
-    public void triggerDialogue(){
+    public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
 
@@ -28,8 +28,8 @@ public class TextScript : MonoBehaviour
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Space) && playerInRange){
-            triggerDialogue();
+        if(Input.GetKeyDown(KeyCode.E) && playerInRange){
+            TriggerDialogue();
         }
     }
 

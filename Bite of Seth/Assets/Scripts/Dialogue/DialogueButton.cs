@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueButton : MonoBehaviour
 {
-    public void getNextLine(){
+    public void GetNextLine(){
         DialogueManager.instance.DequeueDialogue();
     }
 }

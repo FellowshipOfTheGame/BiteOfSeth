@@ -395,6 +395,7 @@ MonoBehaviour:
   dialogueName: {fileID: 1546631340}
   dialogueText: {fileID: 1843892695}
   dialoguePortrait: {fileID: 1752900085}
+  delay: 0.01
 --- !u!4 &383626185
 Transform:
   m_ObjectHideFlags: 0
@@ -505,7 +506,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 517650167}
-        m_MethodName: getNextLine
+        m_MethodName: GetNextLine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
