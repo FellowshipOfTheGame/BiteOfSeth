@@ -12,7 +12,6 @@ public class FallBehavior : MonoBehaviour
     public LayerMask rollMask;
     public float fallSpeed = 3f;
 
-
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -42,16 +41,7 @@ public class FallBehavior : MonoBehaviour
                 {
                     movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                 }
-
             }
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (LayerMask.NameToLayer("Player") == collision.gameObject.layer)
-        {
-            ServiceLocator.gameManager.KillPlayer();
-        }
-    }
+    }    
 }
