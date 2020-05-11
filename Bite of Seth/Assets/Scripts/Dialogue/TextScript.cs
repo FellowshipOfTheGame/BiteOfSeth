@@ -12,7 +12,7 @@ public class TextScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        Debug.Log("Player entered trigger with " + other.tag);
+        //Debug.Log("Player entered trigger with " + other.tag);
 
         if(other.CompareTag("Player")){
             playerInRange = true;
@@ -20,17 +20,28 @@ public class TextScript : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other){
-        Debug.Log("Player has exit trigger with " + other.tag);
+        //Debug.Log("Player has exit trigger with " + other.tag);
 
         if(other.CompareTag("Player")){
             playerInRange = false;
         }
     }
 
-    void Update(){
+    /*void Update(){
         if(Input.GetKeyDown(KeyCode.Space) && playerInRange){
             triggerDialogue();
         }
+    }*/
+
+    //Return true if the dialog has occurred
+    public bool TryToDialogue()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        {
+            triggerDialogue();
+            return true;
+        }
+        return false;
     }
 
 }
