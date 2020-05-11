@@ -6,8 +6,9 @@ public class PuzzleOrderDialogue : MonoBehaviour
 {
 
     TextScript ts;
-    public int id;
     private bool selected = false;
+
+    public PuzzleManager.Id id;
 
     // Start is called before the first frame update
     void Start()

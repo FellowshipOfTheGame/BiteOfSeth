@@ -21,11 +21,12 @@ public class PuzzleFinalDialogue : MonoBehaviour
         {
             if (PuzzleManager.instance.CheckFinalAnswer())
             {
-                Debug.Log("VOCÊ VENCEU, PARABÉNS!");
+                Debug.Log("YOU WON, CONGRATULATIONS!");
             } 
             else 
             {
-                Debug.Log("VOCÊ PERDEU, QUE PENA...");
+                Debug.Log("YOU LOSE... TRY AGAIN!");
+                PuzzleManager.instance.SetPuzzle();
             }
         }
     }

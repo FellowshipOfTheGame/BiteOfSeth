@@ -5,9 +5,12 @@ using UnityEngine;
 public class PuzzleManager : MonoBehaviour
 {
 
-    private int[] statuesCorrectOrder = new int[4];
-    private int[] statuesSelectedOrder = new int[4];
+    public enum Id { Red = 0, Blue = 1, Green = 2, Yellow = 3 };
+
+    private Id[] statuesCorrectOrder = new Id[4];
+    private Id[] statuesSelectedOrder = new Id[4];
     int nSelected = 0;
+
     public static PuzzleManager instance;
     private void Awake()
     {
@@ -17,43 +20,39 @@ public class PuzzleManager : MonoBehaviour
             instance = this;
         }
     }
-
+ 
     // Start is called before the first frame update
     void Start()
     {
         //Getting a random sequence of the statues in statuesOrder array:
-        int count = 4, random;
-        List<int> statues = new List<int>();
-        for(int i=0; i<4; i++)
-        {
-            statues.Add(i);
+        SetPuzzle();
+    }
+
+    public void SetPuzzle()
+    {
+        nSelected = 0;
+        int count = 4, random;        
+        List<Id> statues = new List<Id>();
+        for (int i = 0; i < 4; i++) {
+            statues.Add((Id)i);
         }
-        while (count > 0) 
-        {
+        while (count > 0) {
             random = Random.Range(0, count);
             statuesCorrectOrder[4 - count] = statues[random];
             statues.RemoveAt(random);
             count--;
         }
-
-        for (int i = 0; i < 4; i++) {
-            Debug.Log(statuesCorrectOrder[i]);
-        }
-
+        Debug.Log("The correct order is: " + statuesCorrectOrder[0] + ", " + statuesCorrectOrder[1] + ", " + statuesCorrectOrder[2] + " & " + statuesCorrectOrder[3] + ".");
     }
 
-    public void SelectStatue(int id)
+    public void SelectStatue(Id id)
     {
         statuesSelectedOrder[nSelected++] = id;
-        Debug.Log("A "+nSelected+"ª estátua selecionada é a estátua "+id+".");
-        if(nSelected == 4)
+        Debug.Log("The statue number "+nSelected+" selected is the "+id+" one!");
+        /*if(nSelected == 4)
         {
             Debug.Log(CheckFinalAnswer());
-           /* if (CheckFinalAnswer()) 
-            {
-
-            }*/
-        }
+        }*/
     }
 
     public bool CheckFinalAnswer()
