@@ -7,6 +7,7 @@ public class FallBehavior : MonoBehaviour
 {
     // THE ROCK 'N' ROLL SCRIPT
     private Movable movable = null;
+    public bool canKill = false;
     public LayerMask fallMask;
     public LayerMask rollMask;
     public float fallSpeed = 3f;
@@ -40,23 +41,7 @@ public class FallBehavior : MonoBehaviour
                 {
                     movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                 }
-
             }
-            /*
-            //check if can kill the player
-            else if (canKillPlayer) 
-            {
-                foreach(GameObject go in objectsInPath) 
-                {
-                    //check if is standing on the player
-                    if (LayerMask.LayerToName(go.layer) == "Player")
-                    {
-                        go.GetComponent<PlayerLife>().Kill();
-                    }
-                }
-            }
-            */
-
         }
-    }
+    }    
 }
