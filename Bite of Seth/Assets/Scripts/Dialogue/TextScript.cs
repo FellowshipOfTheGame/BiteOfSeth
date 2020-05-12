@@ -7,8 +7,12 @@ public class TextScript : MonoBehaviour
     public DialogueBase dialogue;
     public bool playerInRange;
 
-    public void triggerDialogue(){
+    public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
+    }
+
+    public void UpdateLog(){
+        LogSystem.instance.AddEntry(dialogue);
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -28,8 +32,9 @@ public class TextScript : MonoBehaviour
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Space) && playerInRange){
-            triggerDialogue();
+        if(Input.GetKeyDown(KeyCode.E) && playerInRange){
+            TriggerDialogue();
+            UpdateLog();
         }
     }
 

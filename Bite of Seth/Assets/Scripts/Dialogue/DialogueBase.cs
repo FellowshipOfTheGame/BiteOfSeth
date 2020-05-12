@@ -14,4 +14,6 @@ public class DialogueBase : ScriptableObject{
     
     [Header("Insert dialogue info below")]
     public Info[] dialogueInfo;
+    public int dialogueID;
+    public string dialogueTitle;
 }
