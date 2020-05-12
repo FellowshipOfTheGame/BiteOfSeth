@@ -11,6 +11,10 @@ public class TextScript : MonoBehaviour
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
 
+    public void UpdateLog(){
+        LogSystem.instance.AddEntry(dialogue);
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         Debug.Log("Player entered trigger with " + other.tag);
 
@@ -30,6 +34,7 @@ public class TextScript : MonoBehaviour
     void Update(){
         if(Input.GetKeyDown(KeyCode.E) && playerInRange){
             TriggerDialogue();
+            UpdateLog();
         }
     }
 
