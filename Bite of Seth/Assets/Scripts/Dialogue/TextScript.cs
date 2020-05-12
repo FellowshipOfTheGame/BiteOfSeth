@@ -36,14 +36,14 @@ public class TextScript : MonoBehaviour
             TriggerDialogue();
             UpdateLog();
         }
-    }*/
+    }
 
     //Return true if the dialog has occurred
     public bool TryToDialogue()
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
-            triggerDialogue();
+            TriggerDialogue();
             return true;
         }
         return false;
