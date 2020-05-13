@@ -9,15 +9,18 @@ public static class ServiceLocator
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void SetupServiceLocator()
     {
-        GameObject monoHelper = new GameObject("Service Locator Helper");
-        monoHelper.AddComponent<ServiceMonobehaviorHelper>();
         Debug.Log("Loading ServiceList to ServiceLocator");
         ServiceList serviceList = Resources.Load<ServiceList>("ServiceList");
         foreach(GameService service in serviceList.services)
         {
             Register(service);
         }
+        // instantiate the monoBehaviorHelper singleton
+        GameObject monoHelper = new GameObject("ServiceLocator Helper");
+        monoHelper.AddComponent<MonoBehaviorHelper>();
     }
+
+    // this function should only be called by the monoBehaviorHelper singleton
     public static void Update()
     {
         // propagates the update to the individual services registered
@@ -36,7 +39,7 @@ public static class ServiceLocator
         }
         if (!services.ContainsKey(key))
         {
-            Debug.LogError($"service of type {key} not registered");
+            Debug.LogError($"Service of type {key} not registered");
             return null; // instantiate and register default gameService
 
         }

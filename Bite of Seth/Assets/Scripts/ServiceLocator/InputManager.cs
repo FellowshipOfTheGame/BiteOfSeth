@@ -15,7 +15,7 @@ public class InputManager : GameService
     {
         if (Input.GetKeyDown(dialogueKey))
         {
-            Debug.Log("dialogue key pressed");
+            Debug.Log("Dialogue key pressed");
         }
     }
 }
