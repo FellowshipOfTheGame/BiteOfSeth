@@ -5,6 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Manager/ServiceList")]
 public class ServiceList : ScriptableObject
 {
-    public GameManager gameManager = default;
-
+    public List<GameService> services = new List<GameService>();
 }

@@ -11,8 +11,9 @@ public class CollectableBehavior : MonoBehaviour
     {
         if (!collected)
         {
-            ServiceLocator.gameManager.AddScore(points);
-            ServiceLocator.gameManager.PrintScore();
+            GameManager gm = ServiceLocator.Get<GameManager>();
+            gm.AddScore(points);
+            gm.PrintScore();
             gameObject.SetActive(false);
             collected = true;
         }
@@ -22,8 +23,9 @@ public class CollectableBehavior : MonoBehaviour
     {
         if (collected)
         {
-            ServiceLocator.gameManager.AddScore(-points);
-            ServiceLocator.gameManager.PrintScore();
+            GameManager gm = ServiceLocator.Get<GameManager>();
+            gm.AddScore(-points);
+            gm.PrintScore();
         }
     }
 

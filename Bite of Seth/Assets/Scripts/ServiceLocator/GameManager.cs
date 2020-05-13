@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Manager/GameManager")]
-public class GameManager : ScriptableObject
+public class GameManager : GameService
 {
     private float score = 0;
 
@@ -11,7 +11,6 @@ public class GameManager : ScriptableObject
     {
         Debug.Log("TODO: KillPlayer Behavior");
     }
-
     public void PrintScore()
     {
         Debug.Log(string.Format("Current Score: {0}",score));

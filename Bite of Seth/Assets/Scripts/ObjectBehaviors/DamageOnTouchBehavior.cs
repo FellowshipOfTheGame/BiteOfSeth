@@ -12,7 +12,7 @@ public class DamageOnTouchBehavior : MonoBehaviour
             if (LayerMask.NameToLayer("Player") == collision.gameObject.layer)
             {
                 // kill player
-                ServiceLocator.gameManager.KillPlayer();
+                ServiceLocator.Get<GameManager>().KillPlayer();
             }
             else
             {
