@@ -29,6 +29,7 @@ public static class ServiceLocator
             pair.Value.Update();
         }
     }
+
     public static T Get<T>() where T : GameService
     {
         string key = typeof(T).Name;
@@ -55,6 +56,7 @@ public static class ServiceLocator
             return;
         }
         services.Add(key, service);
+        service.Start();
     }
 
     public static void Unregister<T>() where T : GameService

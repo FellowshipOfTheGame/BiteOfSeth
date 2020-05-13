@@ -6,4 +6,8 @@ public abstract class GameService : ScriptableObject
     {
 
     }
+    public virtual void Start()
+    {
+
+    }
 }
