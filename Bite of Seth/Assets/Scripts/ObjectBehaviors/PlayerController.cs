@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movable movable = null;
-    private Vector2 lookingDirection = Vector2.right;
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
     private CheckpointBehavior currentCheckpoint = null;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, lookingDirection, gameObject);
+            List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
             foreach (GameObject g in objects)
             {
                 BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
@@ -112,7 +111,7 @@ public class PlayerController : MonoBehaviour
         }
         if (desiredMovement != Vector2.zero)
         {
-            lookingDirection = desiredMovement;
+            movable.lookingDirection = desiredMovement;
         }        
         return desiredMovement;
     }

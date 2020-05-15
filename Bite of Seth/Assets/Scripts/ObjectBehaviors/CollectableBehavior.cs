@@ -6,6 +6,7 @@ public class CollectableBehavior : MonoBehaviour
 {
     private bool collected = false;
     public int points = 1;
+    public AudioObject collectSFX = null;
 
     public void Collect()
     {
@@ -16,6 +17,8 @@ public class CollectableBehavior : MonoBehaviour
             gm.PrintScore();
             gameObject.SetActive(false);
             collected = true;
+
+            ServiceLocator.Get<AudioManager>().PlayAudio(collectSFX);
         }
     }
 

@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canKill: 0
   fallMask:
     serializedVersion: 2
     m_Bits: 7681
@@ -166,6 +167,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   fallSpeed: 3
+  fallSound: {fileID: 0}
 --- !u!114 &-5926556322554335977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +181,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 1
+  collectSFX: {fileID: 11400000, guid: bd2e88e400206f54e934327a6f89aa0a, type: 2}
