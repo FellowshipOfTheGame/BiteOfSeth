@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LogSystem : MonoBehaviour
+public class LogManager : MonoBehaviour
 {
 
-    public static LogSystem instance;
+    public static LogManager instance;
     private void Awake(){
         if(instance != null){
             Debug.LogError("Missing asset " + gameObject.name);
