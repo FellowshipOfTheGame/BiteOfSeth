@@ -5,19 +5,22 @@ using UnityEngine;
 public static class ServiceLocator
 {
     private static Dictionary<string, GameService> services = new Dictionary<string, GameService>();
+    private static GameObject monoHelperObject = null;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void SetupServiceLocator()
     {
+        // instantiate the monoBehaviorHelper singleton
+        monoHelperObject = new GameObject("ServiceLocator Helper");
+        monoHelperObject.AddComponent<MonoBehaviorHelper>();
+
+        // loads service list
         Debug.Log("Loading ServiceList to ServiceLocator");
         ServiceList serviceList = Resources.Load<ServiceList>("ServiceList");
         foreach(GameService service in serviceList.services)
         {
             Register(service);
         }
-        // instantiate the monoBehaviorHelper singleton
-        GameObject monoHelper = new GameObject("ServiceLocator Helper");
-        monoHelper.AddComponent<MonoBehaviorHelper>();
     }
 
     // this function should only be called by the monoBehaviorHelper singleton
@@ -73,5 +76,11 @@ public static class ServiceLocator
             return;
         }
         services.Remove(key);
+    }
+
+    public static T AddComponentToHelperObject<T>() where T : Component
+    {
+        T component = monoHelperObject.AddComponent<T>() as T;
+        return component;
     }
 }
