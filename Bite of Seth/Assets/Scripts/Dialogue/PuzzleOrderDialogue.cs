@@ -27,4 +27,9 @@ public class PuzzleOrderDialogue : MonoBehaviour
         }
     }
 
+    public void ResetSelection()
+    {
+        selected = false;
+    }
+
 }

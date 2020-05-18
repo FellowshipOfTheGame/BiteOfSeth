@@ -26,7 +26,7 @@ public class PuzzleFinalDialogue : MonoBehaviour
             else 
             {
                 Debug.Log("YOU LOSE... TRY AGAIN!");
-                PuzzleManager.instance.SetPuzzle();
+                PuzzleManager.instance.ResetPuzzle();
             }
         }
     }
