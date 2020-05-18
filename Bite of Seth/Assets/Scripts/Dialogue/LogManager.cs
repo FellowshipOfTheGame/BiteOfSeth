@@ -26,11 +26,19 @@ public class LogManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.L)){
-        // }
+        if(Input.GetKeyDown(KeyCode.L)){
+            Debug.Log("we in");
+            foreach(DialogueBase db in dialogueLogs){
+                foreach(DialogueBase.Info info in db.dialogueInfo){
+                    Debug.Log(info.myText);
+                }
+            }
+        }
     }
 
     public void toggleLogs(){
+        
+
         if(!isDisplayingLogs){
             //toggle on Logs UI
             
