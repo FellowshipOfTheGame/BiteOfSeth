@@ -20,24 +20,6 @@ TextureImporter:
   - first:
       213: -7518761654624676281
     second: back_5
-  - first:
-      213: 482797309037442509
-    second: back_0
-  - first:
-      213: -1854150578921545405
-    second: back_1
-  - first:
-      213: 5324817033257640014
-    second: back_2
-  - first:
-      213: 2471584632747627932
-    second: back_3
-  - first:
-      213: 5250454053054042799
-    second: back_4
-  - first:
-      213: 2526030946730386612
-    second: back_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -67,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -77,7 +59,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -96,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -108,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -120,7 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -132,7 +114,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -149,10 +131,10 @@ TextureImporter:
       name: back_0
       rect:
         serializedVersion: 2
-        x: 325
-        y: 1055
-        width: 367
-        height: 924
+        x: 0
+        y: 1034
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc5f0b7389d33b600800000000000000
-      internalID: 482797309037442509
+      spriteID: d9065b094aa9d80c0800000000000000
+      internalID: -4571828015118065507
       vertices: []
       indices: 
       edges: []
@@ -170,10 +152,10 @@ TextureImporter:
       name: back_1
       rect:
         serializedVersion: 2
-        x: 1376
-        y: 1055
-        width: 350
-        height: 924
+        x: 1034
+        y: 1034
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341eb474fdbb446e0800000000000000
-      internalID: -1854150578921545405
+      spriteID: 4263196840f7139d0800000000000000
+      internalID: -2796314236206107100
       vertices: []
       indices: 
       edges: []
@@ -191,10 +173,10 @@ TextureImporter:
       name: back_2
       rect:
         serializedVersion: 2
-        x: 2410
-        y: 1055
-        width: 350
-        height: 924
+        x: 2068
+        y: 1034
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e40654131ec85e940800000000000000
-      internalID: 5324817033257640014
+      spriteID: 173bb6a1d1a71b680800000000000000
+      internalID: -8741071136333515919
       vertices: []
       indices: 
       edges: []
@@ -212,10 +194,10 @@ TextureImporter:
       name: back_3
       rect:
         serializedVersion: 2
-        x: 349
-        y: 21
-        width: 343
-        height: 924
+        x: 0
+        y: 0
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c959c33e025dc4220800000000000000
-      internalID: 2471584632747627932
+      spriteID: 33e926ba9361758c0800000000000000
+      internalID: -4010712506205823437
       vertices: []
       indices: 
       edges: []
@@ -233,10 +215,10 @@ TextureImporter:
       name: back_4
       rect:
         serializedVersion: 2
-        x: 1376
-        y: 21
-        width: 367
-        height: 924
+        x: 1034
+        y: 0
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa2dbc5a42c5dd840800000000000000
-      internalID: 5250454053054042799
+      spriteID: 1284009ae72854cf0800000000000000
+      internalID: -268665122245818335
       vertices: []
       indices: 
       edges: []
@@ -254,10 +236,10 @@ TextureImporter:
       name: back_5
       rect:
         serializedVersion: 2
-        x: 2410
-        y: 21
-        width: 343
-        height: 924
+        x: 2068
+        y: 0
+        width: 1034
+        height: 1034
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +247,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b4228733c34e0320800000000000000
-      internalID: 2526030946730386612
+      spriteID: 74694497c1ef7a790800000000000000
+      internalID: -7518761654624676281
       vertices: []
       indices: 
       edges: []

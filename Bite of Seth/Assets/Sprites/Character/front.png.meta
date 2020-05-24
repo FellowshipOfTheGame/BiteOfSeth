@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 2622741462206141062
     second: front_4
+  - first:
+      213: -143640507430623617
+    second: front_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -56,7 +59,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -75,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -87,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -99,7 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -111,7 +114,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
@@ -130,7 +133,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1038
-        width: 1118
+        width: 1038
         height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -149,9 +152,9 @@ TextureImporter:
       name: front_1
       rect:
         serializedVersion: 2
-        x: 1118
+        x: 1038
         y: 1038
-        width: 1118
+        width: 1038
         height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -170,9 +173,9 @@ TextureImporter:
       name: front_2
       rect:
         serializedVersion: 2
-        x: 2236
+        x: 2076
         y: 1038
-        width: 1118
+        width: 1038
         height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -193,7 +196,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1118
+        width: 1038
         height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -212,9 +215,9 @@ TextureImporter:
       name: front_4
       rect:
         serializedVersion: 2
-        x: 1118
+        x: 1038
         y: 0
-        width: 1118
+        width: 1038
         height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -225,6 +228,27 @@ TextureImporter:
       bones: []
       spriteID: 6825c78c679d56420800000000000000
       internalID: 2622741462206141062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_5
+      rect:
+        serializedVersion: 2
+        x: 2076
+        y: 0
+        width: 1038
+        height: 1038
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f76ad3338bfa10ef0800000000000000
+      internalID: -143640507430623617
       vertices: []
       indices: 
       edges: []
