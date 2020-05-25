@@ -6,14 +6,14 @@ using UnityEngine;
 public class DialogueBase : ScriptableObject{
     [System.Serializable]
     public class Info{
-        public string characterName;
-        public Sprite portrait;
+        public CharacterInfo character;
         [TextArea(4, 8)]
         public string myText;
     }
     
     [Header("Insert dialogue info below")]
-    public Info[] dialogueInfo;
     public int dialogueID;
     public string dialogueTitle;
+    public Info[] dialogueInfo;
+    
 }
