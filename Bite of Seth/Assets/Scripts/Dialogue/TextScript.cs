@@ -11,8 +11,12 @@ public class TextScript : MonoBehaviour
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
 
+    public void ContinueDialogue(){
+        DialogueManager.instance.DequeueDialogue();
+    }
+
     public void UpdateLog(){
-        LogSystem.instance.AddEntry(dialogue);
+        LogManager.instance.AddEntry(dialogue);
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -31,19 +35,22 @@ public class TextScript : MonoBehaviour
         }
     }
 
-    void Update(){
-        if(Input.GetKeyDown(KeyCode.E) && playerInRange){
-            TriggerDialogue();
-            UpdateLog();
-        }
-    }
+    // void Update(){
+    //     if(Input.GetKeyDown(KeyCode.E) && playerInRange){
+    //         TriggerDialogue();
+    //         UpdateLog();
+    //     }
+    // }
 
     //Return true if the dialog has occurred
     public bool TryToDialogue()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
-        {
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false){
             TriggerDialogue();
+            UpdateLog();
+            return true;
+        } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true){
+            ContinueDialogue();
             return true;
         }
         return false;

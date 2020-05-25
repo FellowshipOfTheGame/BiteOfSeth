@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public Queue<DialogueBase.Info> dialogueInfo = new Queue<DialogueBase.Info>();
 
     private bool isCurrentlyTyping;
+
+    public bool isDialogueActive;
     private string completeText;
 
     private Coroutine inst;
@@ -31,6 +33,7 @@ public class DialogueManager : MonoBehaviour
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
+        isDialogueActive = true;
 
         foreach(DialogueBase.Info info in db.dialogueInfo){
             dialogueInfo.Enqueue(info);
@@ -64,9 +67,9 @@ public class DialogueManager : MonoBehaviour
         Info = dialogueInfo.Dequeue();
         completeText = Info.myText;
 
-        dialogueName.text = Info.characterName;
+        dialogueName.text = Info.character.characterName;
         dialogueText.text = Info.myText;
-        dialoguePortrait.sprite = Info.portrait;
+        dialoguePortrait.sprite = Info.character.portrait;
 
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(Info));
@@ -86,6 +89,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndOfDialogue(){
+        isDialogueActive = false;
         dialogueBox.SetActive(false);
     }
 
