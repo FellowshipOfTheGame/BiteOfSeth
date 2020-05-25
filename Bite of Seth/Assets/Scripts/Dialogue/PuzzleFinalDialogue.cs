@@ -6,7 +6,6 @@ public class PuzzleFinalDialogue : MonoBehaviour
 {
 
     TextScript ts;
-    private bool selected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +18,9 @@ public class PuzzleFinalDialogue : MonoBehaviour
     {
         if(ts.TryToDialogue())
         {
+            //TO DO: Ask the player is it really wants to give the final answer
+            //if(UI.ConfirmFinalSelection())
+
             if (PuzzleManager.instance.CheckFinalAnswer())
             {
                 Debug.Log("YOU WON, CONGRATULATIONS!");

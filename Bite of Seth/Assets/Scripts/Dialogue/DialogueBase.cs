@@ -9,7 +9,6 @@ public class DialogueBase : ScriptableObject{
         public CharacterInfo character;
         [TextArea(4, 8)]
         public string myText;
-        public bool isQuestion;
     }
     
     [Header("Insert dialogue info below")]

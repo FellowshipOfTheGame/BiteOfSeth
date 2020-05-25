@@ -19,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueName;
     public Text dialogueText;
     public Image dialoguePortrait;
-    private bool isQuestion = false;
 
     public float delay = 0.001f;
 
@@ -45,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void DequeueDialogue(){
+
         DialogueBase.Info Info = null;
 
         //need to add code that detects when there is no more dialogue and return
@@ -65,7 +65,6 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-
         Info = dialogueInfo.Dequeue();
         completeText = Info.myText;
 
@@ -73,10 +72,9 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = Info.myText;
         dialoguePortrait.sprite = Info.character.portrait;
 
-        isQuestion = Info.isQuestion;
-
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(Info));
+
     }
 
     IEnumerator TypeText(DialogueBase.Info info){
@@ -95,11 +93,6 @@ public class DialogueManager : MonoBehaviour
     public void EndOfDialogue(){
         isDialogueActive = false;
         dialogueBox.SetActive(false);
-    }
-
-    public bool IsQuestion()
-    {
-        return isQuestion;
     }
 
 }

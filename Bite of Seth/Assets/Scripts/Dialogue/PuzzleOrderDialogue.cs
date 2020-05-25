@@ -20,9 +20,12 @@ public class PuzzleOrderDialogue : MonoBehaviour
     void Update()
     {
         if (!selected) {
-            if(selected = ts.TryToDialogue())
-            {
+            if (ts.TryToDialogue())
+            {   
+                //TO DO: Ask the player is it really wants to select this statue
+                //if(UI.ConfirmStatueSelection())
                 PuzzleManager.instance.SelectStatue(id);
+                selected = true;
             }
         }
     }
