@@ -47,7 +47,7 @@ public class TextScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
             TriggerDialogue();
-            //UpdateLog();
+            UpdateLog();
             //return true;
             return false;
         } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true) {
