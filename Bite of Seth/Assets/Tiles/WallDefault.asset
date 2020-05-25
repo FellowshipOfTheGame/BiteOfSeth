@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6752cf1e82330e74f8a6db6c053da3c1, type: 3}
   m_Name: WallDefault
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: b775f1e520b782a418564feab771dab3, type: 3}
+  m_Sprite: {fileID: 3411533302376670529, guid: 2cc42ebedd3e79d419907809c7ae8eef,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,6 +35,10 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  middle: {fileID: 0}
-  oneSide: []
+  middle: {fileID: 3411533302376670529, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  oneSide:
+  - {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  - {fileID: -3127631572554035583, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  - {fileID: 4192368419973257406, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  - {fileID: -352449660983787563, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
   twoSide: []
