@@ -11,6 +11,7 @@ public class FallBehavior : MonoBehaviour
     public LayerMask fallMask;
     public LayerMask rollMask;
     public float fallSpeed = 3f;
+    public AudioObject fallSound = null;
 
     void Start()
     {
@@ -43,5 +44,17 @@ public class FallBehavior : MonoBehaviour
                 }
             }
         }
-    }    
+    }
+    
+    // receiver for Movable message
+    private void OnStopedMoving()
+    {
+        if (fallSound != null) {
+            if (movable.lookingDirection == Vector2.down &&
+                GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count > 0)
+            {
+                ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+            }
+        }
+    }
 }

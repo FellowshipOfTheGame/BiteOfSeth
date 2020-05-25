@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
+    public List<GameObject> puzzleStatuesReferences = new List<GameObject>();
 
-    public enum Id { Red = 0, Blue = 1, Green = 2, Yellow = 3 };
+    //Quantity of statues in the puzzle
+    private int statuesQuantity;
 
-    private Id[] statuesCorrectOrder = new Id[4];
-    private Id[] statuesSelectedOrder = new Id[4];
-    int nSelected = 0;
+    //if, in the future, we will need more ids, just add more
+    public static int maxColorsQuantity = 20;
+    public enum Id { Red = 0, Blue = 1, Green = 2, Yellow = 3,  White = 4, Black = 5, Orange = 6, Purple = 7, Gray = 8, Pink = 9}; //...
+
+    private Id[] statuesCorrectOrder = new Id[maxColorsQuantity];
+    private Id[] statuesSelectedOrder = new Id[maxColorsQuantity];
+    private int nSelected = 0;
 
     public static PuzzleManager instance;
     private void Awake()
@@ -24,32 +30,42 @@ public class PuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Getting a random sequence of the statues in statuesOrder array:
-        SetPuzzle();
+        statuesQuantity = puzzleStatuesReferences.Count;
+        ResetPuzzle();
     }
 
-    public void SetPuzzle()
+    public void ResetPuzzle()
     {
+        foreach(GameObject S in puzzleStatuesReferences) {
+            PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
+            if(pod != null) {
+                pod.ResetSelection();
+            }
+        }
+        //Getting a random sequence of the statues in statuesOrder array:
         nSelected = 0;
-        int count = 4, random;        
+        int count = statuesQuantity, random;        
         List<Id> statues = new List<Id>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < statuesQuantity; i++) {
             statues.Add((Id)i);
         }
         while (count > 0) {
             random = Random.Range(0, count);
-            statuesCorrectOrder[4 - count] = statues[random];
+            statuesCorrectOrder[statuesQuantity - count] = statues[random];
             statues.RemoveAt(random);
             count--;
         }
-        Debug.Log("The correct order is: " + statuesCorrectOrder[0] + ", " + statuesCorrectOrder[1] + ", " + statuesCorrectOrder[2] + " & " + statuesCorrectOrder[3] + ".");
+        Debug.Log("The correct order is: ");
+        for (int i=0; i<statuesQuantity; i++) {
+            Debug.Log(i+1 + "ª: " + statuesCorrectOrder[i]);
+        }
     }
 
     public void SelectStatue(Id id)
     {
         statuesSelectedOrder[nSelected++] = id;
         Debug.Log("The statue number "+nSelected+" selected is the "+id+" one!");
-        /*if(nSelected == 4)
+        /*if(nSelected == statuesQuantity)
         {
             Debug.Log(CheckFinalAnswer());
         }*/
@@ -57,9 +73,9 @@ public class PuzzleManager : MonoBehaviour
 
     public bool CheckFinalAnswer()
     {
-        if (nSelected < 4) return false;
+        if (nSelected < statuesQuantity) return false;
 
-        for(int i=0; i<4; i++)
+        for(int i=0; i<statuesQuantity; i++)
         {
             if(statuesCorrectOrder[i] != statuesSelectedOrder[i]) 
             {

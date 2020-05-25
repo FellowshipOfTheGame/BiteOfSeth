@@ -6,7 +6,8 @@ using UnityEngine;
 public class InputManager : GameService
 {
     public KeyCode dialogueKey = KeyCode.None;
-
+    public KeyCode audioTestKey = KeyCode.None;
+    public AudioObject testAudio = null;
     public override void Update()
     {
         CheckInput();
@@ -16,6 +17,10 @@ public class InputManager : GameService
         if (Input.GetKeyDown(dialogueKey))
         {
             Debug.Log("Dialogue key pressed");
+        }
+        if (Input.GetKeyDown(audioTestKey))
+        {
+            ServiceLocator.Get<AudioManager>().PlayAudio(testAudio);
         }
     }
 }
