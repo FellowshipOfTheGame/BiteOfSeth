@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Manager/GameManager")]
 public class GameManager : GameService
 {
-    private float score = 0;
+    public int score = 0;
 
     public void KillPlayer()
     {
@@ -15,7 +15,7 @@ public class GameManager : GameService
     {
         Debug.Log(string.Format("Current Score: {0}",score));
     }
-    public void AddScore(float value)
+    public void AddScore(int value)
     {
         score += value;
     }
