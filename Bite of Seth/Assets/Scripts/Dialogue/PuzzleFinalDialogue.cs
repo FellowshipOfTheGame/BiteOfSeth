@@ -22,6 +22,7 @@ public class PuzzleFinalDialogue : MonoBehaviour
             if (PuzzleManager.instance.CheckFinalAnswer())
             {
                 Debug.Log("YOU WON, CONGRATULATIONS!");
+                PuzzleManager.instance.ResetPuzzle();
             } 
             else 
             {

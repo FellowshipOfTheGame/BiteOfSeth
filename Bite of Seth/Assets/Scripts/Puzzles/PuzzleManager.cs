@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public List<GameObject> statuesReferences = new List<GameObject>();
+    public List<GameObject> puzzleStatuesReferences = new List<GameObject>();
 
     //Quantity of statues in the puzzle
     private int statuesQuantity;
@@ -30,13 +30,13 @@ public class PuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        statuesQuantity = statuesReferences.Count;
+        statuesQuantity = puzzleStatuesReferences.Count;
         ResetPuzzle();
     }
 
     public void ResetPuzzle()
     {
-        foreach(GameObject S in statuesReferences) {
+        foreach(GameObject S in puzzleStatuesReferences) {
             PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
             if(pod != null) {
                 pod.ResetSelection();

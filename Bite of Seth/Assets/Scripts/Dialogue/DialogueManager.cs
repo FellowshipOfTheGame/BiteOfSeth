@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueName;
     public Text dialogueText;
     public Image dialoguePortrait;
+    private bool isQuestion = false;
+
     public float delay = 0.001f;
 
     public Queue<DialogueBase.Info> dialogueInfo = new Queue<DialogueBase.Info>();
@@ -71,6 +73,8 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = Info.myText;
         dialoguePortrait.sprite = Info.character.portrait;
 
+        isQuestion = Info.isQuestion;
+
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(Info));
     }
@@ -91,6 +95,11 @@ public class DialogueManager : MonoBehaviour
     public void EndOfDialogue(){
         isDialogueActive = false;
         dialogueBox.SetActive(false);
+    }
+
+    public bool IsQuestion()
+    {
+        return isQuestion;
     }
 
 }

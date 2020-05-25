@@ -43,17 +43,18 @@ public class TextScript : MonoBehaviour
     // }
 
     //Return true if the dialog has occurred
-    public bool TryToDialogue()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false){
+    public bool TryToDialogue() { 
+
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
             TriggerDialogue();
             UpdateLog();
             return true;
-        } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true){
+        } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true) {
             ContinueDialogue();
             return true;
         }
         return false;
+
     }
 
 }
