@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6752cf1e82330e74f8a6db6c053da3c1, type: 3}
+  m_Name: WallDefault
+  m_EditorClassIdentifier: 
+  m_Sprite: {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Transform:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_InstancedGameObject: {fileID: 0}
+  m_Flags: 1
+  m_ColliderType: 1
+  main:
+  - {fileID: -3127631572554035583, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  upGnd:
+  - {fileID: 3411533302376670529, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  downGnd:
+  - {fileID: 9021855155601725503, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  leftGnd:
+  - {fileID: 4747339615687677048, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  rightGnd:
+  - {fileID: -5407835099471975393, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  vert:
+  - {fileID: -352449660983787563, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  hor:
+  - {fileID: 4192368419973257406, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  upLeft:
+  - {fileID: 4449960736898644680, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  upRight:
+  - {fileID: -4102230595493925681, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  downRight:
+  - {fileID: 8137226634800695874, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  downLeft:
+  - {fileID: -3558767797036541325, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  noOpen:
+  - {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  upOpen:
+  - {fileID: -582375772571062999, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  downOpen:
+  - {fileID: 8403805575126003320, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  leftOpen:
+  - {fileID: -4116796237346661421, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
+  rightOpen:
+  - {fileID: -7018200464016470573, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
