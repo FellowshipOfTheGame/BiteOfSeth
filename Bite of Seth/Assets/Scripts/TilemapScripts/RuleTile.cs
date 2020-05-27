@@ -12,6 +12,8 @@ public class RuleTile : Tile {
 
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap) {
+        base.RefreshTile(position, tilemap);
+
         for (int yd = -1; yd <= 1; yd++){
             Vector3Int location = new Vector3Int(position.x, position.y + yd, position.z);
             if (IsNeighbour(location, tilemap))   
@@ -26,6 +28,8 @@ public class RuleTile : Tile {
     }
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData){
+        base.GetTileData(position, tilemap, ref tileData);
+
         bool[] neighbours = new bool[4];
         int count = 0;
 
