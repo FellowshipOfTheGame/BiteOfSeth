@@ -20,16 +20,16 @@ public class PuzzleFinalDialogue : MonoBehaviour
         {
             //TO DO: Ask the player is it really wants to give the final answer
             //if(UI.ConfirmFinalSelection())
-
-            if (PuzzleManager.instance.CheckFinalAnswer())
+            
+            if (ServiceLocator.Get<PuzzleManager>().CheckFinalAnswer()) 
             {
                 Debug.Log("YOU WON, CONGRATULATIONS!");
-                PuzzleManager.instance.ResetPuzzle();
+                ServiceLocator.Get<PuzzleManager>().ResetPuzzle();
             } 
             else 
             {
                 Debug.Log("YOU LOSE... TRY AGAIN!");
-                PuzzleManager.instance.ResetPuzzle();
+                ServiceLocator.Get<PuzzleManager>().ResetPuzzle();
             }
         }
     }

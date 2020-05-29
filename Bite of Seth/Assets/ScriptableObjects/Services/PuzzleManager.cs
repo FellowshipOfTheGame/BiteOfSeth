@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleManager : MonoBehaviour
+[CreateAssetMenu(menuName ="Manager/PuzzleManager")]
+public class PuzzleManager : GameService
 {
-    public List<GameObject> puzzleStatuesReferences = new List<GameObject>();
+    private GameObject[] puzzleStatuesReferences;
 
     //Quantity of statues in the puzzle
     private int statuesQuantity;
@@ -16,21 +17,13 @@ public class PuzzleManager : MonoBehaviour
     private Id[] statuesCorrectOrder = new Id[maxColorsQuantity];
     private Id[] statuesSelectedOrder = new Id[maxColorsQuantity];
     private int nSelected = 0;
-
-    public static PuzzleManager instance;
-    private void Awake()
-    {
-        if (instance != null) {
-            Debug.LogError("Missing asset " + gameObject.name);
-        } else {
-            instance = this;
-        }
-    }
  
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        statuesQuantity = puzzleStatuesReferences.Count;
+        //Get all puzzle statues references in scene
+        puzzleStatuesReferences = GameObject.FindGameObjectsWithTag("PuzzleStatue");
+        statuesQuantity = puzzleStatuesReferences.Length;
         ResetPuzzle();
     }
 
@@ -86,9 +79,4 @@ public class PuzzleManager : MonoBehaviour
         return true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
