@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05cf608e2ea9d84a8aa939bcc774c94, type: 3}
-  m_Name: Game Manager 1
+  m_Script: {fileID: 11500000, guid: 80fa14a63b3a952478586cdbf3706069, type: 3}
+  m_Name: PressurePlate
   m_EditorClassIdentifier: 
-  score: 0
+  clip: {fileID: 8300000, guid: 473d1064b05460e4b9b7c289345e5dc8, type: 3}
+  relativeVolume: 1
+  pitch: 1
+  loop: 0

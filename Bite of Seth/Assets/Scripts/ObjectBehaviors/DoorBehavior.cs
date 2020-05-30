@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorBehavior : MonoBehaviour
 {
     public List<PressurePlate> plates = new List<PressurePlate>();
+    private bool isClosed = true;
+    public AudioObject sfx = null;
 
     void FixedUpdate()
     {
@@ -29,13 +31,23 @@ public class DoorBehavior : MonoBehaviour
 
     void OpenDoor()
     {
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        if (isClosed)
+        {
+            isClosed = false;
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+        }
     }
 
     void CloseDoor()
     {
-        GetComponent<Collider2D>().enabled = true;
-        GetComponent<SpriteRenderer>().enabled = true;
+        if (!isClosed)
+        {
+            isClosed = true;
+            GetComponent<Collider2D>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
+        
     }
 }
