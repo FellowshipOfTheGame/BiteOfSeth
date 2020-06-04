@@ -80,10 +80,14 @@ public static class GridNav
     // Move function to be called on fixed updates, return a bool for if the movement finished;
     public static bool MoveToFixed(Rigidbody2D rigidbody, Vector2 targetPosition, float movementSpeed)
     {
-        Vector2 increment = new Vector2(targetPosition.x, targetPosition.y) - rigidbody.position;
-        if (increment.magnitude > 0.1f) // max diference between position and target position to consider
+        Vector2 positionDifferece = new Vector2(targetPosition.x, targetPosition.y) - rigidbody.position;
+        if (positionDifferece == Vector2.zero)
         {
-            increment = increment.normalized * Time.fixedDeltaTime * movementSpeed;
+            return true;
+        }
+        Vector2 increment = positionDifferece.normalized * Time.fixedDeltaTime * movementSpeed;
+        if (increment.sqrMagnitude < positionDifferece.sqrMagnitude)
+        {            
             rigidbody.MovePosition(rigidbody.position + increment);
             return false;
         }

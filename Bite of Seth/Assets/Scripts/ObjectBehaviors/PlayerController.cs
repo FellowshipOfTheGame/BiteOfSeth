@@ -10,11 +10,17 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
     private CheckpointBehavior currentCheckpoint = null;
+    private Animator animator = null;
+    private bool pushing = false;
 
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
         gameObject.transform.parent = null;
+    }
+    private void Start()
+    {
+        animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -37,13 +43,18 @@ public class PlayerController : MonoBehaviour
                     breakable.Break();
                 }
             }
-        }
+        }        
+        animator.SetBool("Walking", movable.isMoving);
+        animator.SetBool("Pushing", pushing);
+        animator.SetFloat("Horizontal", movable.lookingDirection.x);
+        animator.SetFloat("Vertical", movable.lookingDirection.y);
     }
 
     private void FixedUpdate()
     {
         if (!movable.isMoving)
         {
+            pushing = false;
             Vector2 desiredMovement = CheckInput();
             if (desiredMovement != Vector2.zero)
             {
@@ -63,6 +74,7 @@ public class PlayerController : MonoBehaviour
                         if (pushed)
                         {
                             movable.StartMovement(desiredMovement, movementSpeed);
+                            pushing = true;
                         }
                     }
 
