@@ -43,11 +43,17 @@ public class PlayerController : MonoBehaviour
                     breakable.Break();
                 }
             }
-        }        
+        }
+        Vector2 animationDiretion = movable.lookingDirection;
+        // check if grounded
+        if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, gameObject).Count == 0)
+        {
+            animationDiretion = Vector2.up;
+        }
         animator.SetBool("Walking", movable.isMoving);
         animator.SetBool("Pushing", pushing);
-        animator.SetFloat("Horizontal", movable.lookingDirection.x);
-        animator.SetFloat("Vertical", movable.lookingDirection.y);
+        animator.SetFloat("Horizontal", animationDiretion.x);
+        animator.SetFloat("Vertical", animationDiretion.y);
     }
 
     private void FixedUpdate()
