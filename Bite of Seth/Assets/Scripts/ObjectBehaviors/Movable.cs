@@ -10,6 +10,8 @@ public class Movable : MonoBehaviour
     public bool isMoving = false;
     public Vector2 lookingDirection = Vector2.zero;
     private Vector2 targetPosition = Vector2.zero;
+    public GameObject tempCollider;
+    private GameObject tc = null;
 
     void Awake()
     {
@@ -21,6 +23,16 @@ public class Movable : MonoBehaviour
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
         isMoving = true;
         speed = _speed;
+
+        //Put a temporary collider
+        tc = Instantiate(tempCollider, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        if (tc) 
+        {
+            tc.transform.parent = gameObject.transform;
+            //set the temporary collider position(in Grid)
+            tc.GetComponent<TemporaryCollider>().SetPosition(targetPosition);
+        }
+
     }
     private void FixedUpdate()
     {
@@ -30,6 +42,11 @@ public class Movable : MonoBehaviour
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
             if (isMoving == false)
             {
+                //Remove the additional collider
+                if (tc) 
+                {
+                    Destroy(tc);
+                }
                 gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver) ;
             }
         }

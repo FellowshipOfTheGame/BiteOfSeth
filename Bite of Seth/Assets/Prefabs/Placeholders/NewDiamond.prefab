@@ -147,6 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
   isMoving: 0
+  lookingDirection: {x: 0, y: 0}
+  tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
+    type: 3}
 --- !u!114 &754011300465007239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canKill: 0
   fallMask:
     serializedVersion: 2
     m_Bits: 16129
@@ -166,6 +170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   fallSpeed: 3
+  fallSound: {fileID: 0}
 --- !u!114 &6702001781502399326
 MonoBehaviour:
   m_ObjectHideFlags: 0

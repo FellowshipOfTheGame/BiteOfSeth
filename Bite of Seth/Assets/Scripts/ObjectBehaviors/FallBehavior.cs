@@ -19,12 +19,15 @@ public class FallBehavior : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
+        //TODO: add almostFalling bool
+
         if (!movable.isMoving)
         {
             // check if should fall
             if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
             {
+                //TODO: add delay...
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
@@ -34,12 +37,14 @@ public class FallBehavior : MonoBehaviour
                 if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
                 {
+                    //TODO: add delay...
                     movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
                 }
                 // room to roll right
                 else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
                 {
+                    //TODO: add delay...
                     movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                 }
             }
