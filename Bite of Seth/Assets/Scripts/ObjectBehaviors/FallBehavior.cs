@@ -12,14 +12,17 @@ public class FallBehavior : MonoBehaviour
     public LayerMask rollMask;
     public float fallSpeed = 3f;
     public AudioObject fallSound = null;
+    private RollDelay rd;
 
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
+        rd = gameObject.GetComponent<RollDelay>();
     }
 
     private void FixedUpdate()
-    {        
+    {
+
         if (!movable.isMoving)
         {
             // check if should fall
@@ -34,21 +37,40 @@ public class FallBehavior : MonoBehaviour
                 if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                    if (rd) 
+                    {
+                        //Roll delay
+                        if (rd.IsOff()) rd.TurnOn();
+                        else if (rd.IsFinished()) movable.StartMovement(GridNav.left, fallSpeed);
+                    }
+                    else movable.StartMovement(GridNav.left, fallSpeed);
                 }
                 // room to roll right
                 else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
+                    if (rd) 
+                    {
+                        //Roll delay
+                        if (rd.IsOff()) rd.TurnOn();
+                        else if (rd.IsFinished()) movable.StartMovement(GridNav.right, fallSpeed);
+                    }
+                    else movable.StartMovement(GridNav.right, fallSpeed);
+                } 
+                else if (rd) 
+                {
+                    //Then, even after the delay, it couldnt roll, so it will have another delay;
+                    if (rd.IsOn()) rd.Restart();
                 }
             }
         }
+
     }
     
     // receiver for Movable message
     private void OnStopedMoving()
     {
+        if(rd) rd.TurnOff();
         if (fallSound != null) {
             if (movable.lookingDirection == Vector2.down &&
                 GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count > 0)
@@ -57,4 +79,5 @@ public class FallBehavior : MonoBehaviour
             }
         }
     }
+
 }

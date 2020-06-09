@@ -77,6 +77,14 @@ public static class GridNav
         return position;
     }
 
+    /*public static Vector2 GridToWorldPosition(Vector2 position)
+    {
+        // round the position to snap to the center of a grid cell
+        position.x = (position.x - gridOffset.x)
+        position.y = gridSize.y * Mathf.Floor(position.y / gridSize.y) + gridOffset.y;
+        return position;
+    }*/
+
     // Move function to be called on fixed updates, return a bool for if the movement finished;
     public static bool MoveToFixed(Rigidbody2D rigidbody, Vector2 targetPosition, float movementSpeed)
     {

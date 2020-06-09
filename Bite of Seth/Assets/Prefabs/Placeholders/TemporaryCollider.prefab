@@ -12,13 +12,8 @@ GameObject:
   - component: {fileID: 498664437692522341}
   - component: {fileID: 5615844421084837}
   - component: {fileID: 1801673339601229862}
-  - component: {fileID: 5771504162434163340}
-  - component: {fileID: 754011300465007239}
-  - component: {fileID: 2969853976259807899}
-  - component: {fileID: 6702001781502399326}
-  - component: {fileID: 5061316030370421151}
-  m_Layer: 10
-  m_Name: Boulder
+  m_Layer: 9
+  m_Name: TemporaryCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b775f1e520b782a418564feab771dab3, type: 3}
-  m_Color: {r: 0.7264151, g: 0.6719504, b: 0.3186632, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9c0c4df499a0f6a41b9cfd6fead15c3a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +91,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296024696174100633}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -135,82 +130,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &5771504162434163340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277cb427d22468449a3367c35386e354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  isMoving: 0
-  lookingDirection: {x: 0, y: 0}
-  tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
-    type: 3}
---- !u!114 &754011300465007239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec65f8b1b82044b4fb347b941a57b548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canKill: 0
-  fallMask:
-    serializedVersion: 2
-    m_Bits: 16129
-  rollMask:
-    serializedVersion: 2
-    m_Bits: 3072
-  fallSpeed: 3
-  fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
---- !u!114 &2969853976259807899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf6b1b43f72937040b807fcf67f32a7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayTime: 2
---- !u!114 &6702001781502399326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a982b0c3be82041b35df506b13bb4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 7681
---- !u!114 &5061316030370421151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296024696174100633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70f46afa6a7b31542b3c6e75ec17156e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1

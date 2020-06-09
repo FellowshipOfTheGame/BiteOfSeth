@@ -10,6 +10,8 @@ public class Movable : MonoBehaviour
     public bool isMoving = false;
     public Vector2 lookingDirection = Vector2.zero;
     private Vector2 targetPosition = Vector2.zero;
+    public GameObject tempCollider;
+    private GameObject tc = null;
 
     void Awake()
     {
@@ -21,7 +23,13 @@ public class Movable : MonoBehaviour
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
         isMoving = true;
         speed = _speed;
+
+        //Put a temporary collider
+        tc = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
+        tc.transform.parent = gameObject.transform;
+        //Debug.Log("Collider temporário");
     }
+
     private void FixedUpdate()
     {
         if (isMoving)
@@ -30,6 +38,9 @@ public class Movable : MonoBehaviour
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
             if (isMoving == false)
             {
+                //Remove the additional collider
+                Destroy(tc);
+                //Debug.Log("Sumiu collider");
                 gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver) ;
             }
         }
