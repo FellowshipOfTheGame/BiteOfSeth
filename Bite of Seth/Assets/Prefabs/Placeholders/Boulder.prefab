@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1801673339601229862}
   - component: {fileID: 5771504162434163340}
   - component: {fileID: 754011300465007239}
+  - component: {fileID: 2969853976259807899}
   - component: {fileID: 6702001781502399326}
   - component: {fileID: 5061316030370421151}
   m_Layer: 10
@@ -172,6 +173,19 @@ MonoBehaviour:
     m_Bits: 3072
   fallSpeed: 3
   fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
+--- !u!114 &2969853976259807899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296024696174100633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6b1b43f72937040b807fcf67f32a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 2
 --- !u!114 &6702001781502399326
 MonoBehaviour:
   m_ObjectHideFlags: 0

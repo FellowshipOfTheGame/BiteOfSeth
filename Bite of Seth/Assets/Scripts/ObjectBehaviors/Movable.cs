@@ -25,15 +25,11 @@ public class Movable : MonoBehaviour
         speed = _speed;
 
         //Put a temporary collider
-        tc = Instantiate(tempCollider, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        if (tc) 
-        {
-            tc.transform.parent = gameObject.transform;
-            //set the temporary collider position(in Grid)
-            tc.GetComponent<TemporaryCollider>().SetPosition(targetPosition);
-        }
-
+        tc = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
+        tc.transform.parent = gameObject.transform;
+        //Debug.Log("Collider temporário");
     }
+
     private void FixedUpdate()
     {
         if (isMoving)
@@ -43,10 +39,8 @@ public class Movable : MonoBehaviour
             if (isMoving == false)
             {
                 //Remove the additional collider
-                if (tc) 
-                {
-                    Destroy(tc);
-                }
+                Destroy(tc);
+                //Debug.Log("Sumiu collider");
                 gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver) ;
             }
         }
