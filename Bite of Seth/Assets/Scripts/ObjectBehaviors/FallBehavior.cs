@@ -13,11 +13,20 @@ public class FallBehavior : MonoBehaviour
     public float fallSpeed = 3f;
     public AudioObject fallSound = null;
     private RollDelay rd;
-
+    public Animator animator = null;
+    private bool isRolling = false;
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
+    }
+    private void Update()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("rolling", isRolling);
+            // TODO: flip sprite to roll left/right
+        }
     }
 
     private void FixedUpdate()
@@ -25,6 +34,7 @@ public class FallBehavior : MonoBehaviour
 
         if (!movable.isMoving)
         {
+            isRolling = false;
             // check if should fall
             if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
             {
@@ -37,25 +47,33 @@ public class FallBehavior : MonoBehaviour
                 if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    if (rd) 
+                    if (rd)
                     {
                         //Roll delay
                         if (rd.IsOff()) rd.TurnOn();
                         else if (rd.IsFinished()) movable.StartMovement(GridNav.left, fallSpeed);
                     }
-                    else movable.StartMovement(GridNav.left, fallSpeed);
+                    else {
+                        movable.StartMovement(GridNav.left, fallSpeed); 
+                        //movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                        isRolling = true;
+                    }
                 }
                 // room to roll right
                 else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, fallMask, gameObject).Count == 0
                     && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
                 {
-                    if (rd) 
+                    if (rd)
                     {
                         //Roll delay
                         if (rd.IsOff()) rd.TurnOn();
                         else if (rd.IsFinished()) movable.StartMovement(GridNav.right, fallSpeed);
                     }
-                    else movable.StartMovement(GridNav.right, fallSpeed);
+                    else {
+                        movable.StartMovement(GridNav.right, fallSpeed); 
+                        //movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
+                        isRolling = true;
+                    }
                 } 
                 else if (rd) 
                 {
