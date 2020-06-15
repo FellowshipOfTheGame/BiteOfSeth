@@ -6,6 +6,13 @@ using UnityEngine;
 public class GameManager : GameService
 {
     public int score = 0;
+    public bool lockMovement = false;
+
+    public override void Start()
+    {
+        base.Start();
+        lockMovement = false;
+    }
 
     public void KillPlayer()
     {

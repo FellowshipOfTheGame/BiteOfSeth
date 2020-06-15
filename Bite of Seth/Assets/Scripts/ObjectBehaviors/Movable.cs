@@ -35,8 +35,10 @@ public class Movable : MonoBehaviour
         if (isMoving)
         {
             // if movement blocked by game manager
-
-
+            if (ServiceLocator.Get<GameManager>().lockMovement)
+            {
+                return;
+            }
             // isMoving == true
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
             if (isMoving == false)
