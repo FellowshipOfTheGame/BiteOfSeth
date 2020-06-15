@@ -43,7 +43,7 @@ public class DialogueManager : MonoBehaviour
         DequeueDialogue();
     }
 
-    public void DequeueDialogue(){
+    public bool DequeueDialogue(){
 
         DialogueBase.Info Info = null;
 
@@ -52,17 +52,17 @@ public class DialogueManager : MonoBehaviour
             CompleteText();
             StopCoroutine(inst);
             isCurrentlyTyping = false;
-            return;
+            return false;
         } else if (dialogueInfo.Count == 0 && isCurrentlyTyping == false){
             EndOfDialogue();
-            return;
+            return true;
         }
 
         if(isCurrentlyTyping == true){
             CompleteText();
             StopCoroutine(inst);
             isCurrentlyTyping = false;
-            return;
+            return false;
         }
 
         Info = dialogueInfo.Dequeue();
@@ -74,7 +74,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(Info));
-
+        return false;
     }
 
     IEnumerator TypeText(DialogueBase.Info info){

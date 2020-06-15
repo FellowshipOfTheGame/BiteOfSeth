@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class DoorBehavior : MonoBehaviour
 {
-    public List<PressurePlate> plates = new List<PressurePlate>();
+    public List<DoorTrigger> triggers = new List<DoorTrigger>();
     private bool isClosed = true;
     public AudioObject sfx = null;
 
     void FixedUpdate()
     {
-        bool openDoor = plates.Count > 0;
-        foreach (PressurePlate p in plates)
+        bool openDoor = triggers.Count > 0;
+        foreach (DoorTrigger t in triggers)
         {
             // check to see if every pressure plate is pressed
-            if (p.isPressed == false)
+            if (t.GetState() == false)
             {
                 openDoor = false;
             }

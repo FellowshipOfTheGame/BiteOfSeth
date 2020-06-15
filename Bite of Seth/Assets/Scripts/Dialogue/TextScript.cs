@@ -6,13 +6,15 @@ public class TextScript : MonoBehaviour
 {
     public DialogueBase dialogue;
     public bool playerInRange;
+    public DoorTrigger doorTrigger = null;
 
     public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
 
-    public void ContinueDialogue(){
-        DialogueManager.instance.DequeueDialogue();
+    public bool ContinueDialogue(){
+        bool dialogueEnded = DialogueManager.instance.DequeueDialogue();
+        return dialogueEnded;
     }
 
     public void UpdateLog(){
@@ -51,7 +53,11 @@ public class TextScript : MonoBehaviour
             //return true;
             return false;
         } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true) {
-            ContinueDialogue();
+            bool dialogueEnded = ContinueDialogue();
+            if (dialogueEnded && doorTrigger != null)
+            {
+                doorTrigger.SetState(true);
+            }
             return true;
             //return false;
         }
