@@ -11,7 +11,7 @@ public class Movable : MonoBehaviour
     public Vector2 lookingDirection = Vector2.zero;
     private Vector2 targetPosition = Vector2.zero;
     public GameObject tempCollider;
-    private GameObject tc = null;
+    private GameObject[] tc = new GameObject[2];
 
     void Awake()
     {
@@ -24,19 +24,33 @@ public class Movable : MonoBehaviour
         {
             return;
         }
-
         lookingDirection = desiredMovement.normalized;
+        
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
+
         isMoving = true;
         speed = _speed;
-
+        
         //Put a temporary collider
-        if (tc != null)
+        if (tc[0] != null)
         {
-            Destroy(tc);
+            Destroy(tc[0]);
         }
-        tc = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
-        tc.transform.parent = gameObject.transform;
+        if (tc[1] != null) {
+            Destroy(tc[1]);
+        }
+
+        if (desiredMovement.y > -1 && desiredMovement.y < 0) {
+            Vector2 fix = new Vector2(0f, desiredMovement.y);
+            tc[0] = Instantiate(tempCollider, targetPosition - fix, Quaternion.identity) as GameObject;
+            tc[1] = Instantiate(tempCollider, targetPosition - fix + GridNav.down, Quaternion.identity) as GameObject;
+            tc[0].transform.parent = gameObject.transform;
+            tc[1].transform.parent = gameObject.transform;
+        } else {
+            tc[0] = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
+            tc[0].transform.parent = gameObject.transform;
+        }
+
         //Debug.Log("Collider temporário");
     }
 
@@ -51,15 +65,18 @@ public class Movable : MonoBehaviour
                 return;
             }
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
+            
             if (isMoving == false)
             {
+                if (tc[0] != null) {
+                    //Remove the additional collider
+                    Destroy(tc[0]);
+                }
+                if (tc[1] != null) {
+                    Destroy(tc[1]);
+                }
                 gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
             }
-        }
-        if (tc != null && isMoving == false)
-        {            
-            //Remove the additional collider
-            Destroy(tc);
-        }
+        }     
     }
 }

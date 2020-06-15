@@ -163,14 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canKill: 0
-  fallMask:
+  startFallMask:
     serializedVersion: 2
-    m_Bits: 16129
+    m_Bits: 24065
+  fallingMask:
+    serializedVersion: 2
+    m_Bits: 24065
   rollMask:
     serializedVersion: 2
     m_Bits: 3072
   fallSpeed: 3
   fallSound: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &6702001781502399326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,4 +189,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 7680
+    m_Bits: 24064
