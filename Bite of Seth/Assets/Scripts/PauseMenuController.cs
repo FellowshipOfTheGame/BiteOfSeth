@@ -23,12 +23,14 @@ public class PauseMenuController : MonoBehaviour
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
         canvas.SetActive(true);
+        ServiceLocator.Get<GameManager>().lockMovement = true;
     }
     public void CloseMenu()
     {
         canvas.SetActive(false);
         mainLayout.SetActive(false);
         instructionLayout.SetActive(false);
+        ServiceLocator.Get<GameManager>().lockMovement = false;
     }
     public void OpenInstructions()
     {
@@ -39,5 +41,10 @@ public class PauseMenuController : MonoBehaviour
     {
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
+    }
+    public void UseCheckpoint()
+    {
+        FindObjectOfType<PlayerController>().UseCheckpoint();
+        CloseMenu();
     }
 }

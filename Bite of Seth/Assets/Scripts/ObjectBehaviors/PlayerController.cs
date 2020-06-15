@@ -27,10 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (currentCheckpoint != null)
-            {
-                currentCheckpoint.RewindRoom();
-            }
+            UseCheckpoint();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,6 +41,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
         Vector2 animationDiretion = movable.lookingDirection;
         // check if grounded
         if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, gameObject).Count == 0)
@@ -137,5 +135,14 @@ public class PlayerController : MonoBehaviour
     public void AssignCheckpoint(CheckpointBehavior c)
     {
         currentCheckpoint = c;
+    }
+    public void UseCheckpoint()
+    {
+        if (currentCheckpoint != null)
+        {
+            movable.rigidbody.position = currentCheckpoint.transform.position;
+            movable.StartMovement(Vector2.zero, 1);
+            currentCheckpoint.RewindRoom();
+        }
     }
 }

@@ -19,12 +19,22 @@ public class Movable : MonoBehaviour
     }
     public void StartMovement(Vector2 desiredMovement, float _speed)
     {
+        // return if movement blocked by game manager
+        if (ServiceLocator.Get<GameManager>().lockMovement)
+        {
+            return;
+        }
+
         lookingDirection = desiredMovement.normalized;
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
         isMoving = true;
         speed = _speed;
 
         //Put a temporary collider
+        if (tc != null)
+        {
+            Destroy(tc);
+        }
         tc = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
         tc.transform.parent = gameObject.transform;
         //Debug.Log("Collider temporário");
@@ -34,20 +44,22 @@ public class Movable : MonoBehaviour
     {
         if (isMoving)
         {
-            // if movement blocked by game manager
+            // isMoving == true
+            // return if movement blocked by game manager
             if (ServiceLocator.Get<GameManager>().lockMovement)
             {
                 return;
             }
-            // isMoving == true
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
             if (isMoving == false)
             {
-                //Remove the additional collider
-                Destroy(tc);
-                //Debug.Log("Sumiu collider");
-                gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver) ;
+                gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
             }
+        }
+        if (tc != null && isMoving == false)
+        {            
+            //Remove the additional collider
+            Destroy(tc);
         }
     }
 }
