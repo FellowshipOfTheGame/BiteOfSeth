@@ -8,7 +8,8 @@ public class HUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string score = ServiceLocator.Get<GameManager>().score.ToString();
+        //string score = ServiceLocator.Get<GameManager>().score.ToString();
+        string score = ServiceLocator.Get<GameManager>().GetLevelScore().ToString();
         scoreText.text = $"x{score}";
     }
 }
