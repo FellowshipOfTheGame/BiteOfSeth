@@ -98,6 +98,8 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   isMoving: 0
   lookingDirection: {x: 0, y: 0}
+  tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
+    type: 3}
 --- !u!114 &754011300465007239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canKill: 0
-  fallMask:
+  startFallMask:
     serializedVersion: 2
-    m_Bits: 7681
+    m_Bits: 24065
+  fallingMask:
+    serializedVersion: 2
+    m_Bits: 24065
   rollMask:
     serializedVersion: 2
     m_Bits: 3072

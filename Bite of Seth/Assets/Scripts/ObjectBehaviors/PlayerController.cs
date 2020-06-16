@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (objects.Count == 1)
                 {
+
                     // object ahead, pushable?
                     PushableBehavior pushable = objects[0].GetComponent<PushableBehavior>();
                     if (pushable != null)

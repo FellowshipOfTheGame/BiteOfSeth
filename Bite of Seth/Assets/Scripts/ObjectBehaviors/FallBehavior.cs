@@ -8,17 +8,21 @@ public class FallBehavior : MonoBehaviour
     // THE ROCK 'N' ROLL SCRIPT
     private Movable movable = null;
     public bool canKill = false;
-    public LayerMask fallMask;
+    public LayerMask startFallMask;
+    public LayerMask fallingMask;
     public LayerMask rollMask;
     public float fallSpeed = 3f;
     public AudioObject fallSound = null;
     private RollDelay rd;
     public Animator animator = null;
     private bool isRolling = false;
+    private bool startedFalling = false;
+
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
+        startedFalling = false;
     }
     private void Update()
     {
@@ -36,42 +40,64 @@ public class FallBehavior : MonoBehaviour
         {
             isRolling = false;
             // check if should fall
-            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count == 0)
+            if ((!startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count == 0)
+               || (startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0))
             {
+                if (!startedFalling) {
+                    startedFalling = true;
+                }
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
             else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, rollMask, gameObject).Count > 0)
             {
                 // room to roll left
-                if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, fallMask, gameObject).Count == 0
-                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallMask, gameObject).Count == 0)
+                if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, startFallMask, gameObject).Count == 0
+                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, startFallMask, gameObject).Count == 0)
                 {
                     if (rd)
                     {
                         //Roll delay
-                        if (rd.IsOff()) rd.TurnOn();
-                        else if (rd.IsFinished()) movable.StartMovement(GridNav.left, fallSpeed);
+                        if (rd.IsOff()) {
+                            rd.TurnOn();
+                        } else if (rd.IsFinished()) {
+                            movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                            if (!startedFalling) {
+                                startedFalling = true;
+                            }
+                            isRolling = true;
+                        }
                     }
                     else {
-                        movable.StartMovement(GridNav.left, fallSpeed); 
-                        //movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                        movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                        if (!startedFalling) {
+                            startedFalling = true;
+                        }
                         isRolling = true;
                     }
                 }
                 // room to roll right
-                else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, fallMask, gameObject).Count == 0
-                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallMask, gameObject).Count == 0)
+                else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, startFallMask, gameObject).Count == 0
+                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, startFallMask, gameObject).Count == 0)
                 {
                     if (rd)
                     {
                         //Roll delay
-                        if (rd.IsOff()) rd.TurnOn();
-                        else if (rd.IsFinished()) movable.StartMovement(GridNav.right, fallSpeed);
+                        if (rd.IsOff()) {
+                            rd.TurnOn();
+                        } else if (rd.IsFinished()) {
+                            movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
+                            if (!startedFalling) {
+                                startedFalling = true;
+                            }
+                            isRolling = true;
+                        }
                     }
                     else {
-                        movable.StartMovement(GridNav.right, fallSpeed); 
-                        //movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
+                        movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
+                        if (!startedFalling) {
+                            startedFalling = true;
+                        }
                         isRolling = true;
                     }
                 } 
@@ -88,14 +114,30 @@ public class FallBehavior : MonoBehaviour
     // receiver for Movable message
     private void OnStopedMoving()
     {
+        List<GameObject> oip;
         if(rd) rd.TurnOff();
         if (fallSound != null) {
             if (movable.lookingDirection == Vector2.down &&
-                GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallMask, gameObject).Count > 0)
+            (oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject)).Count > 0)
+            //GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count > 0)
             {
                 ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+                //If its not a player temporary collider, then stop falling;
+                if (!ContainsPlayerTempCol(oip)) {
+                    startedFalling = false;
+                }
             }
         }
+    }
+
+    private bool ContainsPlayerTempCol(List<GameObject> oip)
+    {
+        foreach(GameObject go in oip) {
+            if(LayerMask.LayerToName(go.layer) == "TemporaryCollider" && go.transform.parent.tag == "Player") {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
