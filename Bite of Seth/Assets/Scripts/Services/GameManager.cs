@@ -42,8 +42,9 @@ public class GameManager : GameService
 
     public void SetNewLevel()
     {
+        //TODO: STORE OLD LEVELS
         //If there is a current level, destroy it and create another
-        if(lm != null) Destroy(lm);
+        if (lm != null) Destroy(lm);
         lm = Instantiate(levelManagerPrefab);
         curLevel = lm.GetComponent<LevelManager>();
         curLevel.SetScenePath(scenePathsList[curSceneIndex]);
@@ -80,6 +81,15 @@ public class GameManager : GameService
     public void PrintLevelScore()
     {
         curLevel.PrintScore();
+    }
+
+    public void RestartLevel()
+    {
+        //Load current scene again
+        SceneManager.LoadScene(scenePathsList[curSceneIndex]);
+        //Recreate the Level
+        SetNewLevel();
+        //TODO: RESTART PUZZLE
     }
 
 }

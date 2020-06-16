@@ -38,5 +38,5 @@ public class LevelManager : MonoBehaviour
     {
         return score;
     }
-
+    
 }
