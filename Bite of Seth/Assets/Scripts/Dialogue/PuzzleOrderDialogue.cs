@@ -9,7 +9,7 @@ public class PuzzleOrderDialogue : MonoBehaviour
     private bool selected = false;
 
     public PuzzleManager.Id id;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class PuzzleOrderDialogue : MonoBehaviour
             {
                 //TO DO: Ask the player is it really wants to select this statue
                 //if(UI.ConfirmStatueSelection())
-                ServiceLocator.Get<PuzzleManager>().SelectStatue(id);
+                ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().SelectStatue(id);
                 selected = true;
             }
         }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Manager/PuzzleManager")]
-public class PuzzleManager : GameService
+public class PuzzleManager : MonoBehaviour
 {
     private GameObject[] puzzleStatuesReferences;
 
@@ -19,7 +18,7 @@ public class PuzzleManager : GameService
     private int nSelected = 0;
  
     // Start is called before the first frame update
-    public override void Start()
+    public void Start()
     {
         //Get all puzzle statues references in scene
         puzzleStatuesReferences = GameObject.FindGameObjectsWithTag("PuzzleStatue");
@@ -48,9 +47,12 @@ public class PuzzleManager : GameService
             statues.RemoveAt(random);
             count--;
         }
-        Debug.Log("The correct order is: ");
-        for (int i=0; i<statuesQuantity; i++) {
-            Debug.Log(i+1 + "ª: " + statuesCorrectOrder[i]);
+        if (statuesQuantity > 0) 
+        {
+            Debug.Log("The correct order is: ");
+            for (int i = 0; i < statuesQuantity; i++) {
+                Debug.Log(i + 1 + "ª: " + statuesCorrectOrder[i]);
+            }
         }
     }
 
