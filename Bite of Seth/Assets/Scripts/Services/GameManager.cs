@@ -118,7 +118,6 @@ public class GameManager : GameService
     public void AddLevelScore(int value)
     {
         curLevel.AddScore(value);
-        GoToNextLevel();
     }
 
     public void PrintLevelScore()
