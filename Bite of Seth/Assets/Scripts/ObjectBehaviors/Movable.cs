@@ -40,7 +40,7 @@ public class Movable : MonoBehaviour
             Destroy(tc[1]);
         }
 
-        if (desiredMovement.y > -1 && desiredMovement.y < 0) {
+        if (desiredMovement.y > GridNav.down.y && desiredMovement.y < 0) {
             Vector2 fix = new Vector2(0f, desiredMovement.y);
             tc[0] = Instantiate(tempCollider, targetPosition - fix, Quaternion.identity) as GameObject;
             tc[1] = Instantiate(tempCollider, targetPosition - fix + GridNav.down, Quaternion.identity) as GameObject;
@@ -64,8 +64,9 @@ public class Movable : MonoBehaviour
             {
                 return;
             }
+
             isMoving = !GridNav.MoveToFixed(rigidbody, targetPosition, speed);
-            
+
             if (isMoving == false)
             {
                 if (tc[0] != null) {

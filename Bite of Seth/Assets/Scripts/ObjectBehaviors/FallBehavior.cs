@@ -18,12 +18,15 @@ public class FallBehavior : MonoBehaviour
     private bool isRolling = false;
     private bool startedFalling = false;
 
+    //IMPORTANT: the difference between startFallMask and fallingMask is that the second one doesnt include the Player layer.
+
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
         startedFalling = false;
     }
+
     private void Update()
     {
         if (animator != null)
@@ -43,9 +46,6 @@ public class FallBehavior : MonoBehaviour
             if ((!startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count == 0)
                || (startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0))
             {
-                if (!startedFalling) {
-                    startedFalling = true;
-                }
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
@@ -62,17 +62,11 @@ public class FallBehavior : MonoBehaviour
                             rd.TurnOn();
                         } else if (rd.IsFinished()) {
                             movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
-                            if (!startedFalling) {
-                                startedFalling = true;
-                            }
                             isRolling = true;
                         }
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
-                        if (!startedFalling) {
-                            startedFalling = true;
-                        }
                         isRolling = true;
                     }
                 }
@@ -87,17 +81,11 @@ public class FallBehavior : MonoBehaviour
                             rd.TurnOn();
                         } else if (rd.IsFinished()) {
                             movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
-                            if (!startedFalling) {
-                                startedFalling = true;
-                            }
                             isRolling = true;
                         }
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
-                        if (!startedFalling) {
-                            startedFalling = true;
-                        }
                         isRolling = true;
                     }
                 } 
@@ -114,18 +102,33 @@ public class FallBehavior : MonoBehaviour
     // receiver for Movable message
     private void OnStopedMoving()
     {
-        List<GameObject> oip;
         if(rd) rd.TurnOff();
-        if (fallSound != null) {
-            if (movable.lookingDirection == Vector2.down &&
-            (oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject)).Count > 0)
-            //GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count > 0)
-            {
+
+        List<GameObject> oip = null;
+
+        //It didnt start falling yet
+        if (!startedFalling){
+            //Start falling when, after passing the firts Grid tile, there is nothing to stop the start of the falling in the next fall tile
+            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count == 0) {
+                startedFalling = true;
+            }
+        } else {
+            //Its falling
+            //Get objects in the next fall tile
+            oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
+            //If there is no player temporary collider in the objects, then stop falling;
+            if (oip.Count > 0 && !ContainsPlayerTempCol(oip)) {
+                startedFalling = false;
+            }
+        }
+
+        if (fallSound != null && movable.lookingDirection == Vector2.down) {
+            if (oip == null) {
+                //Get objects in the next fall tile
+                oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
+            }
+            if (oip.Count > 0) {
                 ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
-                //If its not a player temporary collider, then stop falling;
-                if (!ContainsPlayerTempCol(oip)) {
-                    startedFalling = false;
-                }
             }
         }
     }

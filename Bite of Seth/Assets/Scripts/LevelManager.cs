@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public string scenePath;
+    public int sceneBuildIndex;
+
     private int score;
 
     // Start is called before the first frame update
@@ -19,9 +20,9 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    public void SetScenePath(string path)
+    public void SetSceneBuildIndex(int buildIndex)
     {
-        scenePath = path;
+        sceneBuildIndex = buildIndex;
     }
 
     public void PrintScore()

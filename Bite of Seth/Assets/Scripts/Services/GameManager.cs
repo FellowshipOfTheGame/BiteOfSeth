@@ -12,17 +12,28 @@ public class GameManager : GameService
     public GameObject levelManagerPrefab;
     private GameObject lm;
     private LevelManager curLevel;
-
-    public List<string> scenePathsList;
+    private int curLevelIndex;
+ 
     private int curSceneIndex; 
+
+    private struct LevelData {
+        public int id;
+        public int score;
+    };
+
+    private List<LevelData> levelData;
 
     public override void Start()
     {
         base.Start();
         lockMovement = false;
 
-        curSceneIndex = 0;
+        levelData = new List<LevelData>();
+        curLevelIndex = 0;
+
+        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SetNewLevel();
+        
     }
 
     public void KillPlayer()
@@ -42,30 +53,61 @@ public class GameManager : GameService
 
     public void SetNewLevel()
     {
-        //TODO: STORE OLD LEVELS
         //If there is a current level, destroy it and create another
         if (lm != null) Destroy(lm);
         lm = Instantiate(levelManagerPrefab);
         curLevel = lm.GetComponent<LevelManager>();
-        curLevel.SetScenePath(scenePathsList[curSceneIndex]);
+        curLevel.SetSceneBuildIndex(curSceneIndex);
     }
 
     public void GoToNextLevel()
     {
+
         //Update with new values from finished level
         UpdateValues();
         curSceneIndex++;
+
+        //Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
         //Load new scene
-        SceneManager.LoadScene(scenePathsList[curSceneIndex]);
+        SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
+
+    }
+
+    void OnEnable()
+    {
+        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+    }
+
+    void OnDisable()
+    {
+        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
+    }
+
+    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("New Scene Loaded");
+        SceneManager.SetActiveScene(scene);
+        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
+
         //Create a new Level
         SetNewLevel();
+
     }
+
 
     //function to update Game Manager values with new values from Current Level
     public void UpdateValues()
     {
-        AddScore(GetLevelScore());
+        int score = GetLevelScore();
+        AddScore(score);
         PrintScore();
+
+        LevelData ld = new LevelData();
+        ld.id = curLevelIndex++;
+        ld.score = score;
+        levelData.Add(ld);
     }
 
     public int GetLevelScore()
@@ -86,10 +128,15 @@ public class GameManager : GameService
     public void RestartLevel()
     {
         //Load current scene again
-        SceneManager.LoadScene(scenePathsList[curSceneIndex]);
+        SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
+
         //Recreate the Level
         SetNewLevel();
-        //TODO: RESTART PUZZLE
+    }
+
+    public PuzzleManager GetLevelPuzzleManager()
+    {
+        return lm.GetComponent<PuzzleManager>();
     }
 
 }
