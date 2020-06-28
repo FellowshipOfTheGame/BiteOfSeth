@@ -23,9 +23,13 @@ public class TextScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
-
         if(other.CompareTag("Player")){
             playerInRange = true;
+        }
+        if(dialogue.isAutoTriggered == true){
+            dialogue.isAutoTriggered = false;
+            TriggerDialogue();
+            UpdateLog();
         }
     }
 
