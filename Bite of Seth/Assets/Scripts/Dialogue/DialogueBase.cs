@@ -14,7 +14,6 @@ public class DialogueBase : ScriptableObject{
     [Header("Insert dialogue info below")]
     public int dialogueID;
     public string dialogueTitle;
-    public bool isAutoTriggered;
     public Info[] dialogueInfo;
     
     

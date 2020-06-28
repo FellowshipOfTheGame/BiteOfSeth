@@ -7,6 +7,8 @@ public class TextScript : MonoBehaviour
     public DialogueBase dialogue;
     public bool playerInRange;
     public DoorTrigger doorTrigger = null;
+    public bool isAutoTriggered;
+    public bool repeatAutoTrigger;
 
     public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
@@ -26,8 +28,8 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             playerInRange = true;
         }
-        if(dialogue.isAutoTriggered == true){
-            dialogue.isAutoTriggered = false;
+        if(isAutoTriggered || repeatAutoTrigger){
+            isAutoTriggered = false;
             TriggerDialogue();
             UpdateLog();
         }
