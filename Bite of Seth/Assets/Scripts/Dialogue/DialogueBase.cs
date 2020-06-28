@@ -16,4 +16,5 @@ public class DialogueBase : ScriptableObject{
     public string dialogueTitle;
     public Info[] dialogueInfo;
     
+    
 }

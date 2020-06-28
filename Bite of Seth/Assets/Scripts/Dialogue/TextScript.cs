@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
     public DialogueBase dialogue;
     public bool playerInRange;
     public DoorTrigger doorTrigger = null;
+    public bool isAutoTriggered;
+    public bool repeatAutoTrigger;
 
     public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
@@ -23,18 +26,28 @@ public class TextScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
-
         if(other.CompareTag("Player")){
             playerInRange = true;
+        }
+        if((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive){
+            isAutoTriggered = false;
+            TriggerDialogue();
+            UpdateLog();
+        } else if(!DialogueManager.instance.isDialogueActive){
+            DialogueManager.instance.toggleInteractAlert(true);
         }
     }
 
     void OnTriggerExit2D(Collider2D other){
         //Debug.Log("Player has exit trigger with " + other.tag);
-
+        DialogueManager.instance.AbortDialogue();
         if(other.CompareTag("Player")){
             playerInRange = false;
         }
+        if(DialogueManager.instance.isDialogueActive == false){
+            DialogueManager.instance.toggleInteractAlert(false);
+        }
+
     }
 
     // void Update(){
@@ -49,6 +62,7 @@ public class TextScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
             TriggerDialogue();
+            DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
             //return true;
             return false;

@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueName;
     public Text dialogueText;
     public Image dialoguePortrait;
+    public GameObject interactBox;
+    public Text interactText;
 
     public float delay = 0.001f;
 
@@ -77,6 +79,27 @@ public class DialogueManager : MonoBehaviour
         return false;
     }
 
+    public void AbortDialogue(){
+
+        if(dialogueInfo.Count == 0 && isCurrentlyTyping){
+            CompleteText();
+            StopCoroutine(inst);
+            isCurrentlyTyping = false;
+        } else if (dialogueInfo.Count == 0 && isCurrentlyTyping == false){
+            EndOfDialogue();
+        }
+
+        if(isCurrentlyTyping == true){
+            CompleteText();
+            StopCoroutine(inst);
+            isCurrentlyTyping = false;
+        }
+
+        dialogueInfo.Clear();
+        dialogueBox.SetActive(false);
+        isDialogueActive = false;
+    }
+
     IEnumerator TypeText(DialogueBase.Info info){
         isCurrentlyTyping = true;
         foreach(char c in info.myText.ToCharArray()){
@@ -93,6 +116,11 @@ public class DialogueManager : MonoBehaviour
     public void EndOfDialogue(){
         isDialogueActive = false;
         dialogueBox.SetActive(false);
+    }
+
+    public bool toggleInteractAlert(bool status){
+        interactBox.SetActive(status);
+        return status;
     }
 
 }
