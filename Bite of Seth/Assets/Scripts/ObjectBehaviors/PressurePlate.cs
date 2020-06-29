@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PressurePlate : DoorTrigger
 {
+    public GameObject pressedSprite;
+    public GameObject unpressedSprite;
     public LayerMask pressMask = default;
     public bool isPressed = false;
     public AudioObject sfx = null;
@@ -14,6 +16,8 @@ public class PressurePlate : DoorTrigger
         SetState(GridNav.GetObjectsInPath(gameObject.transform.position, GridNav.up, pressMask, gameObject).Count > 0);
         if (pressedBefore != isTriggered)
         {
+            if(pressedSprite) pressedSprite.SetActive(isTriggered);
+            if(unpressedSprite) unpressedSprite.SetActive(!isTriggered);
             ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
         }
     }
