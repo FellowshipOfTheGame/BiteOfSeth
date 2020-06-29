@@ -68,14 +68,26 @@ public class DialogueManager : MonoBehaviour
         }
 
         Info = dialogueInfo.Dequeue();
-        completeText = Info.myText;
+        string text = Info.myText;
+
+        if (Info.needPuzzleInfo) {
+            //Complete text with puzzle info
+            string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
+            //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
+            for(int i=0; i<names.Length; i++) {
+                text = text.Replace("<ID" + i + ">", names[i]);
+                //Debug.Log(aux);
+            }
+        }
+        completeText = text;
 
         dialogueName.text = Info.character.characterName;
-        dialogueText.text = Info.myText;
+        dialogueText.text = text;
         dialoguePortrait.sprite = Info.character.portrait;
 
         dialogueText.text = "";
-        inst = StartCoroutine(TypeText(Info));
+        //inst = StartCoroutine(TypeText(Info));
+        inst = StartCoroutine(TypeText(text));
         return false;
     }
 
@@ -100,9 +112,19 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
     }
 
-    IEnumerator TypeText(DialogueBase.Info info){
+    /*IEnumerator TypeText(DialogueBase.Info info){
         isCurrentlyTyping = true;
         foreach(char c in info.myText.ToCharArray()){
+            yield return new WaitForSeconds(delay);
+            dialogueText.text += c;
+        }
+        isCurrentlyTyping = false;
+    }*/
+
+    IEnumerator TypeText(string text)
+    {
+        isCurrentlyTyping = true;
+        foreach (char c in text.ToCharArray()) {
             yield return new WaitForSeconds(delay);
             dialogueText.text += c;
         }
