@@ -8,8 +8,9 @@ public class PuzzleOrderDialogue : MonoBehaviour
     TextScript ts;
     private bool selected = false;
 
-    public PuzzleManager.Id id;
-    
+    private PuzzleManager.Id id;
+    public string name;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,11 @@ public class PuzzleOrderDialogue : MonoBehaviour
     public void ResetSelection()
     {
         selected = false;
+    }
+
+    public void SetId(PuzzleManager.Id _id)
+    {
+        id = _id;
     }
 
 }
