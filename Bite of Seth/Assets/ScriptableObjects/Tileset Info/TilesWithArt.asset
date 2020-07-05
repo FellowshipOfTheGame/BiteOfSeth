@@ -15,6 +15,7 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: 813af35ef1a2fca42a3b65e63888edc6, type: 2}
   checkpointTile: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
   startTile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
+  fakeWallTile: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
   objectsToSpawn:
   - tile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
     objectToSpawn: {fileID: 2488760661818198450, guid: dd163b9fd8441ff42b43a77b273e59c3,
@@ -34,3 +35,5 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: f0412c2fee0afec4b8f7416194d3979d, type: 2}
     objectToSpawn: {fileID: 3296024696174100633, guid: c55a0815fa68b4144b873d77abc6e1d1,
       type: 3}
+  - tile: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
+    objectToSpawn: {fileID: 0}

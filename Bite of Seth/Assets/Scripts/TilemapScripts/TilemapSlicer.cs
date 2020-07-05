@@ -45,7 +45,7 @@ public class TilemapSlicer : MonoBehaviour
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             TileBase tile = wallMap.GetTile(localPlace);
-            if (tile != tilesetObjects.wallTile && tile != tilesetObjects.checkpointTile)
+            if (tile != tilesetObjects.wallTile && tile != tilesetObjects.checkpointTile && tile != tilesetObjects.fakeWallTile)
             {
                 wallMap.SetTile(localPlace, null);
             }
@@ -128,7 +128,8 @@ public class TilemapSlicer : MonoBehaviour
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            if (wallMap.GetTile(localPlace) == tilesetObjects.checkpointTile)
+            TileBase tile = wallMap.GetTile(localPlace);
+            if (tile == tilesetObjects.checkpointTile || tile == tilesetObjects.fakeWallTile)
             {
                 wallMap.SetTile(localPlace, null);
             }
