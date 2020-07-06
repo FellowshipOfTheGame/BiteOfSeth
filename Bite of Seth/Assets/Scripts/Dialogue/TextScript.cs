@@ -10,7 +10,7 @@ public class TextScript : MonoBehaviour
     public DoorTrigger doorTrigger = null;
     public bool isAutoTriggered;
     public bool repeatAutoTrigger;
-
+    
     public void TriggerDialogue(){
         DialogueManager.instance.EnqueueDialogue(dialogue);
     }
@@ -61,6 +61,7 @@ public class TextScript : MonoBehaviour
     public bool TryToDialogue() { 
 
         if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
+            FillTextWithPuzzleInfo();
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
@@ -77,6 +78,23 @@ public class TextScript : MonoBehaviour
         }
         return false;
 
+    }
+
+    private void FillTextWithPuzzleInfo()
+    {
+        string text;
+        foreach (DialogueBase.Info info in dialogue.dialogueInfo) {
+            if (info.needPuzzleInfo) {
+                text = info.myText;
+                //Complete text with puzzle info
+                string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
+                //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
+                for (int i = 0; i < names.Length; i++) {
+                    text = text.Replace("<ID" + i + ">", names[i]);
+                }
+                info.myText = text;
+            }
+        }
     }
 
 }

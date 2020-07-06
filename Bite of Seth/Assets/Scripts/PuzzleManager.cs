@@ -57,7 +57,7 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log("The correct order is: ");
             for (int j = 0; j < statuesQuantity; j++) {
-                Debug.Log(j + 1 + "ª: " + (int)statuesCorrectOrder[j]);
+                Debug.Log(j + 1 + "ª: " + names[(int)statuesCorrectOrder[j]]);
             }
         }
     }
