@@ -19,7 +19,7 @@ public class DamageOnTouchBehavior : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (damage > 0) {
             if (LayerMask.NameToLayer("Player") == collision.gameObject.layer) {
@@ -29,6 +29,6 @@ public class DamageOnTouchBehavior : MonoBehaviour {
                 // kill other entities here
             }
         }
-    }
+    }*/
 
 }
