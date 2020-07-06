@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5707f30ad36a5e44f9a3ed1c6c876854, type: 3}
+  m_Name: Scene References 1
+  m_EditorClassIdentifier: 
+  scenesList:
+  - sceneAsset: {fileID: 102900000, guid: d72cf5677bc4a914f901856f1c280208, type: 3}
+    scenePath: Assets/Scenes/Testing Scenes/SequenceTesting/1.unity
+  - sceneAsset: {fileID: 102900000, guid: 6875f1beb9da99b4e9af4dd3038065ac, type: 3}
+    scenePath: Assets/Scenes/Testing Scenes/SequenceTesting/2.unity
