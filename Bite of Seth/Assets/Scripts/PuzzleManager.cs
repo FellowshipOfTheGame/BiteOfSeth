@@ -39,7 +39,7 @@ public class PuzzleManager : MonoBehaviour
                 statues.Add((Id)i);
                 pod.SetId((Id)i);
                 pod.ResetSelection();
-                names[i] = pod.name;
+                names[i] = pod.statueName;
                 i++;
             }
         }
@@ -65,7 +65,7 @@ public class PuzzleManager : MonoBehaviour
     public void SelectStatue(Id id)
     {
         statuesSelectedOrder[nSelected++] = id;
-        Debug.Log("The statue number "+nSelected+" selected is the "+(int)id+" one!");
+        Debug.Log("Selection number "+nSelected+": statue "+(int)id+" named "+names[(int)id] +"!");
         /*if(nSelected == statuesQuantity)
         {
             Debug.Log(CheckFinalAnswer());

@@ -9,7 +9,7 @@ public class PuzzleOrderDialogue : MonoBehaviour
     private bool selected = false;
 
     private PuzzleManager.Id id;
-    public string name;
+    public string statueName;
 
     // Start is called before the first frame update
     void Start()

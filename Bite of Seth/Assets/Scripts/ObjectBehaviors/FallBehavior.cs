@@ -8,7 +8,6 @@ public class FallBehavior : MonoBehaviour
     // THE ROCK 'N' ROLL SCRIPT
     private Movable movable = null;
     public bool canKill = false;
-    public LayerMask startFallMask;
     public LayerMask fallingMask;
     public LayerMask rollMask;
     public float fallSpeed = 3f;
@@ -16,15 +15,11 @@ public class FallBehavior : MonoBehaviour
     private RollDelay rd;
     public Animator animator = null;
     private bool isRolling = false;
-    private bool startedFalling = false;
-
-    //IMPORTANT: the difference between startFallMask and fallingMask is that the second one doesnt include the Player layer.
 
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
-        startedFalling = false;
     }
 
     private void Update()
@@ -43,17 +38,15 @@ public class FallBehavior : MonoBehaviour
         {
             isRolling = false;
             // check if should fall
-            if ((!startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count == 0)
-               || (startedFalling && GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0))
-            {
+            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0){
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
             else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, rollMask, gameObject).Count > 0)
             {
                 // room to roll left
-                if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, startFallMask, gameObject).Count == 0
-                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, startFallMask, gameObject).Count == 0)
+                if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.left, fallingMask, gameObject).Count == 0
+                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.left, GridNav.down, fallingMask, gameObject).Count == 0)
                 {
                     if (rd)
                     {
@@ -67,12 +60,13 @@ public class FallBehavior : MonoBehaviour
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
+                        //startedFalling = true;
                         isRolling = true;
                     }
                 }
                 // room to roll right
-                else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, startFallMask, gameObject).Count == 0
-                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, startFallMask, gameObject).Count == 0)
+                else if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.right, fallingMask, gameObject).Count == 0
+                    && GridNav.GetObjectsInPath(movable.rigidbody.position + GridNav.right, GridNav.down, fallingMask, gameObject).Count == 0)
                 {
                     if (rd)
                     {
@@ -105,42 +99,18 @@ public class FallBehavior : MonoBehaviour
         if(rd) rd.TurnOff();
 
         List<GameObject> oip = null;
+        DamageOnTouchBehavior dotb = GetComponent<DamageOnTouchBehavior>();
 
-        //It didnt start falling yet
-        if (!startedFalling){
-            //Start falling when, after passing the firts Grid tile, there is nothing to stop the start of the falling in the next fall tile
-            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, startFallMask, gameObject).Count == 0) {
-                startedFalling = true;
+        //Get objects in the next fall tile
+        oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
+        if (oip.Count > 0) {
+            if (dotb != null) {
+                dotb.TryToKill(oip);
             }
-        } else {
-            //Its falling
-            //Get objects in the next fall tile
-            oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
-            //If there is no player temporary collider in the objects, then stop falling;
-            if (oip.Count > 0 && !ContainsPlayerTempCol(oip)) {
-                startedFalling = false;
-            }
-        }
-
-        if (fallSound != null && movable.lookingDirection == Vector2.down) {
-            if (oip == null) {
-                //Get objects in the next fall tile
-                oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
-            }
-            if (oip.Count > 0) {
+            if (fallSound != null && movable.lookingDirection == Vector2.down) {
                 ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
             }
         }
-    }
-
-    private bool ContainsPlayerTempCol(List<GameObject> oip)
-    {
-        foreach(GameObject go in oip) {
-            if(LayerMask.LayerToName(go.layer) == "TemporaryCollider" && go.transform.parent.tag == "Player") {
-                return true;
-            }
-        }
-        return false;
     }
 
 }
