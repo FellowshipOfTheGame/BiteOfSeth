@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageOnTouchBehavior : MonoBehaviour
-{
+public class DamageOnTouchBehavior : MonoBehaviour {
     public float damage = 0;
 
     public void TryToKill(List<GameObject> objects)
@@ -20,20 +19,16 @@ public class DamageOnTouchBehavior : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (damage > 0) 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (LayerMask.NameToLayer("Player") == collision.gameObject.layer)
-        {
-            // kill player
-            ServiceLocator.Get<GameManager>().KillPlayer();
-        }
-        else
-        {
-            // kill other entities here
+        if (damage > 0) {
+            if (LayerMask.NameToLayer("Player") == collision.gameObject.layer) {
+                // kill player
+                ServiceLocator.Get<GameManager>().KillPlayer();
+            } else {
+                // kill other entities here
+            }
         }
     }
-}*/
 
 }

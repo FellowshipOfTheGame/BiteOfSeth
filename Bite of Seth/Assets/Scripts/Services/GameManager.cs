@@ -13,8 +13,6 @@ public class GameManager : GameService
     private GameObject lm;
     private LevelManager curLevel;
     private int curLevelIndex;
- 
-    private int curSceneIndex; 
 
     private struct LevelData {
         public int id;
@@ -30,10 +28,8 @@ public class GameManager : GameService
 
         levelData = new List<LevelData>();
         curLevelIndex = 0;
-
-        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SetNewLevel();
         
+        SetNewLevel();
     }
 
     public void KillPlayer()
@@ -57,45 +53,14 @@ public class GameManager : GameService
         if (lm != null) Destroy(lm);
         lm = Instantiate(levelManagerPrefab);
         curLevel = lm.GetComponent<LevelManager>();
-        curLevel.SetSceneBuildIndex(curSceneIndex);
     }
 
     public void GoToNextLevel()
     {
-
         //Update with new values from finished level
         UpdateValues();
-        curSceneIndex++;
-
-        //Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
-        //Load new scene
-        SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
-
+        ServiceLocator.Get<SceneReferences>().GoToNextScene();
     }
-
-    void OnEnable()
-    {
-        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
-        SceneManager.sceneLoaded += OnSceneFinishedLoading;
-    }
-
-    void OnDisable()
-    {
-        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
-        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
-    }
-
-    void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("New Scene Loaded");
-        SceneManager.SetActiveScene(scene);
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
-
-        //Create a new Level
-        SetNewLevel();
-
-    }
-
 
     //function to update Game Manager values with new values from Current Level
     public void UpdateValues()
@@ -127,11 +92,7 @@ public class GameManager : GameService
 
     public void RestartLevel()
     {
-        //Load current scene again
-        SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
-
-        //Recreate the Level
-        SetNewLevel();
+        ServiceLocator.Get<SceneReferences>().ReloadCurrentScene();
     }
 
     public PuzzleManager GetLevelPuzzleManager()

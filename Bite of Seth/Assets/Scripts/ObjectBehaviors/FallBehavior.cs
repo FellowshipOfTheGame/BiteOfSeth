@@ -60,7 +60,6 @@ public class FallBehavior : MonoBehaviour
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
-                        //startedFalling = true;
                         isRolling = true;
                     }
                 }
