@@ -10,6 +10,8 @@ public class SceneReferences : GameService {
 
     private int curSceneIndex = 0;
 
+    private bool firstLoad;
+
     private void OnGUI()
     {
         foreach (SceneReference sr in scenesList) {
@@ -30,6 +32,7 @@ public class SceneReferences : GameService {
         //curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         curSceneIndex = 0;
         //Debug.Log(curSceneIndex);
+        firstLoad = true;
     }
 
     void OnEnable()
@@ -51,8 +54,9 @@ public class SceneReferences : GameService {
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
 
         //TO DO: CHECK IF THE SCENE IS A LEVEL SCENE
-        if((ServiceLocator.Get<GameManager>()) != null){
+        if(!firstLoad){
             ServiceLocator.Get<GameManager>().SetNewLevel();
+            firstLoad = false;
         }
         
     }

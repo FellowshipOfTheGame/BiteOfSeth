@@ -109,88 +109,33 @@ public static class GridNav
     public static List<GameObject> GetObjectsInPath(Vector2 origin, Vector2 desiredMovement, params GameObject[] objectsToIgnore)
     {
 
-        HashSet<RaycastHit2D> allHits = new HashSet<RaycastHit2D>();
-
         RaycastHit2D[] hits = Physics2D.RaycastAll(origin, desiredMovement, desiredMovement.magnitude);
         Debug.DrawRay(origin, desiredMovement, Color.red);
-        foreach (RaycastHit2D h in hits) {
-            allHits.Add(h);
-        }
 
-        Vector2 desiredMovement2 = Vector2.zero, desiredMovement3 = Vector2.zero;
-
-        if (desiredMovement.y == 0) {
-            desiredMovement2 = new Vector2(desiredMovement.x, (desiredMovement.x / 2) * 0.9f);
-            desiredMovement3 = new Vector2(desiredMovement.x, (-desiredMovement.x / 2) * 0.9f);
-        } else if (desiredMovement.x == 0) {
-            desiredMovement2 = new Vector2((desiredMovement.y / 2) * 0.9f, desiredMovement.y);
-            desiredMovement3 = new Vector2((-desiredMovement.y / 2) * 0.9f, desiredMovement.y);
-        }
-
-        RaycastHit2D[] hits2 = Physics2D.RaycastAll(origin, desiredMovement2, desiredMovement2.magnitude);
-        Debug.DrawRay(origin, desiredMovement2, Color.red);
-        foreach (RaycastHit2D h in hits2) {
-            allHits.Add(h);
-        }
-
-        RaycastHit2D[] hits3 = Physics2D.RaycastAll(origin, desiredMovement3, desiredMovement3.magnitude);
-        Debug.DrawRay(origin, desiredMovement3, Color.red);
-        foreach (RaycastHit2D h in hits3) {
-            allHits.Add(h);
-        }
-
-        return MakeListFromHits(allHits, objectsToIgnore);
+        return MakeListFromHits(hits, objectsToIgnore);
     }
 
     public static List<GameObject> GetObjectsInPath(Vector2 origin, Vector2 desiredMovement, LayerMask layerMask, params GameObject[] objectsToIgnore)
     {
 
-        HashSet<RaycastHit2D> allHits = new HashSet<RaycastHit2D>();
-
         RaycastHit2D[] hits = Physics2D.RaycastAll(origin, desiredMovement, desiredMovement.magnitude, layerMask);
         Debug.DrawRay(origin, desiredMovement, Color.blue);
-        foreach (RaycastHit2D h in hits) {
-            allHits.Add(h);
-        }
 
-        Vector2 desiredMovement2 = Vector2.zero, desiredMovement3 = Vector2.zero;
+        return MakeListFromHits(hits, objectsToIgnore);
 
-        if (desiredMovement.y == 0) {
-            desiredMovement2 = new Vector2(desiredMovement.x, (desiredMovement.x / 2) * 0.9f);
-            desiredMovement3 = new Vector2(desiredMovement.x, (-desiredMovement.x / 2) * 0.9f);
-        } else if (desiredMovement.x == 0) {
-            desiredMovement2 = new Vector2((desiredMovement.y / 2) * 0.9f, desiredMovement.y);
-            desiredMovement3 = new Vector2((-desiredMovement.y / 2) * 0.9f, desiredMovement.y);
-        }
-
-        RaycastHit2D[] hits2 = Physics2D.RaycastAll(origin, desiredMovement2, desiredMovement2.magnitude, layerMask);
-        Debug.DrawRay(origin, desiredMovement2, Color.blue);
-        foreach (RaycastHit2D h in hits2) {
-            allHits.Add(h);
-        }
-
-        RaycastHit2D[] hits3 = Physics2D.RaycastAll(origin, desiredMovement3, desiredMovement3.magnitude, layerMask);
-        Debug.DrawRay(origin, desiredMovement3, Color.blue);
-        foreach (RaycastHit2D h in hits3) {
-            allHits.Add(h);
-        }
-        
-        return MakeListFromHits(allHits, objectsToIgnore);
     }
-    private static List<GameObject> MakeListFromHits(HashSet<RaycastHit2D> hits, GameObject[] objectsToIgnore)
+
+    private static List<GameObject> MakeListFromHits(RaycastHit2D[] hits, GameObject[] objectsToIgnore)
     {
         List<GameObject> objectsInPath = new List<GameObject>();
-        HashSet<GameObject> aux = new HashSet<GameObject>();
-        foreach (RaycastHit2D h in hits)
-        {
-            if (aux.Add(h.transform.gameObject)) {
-                objectsInPath.Add(h.transform.gameObject);
-            }
+        foreach (RaycastHit2D h in hits) {    
+            objectsInPath.Add(h.transform.gameObject);
         }
-        foreach (GameObject o in objectsToIgnore)
-        {
+        foreach (GameObject o in objectsToIgnore) {
             objectsInPath.Remove(o);
         }
         return objectsInPath;
     }
+
+
 }
