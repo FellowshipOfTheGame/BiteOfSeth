@@ -13,7 +13,7 @@ public class PressurePlate : DoorTrigger
     private void FixedUpdate()
     {
         bool pressedBefore = isTriggered;
-        SetState(GridNav.GetObjectsInPath(gameObject.transform.position, GridNav.up, pressMask, gameObject).Count > 0);
+        SetState(GridNav.GetObjectsInPath(gameObject.transform.position, GridNav.up/2, pressMask, gameObject).Count > 0);
         if (pressedBefore != isTriggered)
         {
             if(pressedSprite) pressedSprite.SetActive(isTriggered);
