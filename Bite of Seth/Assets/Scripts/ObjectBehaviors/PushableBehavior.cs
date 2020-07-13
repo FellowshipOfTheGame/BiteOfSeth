@@ -16,6 +16,10 @@ public class PushableBehavior : MonoBehaviour
 
     public bool Push(Vector2 desiredMovement, float pushSpeed)
     {
+        if (desiredMovement.normalized == Vector2.up)
+        {
+            return false;
+        }
         if (!movable.isMoving && GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, collisionMask, gameObject).Count == 0)
         {
             movable.StartMovement(desiredMovement, pushSpeed);
