@@ -58,11 +58,22 @@ public class LogManager : MonoBehaviour
                 GameObject newLog = Instantiate(logPrefab, logsList.transform.GetChild(0).transform.GetChild(0).transform);
 
                 Text[] logInfo = (Text[]) newLog.GetComponentsInChildren<Text>(true);
-                
+
+                string text = info.myText;
+
+                if (info.needPuzzleInfo) {
+                    //Complete text with puzzle info
+                    string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
+                    //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
+                    for (int i = 0; i < names.Length; i++) {
+                        int fix = i + 1;
+                        text = text.Replace("<ID" + fix + ">", names[i]);
+                    }
+                }
+
                 logInfo[0].text = info.character.characterName;
-                logInfo[1].text = info.myText;
+                logInfo[1].text = text;
             }
-            
             
         }
     }
