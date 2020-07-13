@@ -90,7 +90,7 @@ public class TextScript : MonoBehaviour
                 string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
                 //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
                 for (int i = 0; i < names.Length; i++) {
-                    text = text.Replace("<ID" + i + ">", names[i]);
+                    text = text.Replace("<ID" + i+1 + ">", names[i]);
                 }
                 info.myText = text;
             }
