@@ -5,7 +5,26 @@ using UnityEngine;
 public class CheckpointBehavior : MonoBehaviour
 {
     RoomBehavior room = null;
-    
+    public GameObject spriteActive;
+    public GameObject spriteOff;
+
+    private void Start()
+    {
+        SetCheckpointActive(false);
+    }
+
+    public void SetCheckpointActive(bool value)
+    {
+        if (spriteActive)
+        {
+            spriteActive.SetActive(value);
+        }
+        if (spriteOff) 
+        { 
+            spriteOff.SetActive(!value); 
+        }
+    }
+
     public void SetRoom(RoomBehavior r)
     {
         room = r;
@@ -31,6 +50,7 @@ public class CheckpointBehavior : MonoBehaviour
         if (p != null)
         {
             p.AssignCheckpoint(this);
+            SetCheckpointActive(true);
         }
     }
 }

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Movable movable = null;
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
-    private CheckpointBehavior currentCheckpoint = null;
+    public CheckpointBehavior currentCheckpoint = null;
     private Animator animator = null;
     private bool pushing = false;
 
@@ -135,6 +135,10 @@ public class PlayerController : MonoBehaviour
 
     public void AssignCheckpoint(CheckpointBehavior c)
     {
+        if (currentCheckpoint)
+        {
+            currentCheckpoint.SetCheckpointActive(false);
+        }
         currentCheckpoint = c;
     }
     public void UseCheckpoint()

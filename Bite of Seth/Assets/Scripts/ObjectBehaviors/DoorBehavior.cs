@@ -7,6 +7,15 @@ public class DoorBehavior : MonoBehaviour
     public List<DoorTrigger> triggers = new List<DoorTrigger>();
     private bool isClosed = true;
     public AudioObject sfx = null;
+    public Movable doorMovable;
+    private Vector3 startPos;
+    public Vector3 openDistance;
+    public float openSpeed;
+
+    private void Start()
+    {
+        startPos = doorMovable.rigidbody.position;
+    }
 
     void FixedUpdate()
     {
@@ -34,8 +43,9 @@ public class DoorBehavior : MonoBehaviour
         if (isClosed)
         {
             isClosed = false;
+            Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
+            doorMovable.StartMovement(startPos + openDistance - pos, openSpeed);
             GetComponent<Collider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
             ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
         }
     }
@@ -45,8 +55,10 @@ public class DoorBehavior : MonoBehaviour
         if (!isClosed)
         {
             isClosed = true;
+            Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
+            doorMovable.StartMovement(startPos - pos, openSpeed);
             GetComponent<Collider2D>().enabled = true;
-            GetComponent<SpriteRenderer>().enabled = true;
+            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
         }
         
     }
