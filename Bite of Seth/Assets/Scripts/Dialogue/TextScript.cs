@@ -6,13 +6,22 @@ using UnityEngine.UI;
 public class TextScript : MonoBehaviour
 {
     public DialogueBase dialogue;
+    public DialogueBase repetitiveDialogue;
+    private DialogueBase curDialogue;
+
     public bool playerInRange;
     public DoorTrigger doorTrigger = null;
     public bool isAutoTriggered;
     public bool repeatAutoTrigger;
-    
+    private PlayerController playerRef = null;
+
+    private void Start()
+    {
+        curDialogue = dialogue;
+    }
+
     public void TriggerDialogue(){
-        DialogueManager.instance.EnqueueDialogue(dialogue);
+        DialogueManager.instance.EnqueueDialogue(curDialogue);
     }
 
     public bool ContinueDialogue(){
@@ -21,19 +30,21 @@ public class TextScript : MonoBehaviour
     }
 
     public void UpdateLog(){
-        LogManager.instance.AddEntry(dialogue);
+        LogManager.instance.AddEntry(curDialogue);
     }
 
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
         if(other.CompareTag("Player")){
             playerInRange = true;
+            playerRef = other.gameObject.GetComponent<PlayerController>();
         }
         if((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive){
             isAutoTriggered = false;
             TriggerDialogue();
             UpdateLog();
         } else if(!DialogueManager.instance.isDialogueActive){
+            DialogueManager.instance.SetInteractName(curDialogue.dialogueInfo[0].character.characterName);
             DialogueManager.instance.toggleInteractAlert(true);
         }
     }
@@ -61,40 +72,29 @@ public class TextScript : MonoBehaviour
     public bool TryToDialogue() { 
 
         if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
-            FillTextWithPuzzleInfo();
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
-            //return true;
             return false;
         } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true) {
             bool dialogueEnded = ContinueDialogue();
-            if (dialogueEnded && doorTrigger != null)
-            {
-                doorTrigger.SetState(true);
+            if (dialogueEnded) {
+                if (doorTrigger != null) {
+                    doorTrigger.SetState(true);
+                }
+                if (repetitiveDialogue != null) {
+                    curDialogue = repetitiveDialogue;
+                }
             }
             return true;
-            //return false;
         }
         return false;
 
     }
 
-    private void FillTextWithPuzzleInfo()
+    public PlayerController GetPlayerRef()
     {
-        string text;
-        foreach (DialogueBase.Info info in dialogue.dialogueInfo) {
-            if (info.needPuzzleInfo) {
-                text = info.myText;
-                //Complete text with puzzle info
-                string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
-                //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
-                for (int i = 0; i < names.Length; i++) {
-                    text = text.Replace("<ID" + i + ">", names[i]);
-                }
-                info.myText = text;
-            }
-        }
+        return playerRef;
     }
 
 }

@@ -24,11 +24,13 @@ public class PuzzleFinalDialogue : MonoBehaviour
             if (ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer()) 
             {
                 Debug.Log("YOU WON, CONGRATULATIONS!");
-                ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
             } 
             else 
             {
                 Debug.Log("YOU LOSE... TRY AGAIN!");
+                if (ts.GetPlayerRef() != null) {
+                    ts.GetPlayerRef().UseCheckpoint();
+                }
                 ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
             }
         }

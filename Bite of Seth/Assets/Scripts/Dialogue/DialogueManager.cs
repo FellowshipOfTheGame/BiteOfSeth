@@ -32,6 +32,8 @@ public class DialogueManager : MonoBehaviour
     private string completeText;
 
     private Coroutine inst;
+
+    private string interactName;
     
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
@@ -68,15 +70,27 @@ public class DialogueManager : MonoBehaviour
         }
 
         Info = dialogueInfo.Dequeue();
-        
-        completeText = Info.myText;
+
+        string text = Info.myText;
+
+        if (Info.needPuzzleInfo) {
+            //Complete text with puzzle info
+            string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
+            //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
+            for (int i = 0; i < names.Length; i++) {
+                int fix = i + 1;
+                text = text.Replace("<ID" + fix + ">", names[i]);
+            }
+        }
+
+        completeText = text;
 
         dialogueName.text = Info.character.characterName;
-        dialogueText.text = Info.myText;
+        dialogueText.text = text;
         dialoguePortrait.sprite = Info.character.portrait;
 
         dialogueText.text = "";
-        inst = StartCoroutine(TypeText(Info));
+        inst = StartCoroutine(TypeText(text));
         return false;
     }
 
@@ -101,10 +115,10 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
     }
 
-    IEnumerator TypeText(DialogueBase.Info info)
+    IEnumerator TypeText(string text)
     {
         isCurrentlyTyping = true;
-        foreach (char c in info.myText.ToCharArray()) {
+        foreach (char c in text.ToCharArray()) {
             yield return new WaitForSeconds(delay);
             dialogueText.text += c;
         }
@@ -121,8 +135,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool toggleInteractAlert(bool status){
+        interactBox.GetComponentsInChildren<Text>()[1].text = interactName;
         interactBox.SetActive(status);
         return status;
+    }
+
+    public void SetInteractName(string name)
+    {
+        interactName = name;
     }
 
 }

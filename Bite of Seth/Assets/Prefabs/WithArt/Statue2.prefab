@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159407339248242024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3159407339024212023}
@@ -179,7 +179,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &3159407339248242029
 MonoBehaviour:
@@ -194,7 +194,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 2c3abd0d5023a9e4b892dc3f94e7329f, type: 2}
+  repetitiveDialogue: {fileID: 0}
   playerInRange: 0
+  doorTrigger: {fileID: 0}
+  isAutoTriggered: 0
+  repeatAutoTrigger: 0
 --- !u!1 &7478488838469525310
 GameObject:
   m_ObjectHideFlags: 0
