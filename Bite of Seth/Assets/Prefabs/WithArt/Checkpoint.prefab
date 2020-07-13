@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 6612178416756646888, guid: 046ddb326c6409c48b84e1e085e963d2,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -4082083075840319436}
   - component: {fileID: 8418403584316895309}
   m_Layer: 13
-  m_Name: Checkpoint 1
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteActive: {fileID: 1150776964024493248}
-  spriteOff: {fileID: 8664700198994129221}
+  spriteOff: {fileID: 0}
 --- !u!1 &8664700198994129221
 GameObject:
   m_ObjectHideFlags: 0
