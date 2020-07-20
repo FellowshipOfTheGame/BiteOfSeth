@@ -20,18 +20,28 @@ public class PuzzleFinalDialogue : MonoBehaviour
         {
             //TO DO: Ask the player is it really wants to give the final answer
             //if(UI.ConfirmFinalSelection())
-            
-            if (ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer()) 
-            {
-                Debug.Log("YOU WON, CONGRATULATIONS!");
-            } 
-            else 
-            {
-                Debug.Log("YOU LOSE... TRY AGAIN!");
-                if (ts.GetPlayerRef() != null) {
-                    ts.GetPlayerRef().UseCheckpoint();
-                }
-                ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
+
+            int resultado = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer();
+
+            switch (resultado) {
+
+                case 0:
+                    Debug.Log("CHOOSE ALL STATUES!");
+                    break;
+
+                case 1:
+                    Debug.Log("YOU WON, CONGRATULATIONS!");
+                    ServiceLocator.Get<GameManager>().GoToNextLevel();
+                    break;
+
+                case 2:
+                    Debug.Log("YOU LOSE... TRY AGAIN!");
+                    if (ts.GetPlayerRef() != null) {
+                        ts.GetPlayerRef().UseCheckpoint();
+                    }
+                    ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
+                    break;
+
             }
         }
     }

@@ -72,20 +72,36 @@ public class PuzzleManager : MonoBehaviour
         }*/
     }
 
-    public bool CheckFinalAnswer()
+    public int CheckFinalAnswer()
     {
-        if (nSelected < statuesQuantity) return false;
+        //Não selecionou o suficiente
+        if (nSelected < statuesQuantity) return 0;
 
         for(int i=0; i<statuesQuantity; i++)
         {
+            //A escolha foi na ordem errada
             if(statuesCorrectOrder[i] != statuesSelectedOrder[i]) 
             {
+                return 1;
+            }
+        }
+
+        //A escolha foi na ordem correta
+        return 2;
+    }
+
+    /*public bool CheckFinalAnswer()
+    {
+        if (nSelected < statuesQuantity) return false;
+
+        for (int i = 0; i < statuesQuantity; i++) {
+            if (statuesCorrectOrder[i] != statuesSelectedOrder[i]) {
                 return false;
             }
         }
 
         return true;
-    }
+    }*/
 
     public string[] GetStatuesNamesInOrder()
     {
