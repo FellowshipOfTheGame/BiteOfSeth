@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CollectableBehavior : MonoBehaviour
 {
-    private bool collected = false;
+    protected bool collected = false;
     public int points = 1;
     public AudioObject collectSFX = null;
+    public AutoDestroyBurst particle;
 
-    public void Collect()
+    public virtual void Collect()
     {
         if (!collected)
         {
@@ -18,14 +19,18 @@ public class CollectableBehavior : MonoBehaviour
             GameManager gm = ServiceLocator.Get<GameManager>();
             gm.AddLevelScore(points);
             gm.PrintLevelScore();
-            gameObject.SetActive(false);
             collected = true;
 
             ServiceLocator.Get<AudioManager>().PlayAudio(collectSFX);
+            
+           
+            particle.transform.SetParent(null);
+            particle.Play();
+            gameObject.SetActive(false);
         }
     }
 
-    public void Decollect()
+    public virtual void Decollect()
     {
         if (collected)
         {
@@ -40,6 +45,13 @@ public class CollectableBehavior : MonoBehaviour
         PlayerController p = collision.gameObject.GetComponent<PlayerController>();
         if (p != null)
         {
+            Collect();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        PlayerController p = other.gameObject.GetComponent<PlayerController>();
+        if (p != null) {
             Collect();
         }
     }
