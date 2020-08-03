@@ -5,11 +5,13 @@ using UnityEngine;
 public class SymbolBehavior : CollectableBehavior {
 
     public Lore info;
+    public ParticleSystem particles;
+    public Animator anim;
 
     public override void Collect() {
         if (!collected) {
-            LoreManager lm = ServiceLocator.Get<LoreManager>();
-            lm.Learn(info);
+            //LoreManager lm = ServiceLocator.Get<LoreManager>();
+            //lm.Learn(info);
         }
         base.Collect();
     }
@@ -20,5 +22,11 @@ public class SymbolBehavior : CollectableBehavior {
             lm.Forget(info);
         }
         base.Decollect();
+    }
+
+    public void Explode() {
+        LoreManager lm = ServiceLocator.Get<LoreManager>();
+        lm.Learn(info);
+        particles.Play();
     }
 }

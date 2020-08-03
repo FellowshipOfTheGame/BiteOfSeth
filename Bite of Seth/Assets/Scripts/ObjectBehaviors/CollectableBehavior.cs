@@ -8,6 +8,8 @@ public class CollectableBehavior : MonoBehaviour
     public int points = 1;
     public AudioObject collectSFX = null;
 
+    public Animator animator;
+
     public virtual void Collect()
     {
         if (!collected)
@@ -18,10 +20,12 @@ public class CollectableBehavior : MonoBehaviour
             GameManager gm = ServiceLocator.Get<GameManager>();
             gm.AddLevelScore(points);
             gm.PrintLevelScore();
-            gameObject.SetActive(false);
             collected = true;
 
             ServiceLocator.Get<AudioManager>().PlayAudio(collectSFX);
+            
+            if (animator == null) gameObject.SetActive(false);
+            else animator.SetTrigger("collect");
         }
     }
 
