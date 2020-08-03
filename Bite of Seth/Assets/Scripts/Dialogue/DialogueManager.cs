@@ -135,7 +135,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool toggleInteractAlert(bool status){
-        interactBox.GetComponentsInChildren<Text>()[1].text = interactName;
+        interactText.text = "Press E to interact with " + interactName;
         interactBox.SetActive(status);
         return status;
     }
