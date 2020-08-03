@@ -7,8 +7,7 @@ public class CollectableBehavior : MonoBehaviour
     protected bool collected = false;
     public int points = 1;
     public AudioObject collectSFX = null;
-
-    public Animator animator;
+    public AutoDestroyBurst particle;
 
     public virtual void Collect()
     {
@@ -24,8 +23,10 @@ public class CollectableBehavior : MonoBehaviour
 
             ServiceLocator.Get<AudioManager>().PlayAudio(collectSFX);
             
-            if (animator == null) gameObject.SetActive(false);
-            else animator.SetTrigger("collect");
+           
+            particle.transform.SetParent(null);
+            particle.Play();
+            gameObject.SetActive(false);
         }
     }
 
