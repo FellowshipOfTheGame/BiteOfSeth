@@ -22,6 +22,7 @@ public class LoreBook : MonoBehaviour {
     public void AddEntry(Lore l, SymbolDialog dialog){
         Button b = Instantiate(entryPrefab, summary).GetComponent<Button>();
         b.gameObject.SetActive(true);
+        b.image.sprite = l.icon;
         b.onClick.AddListener( delegate{ dialog.Present(l); } );
     }
 

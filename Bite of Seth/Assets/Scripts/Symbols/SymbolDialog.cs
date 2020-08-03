@@ -8,6 +8,7 @@ public class SymbolDialog : MonoBehaviour {
     Coroutine inst;
     public GameObject dialogueBox;
     public Text dialogueText, dialogueTitle;
+    public Image dialogueIcon;
     public float delay;
 
     // Start is called before the first frame update
@@ -23,7 +24,8 @@ public class SymbolDialog : MonoBehaviour {
 
     public void Present(Lore l) {
         dialogueBox.SetActive(true);
-        dialogueTitle.text = l.title;       
+        dialogueTitle.text = l.title;  
+        dialogueIcon.sprite = l.icon;     
         inst = StartCoroutine(TypeText(l.text));
     }
 

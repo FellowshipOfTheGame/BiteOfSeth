@@ -7,5 +7,5 @@ public class Lore : ScriptableObject {
     
     public string title;
     public string text;
-    public Sprite icon;
+    public Sprite icon, shadow, symbol;
 }
