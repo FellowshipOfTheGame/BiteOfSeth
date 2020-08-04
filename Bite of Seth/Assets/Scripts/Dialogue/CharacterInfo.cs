@@ -7,4 +7,6 @@ public class CharacterInfo : ScriptableObject{
     [Header("Insert character info below")]
     public string characterName;
     public Sprite portrait;
+
+    public AnimatorOverrideController art;
 }
