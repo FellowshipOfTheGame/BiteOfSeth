@@ -23,6 +23,8 @@ public class GameManager : GameService
 
     public override void Start()
     {
+        score = 0;
+
         base.Start();
         lockMovement = false;
 
@@ -37,14 +39,24 @@ public class GameManager : GameService
         Debug.Log("TODO: KillPlayer Behavior");
     }
 
-    public void PrintScore()
+    public void PrintTotalScore()
     {
         Debug.Log(string.Format("Current Score: {0}",score));
     }
 
-    public void AddScore(int value)
+    public void AddTotalScore(int value)
     {
         score += value;
+    }
+
+    public int GetTotalScore()
+    {
+        return score;
+    }
+
+    public void SetTotalScore(int value)
+    {
+        score = value;
     }
 
     public void SetNewLevel()
@@ -66,8 +78,8 @@ public class GameManager : GameService
     public void UpdateValues()
     {
         int score = GetLevelScore();
-        AddScore(score);
-        PrintScore();
+        AddTotalScore(score);
+        PrintTotalScore();
 
         LevelData ld = new LevelData();
         ld.id = curLevelIndex++;
@@ -88,6 +100,11 @@ public class GameManager : GameService
     public void PrintLevelScore()
     {
         curLevel.PrintScore();
+    }
+
+    public void SetLevelScore(int value)
+    {
+        curLevel.SetScore(value);
     }
 
     public void RestartLevel()
