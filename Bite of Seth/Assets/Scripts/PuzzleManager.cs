@@ -82,12 +82,12 @@ public class PuzzleManager : MonoBehaviour
             //A escolha foi na ordem errada
             if(statuesCorrectOrder[i] != statuesSelectedOrder[i]) 
             {
-                return 1;
+                return 2;
             }
         }
 
         //A escolha foi na ordem correta
-        return 2;
+        return 1;
     }
 
     /*public bool CheckFinalAnswer()

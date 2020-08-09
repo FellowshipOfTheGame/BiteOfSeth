@@ -35,8 +35,8 @@ public class CollectableBehavior : MonoBehaviour
         if (collected)
         {
             GameManager gm = ServiceLocator.Get<GameManager>();
-            gm.AddScore(-points);
-            gm.PrintScore();
+            gm.AddLevelScore(-points);
+            gm.PrintLevelScore();
         }
     }
 
