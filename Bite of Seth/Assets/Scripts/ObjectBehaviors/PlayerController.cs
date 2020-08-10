@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 3f;
     public LayerMask movementCollisionMask;
     public CheckpointBehavior currentCheckpoint = null;
+    public LayerMask walkOnLayerMask = default;
     private Animator animator = null;
     private bool pushing = false;
 
@@ -54,14 +55,14 @@ public class PlayerController : MonoBehaviour
 
         Vector2 animationDiretion = movable.lookingDirection;
         // check if grounded
-        if (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.down, gameObject).Count == 0)
+        if (!pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
         {
             animationDiretion = Vector2.up;
         }
-        animator.SetBool("Walking", movable.isMoving);
-        animator.SetBool("Pushing", pushing);
         animator.SetFloat("Horizontal", animationDiretion.x);
         animator.SetFloat("Vertical", animationDiretion.y);
+        animator.SetBool("Walking", movable.isMoving);
+        animator.SetBool("Pushing", pushing);
     }
 
     private void FixedUpdate()
