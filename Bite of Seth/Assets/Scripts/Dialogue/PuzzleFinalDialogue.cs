@@ -7,6 +7,8 @@ public class PuzzleFinalDialogue : MonoBehaviour
 
     TextScript ts;
     public Animator art;
+    public DialogueBase finalPuzzleDialogue;
+    public DialogueBase incompletedPuzzleDialogue;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PuzzleFinalDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(ts.TryToDialogue())
         {
             //TO DO: Ask the player is it really wants to give the final answer
@@ -41,7 +44,8 @@ public class PuzzleFinalDialogue : MonoBehaviour
                     if (ts.GetPlayerRef() != null) {
                         ServiceLocator.Get<GameManager>().KillPlayer();
                     }
-                    ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
+                    //ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
+                    ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
                     break;
 
             }
