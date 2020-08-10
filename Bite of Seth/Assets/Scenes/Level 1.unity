@@ -1272,7 +1272,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1361993525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &539727492
+--- !u!114 &539727495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7494,8 +7494,8 @@ Tilemap:
   - first: {x: 0, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 23
+      m_TileIndex: 8
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -12742,7 +12742,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 21
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -26485,8 +26485,8 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 2445
     m_Data: {fileID: 11400000, guid: 813af35ef1a2fca42a3b65e63888edc6, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 15
     m_Data: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
   - m_RefCount: 43
@@ -26499,8 +26499,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
   - m_RefCount: 32
     m_Data: {fileID: 11400000, guid: f671d33bc8514254c9f270dbeae149c5, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -26564,13 +26564,13 @@ Tilemap:
     m_Data: {fileID: -7018200464016470573, guid: 2cc42ebedd3e79d419907809c7ae8eef,
       type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef,
+    m_Data: {fileID: -3508473504157200823, guid: 9a2ca730fe7b10346b036495bec2393a,
       type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 8403805575126003320, guid: 2cc42ebedd3e79d419907809c7ae8eef,
       type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -3508473504157200823, guid: 9a2ca730fe7b10346b036495bec2393a,
+    m_Data: {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef,
       type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2677
@@ -26599,7 +26599,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: 2.552e-41, g: 2.552e-41, b: 2.552e-41, a: 2.552e-41}
   - m_RefCount: 0
-    m_Data: {r: 2.552e-41, g: 2.552e-41, b: 2.552e-41, a: 2.552e-41}
+    m_Data: {r: 7.9297485, g: 7.9297485, b: 7.9297485, a: 7.9297485}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26662,7 +26662,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -27388,7 +27388,7 @@ PrefabInstance:
         type: 3}
       propertyPath: doorTrigger
       value: 
-      objectReference: {fileID: 539727492}
+      objectReference: {fileID: 539727495}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!1001 &1404326882
@@ -54788,7 +54788,7 @@ PrefabInstance:
         type: 3}
       propertyPath: triggers.Array.data[0]
       value: 
-      objectReference: {fileID: 539727492}
+      objectReference: {fileID: 539727495}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1183628796d805f4e9d29f03700a3962, type: 3}
 --- !u!4 &2086137991 stripped
