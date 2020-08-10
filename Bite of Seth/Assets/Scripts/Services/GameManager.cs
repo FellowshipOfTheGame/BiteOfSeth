@@ -9,6 +9,8 @@ public class GameManager : GameService
     public int score = 0;
     public bool lockMovement = false;
 
+    public PlayerController player = null;
+
     public GameObject levelManagerPrefab;
     private GameObject lm;
     private LevelManager curLevel;
@@ -37,6 +39,7 @@ public class GameManager : GameService
     public void KillPlayer()
     {
         Debug.Log("TODO: KillPlayer Behavior");
+        player.UseCheckpoint();
     }
 
     public void PrintTotalScore()

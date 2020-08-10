@@ -39,7 +39,7 @@ public class PuzzleFinalDialogue : MonoBehaviour
                 case 2:
                     Debug.Log("YOU LOSE... TRY AGAIN!");
                     if (ts.GetPlayerRef() != null) {
-                        ts.GetPlayerRef().UseCheckpoint();
+                        ServiceLocator.Get<GameManager>().KillPlayer();
                     }
                     ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetPuzzle();
                     break;
