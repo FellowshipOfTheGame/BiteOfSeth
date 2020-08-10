@@ -45,7 +45,14 @@ public class TilemapSlicer : MonoBehaviour
         {
             tilesThatDontCountAsWalls.Add(to.tile);
         }
-
+        if (tilesThatDontCountAsWalls.Contains(tilesetObjects.checkpointTile))
+        {
+            tilesThatDontCountAsWalls.Remove(tilesetObjects.checkpointTile);
+        }
+        if (tilesThatDontCountAsWalls.Contains(tilesetObjects.fakeWallTile))
+        {
+            tilesThatDontCountAsWalls.Remove(tilesetObjects.fakeWallTile);
+        }
         // turn checkpoints to walls then clear non-walls
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
