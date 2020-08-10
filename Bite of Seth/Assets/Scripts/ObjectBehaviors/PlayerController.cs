@@ -21,6 +21,16 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        GameManager gm = ServiceLocator.Get<GameManager>();
+        if (gm.player == null)
+        {
+            gm.player = this;
+        }
+        else
+        {
+            Debug.Log("Second instance of player instantiated, destrying it");
+            Destroy(this);
+        }
     }
 
     private void Update()
@@ -141,6 +151,7 @@ public class PlayerController : MonoBehaviour
         }
         currentCheckpoint = c;
     }
+    
     public void UseCheckpoint()
     {
         if (currentCheckpoint != null)

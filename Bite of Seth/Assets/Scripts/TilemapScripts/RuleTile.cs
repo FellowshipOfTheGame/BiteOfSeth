@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu]
 public class RuleTile : Tile {
+
+    public Tile fakeTile = null;
     //[HideInInspector] public bool updated = false;
     public Sprite[] main, upGnd, downGnd, leftGnd, rightGnd;
     public Sprite[] vert, hor, upLeft, upRight, downRight, downLeft;
@@ -58,12 +60,13 @@ public class RuleTile : Tile {
         }
         
         
-        tileData.sprite = calcSprite(neighbours, count);  
+        tileData.sprite = calcSprite(neighbours, count);
+
     }
 
     bool IsNeighbour(Vector3Int position, ITilemap tilemap) {
         TileBase tile = tilemap.GetTile(position);
-        return (tile != null && tile == this);
+        return (tile != null && (tile == this || tile == fakeTile));
     }
   
     Sprite calcSprite(bool[] neighbours, int count){

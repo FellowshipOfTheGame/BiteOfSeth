@@ -40,15 +40,33 @@ public class TilemapSlicer : MonoBehaviour
         wallMap.gameObject.SetActive(true);
         wallMap.gameObject.name = "walls";
 
+        List<TileBase> tilesThatDontCountAsWalls = new List<TileBase>();
+        foreach(TileObject to in tilesetObjects.objectsToSpawn)
+        {
+            tilesThatDontCountAsWalls.Add(to.tile);
+        }
+        if (tilesThatDontCountAsWalls.Contains(tilesetObjects.checkpointTile))
+        {
+            tilesThatDontCountAsWalls.Remove(tilesetObjects.checkpointTile);
+        }
+        if (tilesThatDontCountAsWalls.Contains(tilesetObjects.fakeWallTile))
+        {
+            tilesThatDontCountAsWalls.Remove(tilesetObjects.fakeWallTile);
+        }
         // turn checkpoints to walls then clear non-walls
         foreach (var pos in wallMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             TileBase tile = wallMap.GetTile(localPlace);
-            if (tile != tilesetObjects.wallTile && tile != tilesetObjects.checkpointTile && tile != tilesetObjects.fakeWallTile)
+            if (tilesThatDontCountAsWalls.Contains(tile))
             {
                 wallMap.SetTile(localPlace, null);
             }
+
+            //if (tile != tilesetObjects.wallTile && tile != tilesetObjects.checkpointTile && tile != tilesetObjects.fakeWallTile)
+            //{
+            //    wallMap.SetTile(localPlace, null);
+            //}
         }
 
         // create tilemaps for each room with FloodFill

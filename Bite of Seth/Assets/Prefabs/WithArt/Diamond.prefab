@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5771504162434163340}
   - component: {fileID: 754011300465007239}
   - component: {fileID: -5926556322554335977}
+  - component: {fileID: -5793260973342069518}
   m_Layer: 11
   m_Name: Diamond
   m_TagString: Untagged
@@ -138,6 +139,19 @@ MonoBehaviour:
   points: 1
   collectSFX: {fileID: 11400000, guid: bd2e88e400206f54e934327a6f89aa0a, type: 2}
   particle: {fileID: 5342839717163010139}
+--- !u!114 &-5793260973342069518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296024696174100633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6b1b43f72937040b807fcf67f32a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 1
 --- !u!1 &4376690317301054178
 GameObject:
   m_ObjectHideFlags: 0

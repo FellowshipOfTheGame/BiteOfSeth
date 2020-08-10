@@ -7,6 +7,7 @@ public class CheckpointBehavior : MonoBehaviour
     RoomBehavior room = null;
     public GameObject spriteActive;
     public GameObject spriteOff;
+    int curScore;
 
     private void Start()
     {

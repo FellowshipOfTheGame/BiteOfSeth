@@ -32,5 +32,10 @@ public class LevelManager : MonoBehaviour
     {
         return score;
     }
-    
+
+    public void SetScore(int value)
+    {
+        score = value;
+    }
+
 }
