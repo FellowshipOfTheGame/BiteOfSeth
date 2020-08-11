@@ -97,4 +97,9 @@ public class TextScript : MonoBehaviour
         return playerRef;
     }
 
+    public void ResetDialogue()
+    {
+        curDialogue = dialogue;
+    }
+
 }
