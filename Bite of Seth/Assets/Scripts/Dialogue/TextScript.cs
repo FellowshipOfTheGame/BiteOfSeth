@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
-    public DialogueBase dialogue;
-    public DialogueBase repetitiveDialogue;
+    public List<DialogueBase> dialogueSequence;
+    private int index;
+
     private DialogueBase curDialogue;
 
     public bool playerInRange;
@@ -17,7 +18,7 @@ public class TextScript : MonoBehaviour
 
     private void Start()
     {
-        curDialogue = dialogue;
+        ResetDialogue();
     }
 
     public void TriggerDialogue(){
@@ -82,8 +83,10 @@ public class TextScript : MonoBehaviour
                 if (doorTrigger != null) {
                     doorTrigger.SetState(true);
                 }
-                if (repetitiveDialogue != null) {
-                    curDialogue = repetitiveDialogue;
+                if(index >= dialogueSequence.Count) {
+                    curDialogue = dialogueSequence[index-1];
+                } else {
+                    curDialogue = dialogueSequence[index++];
                 }
             }
             return true;
@@ -99,7 +102,8 @@ public class TextScript : MonoBehaviour
 
     public void ResetDialogue()
     {
-        curDialogue = dialogue;
+        index = 0;
+        curDialogue = dialogueSequence[index++];
     }
 
 }
