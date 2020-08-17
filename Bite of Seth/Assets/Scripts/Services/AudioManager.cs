@@ -13,8 +13,10 @@ public class AudioManager : GameService
         sources = new List<AudioSource>();
         PlayAudio(defaultBGM);
     }
+
     public override void Update()
     {
+        if (!Application.isFocused) return;
         for(int i = sources.Count-1; i >= 0; i--)
         {
             if (sources[i].isPlaying == false)
