@@ -11,7 +11,7 @@ public class DialogueBehavior : MonoBehaviour
     void Start()
     {
         ts = GetComponentInChildren<TextScript>();
-        art.runtimeAnimatorController = ts.dialogue.dialogueInfo[0].character.art;
+        art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
     }
 
     // Update is called once per frame

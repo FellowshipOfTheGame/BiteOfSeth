@@ -90,18 +90,11 @@ public class PuzzleManager : MonoBehaviour
         return 1;
     }
 
-    /*public bool CheckFinalAnswer()
+    public bool AllStatuesSelected()
     {
-        if (nSelected < statuesQuantity) return false;
+        return (nSelected == statuesQuantity);
+    }
 
-        for (int i = 0; i < statuesQuantity; i++) {
-            if (statuesCorrectOrder[i] != statuesSelectedOrder[i]) {
-                return false;
-            }
-        }
-
-        return true;
-    }*/
 
     public string[] GetStatuesNamesInOrder()
     {
@@ -112,6 +105,20 @@ public class PuzzleManager : MonoBehaviour
             }
         }
         return namesInOrder;
+    }
+
+
+    public void ResetChoices()
+    {
+        foreach (GameObject S in puzzleStatuesReferences) {
+            PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
+            if (pod != null) {
+                pod.ResetSelection();
+            }
+        }
+        
+        nSelected = 0;
+
     }
 
 }
