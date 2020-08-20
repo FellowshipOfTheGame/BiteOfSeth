@@ -482,8 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089a3abc14d647f49ba613f1d06c3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 05aa438aeb4849e499ee7860b71bc0ef, type: 2}
-  repetitiveDialogue: {fileID: 0}
+  dialogueSequence: []
   playerInRange: 0
   doorTrigger: {fileID: 0}
   isAutoTriggered: 0
@@ -819,7 +818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 544.13873, y: -220.532}
+  m_AnchoredPosition: {x: 400, y: -300}
   m_SizeDelta: {x: 648, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7127711279021181892
