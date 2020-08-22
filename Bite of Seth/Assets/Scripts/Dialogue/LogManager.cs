@@ -71,6 +71,9 @@ public class LogManager : MonoBehaviour
                         int fix = i + 1;
                         text = text.Replace("<ID " + fix + ">", names[i]);
                     }
+                    string ownName = info.character.characterName;
+                    text = text.Replace(ownName + "'s", "My");
+                    text = text.Replace(ownName, "My");
 
                     logInfo[0].text = info.character.characterName;
                     logInfo[1].text = text;
