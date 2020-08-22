@@ -15,12 +15,15 @@ public class AudioManager : GameService
     }
     public override void Update()
     {
-        for(int i = sources.Count-1; i >= 0; i--)
+        if (Application.isFocused)
         {
-            if (sources[i].isPlaying == false)
+            for(int i = sources.Count-1; i >= 0; i--)
             {
-                Destroy(sources[i]);
-                sources.Remove(sources[i]);
+                if (sources[i].isPlaying == false)
+                {
+                    Destroy(sources[i]);
+                    sources.Remove(sources[i]);
+                }
             }
         }
     }
