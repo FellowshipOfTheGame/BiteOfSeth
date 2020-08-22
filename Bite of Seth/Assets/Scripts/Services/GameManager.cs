@@ -25,9 +25,10 @@ public class GameManager : GameService
 
     public override void Start()
     {
+        base.Start();
+
         score = 0;
 
-        base.Start();
         lockMovement = false;
 
         levelData = new List<LevelData>();
