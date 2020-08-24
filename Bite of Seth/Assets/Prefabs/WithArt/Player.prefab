@@ -182,7 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d917f85c4ec0d4cb086ad17424a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 4
   movementCollisionMask:
     serializedVersion: 2
     m_Bits: 19969
+  currentCheckpoint: {fileID: 0}

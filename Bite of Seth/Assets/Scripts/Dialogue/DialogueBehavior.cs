@@ -11,6 +11,7 @@ public class DialogueBehavior : MonoBehaviour
     void Start()
     {
         ts = GetComponentInChildren<TextScript>();
+        ts.statue = this;
         art.runtimeAnimatorController = ts.dialogue.dialogueInfo[0].character.art;
     }
 
@@ -18,5 +19,17 @@ public class DialogueBehavior : MonoBehaviour
     void Update()
     {
         ts.TryToDialogue();
+    }
+
+    public void OnEnterDialog(){
+        art.SetBool("player", true);
+    }
+
+    public void OnDialog(){
+        art.SetTrigger("talk");
+    }
+
+    public void OnEndDialog(){
+        art.SetBool("player", false);
     }
 }

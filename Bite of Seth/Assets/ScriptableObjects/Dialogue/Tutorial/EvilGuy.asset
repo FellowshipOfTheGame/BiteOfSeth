@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8119940e9d869da4299c9df994a88b97, type: 3}
-  m_Name: Horus
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: EvilGuy
   m_EditorClassIdentifier: 
-  characterName: Horus
-  portrait: {fileID: 21300000, guid: 68f01ae7465569c49a64a046e3f59ad2, type: 3}
-  art: {fileID: 22100000, guid: 77319064a705e7146b2a20be63ed86a7, type: 2}
+  dialogueID: 0
+  dialogueTitle: 
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: Bom dia!

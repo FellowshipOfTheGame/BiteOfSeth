@@ -6,6 +6,8 @@ using UnityEngine;
 public class PushableBehavior : MonoBehaviour
 {
     private Movable movable = null;
+    public float pushSpeed = 2f;
+
     [SerializeField]
     private LayerMask collisionMask = default;
 
@@ -14,7 +16,7 @@ public class PushableBehavior : MonoBehaviour
         movable = gameObject.GetComponent<Movable>();
     }
 
-    public bool Push(Vector2 desiredMovement, float pushSpeed)
+    public bool Push(Vector2 desiredMovement)
     {
         if (desiredMovement.normalized == Vector2.up)
         {
