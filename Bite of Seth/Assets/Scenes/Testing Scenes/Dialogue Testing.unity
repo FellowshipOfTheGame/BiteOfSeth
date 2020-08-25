@@ -578,7 +578,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5434937041691364921, guid: 507772eb667d76a4284b9a169b1fd25a,
         type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434937041691364921, guid: 507772eb667d76a4284b9a169b1fd25a,
+        type: 3}
       propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: be40e86612e42d6468ad7c39b9adb41b,
+        type: 2}
+    - target: {fileID: 5434937041691364921, guid: 507772eb667d76a4284b9a169b1fd25a,
+        type: 3}
+      propertyPath: dialogueSequence.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: be40e86612e42d6468ad7c39b9adb41b,
         type: 2}
