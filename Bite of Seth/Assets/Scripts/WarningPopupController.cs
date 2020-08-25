@@ -16,7 +16,11 @@ public class WarningPopupController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (warningPopup.activeSelf) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                Close();
+            }
+        }
     }
 
     public void Close()
