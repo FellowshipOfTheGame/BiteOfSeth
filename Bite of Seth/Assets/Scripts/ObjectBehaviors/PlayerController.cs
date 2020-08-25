@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movable movable = null;
-    public float movementSpeed = 3f;
+    public float movementSpeed = 5f;
     public LayerMask movementCollisionMask;
     public CheckpointBehavior currentCheckpoint = null;
     public LayerMask walkOnLayerMask = default;
@@ -86,10 +86,10 @@ public class PlayerController : MonoBehaviour
                     PushableBehavior pushable = objects[0].GetComponent<PushableBehavior>();
                     if (pushable != null)
                     {
-                        bool pushed = pushable.Push(desiredMovement, movementSpeed);
+                        bool pushed = pushable.Push(desiredMovement);
                         if (pushed)
                         {
-                            movable.StartMovement(desiredMovement, movementSpeed);
+                            movable.StartMovement(desiredMovement, pushable.pushSpeed);
                             pushing = true;
                         }
                     }

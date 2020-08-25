@@ -22,6 +22,7 @@ public class TextScript : MonoBehaviour
     }
 
     public void TriggerDialogue(){
+        statue.OnDialog();
         DialogueManager.instance.EnqueueDialogue(curDialogue);
     }
 
@@ -39,6 +40,7 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             playerInRange = true;
             playerRef = other.gameObject.GetComponent<PlayerController>();
+            statue.OnEnterDialog();
         }
         if((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive){
             isAutoTriggered = false;
@@ -55,6 +57,7 @@ public class TextScript : MonoBehaviour
         DialogueManager.instance.AbortDialogue();
         if(other.CompareTag("Player")){
             playerInRange = false;
+            statue.OnEndDialog();
         }
         if(DialogueManager.instance.isDialogueActive == false){
             DialogueManager.instance.toggleInteractAlert(false);

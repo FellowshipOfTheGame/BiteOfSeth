@@ -5,8 +5,11 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu]
 public class RuleTile : Tile {
-
     public Tile fakeTile = null;
+    Vector3Int pos;
+    ITilemap map;
+    Sprite[] config = null;
+
     //[HideInInspector] public bool updated = false;
     public Sprite[] main, upGnd, downGnd, leftGnd, rightGnd;
     public Sprite[] vert, hor, upLeft, upRight, downRight, downLeft;
@@ -31,6 +34,8 @@ public class RuleTile : Tile {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData){
         base.GetTileData(position, tilemap, ref tileData);
+        pos = position;
+        map = tilemap;
 
         bool[] neighbours = new bool[4];
         int count = 0;
@@ -60,7 +65,8 @@ public class RuleTile : Tile {
         }
         
         
-        tileData.sprite = calcSprite(neighbours, count);
+        config = calcSprite(neighbours, count);
+        tileData.sprite = config[0];
 
     }
 
@@ -69,38 +75,38 @@ public class RuleTile : Tile {
         return (tile != null && (tile == this || tile == fakeTile));
     }
   
-    Sprite calcSprite(bool[] neighbours, int count){
+    Sprite[] calcSprite(bool[] neighbours, int count){
         switch (count){
             case 0:
-                return noOpen[0];
+                return noOpen;
 
             case 1:
-                if (neighbours[0]) return upOpen[0];
-                if (neighbours[1]) return downOpen[0];
-                if (neighbours[2]) return leftOpen[0];
-                return rightOpen[0];
+                if (neighbours[0]) return upOpen;
+                if (neighbours[1]) return downOpen;
+                if (neighbours[2]) return leftOpen;
+                return rightOpen;
             
             case 2:
                 if(neighbours[0]){
-                    if (neighbours[1]) return vert[0];
-                    if (neighbours[2]) return upLeft[0];
-                    return upRight[0];
+                    if (neighbours[1]) return vert;
+                    if (neighbours[2]) return upLeft;
+                    return upRight;
                 }
                 if(neighbours[1]){
-                    if (neighbours[2]) return downLeft[0];
-                    return downRight[0];
+                    if (neighbours[2]) return downLeft;
+                    return downRight;
                 }
-                return hor[0];
+                return hor;
 
             case 3:
-                if (!neighbours[0]) return upGnd[0];
-                if (!neighbours[1]) return downGnd[0];
-                if (!neighbours[2]) return leftGnd[0];
-                return rightGnd[0];
+                if (!neighbours[0]) return upGnd;
+                if (!neighbours[1]) return downGnd;
+                if (!neighbours[2]) return leftGnd;
+                return rightGnd;
 
             
             default:
-                return main[0];
+                return main;
         }
     }
 }
