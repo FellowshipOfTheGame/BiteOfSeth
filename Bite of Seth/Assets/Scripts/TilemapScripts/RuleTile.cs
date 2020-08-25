@@ -5,9 +5,7 @@ using UnityEngine.Tilemaps;
 
 [CreateAssetMenu]
 public class RuleTile : Tile {
-
     public Tile fakeTile = null;
-    int world = 0;
     Vector3Int pos;
     ITilemap map;
     Sprite[] config = null;
@@ -68,15 +66,8 @@ public class RuleTile : Tile {
         
         
         config = calcSprite(neighbours, count);
-        tileData.sprite = config[world];
+        tileData.sprite = config[0];
 
-    }
-
-    public void ChangeWorld(int world){
-        if (config != null && world < config.Length){
-            this.world = world;
-            RefreshTile(pos, map);
-        }
     }
 
     bool IsNeighbour(Vector3Int position, ITilemap tilemap) {

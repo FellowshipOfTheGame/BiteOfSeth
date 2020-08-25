@@ -1,69 +1,57 @@
 fileFormatVersion: 2
-guid: 2cc42ebedd3e79d419907809c7ae8eef
+guid: 1abded0c076f1ca43880e312219e087d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6833483535167870675
-    second: ground_physical_tiles_0
+      213: -2389608093641303321
+    second: ground_tiles2_0
   - first:
-      213: -3127631572554035583
-    second: ground_physical_tiles_1
+      213: -4222052795464900065
+    second: ground_tiles2_1
   - first:
-      213: 4192368419973257406
-    second: ground_physical_tiles_2
+      213: 7057689489475791183
+    second: ground_tiles2_2
   - first:
-      213: -352449660983787563
-    second: ground_physical_tiles_3
+      213: 524475105864231218
+    second: ground_tiles2_3
   - first:
-      213: 3411533302376670529
-    second: ground_physical_tiles_4
+      213: -4110035139881538757
+    second: ground_tiles2_4
   - first:
-      213: 518724693589651708
-    second: ground_physical_tiles_0
+      213: -6812203151646129488
+    second: ground_tiles2_5
   - first:
-      213: -8797209194753461921
-    second: ground_physical_tiles_1
+      213: -2292667388135242015
+    second: ground_tiles2_6
   - first:
-      213: -6945062285183493593
-    second: ground_physical_tiles_2
+      213: 2311686413421185936
+    second: ground_tiles2_7
   - first:
-      213: -1890913307252332065
-    second: ground_physical_tiles_3
+      213: -8878840815932231938
+    second: ground_tiles2_8
   - first:
-      213: 9021855155601725503
-    second: ground_physical_tiles_5
+      213: 6062623787623164368
+    second: ground_tiles2_9
   - first:
-      213: 4747339615687677048
-    second: ground_physical_tiles_6
+      213: -8618693478373028953
+    second: ground_tiles2_10
   - first:
-      213: -5407835099471975393
-    second: ground_physical_tiles_7
+      213: 968288587859235134
+    second: ground_tiles2_11
   - first:
-      213: 8137226634800695874
-    second: ground_physical_tiles_8
+      213: 1168365976817468568
+    second: ground_tiles2_12
   - first:
-      213: -3558767797036541325
-    second: ground_physical_tiles_9
+      213: -3203506467305021631
+    second: ground_tiles2_13
   - first:
-      213: -4102230595493925681
-    second: ground_physical_tiles_10
+      213: 1883915063115621189
+    second: ground_tiles2_14
   - first:
-      213: 4449960736898644680
-    second: ground_physical_tiles_11
-  - first:
-      213: -582375772571062999
-    second: ground_physical_tiles_12
-  - first:
-      213: 8403805575126003320
-    second: ground_physical_tiles_13
-  - first:
-      213: -4116796237346661421
-    second: ground_physical_tiles_14
-  - first:
-      213: -7018200464016470573
-    second: ground_physical_tiles_15
+      213: 2325214133917626670
+    second: ground_tiles2_15
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -117,6 +105,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -146,28 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ground_physical_tiles_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1000
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 145a393a673385f20800000000000000
-      internalID: 3411533302376670529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ground_physical_tiles_0
+      name: ground_tiles2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -181,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf072a94c51e23700800000000000000
-      internalID: 518724693589651708
+      spriteID: 7ea9c1a791866ded0800000000000000
+      internalID: -2389608093641303321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_1
+      name: ground_tiles2_1
       rect:
         serializedVersion: 2
         x: 500
@@ -202,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f517be3d8d80ae580800000000000000
-      internalID: -8797209194753461921
+      spriteID: f12ae571a514865c0800000000000000
+      internalID: -4222052795464900065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_2
+      name: ground_tiles2_2
       rect:
         serializedVersion: 2
         x: 1000
@@ -223,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72adcace5ae2e9f90800000000000000
-      internalID: -6945062285183493593
+      spriteID: f49663b8233f1f160800000000000000
+      internalID: 7057689489475791183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_3
+      name: ground_tiles2_3
       rect:
         serializedVersion: 2
         x: 1500
@@ -244,14 +212,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd96a249d5022c5e0800000000000000
-      internalID: -1890913307252332065
+      spriteID: 239a29a745f474700800000000000000
+      internalID: 524475105864231218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_5
+      name: ground_tiles2_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3becf0f0d836f6c0800000000000000
+      internalID: -4110035139881538757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ground_tiles2_5
       rect:
         serializedVersion: 2
         x: 500
@@ -265,14 +254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f38daa4d671143d70800000000000000
-      internalID: 9021855155601725503
+      spriteID: 0b2065083513671a0800000000000000
+      internalID: -6812203151646129488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_6
+      name: ground_tiles2_6
       rect:
         serializedVersion: 2
         x: 1000
@@ -286,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 874143d5a30f1e140800000000000000
-      internalID: 4747339615687677048
+      spriteID: 1e68316582fce20e0800000000000000
+      internalID: -2292667388135242015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_7
+      name: ground_tiles2_7
       rect:
         serializedVersion: 2
         x: 1500
@@ -307,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1c651401a283f4b0800000000000000
-      internalID: -5407835099471975393
+      spriteID: 09b01109b82c41020800000000000000
+      internalID: 2311686413421185936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_8
+      name: ground_tiles2_8
       rect:
         serializedVersion: 2
         x: 0
@@ -328,14 +317,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24a8420f28c3de070800000000000000
-      internalID: 8137226634800695874
+      spriteID: efeae1de15508c480800000000000000
+      internalID: -8878840815932231938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_9
+      name: ground_tiles2_9
       rect:
         serializedVersion: 2
         x: 500
@@ -349,14 +338,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37a99833b87bc9ec0800000000000000
-      internalID: -3558767797036541325
+      spriteID: 0d9ac14b634c22450800000000000000
+      internalID: 6062623787623164368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_10
+      name: ground_tiles2_10
       rect:
         serializedVersion: 2
         x: 1000
@@ -370,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcc68d80203f117c0800000000000000
-      internalID: -4102230595493925681
+      spriteID: 7ab8999f1ff346880800000000000000
+      internalID: -8618693478373028953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_11
+      name: ground_tiles2_11
       rect:
         serializedVersion: 2
         x: 1500
@@ -391,14 +380,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ca774b96bf61cd30800000000000000
-      internalID: 4449960736898644680
+      spriteID: e311a67275d007d00800000000000000
+      internalID: 968288587859235134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_12
+      name: ground_tiles2_12
       rect:
         serializedVersion: 2
         x: 0
@@ -412,14 +401,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92dab16025cfae7f0800000000000000
-      internalID: -582375772571062999
+      spriteID: 8948bd76aaed63010800000000000000
+      internalID: 1168365976817468568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_13
+      name: ground_tiles2_13
       rect:
         serializedVersion: 2
         x: 500
@@ -433,14 +422,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87e25d235a050a470800000000000000
-      internalID: 8403805575126003320
+      spriteID: 14f1e9447dbda83d0800000000000000
+      internalID: -3203506467305021631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_14
+      name: ground_tiles2_14
       rect:
         serializedVersion: 2
         x: 1000
@@ -454,14 +443,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3db994442a33ed6c0800000000000000
-      internalID: -4116796237346661421
+      spriteID: 543a30cb4c2052a10800000000000000
+      internalID: 1883915063115621189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_physical_tiles_15
+      name: ground_tiles2_15
       rect:
         serializedVersion: 2
         x: 1500
@@ -475,8 +464,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dd01dbacd75a9e90800000000000000
-      internalID: -7018200464016470573
+      spriteID: e21b0ee6fe1d44020800000000000000
+      internalID: 2325214133917626670
       vertices: []
       indices: 
       edges: []
