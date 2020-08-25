@@ -63,10 +63,17 @@ public class SceneReferences : GameService {
 
     public void GoToNextScene()
     {
+        firstLoad = false;
         curSceneIndex++;
         //Load new scene
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
+        if (curSceneIndex >= scenesList.Count) {
+            curSceneIndex = 0;
+            firstLoad = true;
+        }
+
         SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+
     }
 
     public void ReloadCurrentScene()
