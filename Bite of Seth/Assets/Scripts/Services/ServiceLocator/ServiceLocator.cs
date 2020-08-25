@@ -21,6 +21,9 @@ public static class ServiceLocator
         {
             Register(service);
         }
+
+        //Do the job for the first scene loaded on SceneReferences
+        Get<GameManager>().TryToSetNewLevel();
     }
 
     // this function should only be called by the monoBehaviorHelper singleton

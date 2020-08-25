@@ -160,6 +160,7 @@ public class PlayerController : MonoBehaviour
             movable.rigidbody.position = currentCheckpoint.transform.position;
             movable.StartMovement(Vector2.zero, 1);
             currentCheckpoint.RewindRoom();
+            ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
         }
     }
 }

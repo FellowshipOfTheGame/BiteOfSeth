@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+
     private int score;
 
     // Start is called before the first frame update

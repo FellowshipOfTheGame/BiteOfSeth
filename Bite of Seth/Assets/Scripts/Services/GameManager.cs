@@ -11,8 +11,7 @@ public class GameManager : GameService
 
     public PlayerController player = null;
 
-    public GameObject levelManagerPrefab;
-    private GameObject lm;
+    private GameObject lm = null;
     private LevelManager curLevel;
     private int curLevelIndex;
 
@@ -33,7 +32,6 @@ public class GameManager : GameService
         levelData = new List<LevelData>();
         curLevelIndex = 0;
         
-        SetNewLevel();
     }
 
     public void KillPlayer()
@@ -62,23 +60,28 @@ public class GameManager : GameService
         score = value;
     }
 
-    public void SetNewLevel()
+    public void TryToSetNewLevel()
     {
-        //If there is a current level, destroy it and create another
-        if (lm != null) Destroy(lm);
-        lm = Instantiate(levelManagerPrefab);
-        curLevel = lm.GetComponent<LevelManager>();
+        //Try to find a LevelManager
+        lm = GameObject.FindGameObjectWithTag("LevelManager");
+        if(lm != null) {
+            curLevel = lm.GetComponent<LevelManager>();
+            Debug.Log("It's a Level Scene");
+        } else {
+            curLevel = null;
+            Debug.Log("It's not a Level Scene");
+        }
     }
 
     public void GoToNextLevel()
     {
         //Update with new values from finished level
-        UpdateValues();
+        if(curLevel != null) UpdateLevelValues();
         ServiceLocator.Get<SceneReferences>().GoToNextScene();
     }
 
     //function to update Game Manager values with new values from Current Level
-    public void UpdateValues()
+    public void UpdateLevelValues()
     {
         int score = GetLevelScore();
         AddTotalScore(score);
@@ -92,22 +95,31 @@ public class GameManager : GameService
 
     public int GetLevelScore()
     {
-        return curLevel.GetScore();
+        if(curLevel != null) {
+            return curLevel.GetScore();
+        }
+        return 0;
     }
 
     public void AddLevelScore(int value)
     {
-        curLevel.AddScore(value);
+        if (curLevel != null) {
+            curLevel.AddScore(value);
+        }
     }
 
     public void PrintLevelScore()
     {
-        curLevel.PrintScore();
+        if (curLevel != null) {
+            curLevel.PrintScore();
+        }
     }
 
     public void SetLevelScore(int value)
     {
-        curLevel.SetScore(value);
+        if (curLevel != null) {
+            curLevel.SetScore(value);
+        }
     }
 
     public void RestartLevel()

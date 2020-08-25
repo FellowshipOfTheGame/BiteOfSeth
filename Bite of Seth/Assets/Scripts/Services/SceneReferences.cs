@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class SceneReferences : GameService {
 
     public List<SceneReference> scenesList;
-
-    private int curSceneIndex = 0;
+    private GameManager gm;
 
     private bool firstLoad;
+
+    private int curSceneIndex = 0;
 
     private void OnGUI()
     {
@@ -29,10 +30,10 @@ public class SceneReferences : GameService {
 
     public override void Start()
     {
+        firstLoad = true;
         //curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         curSceneIndex = 0;
         //Debug.Log(curSceneIndex);
-        firstLoad = true;
     }
 
     void OnEnable()
@@ -53,12 +54,14 @@ public class SceneReferences : GameService {
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
 
-        //TO DO: CHECK IF THE SCENE IS A LEVEL SCENE
-        if(!firstLoad){
-            ServiceLocator.Get<GameManager>().SetNewLevel();
-            firstLoad = false;
+        //Try to Load a New Level
+
+
+        gm = ServiceLocator.Get<GameManager>();
+        if (gm != null) {
+            gm.TryToSetNewLevel();
         }
-        
+    
     }
 
     public void GoToNextScene()
@@ -66,7 +69,12 @@ public class SceneReferences : GameService {
         curSceneIndex++;
         //Load new scene
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
+        if (curSceneIndex >= scenesList.Count) {
+            curSceneIndex = 0;
+        }
+
         SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+
     }
 
     public void ReloadCurrentScene()

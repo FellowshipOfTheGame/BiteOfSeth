@@ -11,6 +11,14 @@ public class PuzzleFinalDialogue : MonoBehaviour
     public GameObject warningPopup;
     public bool canDialogue = true;
     private bool firstTalk = true;
+    private bool fail = false;
+    private bool success = false;
+
+    public List<DialogueBase> defaultDialogue;
+    public List<DialogueBase> failDialogue;
+    public List<DialogueBase> successDialogue;
+
+    public DoorTrigger doorTrigger = null;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +36,21 @@ public class PuzzleFinalDialogue : MonoBehaviour
             //TO DO: Ask the player is it really wants to give the final answer
             //if(UI.ConfirmFinalSelection())
 
+            if (fail) {
+                if (ts.GetPlayerRef() != null) {
+                    ServiceLocator.Get<GameManager>().KillPlayer();
+                }
+                ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
+                ts.ChangeCurrentDialogueSequence(defaultDialogue);
+                firstTalk = true;
+                //ts.ResetDialogue();
+                fail = false;
+            }
+
+            if (success) {
+                return;
+            }
+
             int resultado = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer();
 
             switch (resultado) {
@@ -43,17 +66,17 @@ public class PuzzleFinalDialogue : MonoBehaviour
 
                 case 1:
                     Debug.Log("YOU WON, CONGRATULATIONS!");
-                    ServiceLocator.Get<GameManager>().GoToNextLevel();
+                    success = true;
+                    ts.ChangeCurrentDialogueSequence(successDialogue);
+                    ts.SetDoorTrigger(doorTrigger);
+                    ts.Dialogue();
                     break;
 
                 case 2:
                     Debug.Log("YOU LOSE... TRY AGAIN!");
-                    if (ts.GetPlayerRef() != null) {
-                        ServiceLocator.Get<GameManager>().KillPlayer();
-                    }
-                    ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
-                    firstTalk = true;
-                    ts.ResetDialogue();
+                    ts.ChangeCurrentDialogueSequence(failDialogue);
+                    ts.Dialogue();
+                    fail = true;
                     break;
 
             }

@@ -79,8 +79,11 @@ public class DialogueManager : MonoBehaviour
             //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
             for (int i = 0; i < names.Length; i++) {
                 int fix = i + 1;
-                text = text.Replace("<ID" + fix + ">", names[i]);
+                text = text.Replace("<ID " + fix + ">", names[i]);
             }
+            string ownName = Info.character.characterName;
+            text = text.Replace(ownName + "'s", "my");
+            //text = text.Replace(ownName, "my");
         }
 
         completeText = text;

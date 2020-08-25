@@ -70,30 +70,38 @@ public class TextScript : MonoBehaviour
     // }
 
     //Return true if the dialog has occurred
-    public bool TryToDialogue() { 
+    public bool TryToDialogue() {
 
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == false) {
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
+            return Dialogue();
+        }
+
+        return false;
+
+    }
+
+    public bool Dialogue()
+    {
+        if (DialogueManager.instance.isDialogueActive == false) {
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
             return false;
-        } else if (Input.GetKeyDown(KeyCode.E) && playerInRange && DialogueManager.instance.isDialogueActive == true) {
+        } else{
             bool dialogueEnded = ContinueDialogue();
             if (dialogueEnded) {
                 if (doorTrigger != null) {
                     doorTrigger.SetState(true);
                 }
-                if(index >= dialogueSequence.Count) {
-                    curDialogue = dialogueSequence[index-1];
+                if (index >= dialogueSequence.Count) {
+                    curDialogue = dialogueSequence[index - 1];
                 } else {
                     curDialogue = dialogueSequence[index++];
                 }
             }
             return true;
         }
-        return false;
-
-    }
+    }    
 
     public PlayerController GetPlayerRef()
     {
@@ -102,8 +110,20 @@ public class TextScript : MonoBehaviour
 
     public void ResetDialogue()
     {
+        DialogueManager.instance.isDialogueActive = false;
         index = 0;
         curDialogue = dialogueSequence[index++];
+    }
+
+    public void ChangeCurrentDialogueSequence(List<DialogueBase> dialogues)
+    {
+        dialogueSequence = dialogues;
+        ResetDialogue();
+    }
+
+    public void SetDoorTrigger(DoorTrigger dt)
+    {
+        doorTrigger = dt;
     }
 
 }

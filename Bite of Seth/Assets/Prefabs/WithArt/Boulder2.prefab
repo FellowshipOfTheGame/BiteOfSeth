@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6762275379246097035}
   - component: {fileID: 2823771033660385683}
   - component: {fileID: 769253476146473810}
+  - component: {fileID: 720865305516123149}
   m_Layer: 10
   m_Name: Boulder2
   m_TagString: Untagged
@@ -283,3 +284,16 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 24065
+--- !u!114 &720865305516123149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796497741134100629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f46afa6a7b31542b3c6e75ec17156e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

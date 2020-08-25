@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: Serket 1
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  dialogueTitle: Serket
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6030e44026d989d44a337fd953247b66, type: 2}
+    myText: Well... well... well... What do we have here? What brings you my chamber,
+      little girl?
+  - needPuzzleInfo: 1
+    character: {fileID: 11400000, guid: 6030e44026d989d44a337fd953247b66, type: 2}
+    myText: "Khepri? That... shiny green dot? ...Okay. I know he likes to go to <ID
+      3> and <ID 1> every\r night. And he always pass on <ID 2> eventually, which
+      is somewhere between the two."
