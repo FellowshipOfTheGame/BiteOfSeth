@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6752cf1e82330e74f8a6db6c053da3c1, type: 3}
   m_Name: WallDefault
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -9205980483787862885, guid: b78621ce931755f41b2d0ae596c6e43d,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,36 +35,85 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 2
+  categories:
+  - title: main
+    samples:
+    - label: physical
+      art:
+      - {fileID: -2389608093641303321, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: upOpen
+    samples:
+    - label: physical
+      art:
+      - {fileID: 918274793318615020, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downOpen
+    samples:
+    - label: physical
+      art:
+      - {fileID: 9055990191807384686, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: leftOpen
+    samples:
+    - label: physical
+      art:
+      - {fileID: -5855611861024558460, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: rightOpen
+    samples:
+    - label: physical
+      art:
+      - {fileID: -4805259394762564131, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: hor
+    samples:
+    - label: physical
+      art:
+      - {fileID: -8922166342787202985, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: vert
+    samples:
+    - label: physical
+      art:
+      - {fileID: 5129788722007358300, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upLeft
+    samples:
+    - label: physical
+      art:
+      - {fileID: -113492593319396201, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upRight
+    samples:
+    - label: physical
+      art:
+      - {fileID: 8944389078582149052, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downLeft
+    samples:
+    - label: physical
+      art:
+      - {fileID: -2990161598630248016, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downRight
+    samples:
+    - label: physical
+      art:
+      - {fileID: 4504564902173814553, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upGnd
+    samples:
+    - label: physical
+      art:
+      - {fileID: 3622270379842419072, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downGnd
+    samples:
+    - label: physical
+      art:
+      - {fileID: -3746973639202915424, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: leftGnd
+    samples:
+    - label: physical
+      art:
+      - {fileID: 5121035691876610764, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: rightGnd
+    samples:
+    - label: physical
+      art:
+      - {fileID: -4064334710206878796, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: noOpen
+    samples:
+    - label: physical
+      art:
+      - {fileID: -9205980483787862885, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
   fakeTile: {fileID: 11400000, guid: f671d33bc8514254c9f270dbeae149c5, type: 2}
-  main:
-  - {fileID: -3127631572554035583, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  upGnd:
-  - {fileID: 3411533302376670529, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  downGnd:
-  - {fileID: 9021855155601725503, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  leftGnd:
-  - {fileID: 4747339615687677048, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  rightGnd:
-  - {fileID: -5407835099471975393, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  vert:
-  - {fileID: -352449660983787563, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  hor:
-  - {fileID: 4192368419973257406, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  upLeft:
-  - {fileID: 4449960736898644680, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  upRight:
-  - {fileID: -4102230595493925681, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  downRight:
-  - {fileID: 8137226634800695874, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  downLeft:
-  - {fileID: -3558767797036541325, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  noOpen:
-  - {fileID: 6833483535167870675, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  upOpen:
-  - {fileID: -582375772571062999, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  downOpen:
-  - {fileID: 8403805575126003320, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  leftOpen:
-  - {fileID: -4116796237346661421, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}
-  rightOpen:
-  - {fileID: -7018200464016470573, guid: 2cc42ebedd3e79d419907809c7ae8eef, type: 3}

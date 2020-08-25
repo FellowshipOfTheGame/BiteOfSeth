@@ -12,7 +12,7 @@ public class DialogueBehavior : MonoBehaviour
     {
         ts = GetComponentInChildren<TextScript>();
         ts.statue = this;
-        art.runtimeAnimatorController = ts.dialogue.dialogueInfo[0].character.art;
+        art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
     }
 
     // Update is called once per frame

@@ -8,6 +8,9 @@ public class TextScript : MonoBehaviour
     public List<DialogueBase> dialogueSequence;
     private int index;
 
+    [HideInInspector]
+    public DialogueBehavior statue;
+
     private DialogueBase curDialogue;
 
     public bool playerInRange;
