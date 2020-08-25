@@ -82,8 +82,8 @@ public class DialogueManager : MonoBehaviour
                 text = text.Replace("<ID " + fix + ">", names[i]);
             }
             string ownName = Info.character.characterName;
-            text = text.Replace(ownName + "'s", "My");
-            text = text.Replace(ownName, "My");
+            text = text.Replace(ownName + "'s", "my");
+            //text = text.Replace(ownName, "my");
         }
 
         completeText = text;

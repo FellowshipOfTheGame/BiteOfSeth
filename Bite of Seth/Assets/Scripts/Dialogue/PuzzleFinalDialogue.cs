@@ -70,7 +70,6 @@ public class PuzzleFinalDialogue : MonoBehaviour
                     ts.ChangeCurrentDialogueSequence(successDialogue);
                     ts.SetDoorTrigger(doorTrigger);
                     ts.Dialogue();
-                    //ServiceLocator.Get<GameManager>().GoToNextLevel();
                     break;
 
                 case 2:

@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9103945269975659602}
-  - component: {fileID: 8670187876235035881}
-  - component: {fileID: 9202156001649747767}
+  - component: {fileID: 9178791417322673696}
+  - component: {fileID: 3593792665551903193}
   m_Layer: 0
   m_Name: LevelManager
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7896959911404728897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8670187876235035881
+--- !u!114 &9178791417322673696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181dc5154caf77a418ec21482b37075d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 0
---- !u!114 &9202156001649747767
+--- !u!114 &3593792665551903193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,4 +56,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb293ddac2aa98a4987d8c9058407843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 4
