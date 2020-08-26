@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu]
-public class RuleTile : WorldTile {
+public class RuleTile : CustomTile {
     public Tile fakeTile = null;
 
     protected override bool IsNeighbour(Vector3Int position, ITilemap tilemap) {
@@ -33,7 +33,6 @@ public class RuleTile : WorldTile {
                 return GetConfig("noOpen");
             
             case 2:
-               // Debug.Log("2n");
                 if(neighbours[1]){
                     if (neighbours[7]) {
                         return GetConfig("vert");
@@ -70,14 +69,80 @@ public class RuleTile : WorldTile {
                 return GetConfig("noOpen");
 
             case 3:
-                if (!neighbours[1]) return GetConfig("upGnd");
-                if (!neighbours[7]) return GetConfig("downGnd");
-                if (!neighbours[3]) return GetConfig("leftGnd");
-                if (!neighbours[5]) return GetConfig("rightGnd");
+                if (!neighbours[1]) {
+                    if (neighbours[6]){
+                        if (neighbours[8]) return GetConfig("upFlat");
+                        return GetConfig("qHor");
+                    }
+
+                    if (neighbours[8]) return GetConfig("dHor");
+                    return GetConfig("upGnd");
+                }
+                if (!neighbours[7]) {
+                    if (neighbours[0]) {
+                        if (neighbours[2]) return GetConfig("downFlat");
+                        return GetConfig("pHor");
+                    }
+
+                    if (neighbours[2]) return GetConfig("bHor");
+                    return GetConfig("downGnd");
+                }
+                if (!neighbours[3]) {
+                    if (neighbours[2]) {
+                        if (neighbours[8]) return GetConfig("leftFlat");
+                        return GetConfig("pVert");
+                    }
+
+                    if (neighbours[6]) return GetConfig("bVert");
+                    return GetConfig("leftGnd");
+                }
+                if (!neighbours[5]) {
+                    if (neighbours[0]) {
+                        if (neighbours[6]) return GetConfig("rightFlat");
+                        return GetConfig("qVert");
+                    }
+
+                    if(neighbours[6]) return GetConfig("dVert");
+                    return GetConfig("rightGnd");
+                }
                 return GetConfig("noOpen");
 
             case 4:
-                return GetConfig("main");
+                if (neighbours[0]) {
+                    if(neighbours[2]) {
+                        if(neighbours[6]) {
+                            if (neighbours[8]) return GetConfig("main");
+                            return GetConfig("corner2");
+                        }
+                        if(neighbours[8]) return GetConfig("corner3");
+                        return GetConfig("upJoint");
+                    }
+
+                    if(neighbours[6]) {
+                        if (neighbours[8]) return GetConfig("corner1");
+                        return GetConfig("leftJoint");
+                    }
+
+                    if (neighbours[8]) return GetConfig("diag2");
+                    return GetConfig("peak4");
+                }
+
+                if (neighbours[2]) {
+                    if (neighbours[6]) {
+                        if (neighbours[8]) return GetConfig("corner4");
+                        return GetConfig("diag1");
+                    }
+                    if (neighbours[8]) return GetConfig("rightJoint");
+                    return GetConfig("peak1");
+                }
+
+                if (neighbours[6]) {
+                    if (neighbours[8]) return GetConfig("downJoint");
+                    return GetConfig("peak3");
+                }
+
+                if (neighbours[8]) return GetConfig("peak2");
+                return GetConfig("cross");
 
             default:
                 //Debug.Log("4n");

@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class WorldTile : Tile {
-
-    [System.Serializable]
-    public class Sample {
-        public string label;
-        public Sprite[] art;
-    }
+public class CustomTile : Tile {
 
     [System.Serializable]
     public class Category {
         public string title;
-        public Sample[] samples;
+        public Sprite[] art;
     }
 
     public Category[] categories;
@@ -43,14 +37,13 @@ public class WorldTile : Tile {
             for (int yd = -1; yd <= 1; yd++) {
                 Vector3Int location = new Vector3Int(position.x + xd, position.y + yd, position.z);
                 if (IsNeighbour(location, tilemap) && (xd != 0 || yd != 0)){
-                    Debug.Log((xd + 1) + (1 - yd)*3);
                     neighbours[(xd+1) + (1-yd)*3] = true;
                 }
             }
         }
 
         config = calcSprite(neighbours);
-        tileData.sprite = config.samples[0].art[0];
+        tileData.sprite = config.art[0];
 
     }
 
