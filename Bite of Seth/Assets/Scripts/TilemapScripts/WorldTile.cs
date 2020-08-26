@@ -25,51 +25,31 @@ public class WorldTile : Tile {
     public override void RefreshTile(Vector3Int position, ITilemap tilemap) {
         base.RefreshTile(position, tilemap);
 
-        for (int yd = -1; yd <= 1; yd++) {
-            Vector3Int location = new Vector3Int(position.x, position.y + yd, position.z);
-            if (IsNeighbour(location, tilemap))
-                tilemap.RefreshTile(location);
-        }
-
         for (int xd = -1; xd <= 1; xd++) {
-            Vector3Int location = new Vector3Int(position.x + xd, position.y, position.z);
-            if (IsNeighbour(location, tilemap))
-                tilemap.RefreshTile(location);
+            for (int yd = -1; yd <= 1; yd++) {
+                Vector3Int location = new Vector3Int(position.x + xd, position.y + yd, position.z);
+                if (IsNeighbour(location, tilemap))
+                    tilemap.RefreshTile(location);
+            }
         }
     }
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData) {
         base.GetTileData(position, tilemap, ref tileData);
 
-        bool[] neighbours = new bool[4];
-        int count = 0;
+        bool[] neighbours = new bool[9];
 
-        Vector3Int location = new Vector3Int(position.x, position.y + 1, position.z);
-        if (IsNeighbour(location, tilemap)) {
-            neighbours[0] = true;
-            count++;
+        for (int xd = -1; xd <= 1; xd++) {
+            for (int yd = -1; yd <= 1; yd++) {
+                Vector3Int location = new Vector3Int(position.x + xd, position.y + yd, position.z);
+                if (IsNeighbour(location, tilemap) && (xd != 0 || yd != 0)){
+                    Debug.Log((xd + 1) + (1 - yd)*3);
+                    neighbours[(xd+1) + (1-yd)*3] = true;
+                }
+            }
         }
 
-        location = new Vector3Int(position.x, position.y - 1, position.z);
-        if (IsNeighbour(location, tilemap)) {
-            neighbours[1] = true;
-            count++;
-        }
-
-        location = new Vector3Int(position.x - 1, position.y, position.z);
-        if (IsNeighbour(location, tilemap)) {
-            neighbours[2] = true;
-            count++;
-        }
-
-        location = new Vector3Int(position.x + 1, position.y, position.z);
-        if (IsNeighbour(location, tilemap)) {
-            neighbours[3] = true;
-            count++;
-        }
-
-
-        config = calcSprite(neighbours, count);
+        config = calcSprite(neighbours);
         tileData.sprite = config.samples[0].art[0];
 
     }
@@ -79,7 +59,11 @@ public class WorldTile : Tile {
         return (tile != null && tile == this);
     }
 
-    protected virtual Category calcSprite(bool[] neighbours, int count) {
+    protected virtual Category calcSprite(bool[] neighbours) {
+        //neighbors
+        //0 1 2
+        //3 4 5
+        //6 7 8
         return GetConfig("main"); 
     }
 
