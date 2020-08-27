@@ -11,15 +11,18 @@ public class SymbolDialog : MonoBehaviour {
     public Image dialogueIcon;
     public float delay;
 
+    bool open = false;
+
     // Start is called before the first frame update
     void Start() {
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        if(open && Input.GetKeyDown(KeyCode.H)){
+            Close();
+        }
     }
 
     public void Present(Lore l) {
@@ -27,11 +30,13 @@ public class SymbolDialog : MonoBehaviour {
         dialogueTitle.text = l.title;  
         dialogueIcon.sprite = l.icon;     
         inst = StartCoroutine(TypeText(l.text));
+        open = true;
     }
 
     public void Close(){
         StopCoroutine(inst);
         dialogueBox.SetActive(false);
+        open = false;
     }
 
     IEnumerator TypeText(string text) {

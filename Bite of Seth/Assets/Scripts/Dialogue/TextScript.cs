@@ -44,14 +44,15 @@ public class TextScript : MonoBehaviour
             playerInRange = true;
             playerRef = other.gameObject.GetComponent<PlayerController>();
             statue.OnEnterDialog();
-        }
-        if((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive){
-            isAutoTriggered = false;
-            TriggerDialogue();
-            UpdateLog();
-        } else if(!DialogueManager.instance.isDialogueActive){
-            DialogueManager.instance.SetInteractName(curDialogue.dialogueInfo[0].character.characterName);
-            DialogueManager.instance.toggleInteractAlert(true);
+
+            if ((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive) {
+                isAutoTriggered = false;
+                TriggerDialogue();
+                UpdateLog();
+            } else if (!DialogueManager.instance.isDialogueActive) {
+                DialogueManager.instance.SetInteractName(curDialogue.dialogueInfo[0].character.characterName);
+                DialogueManager.instance.toggleInteractAlert(true);
+            }
         }
     }
 
@@ -61,10 +62,12 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             playerInRange = false;
             statue.OnEndDialog();
+
+            if (DialogueManager.instance.isDialogueActive == false) {
+                DialogueManager.instance.toggleInteractAlert(false);
+            }
         }
-        if(DialogueManager.instance.isDialogueActive == false){
-            DialogueManager.instance.toggleInteractAlert(false);
-        }
+        
 
     }
 

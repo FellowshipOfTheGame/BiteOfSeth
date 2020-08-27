@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089a3abc14d647f49ba613f1d06c3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 2c3abd0d5023a9e4b892dc3f94e7329f, type: 2}
-  repetitiveDialogue: {fileID: 0}
+  dialogueSequence: []
+  statue: {fileID: 0}
   playerInRange: 0
   doorTrigger: {fileID: 0}
   isAutoTriggered: 0
@@ -270,7 +270,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 78b15acbe9228914cb0bdf6ebfd19f4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
