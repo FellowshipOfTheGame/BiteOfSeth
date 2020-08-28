@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         if (currentCheckpoint != null)
         {
             movable.rigidbody.position = currentCheckpoint.transform.position;
-            movable.StartMovement(Vector2.zero, 1);
+            movable.isMoving = false;
             currentCheckpoint.RewindRoom();
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
         }

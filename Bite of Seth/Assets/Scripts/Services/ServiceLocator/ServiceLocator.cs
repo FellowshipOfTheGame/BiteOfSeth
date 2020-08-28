@@ -7,7 +7,7 @@ public static class ServiceLocator
     private static Dictionary<string, GameService> services = new Dictionary<string, GameService>();
     private static GameObject monoHelperObject = null;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void SetupServiceLocator()
     {
         // instantiate the monoBehaviorHelper singleton
