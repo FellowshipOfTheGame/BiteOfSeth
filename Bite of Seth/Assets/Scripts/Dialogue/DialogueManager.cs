@@ -34,7 +34,10 @@ public class DialogueManager : MonoBehaviour
     private Coroutine inst;
 
     private string interactName;
-    
+
+    private AudioObject currentVoicedLine;
+    private AudioSource dubAudSrc;
+
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
@@ -69,6 +72,8 @@ public class DialogueManager : MonoBehaviour
             return false;
         }
 
+        if (dubAudSrc != null)
+            dubAudSrc.Stop();
         Info = dialogueInfo.Dequeue();
 
         string text = Info.myText;
@@ -91,6 +96,9 @@ public class DialogueManager : MonoBehaviour
         dialogueName.text = Info.character.characterName;
         dialogueText.text = text;
         dialoguePortrait.sprite = Info.character.portrait;
+        currentVoicedLine = Info.voicedLine;
+        if (currentVoicedLine != null)
+            dubAudSrc = ServiceLocator.Get<AudioManager>().PlayAudio(currentVoicedLine);
 
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(text));
