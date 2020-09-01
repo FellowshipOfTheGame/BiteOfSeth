@@ -42,8 +42,9 @@ public class DialogueManager : MonoBehaviour
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
         isDialogueActive = true;
+        ServiceLocator.Get<GameManager>().lockMovement += 1;
 
-        foreach(DialogueBase.Info info in db.dialogueInfo){
+        foreach (DialogueBase.Info info in db.dialogueInfo){
             dialogueInfo.Enqueue(info);
         }
 
@@ -143,6 +144,7 @@ public class DialogueManager : MonoBehaviour
     public void EndOfDialogue(){
         isDialogueActive = false;
         dialogueBox.SetActive(false);
+        ServiceLocator.Get<GameManager>().lockMovement -= 1;
     }
 
     public bool toggleInteractAlert(bool status){

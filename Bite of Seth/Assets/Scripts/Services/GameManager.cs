@@ -7,7 +7,18 @@ using UnityEngine.SceneManagement;
 public class GameManager : GameService
 {
     public int score = 0;
-    public bool lockMovement = false;
+    public int m_lockMovement = 0;
+    public int lockMovement
+    {
+        get
+        {
+            return m_lockMovement;
+        }
+        set
+        {
+            m_lockMovement = value >= 0 ? value : 0;
+        }
+    }
 
     public PlayerController player = null;
 
@@ -28,7 +39,7 @@ public class GameManager : GameService
 
         score = 0;
 
-        lockMovement = false;
+        lockMovement = 0;
 
         levelData = new List<LevelData>();
         curLevelIndex = 0;

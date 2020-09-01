@@ -58,8 +58,8 @@ public class TextScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other){
         //Debug.Log("Player has exit trigger with " + other.tag);
-        DialogueManager.instance.AbortDialogue();
         if(other.CompareTag("Player")){
+            DialogueManager.instance.AbortDialogue();
             playerInRange = false;
             statue.OnEndDialog();
 

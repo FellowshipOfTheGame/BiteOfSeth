@@ -23,14 +23,14 @@ public class PauseMenuController : MonoBehaviour
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
         canvas.SetActive(true);
-        ServiceLocator.Get<GameManager>().lockMovement = true;
+        ServiceLocator.Get<GameManager>().lockMovement += 1;
     }
     public void CloseMenu()
     {
         canvas.SetActive(false);
         mainLayout.SetActive(false);
         instructionLayout.SetActive(false);
-        ServiceLocator.Get<GameManager>().lockMovement = false;
+        ServiceLocator.Get<GameManager>().lockMovement -= 1;
     }
     public void OpenInstructions()
     {

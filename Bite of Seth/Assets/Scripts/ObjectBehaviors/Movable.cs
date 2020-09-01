@@ -20,7 +20,7 @@ public class Movable : MonoBehaviour
     public void StartMovement(Vector2 desiredMovement, float _speed)
     {
         // return if movement blocked by game manager
-        if (ServiceLocator.Get<GameManager>().lockMovement)
+        if (ServiceLocator.Get<GameManager>().lockMovement > 0)
         {
             return;
         }
@@ -60,7 +60,7 @@ public class Movable : MonoBehaviour
         {
             // isMoving == true
             // return if movement blocked by game manager
-            if (ServiceLocator.Get<GameManager>().lockMovement)
+            if (ServiceLocator.Get<GameManager>().lockMovement > 0)
             {
                 return;
             }
