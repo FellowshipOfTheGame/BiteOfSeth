@@ -36,10 +36,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            UseCheckpoint();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    UseCheckpoint();
+        //}
         if (Input.GetKeyDown(KeyCode.Space))
         {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
