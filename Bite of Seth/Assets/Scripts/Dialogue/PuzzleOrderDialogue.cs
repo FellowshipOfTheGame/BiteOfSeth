@@ -2,22 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleOrderDialogue : MonoBehaviour
+public class PuzzleOrderDialogue : DialogueBehavior
 {
 
-    TextScript ts;
     private bool selected = false;
 
     private PuzzleManager.Id id;
     public string statueName;
-    public Animator art;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ts = GetComponentInChildren<TextScript>();
-        art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
-    }
 
     // Update is called once per frame
     void Update()

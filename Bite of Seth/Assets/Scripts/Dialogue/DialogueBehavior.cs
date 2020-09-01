@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueBehavior : MonoBehaviour
 {
-    TextScript ts;
+    protected TextScript ts;
     public Animator art;
 
     // Start is called before the first frame update
