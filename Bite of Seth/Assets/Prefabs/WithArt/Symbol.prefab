@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682400119428137}
   - component: {fileID: 4044682400119428136}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4044682400250967742}
   - component: {fileID: 4044682400250967740}
   - component: {fileID: 4044682400250967741}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4904,7 +4904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682400326421756}
   - component: {fileID: 4044682400326421747}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682400618973126}
   - component: {fileID: 4044682400618973125}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5068,7 +5068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682400727351698}
   - component: {fileID: 4044682400727351697}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5150,7 +5150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682401133025621}
   - component: {fileID: 4044682401133025620}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5232,7 +5232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682401278411058}
   - component: {fileID: 4044682401278411057}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5315,7 +5315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682401583548652}
   - component: {fileID: 4044682401583548643}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: draw_symbols_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5396,7 +5396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044682401690986029}
   - component: {fileID: 4044682401690986028}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5479,8 +5479,8 @@ GameObject:
   - component: {fileID: 4044682401713811951}
   - component: {fileID: 4044682401713811946}
   - component: {fileID: 4044682401713811944}
-  - component: {fileID: 4044682401713811945}
-  m_Layer: 0
+  - component: {fileID: 5506362305048637632}
+  m_Layer: 13
   m_Name: Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5545,8 +5545,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &4044682401713811945
-CircleCollider2D:
+--- !u!61 &5506362305048637632
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5555,9 +5555,19 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.9, y: 0.9}
+  m_EdgeRadius: 0

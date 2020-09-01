@@ -16,7 +16,7 @@ public class SymbolBehavior : MonoBehaviour {
     }
 
     public void Collect() {
-        this.GetComponent<CircleCollider2D>().enabled = false;
+        this.enabled = false;
         anim.SetTrigger("collect");
     }
 
@@ -26,9 +26,11 @@ public class SymbolBehavior : MonoBehaviour {
         particles.Play();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        PlayerController p = other.gameObject.GetComponent<PlayerController>();
-        if (p != null) {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerController p = collision.gameObject.GetComponent<PlayerController>();
+        if (p != null)
+        {
             Collect();
         }
     }
