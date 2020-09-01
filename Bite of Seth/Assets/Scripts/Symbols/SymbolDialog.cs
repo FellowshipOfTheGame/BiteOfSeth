@@ -15,7 +15,8 @@ public class SymbolDialog : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        
+        dialogueBox.SetActive(false);
+        open = false;
     }
 
     // Update is called once per frame
