@@ -52,7 +52,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool DequeueDialogue(){
-
+        
+        Debug.Log("DequeueDialogue");
         DialogueBase.Info Info = null;
 
         //need to add code that detects when there is no more dialogue and return
@@ -107,7 +108,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void AbortDialogue(){
-
         if(dialogueInfo.Count == 0 && isCurrentlyTyping){
             CompleteText();
             StopCoroutine(inst);
@@ -142,9 +142,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndOfDialogue(){
-        isDialogueActive = false;
-        dialogueBox.SetActive(false);
-        ServiceLocator.Get<GameManager>().lockMovement -= 1;
+        if(isDialogueActive){
+            Debug.Log("End of Dialogue");
+            isDialogueActive = false;
+            dialogueBox.SetActive(false);
+            ServiceLocator.Get<GameManager>().lockMovement -= 1;
+        }
     }
 
     public bool toggleInteractAlert(bool status){
