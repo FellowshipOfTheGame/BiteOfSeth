@@ -48,7 +48,7 @@ public class RoomBehavior : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Destroy(g);
+                                    DestroyImmediate(g);
                                 }                                
                             }
                         }
@@ -58,7 +58,7 @@ public class RoomBehavior : MonoBehaviour
                 }
             }
         }
-        Destroy(tempTilemap.gameObject);
+        DestroyImmediate(tempTilemap.gameObject);
     }
 
     public void DespawnRoom()

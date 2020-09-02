@@ -18,19 +18,26 @@ public class TilemapSlicer : MonoBehaviour
         }
         else
         {
-            SliceTilemap(tilemapToSlice, tilesetObjects);
-            foreach(GameObject t in rooms)
+            SliceTilemap();
+            SpawnAllRooms();            
+        }
+    }
+
+    [ContextMenu("SpawnAllRooms")]
+    void SpawnAllRooms()
+    {
+        foreach (GameObject t in rooms)
+        {
+            RoomBehavior r = t.gameObject.GetComponent<RoomBehavior>();
+            if (r != null)
             {
-                RoomBehavior r = t.gameObject.GetComponent<RoomBehavior>();
-                if (r != null)
-                {
-                    r.SpawnRoom(tilesetObjects);
-                }
+                r.SpawnRoom(tilesetObjects);
             }
         }
     }
 
-    void SliceTilemap(Tilemap tilemapToSlice, TilesetObjects tilesetObjects)
+    [ContextMenu("SliceTilemap")]
+    void SliceTilemap()
     {
         workingTilemaps = new List<Tilemap>();
 
@@ -124,7 +131,7 @@ public class TilemapSlicer : MonoBehaviour
                     tilemap.SetTile(localPlace, readdTilemap.GetTile(localPlace));
                 }
             }
-            Destroy(readdTilemap.gameObject);
+            DestroyImmediate(readdTilemap.gameObject);
 
 
             foreach (var pos in tilemap.cellBounds.allPositionsWithin)
