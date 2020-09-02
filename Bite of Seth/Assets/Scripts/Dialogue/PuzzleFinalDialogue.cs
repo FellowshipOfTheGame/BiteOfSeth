@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzleFinalDialogue : DialogueBehavior
+public class PuzzleFinalDialogue : MonoBehaviour
 {
 
+    TextScript ts;
+    public Animator art;
     public GameObject warningPopup;
     public bool canDialogue = true;
     private bool firstTalk = true;
@@ -17,6 +19,13 @@ public class PuzzleFinalDialogue : DialogueBehavior
     public List<DialogueBase> successDialogue;
 
     public DoorTrigger doorTrigger = null;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ts = GetComponentInChildren<TextScript>();
+        art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
+    }
 
     // Update is called once per frame
     void Update()
@@ -76,7 +85,7 @@ public class PuzzleFinalDialogue : DialogueBehavior
 
     private void TriggerWarningAlert()
     {
-        ServiceLocator.Get<GameManager>().lockMovement += 1;
+        ServiceLocator.Get<GameManager>().lockMovement = true;
         warningPopup.SetActive(true);
         canDialogue = false;
     }
