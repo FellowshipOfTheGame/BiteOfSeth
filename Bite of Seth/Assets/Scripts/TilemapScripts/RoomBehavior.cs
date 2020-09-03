@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class RoomBehavior : MonoBehaviour
 {
-    private Tilemap backupTilemap = null;
-    private TilesetObjects tilesetObjects = null;
+    [SerializeField] private Tilemap backupTilemap = null;
+    [SerializeField] private TilesetObjects tilesetObjects = null;
 
     public void SpawnRoom(TilesetObjects _tilesetObjects)
     {

@@ -8,7 +8,7 @@ public class TilemapSlicer : MonoBehaviour
     public Tilemap tilemapToSlice = null;
     public TilesetObjects tilesetObjects = null;
     List<Tilemap> workingTilemaps = null;
-    List<GameObject> rooms = null;
+    [SerializeField] List<GameObject> rooms = null;
 
     void Start()
     {

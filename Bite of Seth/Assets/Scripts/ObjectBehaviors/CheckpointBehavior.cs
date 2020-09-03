@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointBehavior : MonoBehaviour
 {
-    RoomBehavior room = null;
+    [SerializeField] RoomBehavior room = null;
     public GameObject spriteActive;
     public GameObject spriteOff;
     int curScore;
