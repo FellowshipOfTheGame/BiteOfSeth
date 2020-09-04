@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PauseMenuController : MonoBehaviour
     public GameObject canvas = null;
     public GameObject mainLayout = null;
     public GameObject instructionLayout = null;
+
+    public SceneReference quitSceneToLoad = null;
 
     public void Update()
     {
@@ -46,5 +49,9 @@ public class PauseMenuController : MonoBehaviour
     {
         FindObjectOfType<PlayerController>().UseCheckpoint();
         CloseMenu();
+    }
+
+    public void Quit(){
+        SceneManager.LoadScene(quitSceneToLoad.ScenePath);
     }
 }
