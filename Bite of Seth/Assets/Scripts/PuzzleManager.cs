@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
 
     //Quantity of statues in the puzzle
     private int statuesQuantity;
+    private int tipStatuesQuantity;
 
     //if, in the future, we will need more ids, just add more
     public static int maxIdsQuantity = 20;
@@ -27,6 +28,7 @@ public class PuzzleManager : MonoBehaviour
         puzzleStatuesReferences = GameObject.FindGameObjectsWithTag("PuzzleStatue");
         statuesQuantity = puzzleStatuesReferences.Length;
         ResetPuzzle();
+        tipStatuesQuantity = 0;
     }
 
     public void ResetPuzzle()
@@ -119,6 +121,26 @@ public class PuzzleManager : MonoBehaviour
         
         nSelected = 0;
 
+    }
+
+    public int GetStatuesQuantity()
+    {
+        return statuesQuantity;
+    }
+
+    public int GetSelectedStatuesQuantity()
+    {
+        return nSelected;
+    }
+
+    public void AddTipStatue()
+    {
+        tipStatuesQuantity++;
+    }
+
+    public int GetTipStatuesQuantity()
+    {
+        return tipStatuesQuantity;
     }
 
 }

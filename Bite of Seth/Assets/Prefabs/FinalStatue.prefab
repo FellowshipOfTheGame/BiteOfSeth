@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSequence: []
+  statue: {fileID: 0}
   playerInRange: 0
   doorTrigger: {fileID: 0}
   isAutoTriggered: 0
@@ -612,11 +613,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   art: {fileID: 4081044149205466103}
+  puzzleStatue: 0
   warningPopup: {fileID: 7352407843780173257}
   canDialogue: 1
   defaultDialogue: []
   failDialogue: []
   successDialogue: []
+  tryAgainDialogue: []
+  doorTrigger: {fileID: 0}
 --- !u!1 &6038207762185559031
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningPopup: {fileID: 7352407843780173257}
-  dialogue: {fileID: 0}
+  finalStatue: {fileID: 5434937041937490790}
 --- !u!1 &7352407843780173257
 GameObject:
   m_ObjectHideFlags: 0

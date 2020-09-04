@@ -7,6 +7,8 @@ public class DialogueBehavior : MonoBehaviour
     protected TextScript ts;
     public Animator art;
 
+    public bool puzzleStatue = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,10 @@ public class DialogueBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ts.TryToDialogue();
+        if (ts.TryToDialogue() && puzzleStatue) {
+            ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().AddTipStatue();
+            puzzleStatue = false;
+        }
     }
 
     public void OnEnterDialog(){
