@@ -121,7 +121,7 @@ MonoBehaviour:
   rollMask:
     serializedVersion: 2
     m_Bits: 3072
-  fallSpeed: 2
+  fallSpeed: 4
   fallSound: {fileID: 0}
   animator: {fileID: 481424260878971723}
 --- !u!114 &-5926556322554335977
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b1b43f72937040b807fcf67f32a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 1
+  delayTime: 0.5
 --- !u!1 &4376690317301054178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,7 +5070,7 @@ Animator:
   m_GameObject: {fileID: 6914923426263485845}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3aaec13c4573cf48a7992ae5fc90ae9, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0cb60429ea4f27f4f895bbbe78dd012b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

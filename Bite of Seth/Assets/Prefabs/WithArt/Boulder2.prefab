@@ -253,7 +253,7 @@ MonoBehaviour:
   rollMask:
     serializedVersion: 2
     m_Bits: 3072
-  fallSpeed: 3
+  fallSpeed: 4
   fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
   animator: {fileID: 0}
 --- !u!114 &2823771033660385683
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b1b43f72937040b807fcf67f32a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 2
+  delayTime: 0.5
 --- !u!114 &769253476146473810
 MonoBehaviour:
   m_ObjectHideFlags: 0
