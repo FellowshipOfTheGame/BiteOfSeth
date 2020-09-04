@@ -34,15 +34,16 @@ public class LogManager : MonoBehaviour
         }
     }
 
-    public void toggleLogs(){
-        
-
+    public void toggleLogs(){     
+        GameManager gm = ServiceLocator.Get<GameManager>();
         if(!isDisplayingLogs){
             //toggle on Logs UI
+            gm.lockMovement++;
             logsList.SetActive(true);
             isDisplayingLogs = true;
         } else {
             //turn off Logs UI
+            gm.lockMovement--;
             logsList.SetActive(false);
             isDisplayingLogs = false;
         }

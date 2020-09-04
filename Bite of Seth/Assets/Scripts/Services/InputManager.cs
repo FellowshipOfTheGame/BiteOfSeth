@@ -16,11 +16,11 @@ public class InputManager : GameService
     {
         if (Input.GetKeyDown(dialogueKey))
         {
-            Debug.Log("Dialogue key pressed");
+            //Debug.Log("Dialogue key pressed");
         }
         if (Input.GetKeyDown(audioTestKey))
         {
-            ServiceLocator.Get<AudioManager>().PlayAudio(testAudio);
+            //ServiceLocator.Get<AudioManager>().PlayAudio(testAudio);
         }
     }
 }
