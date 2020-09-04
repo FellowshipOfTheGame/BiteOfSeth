@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    //public SceneReference FirstScene;
+    public SceneReference FirstScene;
 
     public void StartGame(){
-        ServiceLocator.Get<SceneReferences>().GoToNextScene();
+        ServiceLocator.Get<SceneReferences>().GoToScene(FirstScene);
         //SceneManager.LoadScene(FirstScene);
     }
 

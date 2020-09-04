@@ -56,7 +56,6 @@ public class SceneReferences : GameService {
 
         //Try to Load a New Level
 
-
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
             gm.TryToSetNewLevel();
@@ -75,6 +74,17 @@ public class SceneReferences : GameService {
 
         SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
 
+    }
+
+    public void GoToScene(SceneReference scene)
+    {
+        //Load new scene
+        if(scene != null) {
+            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        } else {
+            Debug.LogError("Sem referência para a cena indicada.");
+        }
+        
     }
 
     public void ReloadCurrentScene()
