@@ -940,6 +940,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3078960602016410645, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.099975586
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960602016410645, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.24450684
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960602096410528, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.04058838
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390200013995820065, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.26171875
+      objectReference: {fileID: 0}
     - target: {fileID: 3498539511993444384, guid: adbfe473d1d67714fb03fa9b75a153ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1276,6 +1296,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757408278744818739, guid: 1a43e88b777cbcb44856fade07464955,
+        type: 3}
+      propertyPath: NextLevelScene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 4f2f05c9ba303224b8c4ba9d9a48e408,
+        type: 3}
+    - target: {fileID: 5757408278744818739, guid: 1a43e88b777cbcb44856fade07464955,
+        type: 3}
+      propertyPath: NextLevelScene.scenePath
+      value: Assets/Scenes/Testing Scenes/Main Menu Test Scene.unity
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a43e88b777cbcb44856fade07464955, type: 3}
@@ -1750,6 +1781,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7112d82b80949ca46b97af3ef75022cd,
         type: 2}
+    - target: {fileID: 5794092487872962302, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: puzzleStatue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!1 &584681785 stripped
@@ -3062,6 +3098,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: de631845006be494880d3854276ff22f,
         type: 2}
+    - target: {fileID: 5794092487872962302, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: puzzleStatue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!1 &1022709130
@@ -29108,6 +29149,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0935b4bdc6c670f47beb08eb94fc628f,
         type: 2}
+    - target: {fileID: 5794092487872962302, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: puzzleStatue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!1001 &1404326882
@@ -29676,6 +29722,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2dd52525c3d5a6f41b5dc3b6313a5c0d,
         type: 2}
+    - target: {fileID: 5794092487872962302, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: puzzleStatue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!4 &1660800770 stripped
@@ -57340,6 +57391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794092487872962302, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: puzzleStatue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}

@@ -80,6 +80,13 @@ public class GameManager : GameService
         ServiceLocator.Get<SceneReferences>().GoToNextScene();
     }
 
+    public void FromLevelGoToScene(SceneReference scene)
+    {
+        //Update with new values from finished level
+        if (curLevel != null) UpdateLevelValues();
+        ServiceLocator.Get<SceneReferences>().GoToScene(scene);
+    }
+
     //function to update Game Manager values with new values from Current Level
     public void UpdateLevelValues()
     {

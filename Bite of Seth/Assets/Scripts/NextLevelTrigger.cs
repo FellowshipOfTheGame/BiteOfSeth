@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class NextLevelTrigger : MonoBehaviour
 {
+
+    public SceneReference NextLevelScene;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player") 
         {
-            ServiceLocator.Get<GameManager>().GoToNextLevel();
+            if (NextLevelScene != null) {
+                ServiceLocator.Get<GameManager>().FromLevelGoToScene(NextLevelScene);
+            } else {
+                Debug.LogError("Sem referência para a próxima cena.");
+            }
+            
         }
     }
 }
