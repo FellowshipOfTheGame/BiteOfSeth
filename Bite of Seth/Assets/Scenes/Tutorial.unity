@@ -6376,6 +6376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapToSlice: {fileID: 16502591}
   tilesetObjects: {fileID: 11400000, guid: 89bebef0e8e65634ab3b29756cd19e3d, type: 2}
+  rooms: []
 --- !u!1 &1474477235
 GameObject:
   m_ObjectHideFlags: 0
@@ -10564,7 +10565,27 @@ PrefabInstance:
     - target: {fileID: 2216747408402971986, guid: adbfe473d1d67714fb03fa9b75a153ca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.2000732
+      value: 2.2001953
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960601191748536, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960601191748536, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960601637400489, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078960601637400489, guid: adbfe473d1d67714fb03fa9b75a153ca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3078960602016410645, guid: adbfe473d1d67714fb03fa9b75a153ca,
         type: 3}
