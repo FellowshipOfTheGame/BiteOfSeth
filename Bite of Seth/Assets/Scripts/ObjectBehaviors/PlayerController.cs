@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask walkOnLayerMask = default;
     private Animator animator = null;
     private bool pushing = false;
-
+    
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("Horizontal", animationDiretion.x);
         animator.SetFloat("Vertical", animationDiretion.y);
-        animator.SetBool("Walking", movable.isMoving);
+        animator.SetBool("Walking", movable.isMoving);        
         animator.SetBool("Pushing", pushing);
     }
 

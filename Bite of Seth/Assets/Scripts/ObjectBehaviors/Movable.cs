@@ -12,11 +12,14 @@ public class Movable : MonoBehaviour
     private Vector2 targetPosition = Vector2.zero;
     public GameObject tempCollider;
     private GameObject[] tc = new GameObject[2];
+    private GameManager gameManager = null; // cache do manager
 
     void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        gameManager = ServiceLocator.Get<GameManager>();
     }
+
     public void StartMovement(Vector2 desiredMovement, float _speed)
     {
         // return if movement blocked by game manager
@@ -50,8 +53,6 @@ public class Movable : MonoBehaviour
             tc[0] = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
             tc[0].transform.parent = gameObject.transform;
         }
-
-        //Debug.Log("Collider temporário");
     }
 
     private void FixedUpdate()
@@ -60,7 +61,7 @@ public class Movable : MonoBehaviour
         {
             // isMoving == true
             // return if movement blocked by game manager
-            if (ServiceLocator.Get<GameManager>().lockMovement > 0)
+            if (gameManager.lockMovement > 0)
             {
                 return;
             }
