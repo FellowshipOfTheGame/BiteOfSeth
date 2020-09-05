@@ -10,12 +10,12 @@ public class LoreManager : GameService {
 
     public GameObject dialogPrefab, bookPrefab;
 
-    SymbolDialog dialog;
-    LoreBook book;
+    public SymbolDialog dialog;
+    public LoreBook book;
 
     public override void Start() {
-        book = Instantiate(bookPrefab).GetComponent<LoreBook>();
-        dialog = Instantiate(dialogPrefab).GetComponent<SymbolDialog>();
+        //book = Instantiate(bookPrefab).GetComponent<LoreBook>();
+        //dialog = Instantiate(dialogPrefab).GetComponent<SymbolDialog>();
         
     }
 

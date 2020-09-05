@@ -81,6 +81,7 @@ public class DialogueManager : MonoBehaviour
         string text = Info.myText;
 
         if (Info.needPuzzleInfo) {
+            dialogueText.color = Color.blue;
             //Complete text with puzzle info
             string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
             //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
@@ -91,6 +92,8 @@ public class DialogueManager : MonoBehaviour
             string ownName = Info.character.characterName;
             text = text.Replace(ownName + "'s", "my");
             //text = text.Replace(ownName, "my");
+        } else {
+            dialogueText.color = Color.black;
         }
 
         completeText = text;

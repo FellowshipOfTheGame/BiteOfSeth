@@ -17,6 +17,8 @@ public class SymbolDialog : MonoBehaviour {
     void Start() {
         dialogueBox.SetActive(false);
         open = false;
+        LoreManager lm = ServiceLocator.Get<LoreManager>();
+        lm.dialog = this;
     }
 
     // Update is called once per frame
