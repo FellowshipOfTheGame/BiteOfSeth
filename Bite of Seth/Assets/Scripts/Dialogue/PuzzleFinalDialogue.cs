@@ -51,7 +51,8 @@ public class PuzzleFinalDialogue : DialogueBehavior
                     if (firstTalk) {
                         firstTalk = false;
                     } else {
-                        TriggerWarningAlert();
+                        //TriggerWarningAlert();
+                        //ts.Dialogue();
                     }
                     break;
 
