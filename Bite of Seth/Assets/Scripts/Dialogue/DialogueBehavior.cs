@@ -6,12 +6,15 @@ public class DialogueBehavior : MonoBehaviour {
     protected TextScript ts;
     public Animator art;
 
+    protected Color color;
+
     public bool puzzleStatue = false;
 
     // Start is called before the first frame update
     void Start() {
         ts = GetComponentInChildren<TextScript>();
         ts.statue = this;
+        color = ts.dialogueSequence[0].dialogueInfo[0].character.color;
         art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
     }
 

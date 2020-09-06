@@ -9,4 +9,6 @@ public class CharacterInfo : ScriptableObject{
     public Sprite portrait;
 
     public AnimatorOverrideController art;
+
+    public Color color = Color.white;
 }

@@ -28,6 +28,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
             //if(UI.ConfirmStatueSelection())
             number.gameObject.SetActive(true);
             number.transform.eulerAngles = Vector3.zero;
+            number.color = color;
             int counter = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().SelectStatue(id);
             number.sprite = digits[counter - 1];
 
