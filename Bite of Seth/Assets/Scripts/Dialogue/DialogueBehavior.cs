@@ -23,19 +23,19 @@ public class DialogueBehavior : MonoBehaviour {
         }
     }
 
-    public void OnGetClose(){
+    public virtual void OnGetClose(){
         art.SetBool("player", true);
     }
 
-    public void OnGetAway() {
+    public virtual void OnGetAway() {
         art.SetBool("player", false);
     }
 
-    public void OnDialog(){
+    public virtual void OnDialog(){
         art.SetBool("talk", true);
     }
 
-    public void OnEndDialog(){
+    public virtual void OnEndDialog(){
         art.SetBool("talk", false);
     }
 }

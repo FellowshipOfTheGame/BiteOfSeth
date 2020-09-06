@@ -64,7 +64,7 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    public void SelectStatue(Id id)
+    public int SelectStatue(Id id)
     {
         statuesSelectedOrder[nSelected++] = id;
         Debug.Log("Selection number "+nSelected+": statue "+(int)id+" named "+names[(int)id] +"!");
@@ -72,6 +72,24 @@ public class PuzzleManager : MonoBehaviour
         {
             Debug.Log(CheckFinalAnswer());
         }*/
+
+        return nSelected;
+    }
+
+    public void UnselectStatue(Id id){
+        bool found = false;
+
+        for (int i = 0; i < nSelected; i++) {
+            if (found) {
+                Id aux = statuesSelectedOrder[i];
+                statuesSelectedOrder[i - 1] = aux;
+                puzzleStatuesReferences[(int) aux].GetComponent<PuzzleOrderDialogue>().UpdateCounter(i);
+            }
+
+            if (statuesSelectedOrder[i] == id) found = true;
+        }
+
+        if(found) nSelected--;
     }
 
     public int CheckFinalAnswer()
