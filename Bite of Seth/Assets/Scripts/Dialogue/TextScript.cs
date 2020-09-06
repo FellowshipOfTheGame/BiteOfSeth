@@ -19,6 +19,8 @@ public class TextScript : MonoBehaviour
     public bool repeatAutoTrigger;
     private PlayerController playerRef = null;
 
+    bool talking = false;
+
     private void Start()
     {
         ResetDialogue();
@@ -26,6 +28,7 @@ public class TextScript : MonoBehaviour
 
     public void TriggerDialogue(){
         statue.OnDialog();
+        talking = true;
         DialogueManager.instance.EnqueueDialogue(curDialogue);
     }
 
@@ -43,7 +46,7 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             playerInRange = true;
             playerRef = other.gameObject.GetComponent<PlayerController>();
-            statue.OnEnterDialog();
+            statue.OnGetClose();
 
             if ((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive) {
                 isAutoTriggered = false;
@@ -61,7 +64,7 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             DialogueManager.instance.EndOfDialogue();
             playerInRange = false;
-            statue.OnEndDialog();
+            statue.OnGetAway();
 
             if (DialogueManager.instance.isDialogueActive == false) {
                 DialogueManager.instance.toggleInteractAlert(false);
@@ -83,6 +86,11 @@ public class TextScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
             return Dialogue();
+        }
+
+        if (talking && !DialogueManager.instance.isDialogueActive) {
+            statue.OnEndDialog();
+            talking = false;
         }
 
         return false;
@@ -120,6 +128,7 @@ public class TextScript : MonoBehaviour
     public void ResetDialogue()
     {
         DialogueManager.instance.isDialogueActive = false;
+        talking = false;
         index = 0;
         curDialogue = dialogueSequence[index++];
     }
