@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PuzzleFinalDialogue : DialogueBehavior {
 
-    public GameObject warningPopup;
     public bool canDialogue = true;
     private bool firstTalk = true;
     private bool fail = false;
