@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterInfo : ScriptableObject{
     [Header("Insert character info below")]
     public string characterName;
-    public Sprite portrait;
+    public Sprite portrait, statue, spirit, eye;
 
     public AnimatorOverrideController art;
 
