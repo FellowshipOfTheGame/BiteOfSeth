@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PuzzleOrderDialogue : DialogueBehavior {
 
-    private bool selected = false;
+    private bool selected = false, locked = false;
 
     public SpriteRenderer number;
     public Sprite[] digits;
@@ -23,6 +23,9 @@ public class PuzzleOrderDialogue : DialogueBehavior {
 
     public override void OnDialog() {
         base.OnDialog();
+
+        if (locked) return;
+
         if (!selected) {
             //TO DO: Ask the player is it really wants to select this statue
             //if(UI.ConfirmStatueSelection())
@@ -41,9 +44,9 @@ public class PuzzleOrderDialogue : DialogueBehavior {
         }
     }
 
-    public void ResetSelection()
-    {
+    public void ResetSelection() {
         selected = false;
+        number.gameObject.SetActive(false);
     }
 
     public void SetId(PuzzleManager.Id _id)
@@ -53,6 +56,10 @@ public class PuzzleOrderDialogue : DialogueBehavior {
 
     public void UpdateCounter(int c) {
         number.sprite = digits[c - 1];
+    }
+
+    public void SetLock(bool value) {
+        locked = value;
     }
 
 }

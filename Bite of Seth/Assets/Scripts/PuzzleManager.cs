@@ -141,6 +141,15 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
+    public void LockStatues() {
+        foreach (GameObject S in puzzleStatuesReferences) {
+            PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
+            if (pod != null) {
+                pod.SetLock(true);
+            }
+        }
+    }
+
     public int GetStatuesQuantity()
     {
         return statuesQuantity;
