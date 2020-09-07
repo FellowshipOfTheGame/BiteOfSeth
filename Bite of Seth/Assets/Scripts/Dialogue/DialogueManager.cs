@@ -38,6 +38,8 @@ public class DialogueManager : MonoBehaviour
     private AudioObject currentVoicedLine;
     private AudioSource dubAudSrc;
 
+    public Color normalColor, highlightColor;
+
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
@@ -81,7 +83,7 @@ public class DialogueManager : MonoBehaviour
         string text = Info.myText;
 
         if (Info.needPuzzleInfo) {
-            dialogueText.color = Color.blue;
+            dialogueText.color = highlightColor;
             //Complete text with puzzle info
             string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
             //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
@@ -93,7 +95,7 @@ public class DialogueManager : MonoBehaviour
             text = text.Replace(ownName + "'s", "my");
             //text = text.Replace(ownName, "my");
         } else {
-            dialogueText.color = Color.black;
+            dialogueText.color = normalColor;
         }
 
         completeText = text;
