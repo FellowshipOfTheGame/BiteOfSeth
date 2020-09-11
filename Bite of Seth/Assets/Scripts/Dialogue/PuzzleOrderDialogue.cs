@@ -25,7 +25,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
         base.OnDialog();
 
         if (locked) return;
-
+        //If the statue isnt selected yet, then select it
         if (!selected) {
             //TO DO: Ask the player is it really wants to select this statue
             //if(UI.ConfirmStatueSelection())
@@ -37,6 +37,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
 
             selected = true;
         } else {
+            //If the statue is already selected, then unselect it
             number.gameObject.SetActive(false);
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().UnselectStatue(id);
 
@@ -44,6 +45,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
         }
     }
 
+    //Reset statue selection
     public void ResetSelection() {
         selected = false;
         number.gameObject.SetActive(false);

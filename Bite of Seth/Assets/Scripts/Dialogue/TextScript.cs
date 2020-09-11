@@ -26,6 +26,7 @@ public class TextScript : MonoBehaviour
         ResetDialogue();
     }
 
+    //Initiate the dialogue
     public void TriggerDialogue(){
         statue.OnDialog();
         talking = true;
@@ -38,9 +39,10 @@ public class TextScript : MonoBehaviour
     }
 
     public void UpdateLog(){
+        //Update log with new entries
         LogManager.instance.AddEntry(curDialogue);
     }
-
+    
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
         if(other.CompareTag("Player")){
@@ -99,12 +101,15 @@ public class TextScript : MonoBehaviour
 
     public bool Dialogue()
     {
+        //Return false if the dialogue just started or true if the first dialog ended already
         if (DialogueManager.instance.isDialogueActive == false) {
+            //Start the dialogue
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
             return false;
         } else{
+            //Try to continue dialoguing
             bool dialogueEnded = ContinueDialogue();
             if (dialogueEnded) {
                 if (doorTrigger != null) {

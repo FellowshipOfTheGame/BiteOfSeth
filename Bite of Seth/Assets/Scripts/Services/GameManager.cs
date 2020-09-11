@@ -14,6 +14,7 @@ public class GameManager : GameService
     private LevelManager curLevel;
     private int curLevelIndex;
 
+    //Struct to store level data
     private struct LevelData {
         public int id;
         public int score;
