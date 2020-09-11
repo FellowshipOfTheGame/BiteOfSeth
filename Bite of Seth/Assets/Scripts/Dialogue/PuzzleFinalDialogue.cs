@@ -12,6 +12,8 @@ public class PuzzleFinalDialogue : DialogueBehavior
     private bool fail = false;
     private bool success = false;
 
+    [SerializeField] AudioObject winChime = null;
+
     public List<DialogueBase> defaultDialogue;
     public List<DialogueBase> failDialogue;
     public List<DialogueBase> successDialogue;
@@ -61,6 +63,14 @@ public class PuzzleFinalDialogue : DialogueBehavior
                     ts.ChangeCurrentDialogueSequence(successDialogue);
                     ts.SetDoorTrigger(doorTrigger);
                     ts.Dialogue();
+                    if(winChime)
+                    {
+                        ServiceLocator.Get<AudioManager>().PlayAudio(winChime);
+                    }
+                    else
+                    {
+                        Debug.LogError("Win Chime shouldn't be null");
+                    }
                     break;
 
                 case 2:
