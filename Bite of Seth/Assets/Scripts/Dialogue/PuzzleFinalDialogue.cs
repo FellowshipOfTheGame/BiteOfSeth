@@ -9,7 +9,9 @@ public class PuzzleFinalDialogue : DialogueBehavior {
     private bool firstTalk = true;
     private bool fail = false;
     private bool success = false;
-    
+
+    [SerializeField] AudioObject winChime = null;
+
     public List<DialogueBase> defaultDialogue;
     public List<DialogueBase> failDialogue;
     public List<DialogueBase> successDialogue;
@@ -42,6 +44,14 @@ public class PuzzleFinalDialogue : DialogueBehavior {
                     art.SetBool("hold", true);
                     //Lock dialogue with all puzzle statues
                     ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().LockStatues();
+                    if(winChime)
+                    {
+                        ServiceLocator.Get<AudioManager>().PlayAudio(winChime);
+                    }
+                    else
+                    {
+                        Debug.LogError("Win Chime shouldn't be null");
+                    }
                     break;
                 //If the answer was wrong
                 case 2:
