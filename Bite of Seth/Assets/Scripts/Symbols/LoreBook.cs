@@ -10,7 +10,8 @@ public class LoreBook : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        
+        LoreManager lm = ServiceLocator.Get<LoreManager>();
+        lm.book = this;
     }
 
     // Update is called once per frame

@@ -18,7 +18,7 @@ public class HUDController : MonoBehaviour
     void Update()
     {
         string score = ServiceLocator.Get<GameManager>().GetLevelScore().ToString();
-        scoreText.text = $"x{score}";
+        scoreText.text = $"{score}";
 
         pm = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager();
         totalStatues = pm.GetStatuesQuantity().ToString();

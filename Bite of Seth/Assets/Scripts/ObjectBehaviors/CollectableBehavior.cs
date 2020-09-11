@@ -13,16 +13,14 @@ public class CollectableBehavior : MonoBehaviour
     {
         if (!collected)
         {
-            /*GameManager gm = ServiceLocator.Get<GameManager>();
-            gm.AddScore(points);
-            gm.PrintScore();*/
+            //Update level score
             GameManager gm = ServiceLocator.Get<GameManager>();
             gm.AddLevelScore(points);
             gm.PrintLevelScore();
             collected = true;
 
+            //Play sfx
             ServiceLocator.Get<AudioManager>().PlayAudio(collectSFX);
-            
            
             particle.transform.SetParent(null);
             particle.Play();
@@ -34,6 +32,7 @@ public class CollectableBehavior : MonoBehaviour
     {
         if (collected)
         {
+            //Update level score
             GameManager gm = ServiceLocator.Get<GameManager>();
             gm.AddLevelScore(-points);
             gm.PrintLevelScore();
@@ -42,6 +41,7 @@ public class CollectableBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Player collision results in collect
         PlayerController p = collision.gameObject.GetComponent<PlayerController>();
         if (p != null)
         {
@@ -50,6 +50,7 @@ public class CollectableBehavior : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        //Player collision results in collect
         PlayerController p = other.gameObject.GetComponent<PlayerController>();
         if (p != null) {
             Collect();

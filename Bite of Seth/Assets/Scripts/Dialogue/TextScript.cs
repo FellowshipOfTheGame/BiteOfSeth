@@ -19,13 +19,17 @@ public class TextScript : MonoBehaviour
     public bool repeatAutoTrigger;
     private PlayerController playerRef = null;
 
+    bool talking = false;
+
     private void Start()
     {
         ResetDialogue();
     }
 
+    //Initiate the dialogue
     public void TriggerDialogue(){
         statue.OnDialog();
+        talking = true;
         DialogueManager.instance.EnqueueDialogue(curDialogue);
     }
 
@@ -35,15 +39,16 @@ public class TextScript : MonoBehaviour
     }
 
     public void UpdateLog(){
+        //Update log with new entries
         LogManager.instance.AddEntry(curDialogue);
     }
-
+    
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
         if(other.CompareTag("Player")){
             playerInRange = true;
             playerRef = other.gameObject.GetComponent<PlayerController>();
-            statue.OnEnterDialog();
+            statue.OnGetClose();
 
             if ((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive) {
                 isAutoTriggered = false;
@@ -61,7 +66,7 @@ public class TextScript : MonoBehaviour
         if(other.CompareTag("Player")){
             DialogueManager.instance.EndOfDialogue();
             playerInRange = false;
-            statue.OnEndDialog();
+            statue.OnGetAway();
 
             if (DialogueManager.instance.isDialogueActive == false) {
                 DialogueManager.instance.toggleInteractAlert(false);
@@ -85,18 +90,26 @@ public class TextScript : MonoBehaviour
             return Dialogue();
         }
 
+        if (talking && !DialogueManager.instance.isDialogueActive) {
+            statue.OnEndDialog();
+            talking = false;
+        }
+
         return false;
 
     }
 
     public bool Dialogue()
     {
+        //Return false if the dialogue just started or true if the first dialog ended already
         if (DialogueManager.instance.isDialogueActive == false) {
+            //Start the dialogue
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
             UpdateLog();
             return false;
         } else{
+            //Try to continue dialoguing
             bool dialogueEnded = ContinueDialogue();
             if (dialogueEnded) {
                 if (doorTrigger != null) {
@@ -120,6 +133,7 @@ public class TextScript : MonoBehaviour
     public void ResetDialogue()
     {
         DialogueManager.instance.isDialogueActive = false;
+        talking = false;
         index = 0;
         curDialogue = dialogueSequence[index++];
     }

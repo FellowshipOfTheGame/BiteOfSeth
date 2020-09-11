@@ -9,7 +9,7 @@ public class SceneReferences : GameService {
     public List<SceneReference> scenesList;
     private GameManager gm;
 
-    private bool firstLoad;
+    //private bool firstLoad;
 
     private int curSceneIndex = 0;
 
@@ -30,7 +30,6 @@ public class SceneReferences : GameService {
 
     public override void Start()
     {
-        firstLoad = true;
         //curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         curSceneIndex = 0;
         //Debug.Log(curSceneIndex);

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartScreenMenu : MonoBehaviour {
-    
-    public bool canEnter = false, entered = false;
+
+    public bool canEnter = false, entered = false, skipped = false;
     public Animator animator;
     public GameObject menu;
     
@@ -16,11 +16,15 @@ public class StartScreenMenu : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         animator.SetBool("entered", entered);
+        animator.SetBool("skipped", skipped);
 
-
-        if (canEnter && !entered && Input.GetKeyDown(KeyCode.Space)){
+        if (!entered && Input.GetKeyDown(KeyCode.Space)) {
+            if (!canEnter) {
+                skipped = true;
+            }
             entered = true;
         }
+        
     }
 
     public void AllowCtrl(){

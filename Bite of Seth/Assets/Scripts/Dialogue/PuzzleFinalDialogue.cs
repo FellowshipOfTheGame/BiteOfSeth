@@ -3,70 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzleFinalDialogue : DialogueBehavior
-{
+public class PuzzleFinalDialogue : DialogueBehavior {
 
-    public GameObject warningPopup;
     public bool canDialogue = true;
     private bool firstTalk = true;
     private bool fail = false;
     private bool success = false;
-
+    
     public List<DialogueBase> defaultDialogue;
     public List<DialogueBase> failDialogue;
     public List<DialogueBase> successDialogue;
 
     public DoorTrigger doorTrigger = null;
 
-    // Update is called once per frame
-    void Update()
-    {
+    public override void OnDialog(){
+        base.OnDialog();
+        
+        //if the player didnt win yet
+        if (!success) {
 
-        if(canDialogue && ts.TryToDialogue())
-        {
-            //TO DO: Ask the player is it really wants to give the final answer
-            //if(UI.ConfirmFinalSelection())
-
-            if (fail) {
-                if (ts.GetPlayerRef() != null) {
-                    ServiceLocator.Get<GameManager>().KillPlayer();
-                }
-                ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
+            //If its the first dialogue, set the default one 
+            if (firstTalk) {
                 ts.ChangeCurrentDialogueSequence(defaultDialogue);
-                firstTalk = true;
-                //ts.ResetDialogue();
-                fail = false;
+                firstTalk = false;
             }
 
-            if (success) {
-                return;
-            }
+            //get the players answer result
+            int result = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer();
 
-            int resultado = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer();
-
-            switch (resultado) {
-
-                case 0:
-                    Debug.Log("CHOOSE ALL STATUES!");
-                    if (firstTalk) {
-                        firstTalk = false;
-                    } else {
-                        TriggerWarningAlert();
-                    }
-                    break;
-
+            switch (result) {
+                //If the answer was right
                 case 1:
                     Debug.Log("YOU WON, CONGRATULATIONS!");
                     success = true;
+                    //Change dialogue to the success one
                     ts.ChangeCurrentDialogueSequence(successDialogue);
                     ts.SetDoorTrigger(doorTrigger);
-                    ts.Dialogue();
+                    art.SetBool("hold", true);
+                    //Lock dialogue with all puzzle statues
+                    ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().LockStatues();
                     break;
-
+                //If the answer was wrong
                 case 2:
                     Debug.Log("YOU LOSE... TRY AGAIN!");
+                    //Change dialogue to the fail one
                     ts.ChangeCurrentDialogueSequence(failDialogue);
-                    ts.Dialogue();
                     fail = true;
                     break;
 
@@ -74,12 +55,18 @@ public class PuzzleFinalDialogue : DialogueBehavior
         }
     }
 
-    private void TriggerWarningAlert()
-    {
-        Debug.Log("TriggerWarningAlert");
-        ServiceLocator.Get<GameManager>().lockMovement += 1;
-        warningPopup.SetActive(true);
-        canDialogue = false;
+    public override void OnEndDialog() {
+        base.OnEndDialog();
+
+        //If the player failed in the puzzle then it dies and the choices are reseted
+        if (fail) {
+            if (ts.GetPlayerRef() != null) {
+                ServiceLocator.Get<GameManager>().KillPlayer();
+            }
+            ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
+            firstTalk = true;
+            fail = false;
+        }
     }
 
 }
