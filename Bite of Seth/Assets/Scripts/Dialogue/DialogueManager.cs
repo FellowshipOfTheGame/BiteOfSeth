@@ -42,8 +42,9 @@ public class DialogueManager : MonoBehaviour
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
         isDialogueActive = true;
-        ServiceLocator.Get<GameManager>().lockMovement += 1;
-
+        GameManager gm = ServiceLocator.Get<GameManager>();
+        gm.lockMovement++;
+        //Debug.Log($"Encue lock++ ({gm.lockMovement})");
         foreach (DialogueBase.Info info in db.dialogueInfo){
             dialogueInfo.Enqueue(info);
         }
@@ -53,7 +54,7 @@ public class DialogueManager : MonoBehaviour
 
     public bool DequeueDialogue(){
         
-        Debug.Log("DequeueDialogue");
+        //Debug.Log("DequeueDialogue");
         DialogueBase.Info Info = null;
 
         //need to add code that detects when there is no more dialogue and return
@@ -143,10 +144,12 @@ public class DialogueManager : MonoBehaviour
 
     public void EndOfDialogue(){
         if(isDialogueActive){
-            Debug.Log("End of Dialogue");
+            //Debug.Log("End of Dialogue");
             isDialogueActive = false;
             dialogueBox.SetActive(false);
-            ServiceLocator.Get<GameManager>().lockMovement -= 1;
+            GameManager gm = ServiceLocator.Get<GameManager>();
+            gm.lockMovement--;
+            //Debug.Log($"End Dialogue lock-- ({gm.lockMovement})");
         }
     }
 

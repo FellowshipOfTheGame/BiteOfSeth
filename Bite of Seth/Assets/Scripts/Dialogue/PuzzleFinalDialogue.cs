@@ -77,7 +77,9 @@ public class PuzzleFinalDialogue : DialogueBehavior
     private void TriggerWarningAlert()
     {
         Debug.Log("TriggerWarningAlert");
-        ServiceLocator.Get<GameManager>().lockMovement += 1;
+        GameManager gm = ServiceLocator.Get<GameManager>();
+        gm.lockMovement++;
+        //Debug.Log($"TriggerWarningAlert lock++ ({gm.lockMovement})");
         warningPopup.SetActive(true);
         canDialogue = false;
     }

@@ -14,8 +14,9 @@ public class PuzzleOrderDialogue : DialogueBehavior
     // Update is called once per frame
     void Update()
     {
-        if (!selected) {
-            if (ts.TryToDialogue())
+        if (ts.TryToDialogue())
+        {
+            if (!selected) 
             {
                 //TO DO: Ask the player is it really wants to select this statue
                 //if(UI.ConfirmStatueSelection())
