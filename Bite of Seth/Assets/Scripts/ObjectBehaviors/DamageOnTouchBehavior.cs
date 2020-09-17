@@ -11,6 +11,10 @@ public class DamageOnTouchBehavior : MonoBehaviour {
             foreach (GameObject obj in objects) {
                 if (LayerMask.NameToLayer("Player") == obj.layer) {
                     // kill player
+                    FallBehavior fb = GetComponent<FallBehavior>();
+                    if(fb != null) {
+                        fb.enabled = false;
+                    }
                     ServiceLocator.Get<GameManager>().KillPlayer();
                 } else {
                     // kill other entities here
