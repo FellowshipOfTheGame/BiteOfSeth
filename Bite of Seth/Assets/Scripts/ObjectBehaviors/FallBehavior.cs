@@ -14,8 +14,11 @@ public class FallBehavior : MonoBehaviour
     public AudioObject fallSound = null;
     private RollDelay rd;
     public Animator animator;
-    private bool isRolling = false;
-    private float rollingDirection = 0f;
+
+    [HideInInspector]
+    public bool isRolling = false;
+    [HideInInspector]
+    public float rollingDirection = 0f;
 
     void Start()
     {
@@ -44,8 +47,7 @@ public class FallBehavior : MonoBehaviour
 
         if (!movable.isMoving)
         {
-            isRolling = false;
-            rollingDirection = 0;
+            
             // check if should fall
             if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0){
                 movable.StartMovement(GridNav.down, fallSpeed);
@@ -108,7 +110,10 @@ public class FallBehavior : MonoBehaviour
     // receiver for Movable message
     private void OnStopedMoving()
     {
-        if(rd) rd.TurnOff();
+        isRolling = false;
+        rollingDirection = 0;
+
+        if (rd) rd.TurnOff();
 
         List<GameObject> oip = null;
         DamageOnTouchBehavior dotb = GetComponent<DamageOnTouchBehavior>();

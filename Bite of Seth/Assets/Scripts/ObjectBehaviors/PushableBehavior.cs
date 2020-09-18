@@ -25,6 +25,13 @@ public class PushableBehavior : MonoBehaviour
         if (!movable.isMoving && GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, collisionMask, gameObject).Count == 0)
         {
             movable.StartMovement(desiredMovement, pushSpeed);
+
+            FallBehavior fb = GetComponent<FallBehavior>();
+            if(fb != null) {
+                fb.isRolling = true;
+                fb.rollingDirection = desiredMovement.x;
+            }
+
             return true;
         }
         return false;
