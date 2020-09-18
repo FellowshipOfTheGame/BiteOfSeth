@@ -13,21 +13,29 @@ public class FallBehavior : MonoBehaviour
     public float fallSpeed = 3f;
     public AudioObject fallSound = null;
     private RollDelay rd;
-    public Animator animator = null;
+    public Animator animator;
     private bool isRolling = false;
+    private float rollingDirection = 0f;
 
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (animator != null)
         {
-            animator.SetBool("rolling", isRolling);
-            // TODO: flip sprite to roll left/right
+            if (isRolling) {
+                Debug.Log("GIROU");
+            }
+            animator.SetBool("Roll", isRolling);
+            animator.SetFloat("Direction", rollingDirection);
+            if (rd) {
+                animator.SetBool("Shake", rd.IsOn());
+            }
         }
     }
 
@@ -37,6 +45,7 @@ public class FallBehavior : MonoBehaviour
         if (!movable.isMoving)
         {
             isRolling = false;
+            rollingDirection = 0;
             // check if should fall
             if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0){
                 movable.StartMovement(GridNav.down, fallSpeed);
@@ -56,11 +65,13 @@ public class FallBehavior : MonoBehaviour
                         } else if (rd.IsFinished()) {
                             movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
                             isRolling = true;
+                            rollingDirection = -1;
                         }
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.left, fallSpeed);
                         isRolling = true;
+                        rollingDirection = -1;
                     }
                 }
                 // room to roll right
@@ -75,11 +86,13 @@ public class FallBehavior : MonoBehaviour
                         } else if (rd.IsFinished()) {
                             movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                             isRolling = true;
+                            rollingDirection = 1;
                         }
                     }
                     else {
                         movable.StartMovement(GridNav.down / 2 + GridNav.right, fallSpeed);
                         isRolling = true;
+                        rollingDirection = 1;
                     }
                 } 
                 else if (rd) 

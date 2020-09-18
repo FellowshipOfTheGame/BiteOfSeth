@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool pushing = false;
     private bool holding = false;
     private bool dying = false;
-    public LayerMask holdableLayerMask;
+    public LayerMask holdableLayerMask = default;
     public float dyingTimer = 3f;
 
     private void Awake()
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        holdableLayerMask = LayerMask.GetMask("Boulder");
         animator = gameObject.GetComponent<Animator>();
         GameManager gm = ServiceLocator.Get<GameManager>();
         if (gm.player == null)
