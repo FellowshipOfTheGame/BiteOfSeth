@@ -37,8 +37,8 @@ public class GameManager : GameService
 
     public void KillPlayer()
     {
-        Debug.Log("TODO: KillPlayer Behavior");
-        player.UseCheckpoint();
+        Debug.Log("KillPlayer Behavior");
+        player.Die();
     }
 
     public void PrintTotalScore()

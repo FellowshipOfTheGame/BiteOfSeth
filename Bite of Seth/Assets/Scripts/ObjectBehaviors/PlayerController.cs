@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask walkOnLayerMask = default;
     private Animator animator = null;
     private bool pushing = false;
-    
+    private bool holding = false;
+    private bool dying = false;
+    public LayerMask holdableLayerMask = default;
+    public float dyingTimer = 3f;
+
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        holdableLayerMask = LayerMask.GetMask("Boulder");
         animator = gameObject.GetComponent<Animator>();
         GameManager gm = ServiceLocator.Get<GameManager>();
         if (gm.player == null)
@@ -58,11 +63,21 @@ public class PlayerController : MonoBehaviour
         if (!pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
         {
             animationDiretion = Vector2.up;
+            holding = false;
+        } else {
+            // check if is holding some holdable object
+            holding = (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.up, holdableLayerMask, gameObject).Count > 0);
         }
+
+        
+
+
         animator.SetFloat("Horizontal", animationDiretion.x);
         animator.SetFloat("Vertical", animationDiretion.y);
         animator.SetBool("Walking", movable.isMoving);        
         animator.SetBool("Pushing", pushing);
+        animator.SetBool("Holding", holding);
+        animator.SetBool("Dying", dying);
     }
 
     private void FixedUpdate()
@@ -163,4 +178,21 @@ public class PlayerController : MonoBehaviour
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
         }
     }
+
+    private void Revive()
+    {
+        Debug.Log("ACABOU DE MORRER");
+        movable.enabled = true;
+        UseCheckpoint();
+        dying = false;
+    }
+
+    public void Die()
+    {
+        movable.enabled = false;
+        dying = true;
+        Debug.Log("COMECOU A MORRER");
+        Invoke("Revive", dyingTimer);
+    }
+
 }
