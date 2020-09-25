@@ -8,6 +8,8 @@ public class PushableBehavior : MonoBehaviour
     private Movable movable = null;
     public float pushSpeed = 2f;
 
+    private bool willNotFall = false;
+
     [SerializeField]
     private LayerMask collisionMask = default;
 
@@ -22,11 +24,17 @@ public class PushableBehavior : MonoBehaviour
         {
             return false;
         }
-        if (!movable.isMoving && GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, collisionMask, gameObject).Count == 0)
+
+        FallBehavior fb = GetComponent<FallBehavior>();
+        if (fb != null) {
+            willNotFall = !fb.ShouldFall();
+        } else {
+            willNotFall = true;
+        }
+
+        if (!movable.isMoving && GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, collisionMask, gameObject).Count == 0 && willNotFall)
         {
             movable.StartMovement(desiredMovement, pushSpeed);
-
-            FallBehavior fb = GetComponent<FallBehavior>();
             if(fb != null) {
                 fb.isRolling = true;
                 fb.rollingDirection = desiredMovement.x;
