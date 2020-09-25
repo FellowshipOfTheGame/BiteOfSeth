@@ -24,7 +24,6 @@ public class FallBehavior : MonoBehaviour
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
-        animator = gameObject.GetComponent<Animator>();
     }
 
     private void Update()

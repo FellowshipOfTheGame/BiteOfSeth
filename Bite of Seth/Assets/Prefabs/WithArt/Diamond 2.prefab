@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5635148029409538764}
   - component: {fileID: 5615844421084837}
-  - component: {fileID: 1801673339601229862}
+  - component: {fileID: 7762932586118570071}
   - component: {fileID: 5771504162434163340}
   - component: {fileID: 754011300465007239}
   - component: {fileID: -5926556322554335977}
@@ -59,8 +59,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1801673339601229862
-BoxCollider2D:
+--- !u!58 &7762932586118570071
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -73,18 +73,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
-  m_EdgeRadius: 0
+  m_Radius: 0.48
 --- !u!114 &5771504162434163340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +114,8 @@ MonoBehaviour:
   fallSpeed: 4
   fallSound: {fileID: 0}
   animator: {fileID: 481424260878971723}
+  isRolling: 0
+  rollingDirection: 0
 --- !u!114 &-5926556322554335977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5070,10 +5062,10 @@ Animator:
   m_GameObject: {fileID: 6914923426263485845}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 0cb60429ea4f27f4f895bbbe78dd012b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 881b01a39e2681a47a3e904d645a2908, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
