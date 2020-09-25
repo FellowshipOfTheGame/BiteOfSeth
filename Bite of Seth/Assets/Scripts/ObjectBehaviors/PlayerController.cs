@@ -63,14 +63,10 @@ public class PlayerController : MonoBehaviour
         if (!pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
         {
             animationDiretion = Vector2.up;
-            holding = false;
-        } else {
-            // check if is holding some holdable object
-            holding = (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.up, holdableLayerMask, gameObject).Count > 0);
         }
 
-        
-
+        // check if is holding some holdable object
+        holding = (GridNav.GetObjectsInPath(movable.rigidbody.position, GridNav.up, holdableLayerMask, gameObject).Count > 0);
 
         animator.SetFloat("Horizontal", animationDiretion.x);
         animator.SetFloat("Vertical", animationDiretion.y);
