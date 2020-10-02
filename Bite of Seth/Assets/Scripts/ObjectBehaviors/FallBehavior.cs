@@ -13,6 +13,7 @@ public class FallBehavior : MonoBehaviour
     public float fallSpeed = 3f;
     public AudioObject fallSound = null;
     private RollDelay rd;
+
     public Animator animator;
 
     [HideInInspector]
@@ -48,7 +49,7 @@ public class FallBehavior : MonoBehaviour
         {
             
             // check if should fall
-            if (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0){
+            if (ShouldFall()){
                 movable.StartMovement(GridNav.down, fallSpeed);
             }
             //check if standing on a round object
@@ -104,6 +105,11 @@ public class FallBehavior : MonoBehaviour
             }
         }
 
+    }
+
+    public bool ShouldFall()
+    {
+        return (GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject).Count == 0);
     }
     
     // receiver for Movable message
