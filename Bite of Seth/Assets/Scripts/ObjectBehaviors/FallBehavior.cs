@@ -99,8 +99,8 @@ public class FallBehavior : MonoBehaviour
                 } 
                 else if (rd) 
                 {
-                    //Then, even after the delay, it couldnt roll, so it will have another delay;
-                    if (rd.IsOn()) rd.Restart();
+                    //Then, even after the delay, it couldnt roll, so stop the timer;
+                    if (rd.IsOn()) rd.TurnOff();
                 }
             }
         }
