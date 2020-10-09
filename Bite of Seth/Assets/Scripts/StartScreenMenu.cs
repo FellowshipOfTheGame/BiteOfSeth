@@ -7,6 +7,7 @@ public class StartScreenMenu : MonoBehaviour {
     public bool canEnter = false, entered = false, skipped = false;
     public Animator animator;
     public GameObject menu;
+    public SelectButtonOnMenu firstButtonSelected;
     
     // Start is called before the first frame update
     void Start() {
@@ -37,5 +38,6 @@ public class StartScreenMenu : MonoBehaviour {
 
     public void ShowMenu(){
         menu.SetActive(true);
+        firstButtonSelected.Select();
     }
 }

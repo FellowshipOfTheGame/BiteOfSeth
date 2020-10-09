@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SelectOnEnable : MonoBehaviour
+public class SelectButtonOnMenu : MonoBehaviour
 {
-    private void OnEnable() {
+
+    public void Select()
+    {
         EventSystem.current.SetSelectedGameObject(null); // desbugar o botão n estar sendo selecionado corretamente
         Selectable s = GetComponent<Selectable>();
         s.Select();
     }
-
 }
