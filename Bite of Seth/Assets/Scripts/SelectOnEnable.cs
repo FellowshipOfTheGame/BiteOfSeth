@@ -11,4 +11,5 @@ public class SelectOnEnable : MonoBehaviour
         Selectable s = GetComponent<Selectable>();
         s.Select();
     }
+
 }
