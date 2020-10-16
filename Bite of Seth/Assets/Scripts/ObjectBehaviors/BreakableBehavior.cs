@@ -2,16 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableBehavior : MonoBehaviour
-{
-    public float propagationTimeInterval = 0.5f;
+public class BreakableBehavior : MonoBehaviour {
+
+    public float propagationTime = 0.5f;
+
+    private void TryBreakAtDirection(Vector2 direction)
+    {
+        List<GameObject> objects = GridNav.GetObjectsInPath(transform.position, direction, gameObject);
+        foreach (GameObject g in objects) {
+            BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
+            if (breakable != null) {
+                breakable.Break();
+            }
+        }
+    }
 
     public void Break()
     {
         gameObject.SetActive(false);
         //Propagate the destruction
-        Invoke("BreakPropagation", propagationTimeInterval);
-        Destroy(gameObject, propagationTimeInterval+0.5f);
+        Invoke("BreakPropagation", propagationTime);
+        Destroy(gameObject, propagationTime + 0.5f);
     }
 
     private void BreakPropagation()
@@ -22,16 +33,4 @@ public class BreakableBehavior : MonoBehaviour
         TryBreakAtDirection(GridNav.right);
     }
 
-    private void TryBreakAtDirection(Vector2 direction)
-    {
-        List<GameObject> objects = GridNav.GetObjectsInPath(transform.position, direction, gameObject);
-        foreach (GameObject g in objects)
-        {
-            BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
-            if (breakable != null)
-            {
-                breakable.Break();
-            }
-        }
-    }
 }

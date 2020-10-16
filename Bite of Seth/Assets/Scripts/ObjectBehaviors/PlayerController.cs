@@ -50,10 +50,10 @@ public class PlayerController : MonoBehaviour
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
             foreach (GameObject g in objects)
             {
-                BreakableBehavior breakable = g.GetComponent<BreakableBehavior>();
-                if (breakable != null)
+                ExplodeBehavior eb = g.GetComponent<ExplodeBehavior>();
+                if (eb != null)
                 {
-                    breakable.Break();
+                    eb.Explode();
                 }
             }
         }
