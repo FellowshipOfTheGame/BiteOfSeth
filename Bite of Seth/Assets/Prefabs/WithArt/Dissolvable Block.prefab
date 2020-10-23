@@ -94,7 +94,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 3296024696174100633}
   m_BodyType: 2
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843325fc4079c7a439fe40402558a94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propagationTimeInterval: 0.5
+  propagationTime: 0.5
