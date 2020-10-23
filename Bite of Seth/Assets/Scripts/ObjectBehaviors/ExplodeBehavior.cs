@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ExplodeBehavior : MonoBehaviour
 {
-    public float delayTime = 1f;
+    public float delayTime = 3f;
+    public TextMesh timerText;
+    public Transform tt;
+    private float timeCounter = 0f;
 
     private void TryToDestroyAtDirection(Vector2 direction)
     {
@@ -18,8 +22,13 @@ public class ExplodeBehavior : MonoBehaviour
                 breakable.Break();
             }
 
+            ExplodeBehavior ep = g.GetComponent<ExplodeBehavior>();
+            if (ep != null) {
+                ep.Explode();
+            }
+
             //Try to kill player
-            if (LayerMask.NameToLayer("Player") == g.layer) {
+            if (g.layer == LayerMask.NameToLayer("Player")) {
                 // kill player
                 ServiceLocator.Get<GameManager>().KillPlayer();
             } else {
@@ -29,20 +38,36 @@ public class ExplodeBehavior : MonoBehaviour
         }
     }
 
-    public void Explode()
+    public void StartTimerToExplode()
     {
         //Propagate the destruction
-        Invoke("DestroyPropagating", delayTime);
+        timeCounter = delayTime;
+        Invoke("Explode", delayTime);
     }
 
-    private void DestroyPropagating()
+    public void Explode()
     {
         gameObject.SetActive(false);
         TryToDestroyAtDirection(GridNav.up);
-        TryToDestroyAtDirection(GridNav.down);
-        TryToDestroyAtDirection(GridNav.left);
+        TryToDestroyAtDirection(GridNav.up + GridNav.right);
         TryToDestroyAtDirection(GridNav.right);
+        TryToDestroyAtDirection(GridNav.down + GridNav.right);
+        TryToDestroyAtDirection(GridNav.down);
+        TryToDestroyAtDirection(GridNav.down + GridNav.left);
+        TryToDestroyAtDirection(GridNav.left);
+        TryToDestroyAtDirection(GridNav.up + GridNav.left);
         Destroy(gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        tt.eulerAngles = Vector3.zero;
+        if(timeCounter > 0) {
+            timeCounter -= Time.fixedDeltaTime;
+            if (timerText != null) {
+                timerText.text = "" + (int)timeCounter;
+            }
+        }
     }
 
 }

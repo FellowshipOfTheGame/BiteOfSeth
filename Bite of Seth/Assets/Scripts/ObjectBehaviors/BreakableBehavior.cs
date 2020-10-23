@@ -6,7 +6,7 @@ public class BreakableBehavior : MonoBehaviour {
 
     public float propagationTime = 0.5f;
 
-    private void TryBreakAtDirection(Vector2 direction)
+    private void TryToBreakAtDirection(Vector2 direction)
     {
         List<GameObject> objects = GridNav.GetObjectsInPath(transform.position, direction, gameObject);
         foreach (GameObject g in objects) {
@@ -27,10 +27,14 @@ public class BreakableBehavior : MonoBehaviour {
 
     private void BreakPropagation()
     {
-        TryBreakAtDirection(GridNav.up);
-        TryBreakAtDirection(GridNav.down);
-        TryBreakAtDirection(GridNav.left);
-        TryBreakAtDirection(GridNav.right);
+        TryToBreakAtDirection(GridNav.up);
+        TryToBreakAtDirection(GridNav.up + GridNav.right);
+        TryToBreakAtDirection(GridNav.right);
+        TryToBreakAtDirection(GridNav.down + GridNav.right);
+        TryToBreakAtDirection(GridNav.down);
+        TryToBreakAtDirection(GridNav.down + GridNav.left);
+        TryToBreakAtDirection(GridNav.left);
+        TryToBreakAtDirection(GridNav.up + GridNav.left);
     }
 
 }

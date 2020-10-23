@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
                 ExplodeBehavior eb = g.GetComponent<ExplodeBehavior>();
                 if (eb != null)
                 {
-                    eb.Explode();
+                    eb.StartTimerToExplode();
                 }
             }
         }
