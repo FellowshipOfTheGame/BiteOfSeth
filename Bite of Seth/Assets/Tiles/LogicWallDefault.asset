@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6752cf1e82330e74f8a6db6c053da3c1, type: 3}
+  m_Name: LogicWallDefault
+  m_EditorClassIdentifier: 
+  m_Sprite: {fileID: -9205980483787862885, guid: b78621ce931755f41b2d0ae596c6e43d,
+    type: 3}
+  m_Color: {r: 0, g: 0.34810114, b: 1, a: 1}
+  m_Transform:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_InstancedGameObject: {fileID: 0}
+  m_Flags: 1
+  m_ColliderType: 2
+  categories:
+  - title: main
+    art:
+    - {fileID: -2389608093641303321, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: upOpen
+    art:
+    - {fileID: 918274793318615020, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downOpen
+    art:
+    - {fileID: 9055990191807384686, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: leftOpen
+    art:
+    - {fileID: -5855611861024558460, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: rightOpen
+    art:
+    - {fileID: -4805259394762564131, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: hor
+    art:
+    - {fileID: -8922166342787202985, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: vert
+    art:
+    - {fileID: 5129788722007358300, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upLeft
+    art:
+    - {fileID: -113492593319396201, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upRight
+    art:
+    - {fileID: 8944389078582149052, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downLeft
+    art:
+    - {fileID: -2990161598630248016, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downRight
+    art:
+    - {fileID: 4504564902173814553, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: upGnd
+    art:
+    - {fileID: 3622270379842419072, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: downGnd
+    art:
+    - {fileID: -3746973639202915424, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: leftGnd
+    art:
+    - {fileID: 5121035691876610764, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: rightGnd
+    art:
+    - {fileID: -4064334710206878796, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: noOpen
+    art:
+    - {fileID: -9205980483787862885, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: quad1
+    art:
+    - {fileID: -8618693478373028953, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: quad2
+    art:
+    - {fileID: -8878840815932231938, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: quad3
+    art:
+    - {fileID: 6062623787623164368, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: quad4
+    art:
+    - {fileID: 968288587859235134, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: upFlat
+    art:
+    - {fileID: -4110035139881538757, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: downFlat
+    art:
+    - {fileID: -6812203151646129488, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: leftFlat
+    art:
+    - {fileID: -2292667388135242015, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: rightFlat
+    art:
+    - {fileID: 2311686413421185936, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: corner1
+    art:
+    - {fileID: 1883915063115621189, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: corner2
+    art:
+    - {fileID: 2325214133917626670, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: corner3
+    art:
+    - {fileID: 1168365976817468568, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: corner4
+    art:
+    - {fileID: -3203506467305021631, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: diag1
+    art:
+    - {fileID: 7057689489475791183, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: diag2
+    art:
+    - {fileID: -4222052795464900065, guid: 1abded0c076f1ca43880e312219e087d, type: 3}
+  - title: cross
+    art:
+    - {fileID: -2836822536050358539, guid: b78621ce931755f41b2d0ae596c6e43d, type: 3}
+  - title: qVert
+    art:
+    - {fileID: -4395244251270251703, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: dVert
+    art:
+    - {fileID: 1521440781558299740, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: pVert
+    art:
+    - {fileID: -8307703375329534503, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: bVert
+    art:
+    - {fileID: 2963153243333548611, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: qHor
+    art:
+    - {fileID: -599897848034559843, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: dHor
+    art:
+    - {fileID: 2736072510158187361, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: pHor
+    art:
+    - {fileID: 8377730487739595407, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: bHor
+    art:
+    - {fileID: -7948152283069624495, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: upJoint
+    art:
+    - {fileID: -3459755782645746145, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: downJoint
+    art:
+    - {fileID: 1922956112625436790, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: leftJoint
+    art:
+    - {fileID: 3460196673290525635, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: rightJoint
+    art:
+    - {fileID: 4047837695109623109, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: peak1
+    art:
+    - {fileID: -4662558033531757408, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: peak2
+    art:
+    - {fileID: -1873333668928050286, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: peak3
+    art:
+    - {fileID: -5026723584039712914, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  - title: peak4
+    art:
+    - {fileID: -7980948187761323342, guid: dd925cd9e13f8db40928d02f6568cbb0, type: 3}
+  fakeTile: {fileID: 11400000, guid: f671d33bc8514254c9f270dbeae149c5, type: 2}

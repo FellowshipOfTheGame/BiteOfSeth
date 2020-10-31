@@ -8,6 +8,7 @@ public class TilesetObjects: ScriptableObject
 {
     [Header("Basic funcionality tiles")]
     public Tile wallTile = null;
+    public Tile logicWallTile = null;
     public Tile checkpointTile = null;
     public Tile startTile = null;
     public Tile fakeWallTile = null;
