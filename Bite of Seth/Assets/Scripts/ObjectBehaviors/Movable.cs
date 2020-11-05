@@ -14,6 +14,8 @@ public class Movable : MonoBehaviour
     private GameObject[] tc = new GameObject[2];
     private GameManager gameManager = null; // cache do manager
 
+    public bool logicMovement = false;
+
     void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -27,6 +29,7 @@ public class Movable : MonoBehaviour
         {
             return;
         }
+
         lookingDirection = desiredMovement.normalized;
         
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
@@ -53,6 +56,11 @@ public class Movable : MonoBehaviour
             tc[0] = Instantiate(tempCollider, targetPosition, Quaternion.identity) as GameObject;
             tc[0].transform.parent = gameObject.transform;
         }
+    }
+
+    public void ContinueMovement()
+    {
+        StartMovement(lookingDirection, speed);
     }
 
     private void FixedUpdate()

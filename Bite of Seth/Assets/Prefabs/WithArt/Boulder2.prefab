@@ -95,13 +95,14 @@ GameObject:
   - component: {fileID: 6322305650010922665}
   - component: {fileID: 5669592891345117226}
   - component: {fileID: 555671863038974592}
+  - component: {fileID: 3645695270435654014}
   - component: {fileID: 6762275379246097035}
   - component: {fileID: 2823771033660385683}
   - component: {fileID: 769253476146473810}
   - component: {fileID: 720865305516123149}
   m_Layer: 10
   m_Name: Boulder2
-  m_TagString: Untagged
+  m_TagString: Boulder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +255,23 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0}
   tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
     type: 3}
+  logicMovement: 0
+--- !u!114 &3645695270435654014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796497741134100629}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28a83ce928d06d44a068867e1b70c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCollisionMask:
+    serializedVersion: 2
+    m_Bits: 24321
+  fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
 --- !u!114 &6762275379246097035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +294,8 @@ MonoBehaviour:
   fallSpeed: 4
   fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
   animator: {fileID: 8729337591075891703}
+  isRolling: 0
+  rollingDirection: 0
 --- !u!114 &2823771033660385683
 MonoBehaviour:
   m_ObjectHideFlags: 0

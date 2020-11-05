@@ -20,13 +20,14 @@ public class PushableBehavior : MonoBehaviour
 
     public bool Push(Vector2 desiredMovement)
     {
-        if (desiredMovement.normalized == Vector2.up)
+        LogicMovable lm = GetComponent<LogicMovable>();
+        if (lm == null && desiredMovement.normalized == Vector2.up)
         {
             return false;
         }
 
         FallBehavior fb = GetComponent<FallBehavior>();
-        if (fb != null) {
+        if (fb != null && fb.enabled) {
             willNotFall = !fb.ShouldFall();
         } else {
             willNotFall = true;
