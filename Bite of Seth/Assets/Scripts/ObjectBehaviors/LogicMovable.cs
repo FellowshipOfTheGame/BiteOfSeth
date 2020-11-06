@@ -23,16 +23,18 @@ public class LogicMovable : MonoBehaviour
 
     private void OnStopedMoving()
     {
-        List<GameObject> oip = null;       
-        //Get objects in the next fall tile
-        oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), movable.lookingDirection, movementCollisionMask, gameObject);
-        if (oip.Count > 0) {
-            if (fallSound != null) {
-                ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+        if (enabled) {
+            List<GameObject> oip = null;
+            //Get objects in the next fall tile
+            oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), movable.lookingDirection, movementCollisionMask, gameObject);
+            if (oip.Count > 0) {
+                if (fallSound != null) {
+                    ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+                }
+            } else {
+                //Continue moving with same direction and same speed
+                movable.ContinueMovement();
             }
-        } else {
-            //Continue moving with same direction and same speed
-            movable.ContinueMovement();
         }
     }
 

@@ -7,7 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movable movable = null;
-    public float movementSpeed = 5f;
+    public float normalMovementSpeed = 5f;
+    public float logicMovementSpeed = 10f;
+    private float movementSpeed = 5f; 
     public LayerMask movementCollisionMask;
     public CheckpointBehavior currentCheckpoint = null;
     public LayerMask walkOnLayerMask = default;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        movementSpeed = normalMovementSpeed;
         holdableLayerMask = LayerMask.GetMask("Boulder");
         animator = gameObject.GetComponent<Animator>();
         GameManager gm = ServiceLocator.Get<GameManager>();
@@ -168,8 +171,10 @@ public class PlayerController : MonoBehaviour
     {
         if (currentCheckpoint != null)
         {
+            Debug.Log("CHECKPOINT");
             movable.rigidbody.position = currentCheckpoint.transform.position;
             movable.isMoving = false;
+            movable.DestroyTempCol();
             currentCheckpoint.RewindRoom();
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
         }
@@ -189,6 +194,16 @@ public class PlayerController : MonoBehaviour
         dying = true;
         Debug.Log("COMECOU A MORRER");
         Invoke("Revive", dyingTimer);
+    }
+
+    public void ChangeToLogicSpeed()
+    {
+        movementSpeed = logicMovementSpeed;
+    }
+
+    public void ChangeToNormalSpeed()
+    {
+        movementSpeed = normalMovementSpeed;
     }
 
 }

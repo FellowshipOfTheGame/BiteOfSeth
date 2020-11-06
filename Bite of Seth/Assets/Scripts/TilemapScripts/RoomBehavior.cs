@@ -40,6 +40,7 @@ public class RoomBehavior : MonoBehaviour
                         {
                             Vector3 objectPlace = localPlace + tempTilemap.layoutGrid.cellSize / 2;
                             GameObject g = Instantiate(tilesetObjects.objectsToSpawn[i].objectToSpawn, objectPlace, Quaternion.identity, gameObject.transform) as GameObject;
+                            Debug.Log("Spawnou " + g.ToString());
                             if (tile == tilesetObjects.checkpointTile)
                             {
                                 if (isFirstSpawn)
@@ -65,6 +66,7 @@ public class RoomBehavior : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
+            Debug.Log("Desespawnou " + child.ToString());
             if (child.GetComponent<CheckpointBehavior>() != null)
             {
                 // ignore and don't destroy the checkpoint object
@@ -80,6 +82,7 @@ public class RoomBehavior : MonoBehaviour
             }
             else
             {
+                Debug.Log(child.gameObject);
                 Destroy(child.gameObject);
             }
         }

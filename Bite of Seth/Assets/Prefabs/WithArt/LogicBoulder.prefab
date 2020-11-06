@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4731642723696074834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8187474244322116892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28a83ce928d06d44a068867e1b70c7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementCollisionMask:
-    serializedVersion: 2
-    m_Bits: 24321
-  fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
 --- !u!1001 &832233977982500233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,15 +7,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 769253476146473810, guid: 29991682c05c8d14792ec7fc814b3088,
+        type: 3}
+      propertyPath: pushSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1300427556854884332, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.3915094
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1300427556854884332, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.6672877
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1300427556854884332, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
@@ -98,6 +87,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3645695270435654014, guid: 29991682c05c8d14792ec7fc814b3088,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6762275379246097035, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
       propertyPath: m_Enabled
@@ -110,9 +104,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29991682c05c8d14792ec7fc814b3088, type: 3}
---- !u!1 &8187474244322116892 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8796497741134100629, guid: 29991682c05c8d14792ec7fc814b3088,
-    type: 3}
-  m_PrefabInstance: {fileID: 832233977982500233}
-  m_PrefabAsset: {fileID: 0}

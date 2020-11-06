@@ -115,6 +115,10 @@ public class FallBehavior : MonoBehaviour
     // receiver for Movable message
     private void OnStopedMoving()
     {
+        if (!enabled) {
+            return;
+        }
+
         isRolling = false;
         rollingDirection = 0;
 

@@ -78,15 +78,27 @@ public class Movable : MonoBehaviour
 
             if (isMoving == false)
             {
-                if (tc[0] != null) {
-                    //Remove the additional collider
-                    Destroy(tc[0]);
-                }
-                if (tc[1] != null) {
-                    Destroy(tc[1]);
-                }
-                gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
+                StoppedMoving();
             }
         }     
     }
+
+
+    public void StoppedMoving()
+    {
+        DestroyTempCol();
+        gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
+    }
+
+    public void DestroyTempCol()
+    {
+        if (tc[0] != null) {
+            //Remove the additional collider
+            Destroy(tc[0]);
+        }
+        if (tc[1] != null) {
+            Destroy(tc[1]);
+        }
+    }
+
 }

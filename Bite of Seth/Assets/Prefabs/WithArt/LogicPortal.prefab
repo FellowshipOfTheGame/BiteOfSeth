@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5591789525576213048}
   - component: {fileID: 8788936103229650481}
   - component: {fileID: 3928820451778728237}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: LogicPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 9c0c4df499a0f6a41b9cfd6fead15c3a, type: 3}
   m_Color: {r: 0.8799768, g: 1, b: 0.514151, a: 1}
   m_FlipX: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &3928820451778728237
 MonoBehaviour:
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherSidePortalRef: {fileID: 0}
+  logicSide: 0

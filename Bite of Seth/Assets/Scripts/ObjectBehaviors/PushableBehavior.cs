@@ -6,8 +6,9 @@ using UnityEngine;
 public class PushableBehavior : MonoBehaviour
 {
     private Movable movable = null;
-    public float pushSpeed = 2f;
-
+    public float normalPushSpeed = 1f;
+    public float logicPushSpeed = 4f;
+    public float pushSpeed = 1f;
     private bool willNotFall = false;
 
     [SerializeField]
@@ -45,4 +46,15 @@ public class PushableBehavior : MonoBehaviour
         }
         return false;
     }
+
+    public void ChangeToLogicSpeed()
+    {
+        pushSpeed = logicPushSpeed;
+    }
+
+    public void ChangeToNormalSpeed()
+    {
+        pushSpeed = normalPushSpeed;
+    }
+
 }
