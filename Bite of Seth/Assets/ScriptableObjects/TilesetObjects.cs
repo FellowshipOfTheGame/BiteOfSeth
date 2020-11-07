@@ -10,6 +10,7 @@ public class TilesetObjects: ScriptableObject
     public Tile wallTile = null;
     public Tile logicWallTile = null;
     public Tile checkpointTile = null;
+    public Tile logicCheckpointTile = null;
     public Tile startTile = null;
     public Tile fakeWallTile = null;
     [Header("Objects to spawn by tile")]

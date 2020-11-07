@@ -172,6 +172,10 @@ public class PlayerController : MonoBehaviour
         if (currentCheckpoint != null)
         {
             Debug.Log("CHECKPOINT");
+            PortalBehavior pb = currentCheckpoint.GetComponent<PortalBehavior>();
+            if(pb != null) {
+                pb.ChangePlayerToLogic(pb, gameObject);
+            }
             movable.rigidbody.position = currentCheckpoint.transform.position;
             movable.isMoving = false;
             movable.DestroyTempCol();

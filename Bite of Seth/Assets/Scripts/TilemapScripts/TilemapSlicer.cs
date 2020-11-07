@@ -56,6 +56,9 @@ public class TilemapSlicer : MonoBehaviour
         {
             tilesThatDontCountAsWalls.Remove(tilesetObjects.checkpointTile);
         }
+        if (tilesThatDontCountAsWalls.Contains(tilesetObjects.logicCheckpointTile)) {
+            tilesThatDontCountAsWalls.Remove(tilesetObjects.logicCheckpointTile);
+        }
         if (tilesThatDontCountAsWalls.Contains(tilesetObjects.fakeWallTile))
         {
             tilesThatDontCountAsWalls.Remove(tilesetObjects.fakeWallTile);
@@ -154,7 +157,7 @@ public class TilemapSlicer : MonoBehaviour
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             TileBase tile = wallMap.GetTile(localPlace);
-            if (tile == tilesetObjects.checkpointTile || tile == tilesetObjects.fakeWallTile)
+            if (tile == tilesetObjects.checkpointTile || tile == tilesetObjects.logicCheckpointTile || tile == tilesetObjects.fakeWallTile)
             {
                 wallMap.SetTile(localPlace, null);
             }
@@ -166,7 +169,7 @@ public class TilemapSlicer : MonoBehaviour
         foreach (var pos in thisMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            if (thisMap.GetTile(localPlace) == tilesetObjects.checkpointTile)
+            if (thisMap.GetTile(localPlace) == tilesetObjects.checkpointTile || thisMap.GetTile(localPlace) == tilesetObjects.logicCheckpointTile)
             {
                 if (localPlace == checkpoint)
                 {

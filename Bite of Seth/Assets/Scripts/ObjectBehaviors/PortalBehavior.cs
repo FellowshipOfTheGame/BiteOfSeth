@@ -37,7 +37,12 @@ public class PortalBehavior : MonoBehaviour
         mov.rigidbody.position = (Vector3)GridNav.WorldToGridPosition((Vector2)portal.transform.position + direction);
         mov.StoppedMoving();
         mov.isMoving = false;
-        if (portal.GetComponent<PortalBehavior>().logicSide) {
+        ChangePlayerToLogic(portal.GetComponent<PortalBehavior>(), obj);
+    }
+
+    public void ChangePlayerToLogic(PortalBehavior portal, GameObject obj)
+    {
+        if (portal.logicSide) {
             obj.GetComponent<LogicMovable>().enabled = true;
             obj.GetComponent<PlayerController>().ChangeToLogicSpeed();
         } else {
@@ -53,7 +58,12 @@ public class PortalBehavior : MonoBehaviour
         mov.rigidbody.position = (Vector3)GridNav.WorldToGridPosition((Vector2)portal.transform.position + direction);
         mov.StoppedMoving();
         mov.isMoving = false;
-        if (portal.GetComponent<PortalBehavior>().logicSide) {
+        ChangeBoulderToLogic(portal.GetComponent<PortalBehavior>(), obj);
+    }
+
+    public void ChangeBoulderToLogic(PortalBehavior portal, GameObject obj)
+    {
+        if (portal.logicSide) {
             obj.GetComponent<LogicMovable>().enabled = true;
             obj.GetComponent<FallBehavior>().enabled = false;
             obj.GetComponent<RollDelay>().enabled = false;
