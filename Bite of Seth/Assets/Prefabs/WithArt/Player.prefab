@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 6316621077803322811}
   - component: {fileID: 2214201185438390091}
   - component: {fileID: -6292439818515582467}
+  - component: {fileID: 7839865359136001519}
   - component: {fileID: 2488760661818198447}
+  - component: {fileID: 7920124215085554433}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -170,6 +172,23 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0}
   tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
     type: 3}
+  logicMovement: 0
+--- !u!114 &7839865359136001519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488760661818198450}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28a83ce928d06d44a068867e1b70c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCollisionMask:
+    serializedVersion: 2
+    m_Bits: 19969
+  fallSound: {fileID: 0}
 --- !u!114 &2488760661818198447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d917f85c4ec0d4cb086ad17424a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3.5
+  normalMovementSpeed: 5
+  logicMovementSpeed: 10
   movementCollisionMask:
     serializedVersion: 2
     m_Bits: 19969
@@ -194,3 +214,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   dyingTimer: 2
+--- !u!114 &7920124215085554433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488760661818198450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fc9d24aa84f2f4c9fd1c4891d7749b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAutomatic: 0
+  spawnDir: {x: 0, y: 0}

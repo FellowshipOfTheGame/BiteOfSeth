@@ -6,8 +6,9 @@ using UnityEngine;
 public class PushableBehavior : MonoBehaviour
 {
     private Movable movable = null;
-    public float pushSpeed = 2f;
-
+    public float normalPushSpeed = 1f;
+    public float logicPushSpeed = 4f;
+    public float pushSpeed = 1f;
     private bool willNotFall = false;
 
     [SerializeField]
@@ -20,13 +21,14 @@ public class PushableBehavior : MonoBehaviour
 
     public bool Push(Vector2 desiredMovement)
     {
-        if (desiredMovement.normalized == Vector2.up)
+        LogicMovable lm = GetComponent<LogicMovable>();
+        if (lm == null && desiredMovement.normalized == Vector2.up)
         {
             return false;
         }
 
         FallBehavior fb = GetComponent<FallBehavior>();
-        if (fb != null) {
+        if (fb != null && fb.enabled) {
             willNotFall = !fb.ShouldFall();
         } else {
             willNotFall = true;
@@ -44,4 +46,15 @@ public class PushableBehavior : MonoBehaviour
         }
         return false;
     }
+
+    public void ChangeToLogicSpeed()
+    {
+        pushSpeed = logicPushSpeed;
+    }
+
+    public void ChangeToNormalSpeed()
+    {
+        pushSpeed = normalPushSpeed;
+    }
+
 }

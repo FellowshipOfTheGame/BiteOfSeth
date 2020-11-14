@@ -14,6 +14,8 @@ public class Movable : MonoBehaviour
     private GameObject[] tc = new GameObject[2];
     private GameManager gameManager = null; // cache do manager
 
+    public bool logicMovement = false;
+
     void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -27,6 +29,7 @@ public class Movable : MonoBehaviour
         {
             return;
         }
+
         lookingDirection = desiredMovement.normalized;
         
         targetPosition = GridNav.WorldToGridPosition(rigidbody.position) + desiredMovement;
@@ -55,6 +58,11 @@ public class Movable : MonoBehaviour
         }
     }
 
+    public void ContinueMovement()
+    {
+        StartMovement(lookingDirection, speed);
+    }
+
     private void FixedUpdate()
     {
         if (isMoving)
@@ -70,15 +78,27 @@ public class Movable : MonoBehaviour
 
             if (isMoving == false)
             {
-                if (tc[0] != null) {
-                    //Remove the additional collider
-                    Destroy(tc[0]);
-                }
-                if (tc[1] != null) {
-                    Destroy(tc[1]);
-                }
-                gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
+                StoppedMoving();
             }
         }     
     }
+
+
+    public void StoppedMoving()
+    {
+        DestroyTempCol();
+        gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
+    }
+
+    public void DestroyTempCol()
+    {
+        if (tc[0] != null) {
+            //Remove the additional collider
+            Destroy(tc[0]);
+        }
+        if (tc[1] != null) {
+            Destroy(tc[1]);
+        }
+    }
+
 }

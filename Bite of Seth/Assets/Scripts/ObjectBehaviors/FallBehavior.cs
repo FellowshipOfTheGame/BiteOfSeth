@@ -32,7 +32,7 @@ public class FallBehavior : MonoBehaviour
         if (animator != null)
         {
             if (isRolling) {
-                Debug.Log("GIROU");
+                //Debug.Log("GIROU");
             }
             animator.SetBool("Roll", isRolling);
             animator.SetFloat("Direction", rollingDirection);
@@ -115,6 +115,10 @@ public class FallBehavior : MonoBehaviour
     // receiver for Movable message
     private void OnStopedMoving()
     {
+        if (!enabled) {
+            return;
+        }
+
         isRolling = false;
         rollingDirection = 0;
 

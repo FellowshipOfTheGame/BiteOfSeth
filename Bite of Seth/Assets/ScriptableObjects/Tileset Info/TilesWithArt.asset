@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TilesWithArt
   m_EditorClassIdentifier: 
   wallTile: {fileID: 11400000, guid: 813af35ef1a2fca42a3b65e63888edc6, type: 2}
+  logicWallTile: {fileID: 11400000, guid: 28a55f877e61c784588bf9290c510a4c, type: 2}
   checkpointTile: {fileID: 11400000, guid: 6852d0d6bef8ae841bead5439f56037d, type: 2}
+  logicCheckpointTile: {fileID: 11400000, guid: 04db43535eb622e4a877225787362412,
+    type: 2}
   startTile: {fileID: 11400000, guid: 496c3e1d2cc36fe4cb1f5acc78ad6897, type: 2}
   fakeWallTile: {fileID: 11400000, guid: cc62ca13a4f4adf4ba0c0d611a8a0067, type: 2}
   objectsToSpawn:
@@ -40,4 +43,10 @@ MonoBehaviour:
       type: 3}
   - tile: {fileID: 11400000, guid: 4e2dd6130a9b3ee4cbb79035f824b707, type: 2}
     objectToSpawn: {fileID: 5356684780206350432, guid: ccbe334f3cb948247aac48c24a4ddf63,
+      type: 3}
+  - tile: {fileID: 11400000, guid: 10b5b4b5683029642a670c6a56decb84, type: 2}
+    objectToSpawn: {fileID: 8187474244322116892, guid: 54f71849b0f6f3b489b9341cf064cb50,
+      type: 3}
+  - tile: {fileID: 11400000, guid: 04db43535eb622e4a877225787362412, type: 2}
+    objectToSpawn: {fileID: 111597450262106114, guid: 8aebcdbf8dd099c44bde75a2e727be42,
       type: 3}
