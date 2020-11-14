@@ -25,6 +25,7 @@ public class RoomBehavior : MonoBehaviour
         }
 
         Tilemap tempTilemap = Instantiate(backupTilemap, transform);
+        //Debug.Log(backupTilemap);
 
         foreach (var pos in tempTilemap.cellBounds.allPositionsWithin)
         {

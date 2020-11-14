@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("CHECKPOINT");
             PortalBehavior pb = currentCheckpoint.GetComponent<PortalBehavior>();
             if(pb != null) {
-                pb.ChangePlayerToLogic(pb, gameObject);
+                pb.ChangeObjectBehavior(gameObject.GetComponent<TransportableBehavior>());
             }
             movable.rigidbody.position = currentCheckpoint.transform.position;
             movable.isMoving = false;

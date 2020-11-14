@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2823771033660385683}
   - component: {fileID: 769253476146473810}
   - component: {fileID: 720865305516123149}
+  - component: {fileID: 7479014459979784455}
   m_Layer: 10
   m_Name: Boulder2
   m_TagString: Boulder
@@ -321,6 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a982b0c3be82041b35df506b13bb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalPushSpeed: 1
+  logicPushSpeed: 4
   pushSpeed: 1
   collisionMask:
     serializedVersion: 2
@@ -338,3 +341,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &7479014459979784455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8796497741134100629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fc9d24aa84f2f4c9fd1c4891d7749b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAutomatic: 1
+  spawnDir: {x: 1, y: 0}
