@@ -11,22 +11,14 @@ public class TransportableBehavior : MonoBehaviour
 
     private LogicMovable lm;
     private Movable mov;
-    private FallBehavior fb;
-    private RollDelay rd;
-    private PushableBehavior pb;
-    private PlayerController pc;
 
     public Vector2 spawnDir = Vector2.right;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         mov = GetComponent<Movable>();
         lm = GetComponent<LogicMovable>();
-        fb = GetComponent<FallBehavior>();
-        rd = GetComponent<RollDelay>();
-        pb = GetComponent<PushableBehavior>();
-        pc = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -35,7 +27,7 @@ public class TransportableBehavior : MonoBehaviour
         
     }
 
-    public bool CanTransport(GameObject portal)
+    public virtual bool CanTransport(GameObject portal, bool canTransportBoulder)
     {
         //Verificar se pode se teletransportar
         if (mov == null) {
@@ -59,39 +51,16 @@ public class TransportableBehavior : MonoBehaviour
         ChangeBehavior(portal.GetComponent<PortalBehavior>());
     }
 
-    public void ChangeBehavior(PortalBehavior portal)
+    public virtual void ChangeBehavior(PortalBehavior portal)
     {
+        //Generic changes
         if (portal.logicSide) {
             if (lm != null) {
                 lm.enabled = true;
             }
-            if (fb != null) {
-                fb.enabled = false;
-            }
-            if (rd != null) {
-                rd.enabled = false;
-            }
-            if (pb != null) {
-                pb.ChangeToLogicSpeed();
-            }
-            if (pc != null) {
-                pc.ChangeToLogicSpeed();
-            }
         } else {
             if (lm != null) {
                 lm.enabled = false;
-            }
-            if (fb != null) {
-                fb.enabled = true;
-            }
-            if (rd != null) {
-                rd.enabled = true;
-            }
-            if (pb != null) {
-                pb.ChangeToNormalSpeed();
-            }
-            if (pc != null) {
-                pc.ChangeToNormalSpeed();
             }
         }
     }
