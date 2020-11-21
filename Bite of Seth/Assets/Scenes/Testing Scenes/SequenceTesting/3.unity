@@ -344,6 +344,11 @@ PrefabInstance:
       propertyPath: logicSide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3928820451778728237, guid: 7011e5c4b08874049b46dce45165aa26,
+        type: 3}
+      propertyPath: canTransportBoulder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356684780206350432, guid: 7011e5c4b08874049b46dce45165aa26,
         type: 3}
       propertyPath: m_Name
@@ -5940,6 +5945,11 @@ PrefabInstance:
       propertyPath: automaticSpawnDir.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3928820451778728237, guid: 7011e5c4b08874049b46dce45165aa26,
+        type: 3}
+      propertyPath: canTransportBoulder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356684780206350432, guid: 7011e5c4b08874049b46dce45165aa26,
         type: 3}
       propertyPath: m_Name
@@ -6276,7 +6286,7 @@ PrefabInstance:
     - target: {fileID: 1433758739854192702, guid: adbfe473d1d67714fb03fa9b75a153ca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.49996948
+      value: -0.49971008
       objectReference: {fileID: 0}
     - target: {fileID: 2216747408402971986, guid: adbfe473d1d67714fb03fa9b75a153ca,
         type: 3}
