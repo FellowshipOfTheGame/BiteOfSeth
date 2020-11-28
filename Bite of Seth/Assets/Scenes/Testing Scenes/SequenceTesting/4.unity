@@ -2040,6 +2040,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   art: {fileID: 222009755}
   puzzleStatue: 0
+  selectAllStatues: 1
+  nSelections: 1
   canDialogue: 1
   winChime: {fileID: 0}
   defaultDialogue:
@@ -3283,6 +3285,11 @@ PrefabInstance:
       propertyPath: doorTrigger
       value: 
       objectReference: {fileID: 1454012386}
+    - target: {fileID: 6308290128980008806, guid: b6de227bf3ba3a442ac705c0874ecc72,
+        type: 3}
+      propertyPath: selectAllStatues
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6406972506683003824, guid: b6de227bf3ba3a442ac705c0874ecc72,
         type: 3}
       propertyPath: dialogueSequence.Array.size
@@ -3906,6 +3913,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e94bf7386aeeb274487b8c2142d2a2c9,
         type: 2}
+    - target: {fileID: 7478488838469525310, guid: 2f8d6b44f69ca9b4db106560bd130fbb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8d6b44f69ca9b4db106560bd130fbb, type: 3}
 --- !u!4 &1861632178 stripped
