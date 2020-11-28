@@ -15,7 +15,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     // Update is called once per frame
     void Update()
     {
-        art.SetBool("hold", selected);
+        //art.SetBool("hold", selected);
         if (ts.TryToDialogue()) {
             
         }
@@ -29,18 +29,18 @@ public class PuzzleOrderDialogue : DialogueBehavior {
         if (!selected) {
             //TO DO: Ask the player is it really wants to select this statue
             //if(UI.ConfirmStatueSelection())
-            number.gameObject.SetActive(true);
-            number.transform.eulerAngles = Vector3.zero;
-            number.color = color;
             int counter = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().SelectStatue(id);
-            number.sprite = digits[counter - 1];
-
-            selected = true;
+            if(counter > 0) {
+                number.gameObject.SetActive(true);
+                number.transform.eulerAngles = Vector3.zero;
+                number.color = color;
+                number.sprite = digits[counter - 1];
+                selected = true;
+            }
         } else {
             //If the statue is already selected, then unselect it
             number.gameObject.SetActive(false);
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().UnselectStatue(id);
-
             selected = false;
         }
     }
