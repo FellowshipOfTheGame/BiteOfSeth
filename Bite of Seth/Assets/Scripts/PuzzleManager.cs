@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleManager : MonoBehaviour
 {
     private GameObject[] puzzleStatuesReferences;
+    private GameObject finalpuzzleStatueRef;
 
     //Quantity of statues in the puzzle
     private int statuesQuantity;
@@ -20,14 +21,27 @@ public class PuzzleManager : MonoBehaviour
     private string[] names = new string[maxIdsQuantity];
 
     private int nSelected = 0;
- 
+
+    private int totalStatuesQuantity;
+
     // Start is called before the first frame update
     public void Start()
     {
         //Get all puzzle statues references in scene
         puzzleStatuesReferences = GameObject.FindGameObjectsWithTag("PuzzleStatue");
-        statuesQuantity = puzzleStatuesReferences.Length;
+        totalStatuesQuantity = puzzleStatuesReferences.Length;
+
+        finalpuzzleStatueRef = GameObject.FindGameObjectWithTag("FinalStatue");
+        PuzzleFinalDialogue pfod = finalpuzzleStatueRef.GetComponent<PuzzleFinalDialogue>();       
+
+        if (pfod.IsAllStatuesSelectable()) {
+            statuesQuantity = totalStatuesQuantity;
+        } else {
+            statuesQuantity = pfod.GetPuzzleTotalSelectionsQuantity();
+        }
+
         ResetPuzzle();
+
         tipStatuesQuantity = 0;
     }
 
@@ -45,13 +59,16 @@ public class PuzzleManager : MonoBehaviour
                 i++;
             }
         }
+
         //Getting a random sequence of the statues in statuesOrder array:
         nSelected = 0;
-        int count = statuesQuantity, random;        
+        //int count = statuesQuantity;
+        int count = totalStatuesQuantity;
+        int random;
 
         while (count > 0) {
             random = Random.Range(0, count);
-            statuesCorrectOrder[statuesQuantity - count] = statues[random];
+            statuesCorrectOrder[totalStatuesQuantity - count] = statues[random];
             statues.RemoveAt(random);
             count--;
         }
@@ -66,10 +83,20 @@ public class PuzzleManager : MonoBehaviour
 
     public int SelectStatue(Id id)
     {
-        statuesSelectedOrder[nSelected++] = id;
+
+        if (nSelected >= statuesQuantity) {
+            Id aux = statuesSelectedOrder[statuesQuantity - 1];
+            for (int i = statuesQuantity - 1; i >= 1; i--) {
+                statuesSelectedOrder[i] = statuesSelectedOrder[i - 1];
+            }
+            statuesSelectedOrder[0] = id;
+            puzzleStatuesReferences[(int)aux].GetComponent<PuzzleOrderDialogue>().ResetSelection();
+        } else {
+            statuesSelectedOrder[nSelected++] = id;
+        }
         Debug.Log("Selection number "+nSelected+": statue "+(int)id+" named "+names[(int)id] +"!");
-        /*if(nSelected == statuesQuantity)
-        {
+
+        /*if(nSelected == statuesQuantity){
             Debug.Log(CheckFinalAnswer());
         }*/
 
@@ -118,9 +145,9 @@ public class PuzzleManager : MonoBehaviour
 
     public string[] GetStatuesNamesInOrder()
     {
-        string[] namesInOrder = new string[statuesQuantity];
-        if(statuesQuantity > 0) {
-            for (int i=0; i<statuesQuantity; i++) {
+        string[] namesInOrder = new string[totalStatuesQuantity];
+        if(totalStatuesQuantity > 0) {
+            for (int i=0; i< totalStatuesQuantity; i++) {
                 namesInOrder[i] = names[(int)statuesCorrectOrder[i]];
             }
         }

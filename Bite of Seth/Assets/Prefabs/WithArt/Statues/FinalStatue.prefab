@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 6308290128980008806}
   m_Layer: 11
   m_Name: FinalStatue
-  m_TagString: Untagged
+  m_TagString: FinalStatue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,6 +336,7 @@ MonoBehaviour:
   art: {fileID: 4081044149205466103}
   puzzleStatue: 0
   canDialogue: 1
+  winChime: {fileID: 0}
   defaultDialogue: []
   failDialogue: []
   successDialogue: []

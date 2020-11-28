@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PuzzleFinalDialogue : DialogueBehavior {
 
+    public bool selectAllStatues = true;
+    public int nSelections = 1;
+
     public bool canDialogue = true;
     private bool firstTalk = true;
     private bool fail = false;
@@ -17,6 +20,16 @@ public class PuzzleFinalDialogue : DialogueBehavior {
     public List<DialogueBase> successDialogue;
 
     public DoorTrigger doorTrigger = null;
+
+    public bool IsAllStatuesSelectable()
+    {
+        return selectAllStatues;
+    }
+
+    public int GetPuzzleTotalSelectionsQuantity()
+    {
+        return nSelections;
+    }
 
     public override void OnDialog(){
         base.OnDialog();
