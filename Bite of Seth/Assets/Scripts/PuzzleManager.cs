@@ -84,10 +84,11 @@ public class PuzzleManager : MonoBehaviour
     public int SelectStatue(Id id)
     {
 
-        if (nSelected >= statuesQuantity) {
+        if (nSelected >= statuesQuantity-1) {
             Id aux = statuesSelectedOrder[statuesQuantity - 1];
             for (int i = statuesQuantity - 1; i >= 1; i--) {
                 statuesSelectedOrder[i] = statuesSelectedOrder[i - 1];
+                puzzleStatuesReferences[(int)statuesSelectedOrder[i]].GetComponent<PuzzleOrderDialogue>().UpdateCounter(i);
             }
             statuesSelectedOrder[0] = id;
             puzzleStatuesReferences[(int)aux].GetComponent<PuzzleOrderDialogue>().ResetSelection();

@@ -19,6 +19,7 @@ public class PortalBehavior : MonoBehaviour
     private GameObject boulderRef;
 
     public bool canTransportBoulder = true;
+    public bool canTransportPlayer = true;
     public Vector2 automaticSpawnDir = Vector2.right;
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class PortalBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder)) {
+        if(otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
             otpTranspBeh.TransportToPortal(otherSidePortalRef);
             /*if (canTransportBoulder) {
                 canTransportBoulder = false;

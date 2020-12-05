@@ -27,7 +27,7 @@ public class TransportableBehavior : MonoBehaviour
         
     }
 
-    public virtual bool CanTransport(GameObject portal, bool canTransportBoulder)
+    public virtual bool CanTransport(GameObject portal, bool canTransportBoulder, bool canTransportPlayer)
     {
         //Verificar se pode se teletransportar
         if (mov == null) {
