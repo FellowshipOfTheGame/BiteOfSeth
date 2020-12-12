@@ -13,6 +13,11 @@ public class PlayerTransportableBehavior : TransportableBehavior
         pc = GetComponent<PlayerController>();
     }
 
+    public override bool CanTransport(GameObject portal, bool canTransportBoulder, bool canTransportPlayer)
+    {
+        return (base.CanTransport(portal, canTransportBoulder, canTransportPlayer) && canTransportPlayer);
+    }
+
     public override void ChangeBehavior(PortalBehavior portal)
     {
         base.ChangeBehavior(portal);

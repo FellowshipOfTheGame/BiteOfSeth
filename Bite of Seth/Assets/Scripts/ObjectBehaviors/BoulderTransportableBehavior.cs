@@ -16,9 +16,9 @@ public class BoulderTransportableBehavior : TransportableBehavior
         pb = GetComponent<PushableBehavior>();
     }
 
-    public override bool CanTransport(GameObject portal, bool canTransportBoulder)
+    public override bool CanTransport(GameObject portal, bool canTransportBoulder, bool canTransportPlayer)
     {
-        return (base.CanTransport(portal, canTransportBoulder) && canTransportBoulder);
+        return (base.CanTransport(portal, canTransportBoulder, canTransportPlayer) && canTransportBoulder);
     }
 
     public override void ChangeBehavior(PortalBehavior portal)
