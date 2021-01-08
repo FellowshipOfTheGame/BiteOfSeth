@@ -8,17 +8,23 @@ public class LogicMovable : MonoBehaviour
     private Movable movable = null;
     public LayerMask movementCollisionMask;
     public AudioObject fallSound = null;
+    private Animator animator = null;
+    private PlayerController pc = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
         movable = gameObject.GetComponent<Movable>();
+        pc = gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (pc) {
+            animator.SetBool("Logic", this.enabled);
+        }
     }
 
     private void OnStopedMoving()

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool dying = false;
     public LayerMask holdableLayerMask = default;
     public float dyingTimer = 3f;
+    private LogicMovable lm = null;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        lm = GetComponent<LogicMovable>();
         movementSpeed = normalMovementSpeed;
         holdableLayerMask = LayerMask.GetMask("Boulder");
         animator = gameObject.GetComponent<Animator>();
@@ -62,8 +64,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 animationDiretion = movable.lookingDirection;
-        // check if grounded
-        if (!pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
+        // check if grounded AND not logic moving
+        if (!lm.enabled && !pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
         {
             animationDiretion = Vector2.up;
         }

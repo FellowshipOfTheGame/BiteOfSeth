@@ -19,7 +19,8 @@ public class SpikeTrapBehavior : MonoBehaviour
     {
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
-        sr.color = Color.gray;
+        //sr.color = Color.gray;
+        sr.enabled = false;
     }
 
     // Update is called once per frame
@@ -40,7 +41,8 @@ public class SpikeTrapBehavior : MonoBehaviour
     {
         activated = true;
         bc.enabled = true;
-        sr.color = Color.red;
+        //sr.color = Color.red;
+        sr.enabled = true;
         ResetCounter();
     }
 
@@ -48,7 +50,8 @@ public class SpikeTrapBehavior : MonoBehaviour
     {
         activated = false;
         bc.enabled = false;
-        sr.color = Color.gray;
+        //sr.color = Color.gray;
+        sr.enabled = false;
         ResetCounter();
     }
 
@@ -65,7 +68,8 @@ public class SpikeTrapBehavior : MonoBehaviour
             //Se for qualquer outro objeto que se move(pedra, por exemplo)
             //então desativa o colisor
             bc.enabled = false;
-            sr.color = Color.gray;
+            //sr.color = Color.gray;
+            sr.enabled = false;
         }
     }
 
