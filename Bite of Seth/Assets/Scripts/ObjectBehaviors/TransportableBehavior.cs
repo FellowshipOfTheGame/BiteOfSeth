@@ -44,7 +44,7 @@ public class TransportableBehavior : MonoBehaviour
 
     public void TransportToPortal(GameObject portal)
     {
-        lm.GetComponent<LogicMovable>().enabled = false;
+        //lm.GetComponent<LogicMovable>().enabled = false;
         mov.rigidbody.position = (Vector3)GridNav.WorldToGridPosition((Vector2)portal.transform.position + spawnDir);
         mov.StoppedMoving();
         mov.isMoving = false;
@@ -56,11 +56,13 @@ public class TransportableBehavior : MonoBehaviour
         //Generic changes
         if (portal.logicSide) {
             if (lm != null) {
-                lm.enabled = true;
+                //lm.enabled = true;
+                lm.EnableLogicMovement();
             }
         } else {
             if (lm != null) {
-                lm.enabled = false;
+                //lm.enabled = false;
+                lm.DisableLogicMovement();
             }
         }
     }
