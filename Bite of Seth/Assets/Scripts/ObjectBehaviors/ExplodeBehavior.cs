@@ -9,6 +9,7 @@ public class ExplodeBehavior : MonoBehaviour
     public TextMesh timerText;
     public Transform tt;
     private float timeCounter = 0f;
+    public Animator anim;
 
     private void TryToDestroyAtDirection(Vector2 direction)
     {
@@ -43,6 +44,7 @@ public class ExplodeBehavior : MonoBehaviour
         //Propagate the destruction
         timeCounter = delayTime;
         Invoke("Explode", delayTime);
+        anim.SetBool("Explosion", true);
     }
 
     public void Explode()
