@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Movable))]
 public class PlayerController : MonoBehaviour
 {
-    private Movable movable = null;
+   
     public float normalMovementSpeed = 5f;
     public float logicMovementSpeed = 10f;
     private float movementSpeed = 5f; 
@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask holdableLayerMask = default;
     public float dyingTimer = 3f;
     private LogicMovable lm = null;
+
+    [HideInInspector]
+    public Movable movable = null;
 
     private void Awake()
     {

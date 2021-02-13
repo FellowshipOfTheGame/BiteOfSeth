@@ -35,7 +35,6 @@ public class LogicMovable : MonoBehaviour
     {
         if (pc) {
             animator.SetBool("Logic", true);
-            Debug.Log("OOOOOI");
         }
         this.enabled = true;
     }
@@ -44,6 +43,7 @@ public class LogicMovable : MonoBehaviour
     {
         if (pc) {
             animator.SetBool("Logic", false);
+            pc.movable.DestroyTempCol();
         }
         this.enabled = false;
     }
