@@ -61,6 +61,12 @@ public class RoomBehavior : MonoBehaviour
             }
         }
         DestroyImmediate(tempTilemap.gameObject);
+
+        //REMOVER SALAS VAZIAS
+        if ((transform.childCount == 2) && (transform.GetChild(1).gameObject.name == "Checkpoint(Clone)")) {
+            gameObject.SetActive(false);
+        }
+
     }
 
     public void DespawnRoom()

@@ -30,8 +30,7 @@ public class AudioManager : GameService
 
     public AudioSource PlayAudio(AudioObject audio)
     {
-        if (audio == null)
-        {
+        if (audio == null) {
             Debug.LogError("Can't play null audioObject");
             return null;
         }
@@ -39,10 +38,12 @@ public class AudioManager : GameService
         AudioSource audSrc = ServiceLocator.AddComponentToHelperObject<AudioSource>();
         sources.Add(audSrc);
         audSrc.clip = audio.clip;
-        audSrc.volume = audio.relativeVolume*masterVolume;
+        audSrc.volume = audio.relativeVolume * masterVolume;
         audSrc.pitch = audio.pitch;
         audSrc.loop = audio.loop;
+
         audSrc.Play();
         return audSrc;
     }
+    
 }
