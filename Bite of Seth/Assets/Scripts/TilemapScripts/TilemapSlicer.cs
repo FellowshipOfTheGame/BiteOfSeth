@@ -166,7 +166,7 @@ public class TilemapSlicer : MonoBehaviour
                 wallMap.SetTile(localPlace, null);
             }
         }
-
+        
     }
     void SetCheckpoit(Tilemap thisMap, List<Tilemap> mapsToSetCheckpoint, Vector3Int checkpoint)
     {

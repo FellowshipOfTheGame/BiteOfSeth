@@ -7,9 +7,11 @@ public class SpikeTrapBehavior : MonoBehaviour
 
     public float activatedTimer = 3f;
     public float deactivatedTimer = 3f;
+    public float delayTimer = 0f;
 
     private float timeCounter = 0f;
     private bool activated = false;
+    private bool firstTime = true;
     
     private BoxCollider2D bc;
     public SpriteRenderer sr;
@@ -21,6 +23,8 @@ public class SpikeTrapBehavior : MonoBehaviour
     {
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
+        activated = false;
+        firstTime = true;
         //sr.color = Color.gray;
         //sr.enabled = false;
     }
@@ -31,11 +35,21 @@ public class SpikeTrapBehavior : MonoBehaviour
         timeCounter += Time.fixedDeltaTime;
 
         //Control the trap activation and deactivation timers 
-        if (!activated && timeCounter >= deactivatedTimer) {
-            ActivateTrap();
-        } else if(activated && timeCounter >= activatedTimer) {
-            DeactivateTrap();
-        }
+        if (!firstTime) {
+            if (!activated && timeCounter >= deactivatedTimer) {
+                ActivateTrap();
+            } else if (activated && timeCounter >= activatedTimer) {
+                DeactivateTrap();
+            }
+        } else {
+            if (!activated && timeCounter >= (delayTimer)) {
+                ActivateTrap();
+                firstTime = false;
+            } else if (activated && timeCounter >= (delayTimer)) {
+                DeactivateTrap();
+                firstTime = false;
+            }
+        } 
         
     }
 

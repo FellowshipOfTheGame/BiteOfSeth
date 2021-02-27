@@ -77,8 +77,10 @@ public class DialogueManager : MonoBehaviour
             return false;
         }
 
+        //stop dub sound
         if (dubAudSrc != null)
             dubAudSrc.Stop();
+
         Info = dialogueInfo.Dequeue();
 
         string text = Info.myText;
@@ -104,6 +106,8 @@ public class DialogueManager : MonoBehaviour
         dialogueName.text = Info.character.characterName;
         dialogueText.text = text;
         dialoguePortrait.sprite = Info.character.portrait;
+
+        //play dub sound
         currentVoicedLine = Info.voicedLine;
         if (currentVoicedLine != null)
             dubAudSrc = ServiceLocator.Get<AudioManager>().PlayAudio(currentVoicedLine);
@@ -154,6 +158,11 @@ public class DialogueManager : MonoBehaviour
             dialogueBox.SetActive(false);
             GameManager gm = ServiceLocator.Get<GameManager>();
             gm.lockMovement--;
+
+            //stop dub sound
+            if (dubAudSrc != null)
+                dubAudSrc.Stop();
+
             //Debug.Log($"End Dialogue lock-- ({gm.lockMovement})");
         }
     }

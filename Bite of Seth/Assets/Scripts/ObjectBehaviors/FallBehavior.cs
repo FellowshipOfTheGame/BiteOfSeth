@@ -25,6 +25,8 @@ public class FallBehavior : MonoBehaviour
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
+
+        GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume * ServiceLocator.Get<AudioManager>().masterVolume;
     }
 
     private void Update()
@@ -134,7 +136,8 @@ public class FallBehavior : MonoBehaviour
                 dotb.TryToKill(oip);
             }
             if (fallSound != null && movable.lookingDirection == Vector2.down) {
-                ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+                //ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+                GetComponent<AudioSource>().Play();
             }
         }
     }

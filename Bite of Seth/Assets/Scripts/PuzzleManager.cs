@@ -32,7 +32,12 @@ public class PuzzleManager : MonoBehaviour
         totalStatuesQuantity = puzzleStatuesReferences.Length;
 
         finalpuzzleStatueRef = GameObject.FindGameObjectWithTag("FinalStatue");
-        PuzzleFinalDialogue pfod = finalpuzzleStatueRef.GetComponent<PuzzleFinalDialogue>();       
+
+        PuzzleFinalDialogue pfod = null;
+
+        if (finalpuzzleStatueRef) {
+            pfod = finalpuzzleStatueRef.GetComponent<PuzzleFinalDialogue>();
+        }     
 
         if (pfod && pfod.IsAllStatuesSelectable()) {
             statuesQuantity = totalStatuesQuantity;

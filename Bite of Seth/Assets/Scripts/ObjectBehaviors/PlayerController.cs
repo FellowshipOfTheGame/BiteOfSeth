@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Movable))]
 public class PlayerController : MonoBehaviour
 {
-    private Movable movable = null;
+   
     public float normalMovementSpeed = 5f;
     public float logicMovementSpeed = 10f;
     private float movementSpeed = 5f; 
@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask holdableLayerMask = default;
     public float dyingTimer = 3f;
     private LogicMovable lm = null;
+
+    [HideInInspector]
+    public Movable movable = null;
 
     private void Awake()
     {
@@ -46,11 +49,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !dying)
         {
             UseCheckpoint();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !dying)
         {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
             foreach (GameObject g in objects)
