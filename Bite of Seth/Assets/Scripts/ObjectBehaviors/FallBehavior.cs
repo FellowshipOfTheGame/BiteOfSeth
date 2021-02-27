@@ -135,6 +135,7 @@ public class FallBehavior : MonoBehaviour
             }
             if (fallSound != null && movable.lookingDirection == Vector2.down) {
                 ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
+                //GetComponent<AudioSource>().Play();
             }
         }
     }
