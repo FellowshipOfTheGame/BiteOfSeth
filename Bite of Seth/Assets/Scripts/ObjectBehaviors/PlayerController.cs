@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Movable movable = null;
 
+    public Transform detectIntPos;
+
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             UseCheckpoint();
         }
+
         if (Input.GetKeyDown(KeyCode.Space) && !dying)
         {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
@@ -82,6 +85,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Pushing", pushing);
         animator.SetBool("Holding", holding);
         animator.SetBool("Dying", dying);
+        
+        detectIntPos.position = (Vector2)transform.position + movable.lookingDirection;
+
     }
 
     private void FixedUpdate()
@@ -176,7 +182,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currentCheckpoint != null)
         {
-            Debug.Log("CHECKPOINT");
+            //Debug.Log("CHECKPOINT");
             PortalBehavior pb = currentCheckpoint.GetComponent<PortalBehavior>();
             if(pb != null) {
                 pb.ChangeObjectBehavior(gameObject.GetComponent<TransportableBehavior>());
@@ -191,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
     private void Revive()
     {
-        Debug.Log("ACABOU DE MORRER");
+        //Debug.Log("ACABOU DE MORRER");
         movable.enabled = true;
         UseCheckpoint();
         dying = false;
@@ -201,7 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         movable.enabled = false;
         dying = true;
-        Debug.Log("COMECOU A MORRER");
+        //Debug.Log("COMECOU A MORRER");
         Invoke("Revive", dyingTimer);
     }
 

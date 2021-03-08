@@ -21,12 +21,17 @@ public class FallBehavior : MonoBehaviour
     [HideInInspector]
     public float rollingDirection = 0f;
 
+    private AudioSource audSrc;
+
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
         rd = gameObject.GetComponent<RollDelay>();
 
-        GetComponent<AudioSource>().volume = GetComponent<AudioSource>().volume * ServiceLocator.Get<AudioManager>().masterVolume;
+        audSrc = GetComponent<AudioSource>();
+        if (audSrc) {
+            audSrc.volume = audSrc.volume * ServiceLocator.Get<AudioManager>().masterVolume;
+        }
     }
 
     private void Update()
@@ -115,8 +120,9 @@ public class FallBehavior : MonoBehaviour
     }
     
     // receiver for Movable message
-    private void OnStopedMoving()
+    public void OnStopedMoving()
     {
+
         if (!enabled) {
             return;
         }
@@ -131,15 +137,19 @@ public class FallBehavior : MonoBehaviour
 
         //Get objects in the next fall tile
         oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
-        if (oip.Count > 0) {
+        if (oip != null && oip.Count > 0) {
             if (dotb != null) {
                 dotb.TryToKill(oip);
             }
             if (fallSound != null && movable.lookingDirection == Vector2.down) {
                 //ServiceLocator.Get<AudioManager>().PlayAudio(fallSound);
-                GetComponent<AudioSource>().Play();
+                if (audSrc) {
+                    audSrc.Play();
+                }
+                //GetComponent<AudioSource>().Play();
             }
         }
+
     }
 
 }

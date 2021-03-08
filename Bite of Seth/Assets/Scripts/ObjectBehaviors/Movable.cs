@@ -14,12 +14,18 @@ public class Movable : MonoBehaviour
     private GameObject[] tc = new GameObject[2];
     private GameManager gameManager = null; // cache do manager
 
+    private FallBehavior fb;
+    private LogicMovable lm;
+
     public bool logicMovement = false;
 
     void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         gameManager = ServiceLocator.Get<GameManager>();
+
+        fb = GetComponent<FallBehavior>();
+        lm = GetComponent<LogicMovable>();
     }
 
     public void StartMovement(Vector2 desiredMovement, float _speed)
@@ -88,6 +94,8 @@ public class Movable : MonoBehaviour
     {
         DestroyTempCol();
         gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
+        //if(lm && lm.isActiveAndEnabled) lm.OnStopedMoving();
+        //if(fb && fb.isActiveAndEnabled) fb.OnStopedMoving();
     }
 
     public void DestroyTempCol()

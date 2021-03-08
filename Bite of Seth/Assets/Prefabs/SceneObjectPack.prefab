@@ -437,6 +437,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.00012207031
       objectReference: {fileID: 0}
+    - target: {fileID: 2527615486926753450, guid: b68c128ff1d183c4bb472abe36fae6ec,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.4666901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527615487599739170, guid: b68c128ff1d183c4bb472abe36fae6ec,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.5750885
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b68c128ff1d183c4bb472abe36fae6ec, type: 3}
 --- !u!224 &3078960601960217979 stripped
@@ -907,6 +917,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3498539511993444384}
     m_Modifications:
+    - target: {fileID: 1696897470834801968, guid: b634745d4cc8ea84696b2fe82d6fbd79,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5021211944108011224, guid: b634745d4cc8ea84696b2fe82d6fbd79,
         type: 3}
       propertyPath: m_AnchoredPosition.x

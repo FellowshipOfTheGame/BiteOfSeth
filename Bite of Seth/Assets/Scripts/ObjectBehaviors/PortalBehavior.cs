@@ -51,12 +51,24 @@ public class PortalBehavior : MonoBehaviour
             otpInRange = true;
             otpRef = other.gameObject;
             otpTranspBeh = tb;
+            if (canTransportPlayer) {
+                PlayerController pc = otpRef.GetComponent<PlayerController>();
+                if (pc) {
+                    DialogueManager.instance.toggleInteractWithPortalAlert(true);
+                }
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if(otpRef == other.gameObject) {
+            if (canTransportPlayer) {
+                PlayerController pc = otpRef.GetComponent<PlayerController>();
+                if (pc) {
+                    DialogueManager.instance.toggleInteractWithPortalAlert(false);
+                }
+            }
             otpInRange = false;
             otpRef = null;
             otpTranspBeh = null;

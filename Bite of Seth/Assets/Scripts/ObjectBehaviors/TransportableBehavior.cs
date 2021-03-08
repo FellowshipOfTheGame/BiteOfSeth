@@ -45,10 +45,28 @@ public class TransportableBehavior : MonoBehaviour
     public void TransportToPortal(GameObject portal)
     {
         //lm.GetComponent<LogicMovable>().enabled = false;
-        mov.rigidbody.position = (Vector3)GridNav.WorldToGridPosition((Vector2)portal.transform.position + spawnDir);
-        mov.StoppedMoving();
+
+
+        //mov.StoppedMoving();
+        //Debug.Log("PARA");
         mov.isMoving = false;
+
+        //Debug.Log("MUDA");
         ChangeBehavior(portal.GetComponent<PortalBehavior>());
+
+        //Debug.Log("TELETRANSPORTA");
+        mov.rigidbody.position = (Vector3)GridNav.WorldToGridPosition((Vector2)portal.transform.position + spawnDir);
+
+        //Debug.Log("COMPORTAMENTO PÓS-TELETRANSPORTE");
+        if (portal.GetComponent<PortalBehavior>().logicSide) {
+            PushableBehavior pbh = GetComponent<PushableBehavior>();
+            if (pbh) {
+                pbh.Push(spawnDir);
+            }
+        } else {
+            mov.StoppedMoving();
+        }
+
     }
 
     public virtual void ChangeBehavior(PortalBehavior portal)

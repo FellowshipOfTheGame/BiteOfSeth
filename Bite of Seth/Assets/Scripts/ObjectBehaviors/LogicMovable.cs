@@ -48,11 +48,11 @@ public class LogicMovable : MonoBehaviour
         this.enabled = false;
     }
 
-    private void OnStopedMoving()
+    public void OnStopedMoving()
     {
         if (enabled) {
             List<GameObject> oip = null;
-            //Get objects in the next fall tile
+            //Get objects in the next looking direction tile
             oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), movable.lookingDirection, movementCollisionMask, gameObject);
             if (oip.Count > 0) {
                 if (fallSound != null) {

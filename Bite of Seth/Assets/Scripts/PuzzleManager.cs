@@ -37,13 +37,17 @@ public class PuzzleManager : MonoBehaviour
 
         if (finalpuzzleStatueRef) {
             pfod = finalpuzzleStatueRef.GetComponent<PuzzleFinalDialogue>();
-        }     
-
-        if (pfod && pfod.IsAllStatuesSelectable()) {
-            statuesQuantity = totalStatuesQuantity;
-        } else {
-            statuesQuantity = pfod.GetPuzzleTotalSelectionsQuantity();
         }
+
+        if (pfod) {
+            if (pfod.IsAllStatuesSelectable()) {
+                statuesQuantity = totalStatuesQuantity;
+            } else {
+                statuesQuantity = pfod.GetPuzzleTotalSelectionsQuantity();
+            }
+        } else {
+            statuesQuantity = 0;
+        } 
 
         ResetPuzzle();
 
