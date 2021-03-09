@@ -22,7 +22,7 @@ public class PushableBehavior : MonoBehaviour
     public bool Push(Vector2 desiredMovement)
     {
         LogicMovable lm = GetComponent<LogicMovable>();
-        if (lm == null && desiredMovement.normalized == Vector2.up)
+        if ((lm == null || !lm.enabled) && desiredMovement.normalized == Vector2.up)
         {
             return false;
         }
