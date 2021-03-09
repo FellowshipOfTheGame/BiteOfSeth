@@ -173,6 +173,20 @@ public class DialogueManager : MonoBehaviour
         return status;
     }
 
+    public bool toggleInteractWithDynamiteAlert(bool status)
+    {
+        interactText.text = "Press SPACE BAR to explode the dynamite";
+        interactBox.SetActive(status);
+        return status;
+    }
+
+    public bool toggleInteractWithPortalAlert(bool status)
+    {
+        interactText.text = "Press T to enter the portal";
+        interactBox.SetActive(status);
+        return status;
+    }
+
     public void SetInteractName(string name)
     {
         interactName = name;

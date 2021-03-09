@@ -8,6 +8,8 @@ public class BoulderTransportableBehavior : TransportableBehavior
     private RollDelay rd;
     private PushableBehavior pb;
 
+    private PortalBehavior _portal;
+
     public override void Start()
     {
         base.Start();
@@ -26,12 +28,16 @@ public class BoulderTransportableBehavior : TransportableBehavior
         base.ChangeBehavior(portal);
         //Specific changes to player
         if (portal.logicSide) {
+            fb.isRolling = false;
+            fb.rollingDirection = 0f;
+            fb.animator.SetBool("Roll", false);
+            fb.animator.SetFloat("Direction", 0.0f);
             fb.enabled = false;
             rd.enabled = false;
             pb.ChangeToLogicSpeed();
         } else {
-            fb.enabled = true;
             rd.enabled = true;
+            fb.enabled = true;
             pb.ChangeToNormalSpeed();
         }
     }
