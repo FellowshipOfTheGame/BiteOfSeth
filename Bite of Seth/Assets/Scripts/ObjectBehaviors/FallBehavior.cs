@@ -137,6 +137,7 @@ public class FallBehavior : MonoBehaviour
 
         //Get objects in the next fall tile
         oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), GridNav.down, fallingMask, gameObject);
+        
         if (oip != null && oip.Count > 0) {
             if (dotb != null) {
                 dotb.TryToKill(oip);

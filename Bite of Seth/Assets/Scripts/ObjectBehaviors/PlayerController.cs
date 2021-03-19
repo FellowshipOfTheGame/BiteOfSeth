@@ -211,6 +211,11 @@ public class PlayerController : MonoBehaviour
         Invoke("Revive", dyingTimer);
     }
 
+    public bool IsDying()
+    {
+        return dying;
+    }
+
     public void ChangeToLogicSpeed()
     {
         movementSpeed = logicMovementSpeed;
