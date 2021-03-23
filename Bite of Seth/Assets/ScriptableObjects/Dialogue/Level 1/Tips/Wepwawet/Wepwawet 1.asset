@@ -18,8 +18,15 @@ MonoBehaviour:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 53a99ad32d901324784518d6452a15cf, type: 2}
     myText: "Hi. I\u2019m Wepwawet, but you can call me Wep. No one can say my full
-      name anyway. How\r can I help you?"
+      name anyway. How can I help you?"
+    voicedLine: {fileID: 0}
   - needPuzzleInfo: 1
     character: {fileID: 11400000, guid: 53a99ad32d901324784518d6452a15cf, type: 2}
-    myText: "Hmm... Last time I saw Khepri, he was flying around <ID 5>, but I remember
-      seeing him on\r <ID 3> some time earlier."
+    myText: "Hmm\u2026 Last time I saw Khepri, he was flying around <ID 5>, but I
+      remember seeing him at\r <ID 3> some time earlier this evening..."
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 53a99ad32d901324784518d6452a15cf, type: 2}
+    myText: "That\u2019s all I know about him. I always focus my attention on the
+      course of the boat."
+    voicedLine: {fileID: 0}

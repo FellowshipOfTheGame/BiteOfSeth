@@ -21,7 +21,8 @@ public class HUDController : MonoBehaviour
         scoreText.text = $"{score}";
 
         pm = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager();
-        totalStatues = pm.GetStatuesQuantity().ToString();
+        //totalStatues = pm.GetStatuesQuantity().ToString();
+        totalStatues = pm.GetTotalStatuesQuantity().ToString(); 
         //string currentStatues = pm.GetSelectedStatuesQuantity().ToString();
         string currentStatues = pm.GetTipStatuesQuantity().ToString();
         statuesText.text = currentStatues + "/" + totalStatues;

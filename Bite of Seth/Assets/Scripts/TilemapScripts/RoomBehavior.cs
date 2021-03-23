@@ -89,7 +89,7 @@ public class RoomBehavior : MonoBehaviour
             }
             else
             {
-                Debug.Log(child.gameObject);
+                //Debug.Log(child.gameObject);
                 Destroy(child.gameObject);
             }
         }

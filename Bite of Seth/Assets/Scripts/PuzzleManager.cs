@@ -192,6 +192,11 @@ public class PuzzleManager : MonoBehaviour
         return statuesQuantity;
     }
 
+    public int GetTotalStatuesQuantity()
+    {
+        return totalStatuesQuantity;
+    }
+
     public int GetSelectedStatuesQuantity()
     {
         return nSelected;

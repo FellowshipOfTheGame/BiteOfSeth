@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool pushing = false;
     private bool holding = false;
     private bool dying = false;
+    private bool climbing = false;
     public LayerMask holdableLayerMask = default;
     public float dyingTimer = 3f;
     private LogicMovable lm = null;
@@ -26,11 +27,21 @@ public class PlayerController : MonoBehaviour
 
     public Transform detectIntPos;
 
+    private CameraFollow cf;
+    private AudioManager am;
+   
+    public AudioObject climbingSfx = null;
+    public AudioObject walkingSfx = null;
+    private bool playingWalkingSfx = true;
+
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
         gameObject.transform.parent = null;
+        cf = FindObjectOfType<CameraFollow>();
+        am = ServiceLocator.Get<AudioManager>();
     }
+
     private void Start()
     {
         lm = GetComponent<LogicMovable>();
@@ -47,6 +58,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Second instance of player instantiated, destrying it");
             Destroy(this);
         }
+        movable.SetMovableSfx(walkingSfx);
     }
 
     private void Update()
@@ -70,10 +82,16 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 animationDiretion = movable.lookingDirection;
-        // check if grounded AND not logic moving
-        if (!lm.enabled && !pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f*GridNav.down, walkOnLayerMask, gameObject).Count == 0)
-        {
-            animationDiretion = Vector2.up;
+        // check if its not grounded
+        climbing = !pushing && GridNav.GetObjectsInPath(movable.rigidbody.position, 0.6f * GridNav.down, walkOnLayerMask, gameObject).Count == 0;
+
+        if (climbing && playingWalkingSfx) {
+            movable.SetMovableSfx(climbingSfx);
+            playingWalkingSfx = false;
+        }
+        else if (!climbing && !playingWalkingSfx) {
+            movable.SetMovableSfx(walkingSfx);
+            playingWalkingSfx = true;
         }
 
         // check if is holding some holdable object
@@ -85,7 +103,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Pushing", pushing);
         animator.SetBool("Holding", holding);
         animator.SetBool("Dying", dying);
-        
+        animator.SetBool("Climbing", climbing);
+
         detectIntPos.position = (Vector2)transform.position + movable.lookingDirection;
 
     }
@@ -180,6 +199,7 @@ public class PlayerController : MonoBehaviour
     
     public void UseCheckpoint()
     {
+        movable.StopSfx();
         if (currentCheckpoint != null)
         {
             //Debug.Log("CHECKPOINT");
@@ -187,7 +207,11 @@ public class PlayerController : MonoBehaviour
             if(pb != null) {
                 pb.ChangeObjectBehavior(gameObject.GetComponent<TransportableBehavior>());
             }
+            cf.enabled = false;
             movable.rigidbody.position = currentCheckpoint.transform.position;
+            gameObject.transform.position = currentCheckpoint.transform.position;
+            cf.SmoothTransition();
+            cf.enabled = true;
             movable.isMoving = false;
             movable.DestroyTempCol();
             currentCheckpoint.RewindRoom();
@@ -205,6 +229,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        movable.StopSfx();
         movable.enabled = false;
         dying = true;
         //Debug.Log("COMECOU A MORRER");

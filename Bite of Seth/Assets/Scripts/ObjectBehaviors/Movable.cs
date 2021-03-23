@@ -16,8 +16,11 @@ public class Movable : MonoBehaviour
 
     private FallBehavior fb;
     private LogicMovable lm;
+    
+    private AudioManager am;
 
-    public bool logicMovement = false;
+    public AudioObject sfx = null;
+    private AudioSource audSrc = null;
 
     void Awake()
     {
@@ -26,6 +29,7 @@ public class Movable : MonoBehaviour
 
         fb = GetComponent<FallBehavior>();
         lm = GetComponent<LogicMovable>();
+        am = ServiceLocator.Get<AudioManager>();
     }
 
     public void StartMovement(Vector2 desiredMovement, float _speed)
@@ -42,6 +46,15 @@ public class Movable : MonoBehaviour
 
         isMoving = true;
         speed = _speed;
+
+        if (sfx && !lm.enabled) {
+            if (!audSrc) {
+                audSrc = am.PlayAudio(sfx);
+            } else {
+                am.ContinueAudio(audSrc);
+                Debug.Log(audSrc);
+            }
+        }
         
         //Put a temporary collider
         if (tc[0] != null)
@@ -92,10 +105,17 @@ public class Movable : MonoBehaviour
 
     public void StoppedMoving()
     {
+        if (sfx) {
+            am.PauseAudio(audSrc);
+        }
         DestroyTempCol();
         gameObject.SendMessage("OnStopedMoving", SendMessageOptions.DontRequireReceiver);
-        //if(lm && lm.isActiveAndEnabled) lm.OnStopedMoving();
-        //if(fb && fb.isActiveAndEnabled) fb.OnStopedMoving();
+    }
+
+    public void StopSfx()
+    {
+        am.StopPlayingAudio(audSrc);
+        audSrc = null;
     }
 
     public void DestroyTempCol()
@@ -107,6 +127,12 @@ public class Movable : MonoBehaviour
         if (tc[1] != null) {
             Destroy(tc[1]);
         }
+    }
+
+    public void SetMovableSfx(AudioObject aud)
+    {
+        StopSfx();
+        sfx = aud;
     }
 
 }

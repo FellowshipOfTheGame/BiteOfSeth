@@ -6,11 +6,13 @@ public class PlayerTransportableBehavior : TransportableBehavior
 {
 
     private PlayerController pc;
+    private AudioManager am;
 
     public override void Start()
     {
         base.Start();
         pc = GetComponent<PlayerController>();
+        am = ServiceLocator.Get<AudioManager>();
     }
 
     public override bool CanTransport(GameObject portal, bool canTransportBoulder, bool canTransportPlayer)
@@ -24,8 +26,10 @@ public class PlayerTransportableBehavior : TransportableBehavior
         //Specific changes to player
         if (portal.logicSide) {
             pc.ChangeToLogicSpeed();
+            am.ChangeToLogicBGM();
         } else {
             pc.ChangeToNormalSpeed();
+            am.ChangeToDefaultBGM();
         }
     }
 

@@ -17,12 +17,17 @@ MonoBehaviour:
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 6030e44026d989d44a337fd953247b66, type: 2}
-    myText: Well... well... well... What do we have here? What brings you my chamber,
-      little girl?
-    voicedLine: {fileID: 0}
+    myText: "Well\u2026 well\u2026 well... What do we have here? What brings you
+      to my chamber, little girl?"
+    voicedLine: {fileID: 11400000, guid: 24ab86876e1f78d498c18b73902a8054, type: 2}
   - needPuzzleInfo: 1
     character: {fileID: 11400000, guid: 6030e44026d989d44a337fd953247b66, type: 2}
-    myText: "Khepri? That... shiny green dot? ...Okay. I know he likes to go to <ID
-      3> and <ID 1> every\r night. And he always pass through <ID 2>, which is somewhere
-      between the two."
-    voicedLine: {fileID: 0}
+    myText: Khepri? That... shiny green bug? ...Okay. I know he likes to go to <ID
+      3> and <ID 1> every night. And he always passes through <ID 2>, which is somewhere
+      between the two.
+    voicedLine: {fileID: 11400000, guid: 974f90dcb029e1d47a475bcf9f2ce48c, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6030e44026d989d44a337fd953247b66, type: 2}
+    myText: Really? I literally fight a giant snake who just happens to be my brother
+      and you want to know about Khepri?
+    voicedLine: {fileID: 11400000, guid: 61d52c984a7282a4a9540e42b59dd0bb, type: 2}

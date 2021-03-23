@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 7839865359136001519}
   - component: {fileID: 2488760661818198447}
   - component: {fileID: 7586131481688284250}
-  - component: {fileID: -2560395417283972471}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -266,7 +265,7 @@ MonoBehaviour:
   lookingDirection: {x: 0, y: 0}
   tempCollider: {fileID: 3296024696174100633, guid: 2f70101074f582e4ba1620bc99f73c98,
     type: 3}
-  logicMovement: 0
+  sfx: {fileID: 0}
 --- !u!114 &7839865359136001519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +309,8 @@ MonoBehaviour:
   dyingTimer: 2
   movable: {fileID: 0}
   detectIntPos: {fileID: 8115172070999620081}
-  cam: {fileID: 0}
+  climbingSfx: {fileID: 11400000, guid: 5d045514cc9cda14d95721ed94f2ea4f, type: 2}
+  walkingSfx: {fileID: 11400000, guid: b927efa8e6fbdcf44a0d7c063c082a31, type: 2}
 --- !u!114 &7586131481688284250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,11 +325,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAutomatic: 0
   spawnDir: {x: 0, y: 0}
---- !u!81 &-2560395417283972471
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488760661818198450}
-  m_Enabled: 0

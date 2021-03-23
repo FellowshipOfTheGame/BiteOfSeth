@@ -93,6 +93,7 @@ public class TextScript : MonoBehaviour
         if (talking && !DialogueManager.instance.isDialogueActive) {
             statue.OnEndDialog();
             talking = false;
+            DialogueManager.instance.toggleInteractAlert(true);
         }
 
         return false;
