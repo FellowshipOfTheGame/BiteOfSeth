@@ -26,6 +26,14 @@ AnimationClip:
     path: 
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: -8631858978576836712, guid: 2045f66e7a2a42640be46b838e4962b2,
+        type: 3}
+    attribute: m_LightCookieSprite
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -40,7 +48,15 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 0
+      attribute: 993967319
+      script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: -8631858978576836712, guid: 2045f66e7a2a42640be46b838e4962b2, type: 3}
     - {fileID: -8631858978576836712, guid: 2045f66e7a2a42640be46b838e4962b2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
