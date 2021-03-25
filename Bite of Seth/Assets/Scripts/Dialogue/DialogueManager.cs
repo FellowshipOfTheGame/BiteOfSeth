@@ -187,6 +187,12 @@ public class DialogueManager : MonoBehaviour
         return status;
     }
 
+    public bool toggleInteractWithCutsceneAlert(bool status) {
+        interactText.text = "Hold Esc to Skip Cutscene";
+        interactBox.SetActive(status);
+        return status;
+    }
+
     public void SetInteractName(string name)
     {
         interactName = name;
