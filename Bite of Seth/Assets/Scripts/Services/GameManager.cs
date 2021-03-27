@@ -21,6 +21,8 @@ public class GameManager : GameService
     };
 
     private List<LevelData> levelData;
+    private PlayerData saveData;
+    private bool hasSaveFile = false;
 
     public override void Start()
     {
@@ -29,10 +31,60 @@ public class GameManager : GameService
         score = 0;
 
         lockMovement = 0;
+        
+        //SaveSystem.DeletePlayer();
+        saveData = SaveSystem.LoadPlayer();
+        if (saveData == null) {
+            //if there is no save file, then create one
+            saveData = new PlayerData(1, 0);
+            hasSaveFile = false;
+        } else {
+            hasSaveFile = true;
+        }
 
         levelData = new List<LevelData>();
         curLevelIndex = 0;
         
+    }
+
+    public void StartNewGame(SceneReference scene)
+    {
+        score = 0;
+        ServiceLocator.Get<SceneReferences>().GoToScene(scene);
+    }
+
+    public void DeleteSaveFile()
+    {
+        SaveSystem.DeletePlayer();
+        hasSaveFile = false;
+    }
+
+    public bool HasSaveFile()
+    {
+        return hasSaveFile;
+    }
+
+    public SceneReference LoadGame()
+    {
+        score = saveData.score;
+        return ServiceLocator.Get<SceneReferences>().GetSceneReference(saveData.scene);
+    }
+
+    public void SaveGame(SceneReference scene)
+    {
+        //SAVE GAME DATA
+        int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
+        if(scene_index == 0) {
+            //IF THE GAME ENDED, DONT SAVE
+            Debug.Log("This is the endgame, lol");
+        } else {
+            saveData.scene = scene_index;
+            Debug.Log("Cena salva: " + saveData.scene);
+            saveData.score = GetTotalScore();
+            Debug.Log("Score salvo: " + saveData.score);
+            SaveSystem.SavePlayer(saveData);
+        }
+        hasSaveFile = true;
     }
 
     public void KillPlayer()
@@ -85,6 +137,9 @@ public class GameManager : GameService
     {
         //Update with new values from finished level
         if (curLevel != null) UpdateLevelValues();
+
+        SaveGame(scene);
+
         ServiceLocator.Get<SceneReferences>().GoToScene(scene);
     }
 
@@ -94,11 +149,12 @@ public class GameManager : GameService
         int score = GetLevelScore();
         AddTotalScore(score);
         PrintTotalScore();
-
+        
         LevelData ld = new LevelData();
         ld.id = curLevelIndex++;
         ld.score = score;
         levelData.Add(ld);
+        
     }
 
     public int GetLevelScore()

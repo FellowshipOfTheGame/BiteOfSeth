@@ -216,15 +216,27 @@ public class PlayerController : MonoBehaviour
             movable.DestroyTempCol();
             currentCheckpoint.RewindRoom();
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
+
+
+            movable.enabled = false;
+            Invoke("EnableMovement", 1f);
+
         }
     }
 
     private void Revive()
     {
         //Debug.Log("ACABOU DE MORRER");
-        movable.enabled = true;
+        
         UseCheckpoint();
         dying = false;
+        //Invoke("EnableMovement", 1f);
+        movable.enabled = true;
+    }
+
+    public void EnableMovement()
+    {
+        movable.enabled = true;
     }
 
     public void Die()

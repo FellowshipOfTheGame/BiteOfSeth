@@ -93,4 +93,21 @@ public class SceneReferences : GameService {
         SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
     }
 
+    public SceneReference GetSceneReference(int id)
+    {
+        return scenesList[id];
+    }
+
+    public int GetSceneIndex(SceneReference scene)
+    {
+        int i = 0;
+        foreach (SceneReference sr in scenesList){
+            if (scene.ScenePath == sr.ScenePath) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
 }

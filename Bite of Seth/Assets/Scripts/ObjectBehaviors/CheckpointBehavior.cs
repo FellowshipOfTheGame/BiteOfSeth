@@ -8,6 +8,7 @@ public class CheckpointBehavior : MonoBehaviour
     public GameObject spriteActive;
     public GameObject spriteOff;
     int curScore;
+    public AudioObject sfx;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class CheckpointBehavior : MonoBehaviour
         {
             p.AssignCheckpoint(this);
             SetCheckpointActive(true);
+            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
         }
     }
 }

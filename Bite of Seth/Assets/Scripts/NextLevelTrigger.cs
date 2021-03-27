@@ -12,11 +12,11 @@ public class NextLevelTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Player") 
         {
             if (NextLevelScene != null) {
+                collision.gameObject.GetComponent<Movable>().StopSfx();
                 ServiceLocator.Get<GameManager>().FromLevelGoToScene(NextLevelScene);
             } else {
                 Debug.LogError("Sem referência para a próxima cena.");
             }
-            
         }
     }
 }
