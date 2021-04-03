@@ -13,6 +13,9 @@ public class ExplodeBehavior : MonoBehaviour
     public GameObject explosionObj;
     public float explosionTimer = 0.5f;
 
+    public AudioObject timerSfx;
+    public AudioObject explosionSfx;
+
     private void TryToDestroyAtDirection(Vector2 direction)
     {
         ShowExplosion(transform.position + (Vector3)direction);
@@ -46,6 +49,7 @@ public class ExplodeBehavior : MonoBehaviour
     public void StartTimerToExplode()
     {
         //Propagate the destruction
+        ServiceLocator.Get<AudioManager>().PlayAudio(timerSfx);
         timeCounter = delayTime;
         Invoke("ShowExplosion", delayTime);
         Invoke("Explode", delayTime);

@@ -135,6 +135,8 @@ public class GameManager : GameService
 
     public void FromLevelGoToScene(SceneReference scene)
     {
+        lockMovement++;
+
         //Update with new values from finished level
         if (curLevel != null) UpdateLevelValues();
 

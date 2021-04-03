@@ -9,14 +9,21 @@ public class CheckpointBehavior : MonoBehaviour
     public GameObject spriteOff;
     int curScore;
     public AudioObject sfx;
+    private bool active = false;
 
     private void Start()
     {
         SetCheckpointActive(false);
     }
 
+    public bool IsActive()
+    {
+        return active;
+    }
+
     public void SetCheckpointActive(bool value)
     {
+        active = value;
         if (spriteActive)
         {
             spriteActive.SetActive(value);
@@ -51,9 +58,11 @@ public class CheckpointBehavior : MonoBehaviour
         PlayerController p = collision.collider.gameObject.GetComponent<PlayerController>();
         if (p != null)
         {
-            p.AssignCheckpoint(this);
-            SetCheckpointActive(true);
-            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            if (!IsActive()) {
+                p.AssignCheckpoint(this);
+                ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+                SetCheckpointActive(true);
+            }
         }
     }
 }

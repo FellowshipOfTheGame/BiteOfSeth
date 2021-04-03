@@ -8,10 +8,13 @@ public class SceneReferences : GameService {
 
     public List<SceneReference> scenesList;
     private GameManager gm;
+    private Animator sceneTransition;
 
     //private bool firstLoad;
 
     private int curSceneIndex = 0;
+
+    public float timeBeforeLoad = 1f;
 
     private void OnGUI()
     {
@@ -71,15 +74,28 @@ public class SceneReferences : GameService {
             curSceneIndex = 0;
         }
 
-        SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+        SceneTransition st = FindObjectOfType<SceneTransition>();
+        Debug.Log(st);
+        if (st) {
+            sceneTransition = st.gameObject.GetComponent<Animator>();
+            sceneTransition.SetTrigger("start");
+        }
+
+        SceneLoader.instance.LoadSceneAfterXSeconds(scenesList[curSceneIndex], timeBeforeLoad);
 
     }
 
     public void GoToScene(SceneReference scene)
     {
         //Load new scene
-        if(scene != null) {
-            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        if (scene != null) {
+            SceneTransition st = FindObjectOfType<SceneTransition>();
+            Debug.Log(st);
+            if (st) {
+                sceneTransition = st.gameObject.GetComponent<Animator>();
+                sceneTransition.SetTrigger("start");
+            }
+            SceneLoader.instance.LoadSceneAfterXSeconds(scene, timeBeforeLoad);
         } else {
             Debug.LogError("Sem referência para a cena indicada.");
         }
@@ -90,7 +106,7 @@ public class SceneReferences : GameService {
     {
         //Load current scene again
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
-        SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+        SceneLoader.instance.LoadSceneAfterXSeconds(scenesList[curSceneIndex], timeBeforeLoad);
     }
 
     public SceneReference GetSceneReference(int id)

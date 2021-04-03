@@ -15,6 +15,9 @@ public class SpikeTrapBehavior : MonoBehaviour
     
     private BoxCollider2D bc;
     public SpriteRenderer sr;
+    private AudioSource sfx;
+    private bool blocked = false;
+    private bool firstPlay = false;
 
     public Animator anim;
 
@@ -25,6 +28,7 @@ public class SpikeTrapBehavior : MonoBehaviour
         bc.enabled = false;
         activated = false;
         firstTime = true;
+        sfx = GetComponent<AudioSource>();
         //sr.color = Color.gray;
         //sr.enabled = false;
     }
@@ -55,11 +59,14 @@ public class SpikeTrapBehavior : MonoBehaviour
 
     private void ActivateTrap()
     {
+        blocked = false;
         activated = true;
         bc.enabled = true;
         //sr.enabled = true;
         anim.SetBool("Activated", true);
         ResetCounter();
+        Invoke("PlaySfx", 0.1f);
+        
     }
 
     private void DeactivateTrap()
@@ -69,6 +76,9 @@ public class SpikeTrapBehavior : MonoBehaviour
         //sr.enabled = false;
         anim.SetBool("Activated", false);
         ResetCounter();
+        if (firstPlay && sfx) {
+            sfx.Play();
+        }
     }
 
     private void ResetCounter()
@@ -78,7 +88,7 @@ public class SpikeTrapBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
             ServiceLocator.Get<GameManager>().KillPlayer();
         } else {
             //Se for qualquer outro objeto que se move(pedra, por exemplo)
@@ -86,6 +96,26 @@ public class SpikeTrapBehavior : MonoBehaviour
             bc.enabled = false;
             //sr.enabled = false;
             anim.SetBool("Activated", false);
+            blocked = true;
+            //Debug.Log("BLOQUEADO por " + collision.collider.gameObject);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        blocked = false;
+        //Debug.Log("DESBLOQUEADO por " + collision.collider.gameObject);
+    }
+
+    private void PlaySfx()
+    {
+        if (!blocked) {
+            if (sfx) {
+                sfx.Play();
+            }
+            firstPlay = true;
+        } else {
+            firstPlay = false;
         }
     }
 

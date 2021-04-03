@@ -63,12 +63,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !dying)
+        if (Input.GetKeyDown(KeyCode.R) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
         {
             UseCheckpoint();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dying)
+        if (Input.GetKeyDown(KeyCode.Space) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
         {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
             foreach (GameObject g in objects)
@@ -155,9 +155,17 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 CheckInput()
     {
+
+        Vector2 desiredMovement = Vector2.zero;
+        if (ServiceLocator.Get<GameManager>().lockMovement > 0) {
+            desiredMovement = Vector2.zero;
+            movable.lookingDirection = desiredMovement;
+            return desiredMovement;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        Vector2 desiredMovement = Vector2.zero;
+        
         // preference for horizontal movement over vertical 
         if (horizontal != 0)
         {
@@ -190,6 +198,9 @@ public class PlayerController : MonoBehaviour
 
     public void AssignCheckpoint(CheckpointBehavior c)
     {
+        if (c.IsActive()) {
+            return;
+        }
         if (currentCheckpoint)
         {
             currentCheckpoint.SetCheckpointActive(false);
