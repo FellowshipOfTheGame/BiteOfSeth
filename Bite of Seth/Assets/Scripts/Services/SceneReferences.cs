@@ -14,8 +14,6 @@ public class SceneReferences : GameService {
 
     private int curSceneIndex = 0;
 
-    public float timeBeforeLoad = 1f;
-
     private void OnGUI()
     {
         foreach (SceneReference sr in scenesList) {
@@ -55,6 +53,8 @@ public class SceneReferences : GameService {
         Debug.Log("New Scene Loaded");
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
+        
+        ServiceLocator.Get<GameManager>().lockMovement = 0;
 
         //Try to Load a New Level
 
@@ -73,15 +73,11 @@ public class SceneReferences : GameService {
         if (curSceneIndex >= scenesList.Count) {
             curSceneIndex = 0;
         }
-
         SceneTransition st = FindObjectOfType<SceneTransition>();
-        Debug.Log(st);
         if (st) {
-            sceneTransition = st.gameObject.GetComponent<Animator>();
-            sceneTransition.SetTrigger("start");
+            st.StartAnimation();
         }
-
-        SceneLoader.instance.LoadSceneAfterXSeconds(scenesList[curSceneIndex], timeBeforeLoad);
+        SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
 
     }
 
@@ -90,12 +86,10 @@ public class SceneReferences : GameService {
         //Load new scene
         if (scene != null) {
             SceneTransition st = FindObjectOfType<SceneTransition>();
-            Debug.Log(st);
             if (st) {
-                sceneTransition = st.gameObject.GetComponent<Animator>();
-                sceneTransition.SetTrigger("start");
+                st.StartAnimation();
             }
-            SceneLoader.instance.LoadSceneAfterXSeconds(scene, timeBeforeLoad);
+            SceneLoader.instance.LoadScene(scene);
         } else {
             Debug.LogError("Sem referência para a cena indicada.");
         }
@@ -106,7 +100,7 @@ public class SceneReferences : GameService {
     {
         //Load current scene again
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
-        SceneLoader.instance.LoadSceneAfterXSeconds(scenesList[curSceneIndex], timeBeforeLoad);
+        SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
     }
 
     public SceneReference GetSceneReference(int id)

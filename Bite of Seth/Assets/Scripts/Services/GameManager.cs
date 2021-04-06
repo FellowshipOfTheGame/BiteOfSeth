@@ -47,6 +47,20 @@ public class GameManager : GameService
         
     }
 
+    public int GetLevelDiamondsTotal()
+    {
+        int count = 0;
+        List<GameObject> rooms = FindObjectOfType<TilemapSlicer>().GetRooms();
+        foreach (GameObject room in rooms) {
+            for (int i=0; i< room.transform.childCount; i++) {
+                if (room.transform.GetChild(i).tag == "Diamond") {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     public void StartNewGame(SceneReference scene)
     {
         score = 0;
@@ -135,8 +149,6 @@ public class GameManager : GameService
 
     public void FromLevelGoToScene(SceneReference scene)
     {
-        lockMovement++;
-
         //Update with new values from finished level
         if (curLevel != null) UpdateLevelValues();
 

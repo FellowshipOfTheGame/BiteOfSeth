@@ -16,18 +16,28 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    public void LoadSceneAfterXSeconds(SceneReference scene, float X)
+    public void LoadScene(SceneReference scene)
     {
-        StartCoroutine(LoadScene(scene, X));
+        ServiceLocator.Get<GameManager>().lockMovement++;
+        StartCoroutine(LoadAsynchronously(scene));
     }
 
-    IEnumerator LoadScene(SceneReference scene, float X)
+    IEnumerator LoadAsynchronously(SceneReference scene)
     {
-        yield return new WaitForSeconds(X);
+        yield return new WaitForSeconds(1f);
+        
+        SceneTransition st = FindObjectOfType<SceneTransition>();
 
-        ServiceLocator.Get<GameManager>().lockMovement--;
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
 
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        while (!operation.isDone) {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            if (st) {
+                st.UpdateProgressBar(progress);
+            }
+            yield return null;
+        }
+
     }
 
 }

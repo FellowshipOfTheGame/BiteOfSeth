@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         Vector2 desiredMovement = Vector2.zero;
         if (ServiceLocator.Get<GameManager>().lockMovement > 0) {
             desiredMovement = Vector2.zero;
-            movable.lookingDirection = desiredMovement;
+            //movable.lookingDirection = desiredMovement;
             return desiredMovement;
         }
 
