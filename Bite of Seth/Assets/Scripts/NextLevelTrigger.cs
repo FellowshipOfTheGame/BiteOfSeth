@@ -18,6 +18,7 @@ public class NextLevelTrigger : MonoBehaviour
     public void Start()
     {
         levelTotalDiamonds = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal();
+        Debug.Log("Level tem "+levelTotalDiamonds+" diamantes, no total.");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,9 +26,8 @@ public class NextLevelTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Player") 
         {
             if (NextLevelScene != null) {
-
                 levelCollectedDiamonds = ServiceLocator.Get<GameManager>().GetLevelScore();
-                totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore();
+                totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore() + levelCollectedDiamonds;
                 levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
                 totalDiamondsLabel.text = totalCollectedDiamonds.ToString();
                 EndLevelMenu.SetActive(true);
