@@ -28,6 +28,8 @@ public class GameManager : GameService
     {
         base.Start();
 
+        Cursor.visible = false;
+
         score = 0;
 
         lockMovement = 0;

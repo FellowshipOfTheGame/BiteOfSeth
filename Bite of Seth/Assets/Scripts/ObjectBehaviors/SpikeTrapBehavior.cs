@@ -21,6 +21,8 @@ public class SpikeTrapBehavior : MonoBehaviour
 
     public Animator anim;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class SpikeTrapBehavior : MonoBehaviour
         activated = false;
         firstTime = true;
         sfx = GetComponent<AudioSource>();
+        gameManager = ServiceLocator.Get<GameManager>();
         //sr.color = Color.gray;
         //sr.enabled = false;
     }
@@ -36,6 +39,11 @@ public class SpikeTrapBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (gameManager.lockMovement > 0) {
+            return;
+        }
+
         timeCounter += Time.fixedDeltaTime;
 
         //Control the trap activation and deactivation timers 

@@ -159,6 +159,7 @@ public class PuzzleManager : MonoBehaviour
         if(totalStatuesQuantity > 0) {
             for (int i=0; i< totalStatuesQuantity; i++) {
                 namesInOrder[i] = names[(int)statuesCorrectOrder[i]];
+                Debug.Log(namesInOrder[i]);
             }
         }
         return namesInOrder;

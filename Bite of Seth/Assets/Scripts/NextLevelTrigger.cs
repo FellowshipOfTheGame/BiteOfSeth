@@ -14,6 +14,7 @@ public class NextLevelTrigger : MonoBehaviour
     private int levelCollectedDiamonds;
     private int levelTotalDiamonds;
     private int totalCollectedDiamonds;
+    public int totalGameDiamonds = 200;
 
     public void Start()
     {
@@ -29,7 +30,7 @@ public class NextLevelTrigger : MonoBehaviour
                 levelCollectedDiamonds = ServiceLocator.Get<GameManager>().GetLevelScore();
                 totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore() + levelCollectedDiamonds;
                 levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
-                totalDiamondsLabel.text = totalCollectedDiamonds.ToString();
+                totalDiamondsLabel.text = totalCollectedDiamonds.ToString() + " / " + totalGameDiamonds.ToString();
                 EndLevelMenu.SetActive(true);
                 Selectable s = button.GetComponent<Selectable>();
                 s.Select();
