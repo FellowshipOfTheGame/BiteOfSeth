@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8788936103229650481}
   - component: {fileID: 6146197007945329928}
   - component: {fileID: 5436872327368142436}
+  - component: {fileID: 1552875451258286289}
   m_Layer: 14
   m_Name: Spike Trap
   m_TagString: Untagged
@@ -186,6 +187,76 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!169 &1552875451258286289
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356684780206350432}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9090496
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.66369045
+      value: 0.9090496
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.71299326
+      value: 0.6202034
+      inSlope: -4.4371295
+      outSlope: -4.4371295
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7611472
+      value: 0.36768883
+      inSlope: -3.783201
+      outSlope: -3.783201
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32348448
+      outWeight: 0.6331266
+    - serializedVersion: 3
+      time: 0.8469578
+      value: 0.14592706
+      inSlope: -1.7897602
+      outSlope: -1.7897602
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9910714
+      value: 0.023788035
       inSlope: 0
       outSlope: 0
       tangentMode: 0
