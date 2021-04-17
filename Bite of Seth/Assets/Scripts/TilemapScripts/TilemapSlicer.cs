@@ -227,4 +227,10 @@ public class TilemapSlicer : MonoBehaviour
         }
         return false;
     }
+
+    public List<GameObject> GetRooms()
+    {
+        return rooms;
+    }
+
 }

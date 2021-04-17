@@ -22,16 +22,22 @@ public class PortalBehavior : MonoBehaviour
     public bool canTransportPlayer = true;
     public Vector2 automaticSpawnDir = Vector2.right;
 
+    public AudioObject sfx;
+    private AudioManager am;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        am = ServiceLocator.Get<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
+            if (sfx) {
+                am.PlayAudio(sfx);
+            }
             otpTranspBeh.TransportToPortal(otherSidePortalRef);
             /*if (canTransportBoulder) {
                 canTransportBoulder = false;

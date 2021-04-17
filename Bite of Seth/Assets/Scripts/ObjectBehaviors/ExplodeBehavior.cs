@@ -10,9 +10,16 @@ public class ExplodeBehavior : MonoBehaviour
     public Transform tt;
     private float timeCounter = 0f;
     public Animator anim;
+    public GameObject explosionObj;
+    public float explosionTimer = 0.5f;
+
+    public AudioObject timerSfx;
+    public AudioObject explosionSfx;
 
     private void TryToDestroyAtDirection(Vector2 direction)
     {
+        ShowExplosion(transform.position + (Vector3)direction);
+
         List<GameObject> objects = GridNav.GetObjectsInPath(transform.position, direction, gameObject);
 
         foreach (GameObject g in objects) {
@@ -42,7 +49,9 @@ public class ExplodeBehavior : MonoBehaviour
     public void StartTimerToExplode()
     {
         //Propagate the destruction
+        ServiceLocator.Get<AudioManager>().PlayAudio(timerSfx);
         timeCounter = delayTime;
+        Invoke("ShowExplosion", delayTime);
         Invoke("Explode", delayTime);
         anim.SetBool("Explosion", true);
     }
@@ -69,6 +78,22 @@ public class ExplodeBehavior : MonoBehaviour
             if (timerText != null) {
                 timerText.text = "" + (int)timeCounter;
             }
+        }
+    }
+
+    private void ShowExplosion()
+    {
+        if (explosionObj) {
+            GameObject explosionInst = Instantiate(explosionObj, transform.position, Quaternion.identity);
+            Destroy(explosionInst, explosionTimer);
+        }
+    }
+
+    private void ShowExplosion(Vector3 position)
+    {
+        if (explosionObj) {
+            GameObject explosionInst = Instantiate(explosionObj, position, Quaternion.identity);
+            Destroy(explosionInst, explosionTimer);
         }
     }
 

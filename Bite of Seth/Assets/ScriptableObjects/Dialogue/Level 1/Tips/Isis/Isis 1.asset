@@ -17,8 +17,15 @@ MonoBehaviour:
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: f5114761cc613d9478057422741acabd, type: 2}
-    myText: Nubia? Wait, what are you- ? Can I... help you somehow?
+    myText: "Nubia? Wait, what are you- ? Can I\u2026 help you somehow?"
+    voicedLine: {fileID: 0}
   - needPuzzleInfo: 1
     character: {fileID: 11400000, guid: f5114761cc613d9478057422741acabd, type: 2}
-    myText: "Khepri? Well, he was going in the direction of <ID 3> and <ID 4>, they
-      are two nearby\r locations, I can\u2019t tell which one he went first."
+    myText: "Khepri? Well, he was going in the direction of <ID 3> and <ID 4>, as
+      they are two nearby locations, I can\u2019t tell which one he went first."
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: f5114761cc613d9478057422741acabd, type: 2}
+    myText: "Sorry, I\u2019m really tired. Fighting a giant snake with Serket every
+      single night is\u2026 tough!"
+    voicedLine: {fileID: 0}

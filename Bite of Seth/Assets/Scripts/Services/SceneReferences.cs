@@ -8,6 +8,7 @@ public class SceneReferences : GameService {
 
     public List<SceneReference> scenesList;
     private GameManager gm;
+    private Animator sceneTransition;
 
     //private bool firstLoad;
 
@@ -52,6 +53,8 @@ public class SceneReferences : GameService {
         Debug.Log("New Scene Loaded");
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
+        
+        ServiceLocator.Get<GameManager>().lockMovement = 0;
 
         //Try to Load a New Level
 
@@ -70,16 +73,23 @@ public class SceneReferences : GameService {
         if (curSceneIndex >= scenesList.Count) {
             curSceneIndex = 0;
         }
-
-        SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+        SceneTransition st = FindObjectOfType<SceneTransition>();
+        if (st) {
+            st.StartAnimation();
+        }
+        SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
 
     }
 
     public void GoToScene(SceneReference scene)
     {
         //Load new scene
-        if(scene != null) {
-            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        if (scene != null) {
+            SceneTransition st = FindObjectOfType<SceneTransition>();
+            if (st) {
+                st.StartAnimation();
+            }
+            SceneLoader.instance.LoadScene(scene);
         } else {
             Debug.LogError("Sem referência para a cena indicada.");
         }
@@ -90,7 +100,24 @@ public class SceneReferences : GameService {
     {
         //Load current scene again
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
-        SceneManager.LoadScene(scenesList[curSceneIndex], LoadSceneMode.Single);
+        SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
+    }
+
+    public SceneReference GetSceneReference(int id)
+    {
+        return scenesList[id];
+    }
+
+    public int GetSceneIndex(SceneReference scene)
+    {
+        int i = 0;
+        foreach (SceneReference sr in scenesList){
+            if (scene.ScenePath == sr.ScenePath) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 
 }

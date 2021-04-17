@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 4499727431831103268}
   - component: {fileID: -4082083075840319436}
   - component: {fileID: 8418403584316895309}
-  - component: {fileID: -280347853218610417}
   m_Layer: 13
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -158,21 +157,7 @@ MonoBehaviour:
   room: {fileID: 0}
   spriteActive: {fileID: 1150776964024493248}
   spriteOff: {fileID: 0}
---- !u!114 &-280347853218610417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4107798111967972465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30cb2a9693ec69940add2c2152f7985e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  otherSidePortalRef: {fileID: 0}
-  logicSide: 0
-  canTransportBoulder: 0
+  sfx: {fileID: 11400000, guid: 3f84b7cec487a3d4eb8a4447a61c040f, type: 2}
 --- !u!1 &8664700198994129221
 GameObject:
   m_ObjectHideFlags: 0
