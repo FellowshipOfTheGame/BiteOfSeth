@@ -15,7 +15,7 @@ public class DialogueBehavior : MonoBehaviour {
         ts = GetComponentInChildren<TextScript>();
         ts.statue = this;
         color = ts.dialogueSequence[0].dialogueInfo[0].character.color;
-        art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
+        if (art != null) art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
     }
 
     // Update is called once per frame
@@ -27,18 +27,18 @@ public class DialogueBehavior : MonoBehaviour {
     }
 
     public virtual void OnGetClose(){
-        art.SetBool("player", true);
+        if (art != null) art.SetBool("player", true);
     }
 
     public virtual void OnGetAway() {
-        art.SetBool("player", false);
+        if (art != null) art.SetBool("player", false);
     }
 
     public virtual void OnDialog(){
-        art.SetBool("talk", true);
+        if (art != null) art.SetBool("talk", true);
     }
 
     public virtual void OnEndDialog(){
-        art.SetBool("talk", false);
+        if (art != null) art.SetBool("talk", false);
     }
 }
