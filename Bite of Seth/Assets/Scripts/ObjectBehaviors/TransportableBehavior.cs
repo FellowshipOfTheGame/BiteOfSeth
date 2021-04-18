@@ -38,7 +38,7 @@ public class TransportableBehavior : MonoBehaviour
             spawnDir = portal.GetComponent<PortalBehavior>().automaticSpawnDir;
             return ( !(mov.isMoving) );
         } else {
-            return ( Input.GetKeyDown(KeyCode.T) && !(mov.isMoving) && ServiceLocator.Get<GameManager>().lockMovement == 0);
+            return ( Input.GetKeyDown(KeyCode.E) && !(mov.isMoving) && ServiceLocator.Get<GameManager>().lockMovement == 0);
         }
     }
 

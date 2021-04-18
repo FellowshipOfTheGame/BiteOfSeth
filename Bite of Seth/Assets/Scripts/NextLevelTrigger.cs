@@ -16,10 +16,14 @@ public class NextLevelTrigger : MonoBehaviour
     private int totalCollectedDiamonds;
     public int totalGameDiamonds = 200;
 
+    public bool showCongratsScreen = true;
+
     public void Start()
     {
-        levelTotalDiamonds = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal();
-        Debug.Log("Level tem "+levelTotalDiamonds+" diamantes, no total.");
+        if (showCongratsScreen) {
+            levelTotalDiamonds = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal();
+            Debug.Log("Level tem " + levelTotalDiamonds + " diamantes, no total.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,15 +31,19 @@ public class NextLevelTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Player") 
         {
             if (NextLevelScene != null) {
-                levelCollectedDiamonds = ServiceLocator.Get<GameManager>().GetLevelScore();
-                totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore() + levelCollectedDiamonds;
-                levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
-                totalDiamondsLabel.text = totalCollectedDiamonds.ToString() + " / " + totalGameDiamonds.ToString();
-                EndLevelMenu.SetActive(true);
-                Selectable s = button.GetComponent<Selectable>();
-                s.Select();
                 collision.gameObject.GetComponent<Movable>().StopSfx();
                 collision.gameObject.GetComponent<Movable>().enabled = false;
+                if (showCongratsScreen) {
+                    levelCollectedDiamonds = ServiceLocator.Get<GameManager>().GetLevelScore();
+                    totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore() + levelCollectedDiamonds;
+                    levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
+                    totalDiamondsLabel.text = totalCollectedDiamonds.ToString() + " / " + totalGameDiamonds.ToString();
+                    EndLevelMenu.SetActive(true);
+                    Selectable s = button.GetComponent<Selectable>();
+                    s.Select();
+                } else{
+                    GoToNextLevel();
+                }
             } else {
                 Debug.LogError("Sem referência para a próxima cena.");
             }
