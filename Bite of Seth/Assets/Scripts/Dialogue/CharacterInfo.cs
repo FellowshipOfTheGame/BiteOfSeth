@@ -11,4 +11,8 @@ public class CharacterInfo : ScriptableObject{
     public AnimatorOverrideController art;
 
     public Color color = Color.white;
+
+    [Range(0f, 1f)]
+    public float outlineOpacity = 0f;    
+    public Color outlineColor = Color.white;
 }

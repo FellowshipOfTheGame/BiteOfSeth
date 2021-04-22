@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class DialogueBehavior : MonoBehaviour {
     protected TextScript ts;
@@ -15,7 +16,6 @@ public class DialogueBehavior : MonoBehaviour {
         ts = GetComponentInChildren<TextScript>();
         ts.statue = this;
         color = ts.dialogueSequence[0].dialogueInfo[0].character.color;
-        if (art != null) art.runtimeAnimatorController = ts.dialogueSequence[0].dialogueInfo[0].character.art;
     }
 
     // Update is called once per frame
