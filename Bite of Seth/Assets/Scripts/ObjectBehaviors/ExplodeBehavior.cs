@@ -58,6 +58,7 @@ public class ExplodeBehavior : MonoBehaviour
 
     public void Explode()
     {
+        ServiceLocator.Get<AudioManager>().PlayAudio(explosionSfx);
         gameObject.SetActive(false);
         TryToDestroyAtDirection(GridNav.up);
         TryToDestroyAtDirection(GridNav.up + GridNav.right);

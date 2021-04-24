@@ -114,7 +114,7 @@ MonoBehaviour:
     type: 3}
   explosionTimer: 0.5
   timerSfx: {fileID: 11400000, guid: f82717051774ea84aa6f9d2d5719668d, type: 2}
-  explosionSfx: {fileID: 0}
+  explosionSfx: {fileID: 11400000, guid: 1adc9141202b51844bc0a7530c988503, type: 2}
 --- !u!1001 &4171955812164195887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 1844986763542465216, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.512
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1844986763542465216, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 2924097126798250163, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.193
+      value: 0.205
       objectReference: {fileID: 0}
     - target: {fileID: 8796497741134100629, guid: 29991682c05c8d14792ec7fc814b3088,
         type: 3}
