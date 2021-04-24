@@ -21,6 +21,8 @@ public class TextScript : MonoBehaviour
 
     bool talking = false;
 
+    private bool endOfConversation = false;
+
     private void Start()
     {
         ResetDialogue();
@@ -93,7 +95,9 @@ public class TextScript : MonoBehaviour
         if (talking && !DialogueManager.instance.isDialogueActive) {
             statue.OnEndDialog();
             talking = false;
-            DialogueManager.instance.toggleInteractAlert(true);
+            if (playerInRange && !endOfConversation) {
+                DialogueManager.instance.toggleInteractAlert(true);
+            }
         }
 
         return false;
@@ -118,6 +122,7 @@ public class TextScript : MonoBehaviour
                 }
                 if (index >= dialogueSequence.Count) {
                     curDialogue = dialogueSequence[index - 1];
+                    endOfConversation = true;
                 } else {
                     curDialogue = dialogueSequence[index++];
                 }

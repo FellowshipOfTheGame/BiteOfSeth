@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             UseCheckpoint();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
+        if (Input.GetKeyDown(KeyCode.E) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
         {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
             foreach (GameObject g in objects)
