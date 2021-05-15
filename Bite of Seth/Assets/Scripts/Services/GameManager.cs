@@ -21,8 +21,6 @@ public class GameManager : GameService
     };
 
     private List<LevelData> levelData;
-    private PlayerData saveData;
-    private bool hasSaveFile = false;
 
     public override void Start()
     {
@@ -34,15 +32,17 @@ public class GameManager : GameService
 
         lockMovement = 0;
         
-        //SaveSystem.DeletePlayer();
-        saveData = SaveSystem.LoadPlayer();
-        if (saveData == null) {
+        //Load the saved games
+        SaveSystem.Load();
+
+        /*
+        if (PlayerData.current == null) {
             //if there is no save file, then create one
             saveData = new PlayerData(1, 0);
             hasSaveFile = false;
         } else {
             hasSaveFile = true;
-        }
+        }*/
 
         levelData = new List<LevelData>();
         curLevelIndex = 0;
@@ -69,21 +69,15 @@ public class GameManager : GameService
         ServiceLocator.Get<SceneReferences>().GoToScene(scene);
     }
 
-    public void DeleteSaveFile()
+    public void DeleteSaves()
     {
-        SaveSystem.DeletePlayer();
-        hasSaveFile = false;
-    }
-
-    public bool HasSaveFile()
-    {
-        return hasSaveFile;
+        SaveSystem.Delete();
     }
 
     public SceneReference LoadGame()
     {
-        score = saveData.score;
-        return ServiceLocator.Get<SceneReferences>().GetSceneReference(saveData.scene);
+        score = PlayerData.current.score;
+        return ServiceLocator.Get<SceneReferences>().GetSceneReference(PlayerData.current.scene);
     }
 
     public void SaveGame(SceneReference scene)
@@ -91,16 +85,29 @@ public class GameManager : GameService
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
         if(scene_index == 0) {
-            //IF THE GAME ENDED, DONT SAVE
-            Debug.Log("This is the endgame, lol");
+            //IF THE GAME IS COMPLETED
+            Debug.Log("This is the endgame");
+
+            PlayerData.current.completedGame = true;
+
+            PlayerData.current.totalScore = GetTotalScore();
+            Debug.Log("Total Score salvo: " + PlayerData.current.score);
+
+            SaveSystem.Save();
         } else {
-            saveData.scene = scene_index;
-            Debug.Log("Cena salva: " + saveData.scene);
-            saveData.score = GetTotalScore();
-            Debug.Log("Score salvo: " + saveData.score);
-            SaveSystem.SavePlayer(saveData);
+            //IF THE GAME IS NOT COMPLETED YET
+
+            PlayerData.current.scene = scene_index;
+            Debug.Log("Cena salva: " + PlayerData.current.scene);
+
+            PlayerData.current.score = GetTotalScore();
+            Debug.Log("Score salvo: " + PlayerData.current.score);
+
+            PlayerData.current.totalScore = GetTotalScore();
+            Debug.Log("Total Score salvo: " + PlayerData.current.score);
+
+            SaveSystem.Save();
         }
-        hasSaveFile = true;
     }
 
     public void KillPlayer()
