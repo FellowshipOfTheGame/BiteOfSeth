@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName ="Manager/GameManager")]
 public class GameManager : GameService
 {
-    public int score = 0;
+
+    public int score;
+    public int lorePieces;
+
     public int lockMovement = 0;
     public PlayerController player = null;
 
@@ -22,31 +25,35 @@ public class GameManager : GameService
 
     private List<LevelData> levelData;
 
+    private float timer = 0f;
+    public bool timerTrigger = false;
+
     public override void Start()
     {
         base.Start();
 
         Cursor.visible = false;
 
-        score = 0;
-
         lockMovement = 0;
+
+        score = lorePieces = 0;
         
         //Load the saved games
         SaveSystem.Load();
 
-        /*
-        if (PlayerData.current == null) {
-            //if there is no save file, then create one
-            saveData = new PlayerData(1, 0);
-            hasSaveFile = false;
-        } else {
-            hasSaveFile = true;
-        }*/
-
         levelData = new List<LevelData>();
         curLevelIndex = 0;
         
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (timerTrigger) {
+            timer += Time.deltaTime;
+        }
+
     }
 
     public int GetLevelDiamondsTotal()
@@ -65,7 +72,7 @@ public class GameManager : GameService
 
     public void StartNewGame(SceneReference scene)
     {
-        score = 0;
+        score = lorePieces = 0;
         ServiceLocator.Get<SceneReferences>().GoToScene(scene);
     }
 
@@ -77,6 +84,7 @@ public class GameManager : GameService
     public SceneReference LoadGame()
     {
         score = PlayerData.current.score;
+        lorePieces = PlayerData.current.lorePieces;
         return ServiceLocator.Get<SceneReferences>().GetSceneReference(PlayerData.current.scene);
     }
 
@@ -93,6 +101,12 @@ public class GameManager : GameService
             PlayerData.current.totalScore = GetTotalScore();
             Debug.Log("Total Score salvo: " + PlayerData.current.score);
 
+            PlayerData.current.totalLorePieces = lorePieces;
+            Debug.Log("Total Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
+
+            PlayerData.current.totalTimer = PlayerData.current.timer + timer;
+            Debug.Log("Total timer salvo: " + PlayerData.current.totalTimer);
+
             SaveSystem.Save();
         } else {
             //IF THE GAME IS NOT COMPLETED YET
@@ -103,8 +117,11 @@ public class GameManager : GameService
             PlayerData.current.score = GetTotalScore();
             Debug.Log("Score salvo: " + PlayerData.current.score);
 
-            PlayerData.current.totalScore = GetTotalScore();
-            Debug.Log("Total Score salvo: " + PlayerData.current.score);
+            PlayerData.current.lorePieces = lorePieces;
+            Debug.Log("Pieces of Lore salvo: " + PlayerData.current.lorePieces);
+
+            PlayerData.current.timer += timer;
+            Debug.Log("Timer salvo: " + PlayerData.current.timer);
 
             SaveSystem.Save();
         }
@@ -118,7 +135,7 @@ public class GameManager : GameService
 
     public void PrintTotalScore()
     {
-        Debug.Log(string.Format("Current Score: {0}",score));
+        Debug.Log(string.Format("Current Score: {0}", score));
     }
 
     public void AddTotalScore(int value)
@@ -138,6 +155,7 @@ public class GameManager : GameService
 
     public void TryToSetNewLevel()
     {
+        ResetTimer();
         //Try to find a LevelManager
         lm = GameObject.FindGameObjectWithTag("LevelManager");
         if(lm != null) {
@@ -217,6 +235,22 @@ public class GameManager : GameService
     public PuzzleManager GetLevelPuzzleManager()
     {
         return lm.GetComponent<PuzzleManager>();
+    }
+
+    public void AddLorePiecesCount()
+    {
+        lorePieces += 1;
+    }
+
+    public void ResetTimer()
+    {
+        timerTrigger = true;
+        timer = 0f;
+    }
+
+    public void StopTimer()
+    {
+        timerTrigger = false;
     }
 
 }

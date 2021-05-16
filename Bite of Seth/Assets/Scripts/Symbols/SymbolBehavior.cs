@@ -18,6 +18,7 @@ public class SymbolBehavior : MonoBehaviour {
     public void Collect() {
         this.enabled = false;
         anim.SetTrigger("collect");
+        ServiceLocator.Get<GameManager>().AddLorePiecesCount();
     }
 
     public void Explode() {

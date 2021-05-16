@@ -123,6 +123,7 @@ public class TextScript : MonoBehaviour
                 if (index >= dialogueSequence.Count) {
                     curDialogue = dialogueSequence[index - 1];
                     endOfConversation = true;
+                    Debug.Log("Fim do diálogo!");
                 } else {
                     curDialogue = dialogueSequence[index++];
                 }

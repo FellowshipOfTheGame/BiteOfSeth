@@ -30,6 +30,7 @@ public class NextLevelTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player") 
         {
+            ServiceLocator.Get<GameManager>().StopTimer();
             if (NextLevelScene != null) {
                 collision.gameObject.GetComponent<Movable>().StopSfx();
                 collision.gameObject.GetComponent<Movable>().enabled = false;
@@ -51,7 +52,7 @@ public class NextLevelTrigger : MonoBehaviour
     }
 
     public void GoToNextLevel()
-    {
+    { 
         ServiceLocator.Get<GameManager>().FromLevelGoToScene(NextLevelScene);
     }
 

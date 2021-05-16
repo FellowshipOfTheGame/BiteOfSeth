@@ -13,18 +13,22 @@ public class PlayerData
     public int score;
     public bool completedGame;
     public int totalScore;
+    public int lorePieces;
+    public int totalLorePieces;
+    public float timer;
+    public float totalTimer;
     //int piecesOfLore;
     //float time;
 
     //records...
 
-    public PlayerData(int _id, int _scene, int _score)
+    public PlayerData(int _id)
     {
         id = _id;
-        scene = _scene;
-        score = _score;
         completedGame = false;
-        totalScore = _score;
+        scene = 1;
+        score = totalScore = lorePieces = totalLorePieces = 0;
+        timer = totalTimer = 0f;
     }
     
 }

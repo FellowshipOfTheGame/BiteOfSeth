@@ -53,13 +53,11 @@ public class SceneReferences : GameService {
         Debug.Log("New Scene Loaded");
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
-        
-        ServiceLocator.Get<GameManager>().lockMovement = 0;
 
         //Try to Load a New Level
-
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
+            gm.lockMovement = 0;
             gm.TryToSetNewLevel();
         }
     
@@ -118,6 +116,15 @@ public class SceneReferences : GameService {
             i++;
         }
         return -1;
+    }
+
+    public string GetLevelName(int scene_id)
+    {
+
+        string[] aux = scenesList[scene_id].ScenePath.Split('/');
+        aux = aux[aux.Length - 1].Split('.');
+        return aux[0];
+
     }
 
 }

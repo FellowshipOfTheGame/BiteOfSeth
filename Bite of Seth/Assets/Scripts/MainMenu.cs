@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     }
 
     /*public void StartGame(){
-        ServiceLocator.Get<GameManager>().StartNewGame(FirstScene);
+        
         //SceneManager.LoadScene(FirstScene);
     }
 
