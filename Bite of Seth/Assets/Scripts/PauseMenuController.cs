@@ -27,6 +27,8 @@ public class PauseMenuController : MonoBehaviour
         instructionLayout.SetActive(false);
         canvas.SetActive(true);
         ServiceLocator.Get<GameManager>().lockMovement += 1;
+        ServiceLocator.Get<GameManager>().pause = true;
+        Debug.Log("PAUSOU");
     }
     public void CloseMenu()
     {
@@ -34,6 +36,7 @@ public class PauseMenuController : MonoBehaviour
         mainLayout.SetActive(false);
         instructionLayout.SetActive(false);
         ServiceLocator.Get<GameManager>().lockMovement -= 1;
+        Resume();
     }
     public void OpenInstructions()
     {
@@ -55,4 +58,16 @@ public class PauseMenuController : MonoBehaviour
         CloseMenu();
         SceneManager.LoadScene(quitSceneToLoad.ScenePath);
     }
+
+    public void Resume()
+    {
+        Invoke("ResumeGame", 0.01f);
+    }
+
+    private void ResumeGame()
+    {
+        ServiceLocator.Get<GameManager>().pause = false;
+        Debug.Log("DESPAUSOU");
+    }
+
 }

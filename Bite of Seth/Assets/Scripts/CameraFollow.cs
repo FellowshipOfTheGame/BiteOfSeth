@@ -25,6 +25,13 @@ public class CameraFollow : MonoBehaviour
 
     private bool inTransition = false;
 
+    public float defaultSize = 3f;
+
+    private void Start()
+    {
+        GetComponent<Camera>().orthographicSize = defaultSize;
+    }
+
     void LateUpdate()
     {
         playerPos = player.transform.position + offset;
@@ -41,6 +48,16 @@ public class CameraFollow : MonoBehaviour
     public void SmoothTransition()
     {
         inTransition = true;
+    }
+
+    public void ChangeToCustomSize(float size)
+    {
+        GetComponent<Camera>().orthographicSize = size;
+    }
+
+    public void ChangeToDefaultSize()
+    {
+        GetComponent<Camera>().orthographicSize = defaultSize;
     }
 
 }

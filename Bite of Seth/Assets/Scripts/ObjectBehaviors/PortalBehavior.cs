@@ -25,6 +25,9 @@ public class PortalBehavior : MonoBehaviour
     public AudioObject sfx;
     private AudioManager am;
 
+    public bool customCamSize = true;
+    public float customSize = 4f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +42,6 @@ public class PortalBehavior : MonoBehaviour
                 am.PlayAudio(sfx);
             }
             otpTranspBeh.TransportToPortal(otherSidePortalRef);
-            /*if (canTransportBoulder) {
-                canTransportBoulder = false;
-            }*/
         }
     }
 

@@ -24,12 +24,18 @@ public class PlayerTransportableBehavior : TransportableBehavior
     {
         base.ChangeBehavior(portal);
         //Specific changes to player
-        if (portal.logicSide) {
+        if (portal && portal.logicSide) {
             pc.ChangeToLogicSpeed();
             am.ChangeToLogicBGM();
+            if (portal.customCamSize) {
+                ServiceLocator.Get<GameManager>().changeCameraToCustomSize(portal.customSize);
+            }
         } else {
             pc.ChangeToNormalSpeed();
             am.ChangeToDefaultBGM();
+            if (!portal || portal.customCamSize) {
+                ServiceLocator.Get<GameManager>().changeCameraToDefaultSize();
+            }
         }
     }
 

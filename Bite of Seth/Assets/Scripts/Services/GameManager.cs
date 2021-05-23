@@ -24,9 +24,14 @@ public class GameManager : GameService
     private PlayerData saveData;
     private bool hasSaveFile = false;
 
+    private CameraFollow cf;
+    public bool pause = false;
+
     public override void Start()
     {
         base.Start();
+
+        pause = false;
 
         Cursor.visible = false;
 
@@ -88,6 +93,9 @@ public class GameManager : GameService
 
     public void SaveGame(SceneReference scene)
     {
+
+        FindObjectOfType<HUDController>().ShowSavingWarning();
+
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
         if(scene_index == 0) {
@@ -210,6 +218,21 @@ public class GameManager : GameService
     public PuzzleManager GetLevelPuzzleManager()
     {
         return lm.GetComponent<PuzzleManager>();
+    }
+
+    public void GetCameraRef()
+    {
+        cf = FindObjectOfType<CameraFollow>();
+    }
+
+    public void changeCameraToCustomSize(float size)
+    {
+        cf.ChangeToCustomSize(size);
+    }
+
+    public void changeCameraToDefaultSize()
+    {
+        cf.ChangeToDefaultSize();
     }
 
 }

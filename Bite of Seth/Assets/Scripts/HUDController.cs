@@ -1,10 +1,13 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 public class HUDController : MonoBehaviour
 {
     public Text scoreText;
     public Text statuesText;
+    public GameObject saveWarning;
+    public float secondsToShowSavingText = 3f;
 
     private PuzzleManager pm;
     private string totalStatues;
@@ -28,4 +31,17 @@ public class HUDController : MonoBehaviour
         statuesText.text = currentStatues + "/" + totalStatues;
 
     }
+
+    public void ShowSavingWarning()
+    {
+        saveWarning.SetActive(true);
+        Invoke("HideSavingText", secondsToShowSavingText);
+        
+    }
+
+    private void HideSavingText()
+    {
+        saveWarning.SetActive(false);
+    }
+
 }

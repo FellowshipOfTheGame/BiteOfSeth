@@ -213,11 +213,18 @@ public class PlayerController : MonoBehaviour
         movable.StopSfx();
         if (currentCheckpoint != null)
         {
+
             //Debug.Log("CHECKPOINT");
             PortalBehavior pb = currentCheckpoint.GetComponent<PortalBehavior>();
             if(pb != null) {
                 pb.ChangeObjectBehavior(gameObject.GetComponent<TransportableBehavior>());
+            } else {
+                TransportableBehavior tb = gameObject.GetComponent<TransportableBehavior>();
+                if (tb.logicBehavior) {
+                    tb.ChangeBehavior(null);
+                }
             }
+
             cf.enabled = false;
             movable.rigidbody.position = currentCheckpoint.transform.position;
             gameObject.transform.position = currentCheckpoint.transform.position;

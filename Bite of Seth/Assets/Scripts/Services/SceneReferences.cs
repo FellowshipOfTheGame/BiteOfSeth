@@ -61,6 +61,7 @@ public class SceneReferences : GameService {
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
             gm.TryToSetNewLevel();
+            gm.GetCameraRef();
         }
     
     }
