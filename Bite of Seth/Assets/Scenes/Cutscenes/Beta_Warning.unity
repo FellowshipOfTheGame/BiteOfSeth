@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2107,6 +2107,12 @@ PlayableDirector:
     value: {fileID: 3159407338768328931}
   - key: {fileID: 6023369362086698460, guid: f6a180d8a33bfb94997ecfc62d803beb, type: 2}
     value: {fileID: 1111311126}
+  - key: {fileID: 2180776213641716695, guid: f6a180d8a33bfb94997ecfc62d803beb, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3424545020402832469, guid: f6a180d8a33bfb94997ecfc62d803beb, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 313558784813464196, guid: f6a180d8a33bfb94997ecfc62d803beb, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - c45a81344e85c2745846a2bee79482cc: {fileID: 0}
@@ -2854,6 +2860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: -10}
   smoothTime: 0.3
+  defaultSize: 3
 --- !u!1 &3159407338768328930
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,9 +93,7 @@ public class GameManager : GameService
 
     public void SaveGame(SceneReference scene)
     {
-
-        FindObjectOfType<HUDController>().ShowSavingWarning();
-
+        ShowSavingWarning();
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
         if(scene_index == 0) {
@@ -109,6 +107,14 @@ public class GameManager : GameService
             SaveSystem.SavePlayer(saveData);
         }
         hasSaveFile = true;
+    }
+
+    public void ShowSavingWarning()
+    {
+        SaveWarning sw = FindObjectOfType<SaveWarning>();
+        if (sw) {
+           sw.ShowSavingWarning();
+        }
     }
 
     public void KillPlayer()

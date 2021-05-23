@@ -6,8 +6,6 @@ public class HUDController : MonoBehaviour
 {
     public Text scoreText;
     public Text statuesText;
-    public GameObject saveWarning;
-    public float secondsToShowSavingText = 3f;
 
     private PuzzleManager pm;
     private string totalStatues;
@@ -32,16 +30,6 @@ public class HUDController : MonoBehaviour
 
     }
 
-    public void ShowSavingWarning()
-    {
-        saveWarning.SetActive(true);
-        Invoke("HideSavingText", secondsToShowSavingText);
-        
-    }
-
-    private void HideSavingText()
-    {
-        saveWarning.SetActive(false);
-    }
+   
 
 }
