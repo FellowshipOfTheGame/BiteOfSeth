@@ -60,7 +60,7 @@ public class GameManager : GameService
         List<GameObject> rooms = FindObjectOfType<TilemapSlicer>().GetRooms();
         foreach (GameObject room in rooms) {
             for (int i=0; i< room.transform.childCount; i++) {
-                if (room.transform.GetChild(i).tag == "Diamond") {
+                if (room.transform.GetChild(i).tag == "Diamond" && room.transform.GetChild(i).GetComponent<CollectableBehavior>() && room.transform.GetChild(i).gameObject.activeInHierarchy) {
                     count++;
                 }
             }
