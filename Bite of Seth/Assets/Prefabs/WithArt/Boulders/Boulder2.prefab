@@ -310,7 +310,7 @@ MonoBehaviour:
   rollMask:
     serializedVersion: 2
     m_Bits: 3072
-  fallSpeed: 4
+  fallSpeed: 6
   fallSound: {fileID: 11400000, guid: 87cceacaaa44aff4f8f245daf768d832, type: 2}
   animator: {fileID: 8729337591075891703}
   isRolling: 0
@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAutomatic: 1
   spawnDir: {x: 1, y: 0}
+  logicBehavior: 0
 --- !u!82 &2399485754989858950
 AudioSource:
   m_ObjectHideFlags: 0

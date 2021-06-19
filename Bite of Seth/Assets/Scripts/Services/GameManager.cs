@@ -28,9 +28,14 @@ public class GameManager : GameService
     private float timer = 0f;
     public bool timerTrigger = false;
 
+    private CameraFollow cf;
+    public bool pause = false;
+
     public override void Start()
     {
         base.Start();
+
+        pause = false;
 
         Cursor.visible = false;
 
@@ -62,7 +67,7 @@ public class GameManager : GameService
         List<GameObject> rooms = FindObjectOfType<TilemapSlicer>().GetRooms();
         foreach (GameObject room in rooms) {
             for (int i=0; i< room.transform.childCount; i++) {
-                if (room.transform.GetChild(i).tag == "Diamond") {
+                if (room.transform.GetChild(i).tag == "Diamond" && room.transform.GetChild(i).GetComponent<CollectableBehavior>() && room.transform.GetChild(i).gameObject.activeInHierarchy) {
                     count++;
                 }
             }
@@ -90,6 +95,7 @@ public class GameManager : GameService
 
     public void SaveGame(SceneReference scene)
     {
+        ShowSavingWarning();
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
         if(scene_index == 0) {
@@ -124,6 +130,14 @@ public class GameManager : GameService
             Debug.Log("Timer salvo: " + PlayerData.current.timer);
 
             SaveSystem.Save();
+        }
+    }
+
+    public void ShowSavingWarning()
+    {
+        SaveWarning sw = FindObjectOfType<SaveWarning>();
+        if (sw) {
+           sw.ShowSavingWarning();
         }
     }
 
@@ -251,6 +265,21 @@ public class GameManager : GameService
     public void StopTimer()
     {
         timerTrigger = false;
+    }
+
+    public void GetCameraRef()
+    {
+        cf = FindObjectOfType<CameraFollow>();
+    }
+
+    public void changeCameraToCustomSize(float size)
+    {
+        cf.ChangeToCustomSize(size);
+    }
+
+    public void changeCameraToDefaultSize()
+    {
+        cf.ChangeToDefaultSize();
     }
 
 }

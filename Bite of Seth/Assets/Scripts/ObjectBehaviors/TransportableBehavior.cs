@@ -14,11 +14,14 @@ public class TransportableBehavior : MonoBehaviour
 
     public Vector2 spawnDir = Vector2.right;
 
+    public bool logicBehavior = false;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         mov = GetComponent<Movable>();
         lm = GetComponent<LogicMovable>();
+        logicBehavior = false;
     }
 
     // Update is called once per frame
@@ -44,10 +47,6 @@ public class TransportableBehavior : MonoBehaviour
 
     public void TransportToPortal(GameObject portal)
     {
-        //lm.GetComponent<LogicMovable>().enabled = false;
-
-
-        //mov.StoppedMoving();
         //Debug.Log("PARA");
         mov.isMoving = false;
 
@@ -72,16 +71,18 @@ public class TransportableBehavior : MonoBehaviour
     public virtual void ChangeBehavior(PortalBehavior portal)
     {
         //Generic changes
-        if (portal.logicSide) {
+        if (portal && portal.logicSide) {
             if (lm != null) {
                 //lm.enabled = true;
                 lm.EnableLogicMovement();
             }
+            logicBehavior = true;
         } else {
             if (lm != null) {
                 //lm.enabled = false;
                 lm.DisableLogicMovement();
             }
+            logicBehavior = false;
         }
     }
 

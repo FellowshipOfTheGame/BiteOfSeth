@@ -18,8 +18,11 @@ public class NextLevelTrigger : MonoBehaviour
 
     public bool showCongratsScreen = true;
 
+    private GameManager gm;
+
     public void Start()
     {
+        gm = ServiceLocator.Get<GameManager>();
         if (showCongratsScreen) {
             levelTotalDiamonds = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal();
             Debug.Log("Level tem " + levelTotalDiamonds + " diamantes, no total.");
@@ -35,10 +38,10 @@ public class NextLevelTrigger : MonoBehaviour
                 collision.gameObject.GetComponent<Movable>().StopSfx();
                 collision.gameObject.GetComponent<Movable>().enabled = false;
                 if (showCongratsScreen) {
-                    levelCollectedDiamonds = ServiceLocator.Get<GameManager>().GetLevelScore();
-                    totalCollectedDiamonds = ServiceLocator.Get<GameManager>().GetTotalScore() + levelCollectedDiamonds;
+                    levelCollectedDiamonds = gm.GetLevelScore();
+                    totalCollectedDiamonds = gm.GetTotalScore() + levelCollectedDiamonds;
                     levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
-                    totalDiamondsLabel.text = totalCollectedDiamonds.ToString() + " / " + totalGameDiamonds.ToString();
+                    totalDiamondsLabel.text = totalCollectedDiamonds.ToString();
                     EndLevelMenu.SetActive(true);
                     Selectable s = button.GetComponent<Selectable>();
                     s.Select();
@@ -52,8 +55,8 @@ public class NextLevelTrigger : MonoBehaviour
     }
 
     public void GoToNextLevel()
-    { 
-        ServiceLocator.Get<GameManager>().FromLevelGoToScene(NextLevelScene);
+    {
+        gm.FromLevelGoToScene(NextLevelScene);
     }
 
 }

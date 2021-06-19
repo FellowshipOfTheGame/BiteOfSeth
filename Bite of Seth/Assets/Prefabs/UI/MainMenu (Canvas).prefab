@@ -1141,7 +1141,7 @@ RectTransform:
   - {fileID: 9058025955301013490}
   - {fileID: 216832909951203235}
   m_Father: {fileID: 858525655648098384}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.24200001, y: 0.09328229}
   m_AnchorMax: {x: 0.75568223, y: 0.2348082}
@@ -3083,6 +3083,8 @@ RectTransform:
   m_Children:
   - {fileID: 7932256209696805642}
   - {fileID: 4327229937059784577}
+  - {fileID: 7737173091510359946}
+  - {fileID: 6839219470428472427}
   - {fileID: 1798337559833509748}
   m_Father: {fileID: 4044475589559499954}
   m_RootOrder: 1
@@ -7791,6 +7793,109 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7621823627550137023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7737173091510359946}
+  - component: {fileID: 3274273722669691497}
+  - component: {fileID: 5619098299251380691}
+  m_Layer: 5
+  m_Name: Credits Body Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7737173091510359946
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621823627550137023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 858525655648098384}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.2348082}
+  m_AnchorMax: {x: 1, y: 0.754}
+  m_AnchoredPosition: {x: 0.0007324219, y: 0.803772}
+  m_SizeDelta: {x: -0.68994, y: 2.2785}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3274273722669691497
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621823627550137023}
+  m_CullTransparentMesh: 0
+--- !u!114 &5619098299251380691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621823627550137023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9622642, g: 0.9497355, b: 0.6944642, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 265
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'GAME DESIGN
+
+    --------
+
+    George Maneta
+
+    Mateus Prado
+
+    Will
+    Zagario
+
+
+    WRITING
+
+    --------
+
+    Will Zagario
+
+
+    SPECIAL THANKS TO
+
+    --------
+
+    Fernanda
+    Marana
+
+    Rafael Clerici'
 --- !u!1 &7657417762044454932
 GameObject:
   m_ObjectHideFlags: 0
@@ -7856,7 +7961,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 26
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7867,22 +7972,33 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Programming: George Maneta, Marcelo Temoteo, Mateus Prado
+  m_Text: 'PROGRAMMING
+
+    --------
+
+    George Maneta
+
+    Marcelo Temoteo
+
+    Mateus
+    Prado
 
 
-    Art: Luana
-    Terra, Willian Leodegario
+    ARTWORK
+
+    --------
+
+    Luana Terra
+
+    Wil Zagario
 
 
-    Sound: Bruno Larsen
+    SOUND
+    DESIGN
 
+    --------
 
-    Game Design: George
-    Maneta, Mateus Prado, Willian Leodegario
-
-
-    Writing: Fernanda Marana, Willian
-    Leodegario'
+    Bruno Larsen'
 --- !u!1 &7951857272018605042
 GameObject:
   m_ObjectHideFlags: 0
@@ -8942,6 +9058,108 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8981819603743580416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6839219470428472427}
+  - component: {fileID: 3570908289647510459}
+  - component: {fileID: 1281139317557439332}
+  m_Layer: 5
+  m_Name: Credits Body Text (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6839219470428472427
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981819603743580416}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 858525655648098384}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.2348082}
+  m_AnchorMax: {x: 1, y: 0.754}
+  m_AnchoredPosition: {x: 0.0007324219, y: 0.803772}
+  m_SizeDelta: {x: -0.68994, y: 2.2785}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3570908289647510459
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981819603743580416}
+  m_CullTransparentMesh: 0
+--- !u!114 &1281139317557439332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981819603743580416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9622642, g: 0.9497355, b: 0.6944642, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 265
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'VOICES
+
+    --------
+
+    Nubia: Luana Terra
+
+    Pharaoh: Fernando Generich
+
+    Seth:
+    Abner Santos
+
+    Horus: Will Zagario
+
+    Ra: Danilo Escanhoela
+
+    Wepwawet:
+    Matheus Borella
+
+    Isis: Joana Larsen
+
+    Bes: Bruno Larsen
+
+    Serket: Laura
+    Louas
+
+    Osiris: Marcelo Temoteo'
 --- !u!1 &9119940535871223974
 GameObject:
   m_ObjectHideFlags: 0

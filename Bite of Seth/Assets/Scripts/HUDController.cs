@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 public class HUDController : MonoBehaviour
 {
@@ -28,4 +29,7 @@ public class HUDController : MonoBehaviour
         statuesText.text = currentStatues + "/" + totalStatues;
 
     }
+
+   
+
 }

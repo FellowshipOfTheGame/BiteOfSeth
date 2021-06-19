@@ -59,6 +59,7 @@ public class SceneReferences : GameService {
         if (gm != null) {
             gm.lockMovement = 0;
             gm.TryToSetNewLevel();
+            gm.GetCameraRef();
         }
     
     }
