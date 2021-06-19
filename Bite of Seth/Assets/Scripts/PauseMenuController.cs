@@ -23,6 +23,9 @@ public class PauseMenuController : MonoBehaviour
 
     public void OpenMenu()
     {
+        if (ServiceLocator.Get<GameManager>().loadingNewScene) {
+            return;
+        }
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
         canvas.SetActive(true);

@@ -47,7 +47,7 @@ public class CutsceneBehavior : DialogueBehavior {
         quitting = false;
 
         if (NextLevelScene != null) {
-            ServiceLocator.Get<GameManager>().FromLevelGoToScene(NextLevelScene);
+            ServiceLocator.Get<GameManager>().FromCutsceneGoToScene(NextLevelScene);
         } else {
             Debug.LogError("Sem referência para a próxima cena.");
         }

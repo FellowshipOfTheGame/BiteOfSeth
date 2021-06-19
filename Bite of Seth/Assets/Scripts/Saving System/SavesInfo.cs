@@ -45,4 +45,17 @@ public class SavesInfo : MonoBehaviour
         ServiceLocator.Get<GameManager>().StartNewGame(firstScene);
     }
 
+    public void LoadSave(int id)
+    {
+        if (id < 0 || id >= SaveSystem.savedGames.Length) {
+            Debug.Log("Invalid Save ID loaded");
+            return;
+        }
+        PlayerData.current = SaveSystem.savedGames[id];
+        if(PlayerData.current == null) {
+            return;
+        }
+        ServiceLocator.Get<GameManager>().LoadGame();
+    }
+
 }

@@ -57,6 +57,7 @@ public class SceneReferences : GameService {
         //Try to Load a New Level
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
+            gm.loadingNewScene = false;
             gm.lockMovement = 0;
             gm.TryToSetNewLevel();
             gm.GetCameraRef();
@@ -93,6 +94,24 @@ public class SceneReferences : GameService {
             Debug.LogError("Sem referência para a cena indicada.");
         }
         
+    }
+
+    public void GoToSceneId(int sceneId)
+    {
+
+        SceneReference scene = GetSceneReference(sceneId);
+
+        //Load new scene
+        if (scene != null) {
+            SceneTransition st = FindObjectOfType<SceneTransition>();
+            if (st) {
+                st.StartAnimation();
+            }
+            SceneLoader.instance.LoadScene(scene);
+        } else {
+            Debug.LogError("Sem referência para a cena indicada.");
+        }
+
     }
 
     public void ReloadCurrentScene()

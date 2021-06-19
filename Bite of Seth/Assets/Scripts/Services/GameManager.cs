@@ -17,19 +17,13 @@ public class GameManager : GameService
     private LevelManager curLevel;
     private int curLevelIndex;
 
-    //Struct to store level data
-    private struct LevelData {
-        public int id;
-        public int score;
-    };
-
-    private List<LevelData> levelData;
-
     private float timer = 0f;
     public bool timerTrigger = false;
 
     private CameraFollow cf;
     public bool pause = false;
+
+    public bool loadingNewScene = false;
 
     public override void Start()
     {
@@ -45,9 +39,6 @@ public class GameManager : GameService
         
         //Load the saved games
         SaveSystem.Load();
-
-        levelData = new List<LevelData>();
-        curLevelIndex = 0;
         
     }
 
@@ -86,11 +77,11 @@ public class GameManager : GameService
         SaveSystem.Delete();
     }
 
-    public SceneReference LoadGame()
+    public void LoadGame()
     {
         score = PlayerData.current.score;
         lorePieces = PlayerData.current.lorePieces;
-        return ServiceLocator.Get<SceneReferences>().GetSceneReference(PlayerData.current.scene);
+        ServiceLocator.Get<SceneReferences>().GoToSceneId(PlayerData.current.scene);
     }
 
     public void SaveGame(SceneReference scene)
@@ -169,7 +160,6 @@ public class GameManager : GameService
 
     public void TryToSetNewLevel()
     {
-        ResetTimer();
         //Try to find a LevelManager
         lm = GameObject.FindGameObjectWithTag("LevelManager");
         if(lm != null) {
@@ -179,6 +169,7 @@ public class GameManager : GameService
             curLevel = null;
             Debug.Log("It's not a Level Scene");
         }
+        ResetTimer();
     }
 
     public void GoToNextLevel()
@@ -193,8 +184,14 @@ public class GameManager : GameService
         //Update with new values from finished level
         if (curLevel != null) UpdateLevelValues();
 
+        Debug.Log("SALVANDO");
         SaveGame(scene);
 
+        ServiceLocator.Get<SceneReferences>().GoToScene(scene);
+    }
+
+    public void FromCutsceneGoToScene(SceneReference scene)
+    {
         ServiceLocator.Get<SceneReferences>().GoToScene(scene);
     }
 
@@ -204,11 +201,6 @@ public class GameManager : GameService
         int score = GetLevelScore();
         AddTotalScore(score);
         PrintTotalScore();
-        
-        LevelData ld = new LevelData();
-        ld.id = curLevelIndex++;
-        ld.score = score;
-        levelData.Add(ld);
         
     }
 
