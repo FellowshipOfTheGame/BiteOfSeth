@@ -36,6 +36,28 @@ public static class SaveSystem
 
     }
 
+    public static void EraseSave(int id)
+    {
+
+        savedGames[id] = null;
+
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        string path;
+        #if UNITY_WEBGL
+            path = System.IO.Path.Combine("/idbfs", Application.productName);
+        #else
+            path = Application.persistentDataPath + SaveSystem.saveName;
+        #endif
+
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        formatter.Serialize(stream, SaveSystem.savedGames);
+
+        stream.Close();
+
+    }
+
     public static void Load()
     {
 

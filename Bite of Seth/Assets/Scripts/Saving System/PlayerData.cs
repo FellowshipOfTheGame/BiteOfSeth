@@ -17,11 +17,7 @@ public class PlayerData
     public int totalLorePieces;
     public float timer;
     public float totalTimer;
-    //int piecesOfLore;
-    //float time;
-
-    //records...
-
+    
     public PlayerData(int _id)
     {
         id = _id;

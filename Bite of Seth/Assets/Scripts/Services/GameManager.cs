@@ -89,14 +89,14 @@ public class GameManager : GameService
         ShowSavingWarning();
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
-        if(scene_index == 0) {
+        if(scene_index == ServiceLocator.Get<SceneReferences>().scenesList.Count-1) {
             //IF THE GAME IS COMPLETED
             Debug.Log("This is the endgame");
 
             PlayerData.current.completedGame = true;
 
             PlayerData.current.totalScore = GetTotalScore();
-            Debug.Log("Total Score salvo: " + PlayerData.current.score);
+            Debug.Log("Total Score salvo: " + PlayerData.current.totalScore);
 
             PlayerData.current.totalLorePieces = lorePieces;
             Debug.Log("Total Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
@@ -117,6 +117,12 @@ public class GameManager : GameService
             PlayerData.current.lorePieces = lorePieces;
             Debug.Log("Pieces of Lore salvo: " + PlayerData.current.lorePieces);
 
+            PlayerData.current.totalScore = GetTotalScore();
+            Debug.Log("Total Score salvo: " + PlayerData.current.totalScore);
+
+            PlayerData.current.totalLorePieces = lorePieces;
+            Debug.Log("Total Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
+
             PlayerData.current.timer += timer;
             Debug.Log("Timer salvo: " + PlayerData.current.timer);
 
@@ -136,26 +142,6 @@ public class GameManager : GameService
     {
         Debug.Log("KillPlayer Behavior");
         player.Die();
-    }
-
-    public void PrintTotalScore()
-    {
-        Debug.Log(string.Format("Current Score: {0}", score));
-    }
-
-    public void AddTotalScore(int value)
-    {
-        score += value;
-    }
-
-    public int GetTotalScore()
-    {
-        return score;
-    }
-
-    public void SetTotalScore(int value)
-    {
-        score = value;
     }
 
     public void TryToSetNewLevel()
@@ -199,38 +185,11 @@ public class GameManager : GameService
     public void UpdateLevelValues()
     {
         int score = GetLevelScore();
+        int piecesOfLore = GetLevelPiecesOfLore();
         AddTotalScore(score);
+        AddTotalPiecesOfLore(piecesOfLore);
         PrintTotalScore();
-        
-    }
-
-    public int GetLevelScore()
-    {
-        if(curLevel != null) {
-            return curLevel.GetScore();
-        }
-        return 0;
-    }
-
-    public void AddLevelScore(int value)
-    {
-        if (curLevel != null) {
-            curLevel.AddScore(value);
-        }
-    }
-
-    public void PrintLevelScore()
-    {
-        if (curLevel != null) {
-            curLevel.PrintScore();
-        }
-    }
-
-    public void SetLevelScore(int value)
-    {
-        if (curLevel != null) {
-            curLevel.SetScore(value);
-        }
+        PrintTotalPiecesOfLore();
     }
 
     public void RestartLevel()
@@ -259,6 +218,11 @@ public class GameManager : GameService
         timerTrigger = false;
     }
 
+    public float GetTimer()
+    {
+        return timer;
+    }
+
     public void GetCameraRef()
     {
         cf = FindObjectOfType<CameraFollow>();
@@ -272,6 +236,104 @@ public class GameManager : GameService
     public void changeCameraToDefaultSize()
     {
         cf.ChangeToDefaultSize();
+    }
+
+    public void PrintTotalScore()
+    {
+        Debug.Log(string.Format("Current Score: {0}", score));
+    }
+
+    public void AddTotalScore(int value)
+    {
+        score += value;
+    }
+
+    public int GetTotalScore()
+    {
+        return score;
+    }
+
+    public void SetTotalScore(int value)
+    {
+        score = value;
+    }
+
+    public void PrintTotalPiecesOfLore()
+    {
+        Debug.Log(string.Format("Current Pieces of Lore: {0}", lorePieces));
+    }
+
+    public void AddTotalPiecesOfLore(int value)
+    {
+        lorePieces += value;
+    }
+
+    public int GetTotalPiecesOfLore()
+    {
+        return lorePieces;
+    }
+
+    public void SetTotalPiecesOfLore(int value)
+    {
+        lorePieces = value;
+    }
+
+    public int GetLevelScore()
+    {
+        if (curLevel != null) {
+            return curLevel.GetScore();
+        }
+        return 0;
+    }
+
+    public void AddLevelScore(int value)
+    {
+        if (curLevel != null) {
+            curLevel.AddScore(value);
+        }
+    }
+
+    public void PrintLevelScore()
+    {
+        if (curLevel != null) {
+            curLevel.PrintScore();
+        }
+    }
+
+    public void SetLevelScore(int value)
+    {
+        if (curLevel != null) {
+            curLevel.SetScore(value);
+        }
+    }
+
+    public int GetLevelPiecesOfLore()
+    {
+        if (curLevel != null) {
+            return curLevel.GetPiecesOfLore();
+        }
+        return 0;
+    }
+
+    public void AddLevelPiecesOfLore(int value)
+    {
+        if (curLevel != null) {
+            curLevel.AddPiecesOfLore(value);
+        }
+    }
+
+    public void PrintLevelPiecesOfLore()
+    {
+        if (curLevel != null) {
+            curLevel.PrintPiecesOfLore();
+        }
+    }
+
+    public void SetLevelPiecesOfLore(int value)
+    {
+        if (curLevel != null) {
+            curLevel.SetPiecesOfLore(value);
+        }
     }
 
 }
