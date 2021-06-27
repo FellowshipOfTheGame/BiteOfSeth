@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
         //play dub sound
         currentVoicedLine = Info.voicedLine;
         if (currentVoicedLine != null)
-            dubAudSrc = ServiceLocator.Get<AudioManager>().PlayAudio(currentVoicedLine);
+            dubAudSrc = ServiceLocator.Get<AudioManager>().PlayDialogue(currentVoicedLine);
 
         dialogueText.text = "";
         inst = StartCoroutine(TypeText(text));

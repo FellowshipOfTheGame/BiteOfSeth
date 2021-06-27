@@ -31,7 +31,7 @@ public class SavesInfo : MonoBehaviour
                 saves[i].diamondsCount.text = SaveSystem.savedGames[i].totalScore.ToString() + " / 200";
                 saves[i].loreCount.text = SaveSystem.savedGames[i].totalLorePieces.ToString() + " / 10";
                 var ts = TimeSpan.FromSeconds(SaveSystem.savedGames[i].timer);
-                saves[i].time.text = "Time: " + string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds) + " min";
+                saves[i].time.text = "Time: " + string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.TotalSeconds) + " min";
                 if (SaveSystem.savedGames[i].completedGame) {
                     saves[i].level.text = "Completed";
                 } else {
