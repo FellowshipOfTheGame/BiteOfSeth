@@ -59,6 +59,7 @@ public class SceneReferences : GameService {
         if (gm != null) {
             gm.loadingNewScene = false;
             gm.lockMovement = 0;
+            gm.pause = false;
             gm.TryToSetNewLevel();
             gm.GetCameraRef();
         }
@@ -83,6 +84,9 @@ public class SceneReferences : GameService {
 
     public void GoToScene(SceneReference scene)
     {
+
+        curSceneIndex = GetSceneIndex(scene);
+
         //Load new scene
         if (scene != null) {
             SceneTransition st = FindObjectOfType<SceneTransition>();
@@ -98,6 +102,8 @@ public class SceneReferences : GameService {
 
     public void GoToSceneId(int sceneId)
     {
+
+        curSceneIndex = sceneId;
 
         SceneReference scene = GetSceneReference(sceneId);
 
@@ -119,6 +125,11 @@ public class SceneReferences : GameService {
         //Load current scene again
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
         SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
+    }
+
+    public int GetCurrentSceneIndex()
+    {
+        return curSceneIndex;
     }
 
     public SceneReference GetSceneReference(int id)

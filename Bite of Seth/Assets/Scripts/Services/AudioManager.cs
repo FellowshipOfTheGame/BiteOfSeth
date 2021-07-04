@@ -5,7 +5,7 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Manager/Audio Manager")]
 public class AudioManager : GameService
 {
-    public float masterVolume = 1;
+    public float masterVolume = 1f;
     public AudioObject defaultBGM = null;
     public AudioObject logicBGM = null;
     private AudioSource currentBGM = null;
@@ -13,8 +13,8 @@ public class AudioManager : GameService
     private List<AudioSource> sources = new List<AudioSource>();
     private List<AudioObject> audioSources = new List<AudioObject>();
 
-    private float BGMVolume = 1f;
-    private float DialogueVolume = 1f;
+    public float BGMVolume = 1f;
+    public float DialogueVolume = 1f;
 
     private AudioSource currentDialogue = null;
     private AudioObject currentDialogueAudio = null;
@@ -35,7 +35,6 @@ public class AudioManager : GameService
                 {
                     Destroy(sources[i]);
                     sources.Remove(sources[i]);
-                    Destroy(audioSources[i]);
                     audioSources.Remove(audioSources[i]);
                 }
             }
@@ -212,19 +211,19 @@ public class AudioManager : GameService
 
     public void SetBGMVolume(float volume)
     {
-        if(currentBGM == null) {
+        BGMVolume = volume;
+        if (currentBGM == null) {
             return;
         }
-        BGMVolume = volume;
         currentBGM.volume = BGMVolume * currentBGMAudio.relativeVolume * masterVolume;
     }
 
     public void SetDialogueVolume(float volume)
     {
+        DialogueVolume = volume;
         if (currentDialogue == null) {
             return;
         }
-        DialogueVolume = volume;
         currentDialogue.volume = DialogueVolume * currentDialogueAudio.relativeVolume * masterVolume;
     }
 

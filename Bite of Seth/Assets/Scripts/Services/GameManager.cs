@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(menuName ="Manager/GameManager")]
-public class GameManager : GameService
-{
-
-    public int score;
-    public int lorePieces;
+public class GameManager : GameService 
+{ 
 
     public int lockMovement = 0;
     public PlayerController player = null;
@@ -17,13 +14,16 @@ public class GameManager : GameService
     private LevelManager curLevel;
     private int curLevelIndex;
 
-    private float timer = 0f;
-    public bool timerTrigger = false;
-
     private CameraFollow cf;
     public bool pause = false;
 
     public bool loadingNewScene = false;
+
+    public int score;
+    public int lorePieces;
+    private float timer = 0f;
+    public bool timerTrigger = false;
+    public Vector2 savedSpawnPos = Vector2.zero;
 
     public override void Start()
     {
@@ -36,18 +36,27 @@ public class GameManager : GameService
         lockMovement = 0;
 
         score = lorePieces = 0;
-        
+
+        savedSpawnPos = Vector2.zero;
+
         //Load the saved games
         SaveSystem.Load();
-        
+
+        ServiceLocator.Get<AudioManager>().SetMasterVolume(GameData.generalSave.generalVolume);
+        ServiceLocator.Get<AudioManager>().SetBGMVolume(GameData.generalSave.BGMVolume);
+        ServiceLocator.Get<AudioManager>().SetDialogueVolume(GameData.generalSave.dialogueVolume);
+
+        timer = 0f;
+        timerTrigger = false;
+
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (timerTrigger) {
-            timer += Time.deltaTime;
+        if (timerTrigger && curLevel) {
+            AddLevelTimer(Time.deltaTime);
         }
 
     }
@@ -79,55 +88,77 @@ public class GameManager : GameService
 
     public void LoadGame()
     {
-        score = PlayerData.current.score;
-        lorePieces = PlayerData.current.lorePieces;
+        score = PlayerData.current.totalScore;
+        lorePieces = PlayerData.current.totalLorePieces;
+        timer = PlayerData.current.totalTimer;
         ServiceLocator.Get<SceneReferences>().GoToSceneId(PlayerData.current.scene);
     }
 
     public void SaveGame(SceneReference scene)
     {
         ShowSavingWarning();
+        
         //SAVE GAME DATA
         int scene_index = ServiceLocator.Get<SceneReferences>().GetSceneIndex(scene);
         if(scene_index == ServiceLocator.Get<SceneReferences>().scenesList.Count-1) {
             //IF THE GAME IS COMPLETED
             Debug.Log("This is the endgame");
-
-            PlayerData.current.completedGame = true;
-
-            PlayerData.current.totalScore = GetTotalScore();
-            Debug.Log("Total Score salvo: " + PlayerData.current.totalScore);
-
-            PlayerData.current.totalLorePieces = lorePieces;
-            Debug.Log("Total Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
-
-            PlayerData.current.totalTimer = PlayerData.current.timer + timer;
-            Debug.Log("Total timer salvo: " + PlayerData.current.totalTimer);
-
-            SaveSystem.Save();
-        } else {
-            //IF THE GAME IS NOT COMPLETED YET
-
-            PlayerData.current.scene = scene_index;
-            Debug.Log("Cena salva: " + PlayerData.current.scene);
-
-            PlayerData.current.score = GetTotalScore();
-            Debug.Log("Score salvo: " + PlayerData.current.score);
-
-            PlayerData.current.lorePieces = lorePieces;
-            Debug.Log("Pieces of Lore salvo: " + PlayerData.current.lorePieces);
-
-            PlayerData.current.totalScore = GetTotalScore();
-            Debug.Log("Total Score salvo: " + PlayerData.current.totalScore);
-
-            PlayerData.current.totalLorePieces = lorePieces;
-            Debug.Log("Total Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
-
-            PlayerData.current.timer += timer;
-            Debug.Log("Timer salvo: " + PlayerData.current.timer);
-
-            SaveSystem.Save();
+            PlayerData.current.completedGame = true;          
         }
+
+        PlayerData.current.scene = scene_index;
+        Debug.Log("Cena salva: " + PlayerData.current.scene);
+
+        PlayerData.current.totalScore = GetTotalScore();
+        Debug.Log("Score salvo: " + PlayerData.current.totalScore);
+
+        PlayerData.current.totalLorePieces = GetTotalPiecesOfLore();
+        Debug.Log("Pieces of Lore salvo: " + PlayerData.current.totalLorePieces);
+
+        PlayerData.current.totalTimer = GetTotalTimer();
+        Debug.Log("Timer salvo: " + PlayerData.current.totalTimer);
+
+        //Reset Level Data
+        PlayerData.current.levelScore = 0;
+        PlayerData.current.levelLorePieces = 0;
+        PlayerData.current.levelTimer = 0f;
+
+        SaveSystem.Save();
+    }
+
+    public void SaveSpawnPoint(Vector2 point)
+    {
+        ShowSavingWarning();
+        savedSpawnPos = point;
+
+        PlayerData.current.spawnPointX = savedSpawnPos.x;
+        PlayerData.current.spawnPointY = savedSpawnPos.y;
+        Debug.Log("Spawn Point salvo: ( " + PlayerData.current.spawnPointX + " , " + PlayerData.current.spawnPointY + " )");
+
+        int scene_index = ServiceLocator.Get<SceneReferences>().GetCurrentSceneIndex();
+        PlayerData.current.scene = scene_index;
+        Debug.Log("Cena salva: " + PlayerData.current.scene);
+
+        PlayerData.current.levelScore = GetLevelScore();
+        Debug.Log("Score salvo: " + PlayerData.current.levelScore);
+
+        PlayerData.current.levelLorePieces = GetLevelPiecesOfLore();
+        Debug.Log("Pieces of Lore salvo: " + PlayerData.current.levelLorePieces);
+
+        PlayerData.current.levelTimer = GetLevelTimer();
+        Debug.Log("Timer salvo: " + PlayerData.current.levelTimer);
+
+    }
+
+    //Return a boolean that indicates if there is a save point during the level
+    public bool UpdateSavePointData()
+    {
+        SetLevelScore(PlayerData.current.levelScore);
+        SetLevelPiecesOfLore(PlayerData.current.levelLorePieces);
+        SetLevelTimer(PlayerData.current.levelTimer);
+        savedSpawnPos.x = PlayerData.current.spawnPointX;
+        savedSpawnPos.y = PlayerData.current.spawnPointY;
+        return (savedSpawnPos.x != 0 || savedSpawnPos.y != 0);
     }
 
     public void ShowSavingWarning()
@@ -144,6 +175,8 @@ public class GameManager : GameService
         player.Die();
     }
 
+    // PRIMEIRA FUNÇÃO CHAMADA QUANDO UMA CENA NOVA É CARREGADA
+    // VERIFICA SE É UM LEVEL E INICIALIZA VALORES
     public void TryToSetNewLevel()
     {
         //Try to find a LevelManager
@@ -155,18 +188,27 @@ public class GameManager : GameService
             curLevel = null;
             Debug.Log("It's not a Level Scene");
         }
-        ResetTimer();
+
+        if (PlayerData.current != null) {
+            SetLevelScore(PlayerData.current.levelScore);
+            SetLevelPiecesOfLore(PlayerData.current.levelLorePieces);
+            SetLevelTimer(PlayerData.current.levelTimer);
+        }
+        savedSpawnPos = Vector2.zero;
+        timerTrigger = true;
     }
 
     public void GoToNextLevel()
     {
         //Update with new values from finished level
-        if(curLevel != null) UpdateLevelValues();
+        if (curLevel != null) UpdateLevelValues();
         ServiceLocator.Get<SceneReferences>().GoToNextScene();
     }
 
     public void FromLevelGoToScene(SceneReference scene)
     {
+        SaveSpawnPoint(Vector2.zero);
+
         //Update with new values from finished level
         if (curLevel != null) UpdateLevelValues();
 
@@ -186,10 +228,13 @@ public class GameManager : GameService
     {
         int score = GetLevelScore();
         int piecesOfLore = GetLevelPiecesOfLore();
+        float timer = GetLevelTimer();
         AddTotalScore(score);
         AddTotalPiecesOfLore(piecesOfLore);
+        AddTotalTimer(timer);
         PrintTotalScore();
         PrintTotalPiecesOfLore();
+        PrintTotalTimer();
     }
 
     public void RestartLevel()
@@ -207,22 +252,11 @@ public class GameManager : GameService
         lorePieces += 1;
     }
 
-    public void ResetTimer()
-    {
-        timerTrigger = true;
-        timer = 0f;
-    }
-
     public void StopTimer()
     {
         timerTrigger = false;
     }
-
-    public float GetTimer()
-    {
-        return timer;
-    }
-
+    
     public void GetCameraRef()
     {
         cf = FindObjectOfType<CameraFollow>();
@@ -276,6 +310,26 @@ public class GameManager : GameService
     public void SetTotalPiecesOfLore(int value)
     {
         lorePieces = value;
+    }
+
+    public void PrintTotalTimer()
+    {
+        Debug.Log(string.Format("Total Timer: {0}", timer));
+    }
+
+    public void AddTotalTimer(float value)
+    {
+        timer += value;
+    }
+
+    public float GetTotalTimer()
+    {
+        return timer;
+    }
+
+    public void SetTotalTimer(float value)
+    {
+        timer = value;
     }
 
     public int GetLevelScore()
@@ -333,6 +387,35 @@ public class GameManager : GameService
     {
         if (curLevel != null) {
             curLevel.SetPiecesOfLore(value);
+        }
+    }
+
+    public float GetLevelTimer()
+    {
+        if (curLevel != null) {
+            return curLevel.GetTimer();
+        }
+        return 0;
+    }
+
+    public void AddLevelTimer(float value)
+    {
+        if (curLevel != null) {
+            curLevel.AddTimer(value);
+        }
+    }
+
+    public void PrintLevelTimer()
+    {
+        if (curLevel != null) {
+            curLevel.PrintTimer();
+        }
+    }
+
+    public void SetLevelTimer(float value)
+    {
+        if (curLevel != null) {
+            curLevel.SetTimer(value);
         }
     }
 

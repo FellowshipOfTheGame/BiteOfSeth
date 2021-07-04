@@ -46,7 +46,9 @@ public class DoorBehavior : MonoBehaviour
             Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
             doorMovable.StartMovement(startPos + openDistance - pos, openSpeed);
             GetComponent<Collider2D>().enabled = false;
-            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            if (sfx) {
+                ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
         }
     }
 
@@ -58,7 +60,9 @@ public class DoorBehavior : MonoBehaviour
             Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
             doorMovable.StartMovement(startPos - pos, openSpeed);
             GetComponent<Collider2D>().enabled = true;
-            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            if (sfx) {
+                ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
         }
         
     }

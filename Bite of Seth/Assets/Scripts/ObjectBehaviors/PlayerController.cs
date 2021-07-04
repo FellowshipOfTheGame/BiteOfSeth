@@ -4,12 +4,11 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Movable))]
-public class PlayerController : MonoBehaviour
-{
-   
+public class PlayerController : MonoBehaviour {
+
     public float normalMovementSpeed = 5f;
     public float logicMovementSpeed = 10f;
-    private float movementSpeed = 5f; 
+    private float movementSpeed = 5f;
     public LayerMask movementCollisionMask;
     public CheckpointBehavior currentCheckpoint = null;
     public LayerMask walkOnLayerMask = default;
@@ -29,10 +28,12 @@ public class PlayerController : MonoBehaviour
 
     private CameraFollow cf;
     private AudioManager am;
-   
+
     public AudioObject climbingSfx = null;
     public AudioObject walkingSfx = null;
     private bool playingWalkingSfx = true;
+
+    private SavePoint currentSavePoint = null;
 
     private void Awake()
     {
@@ -49,33 +50,28 @@ public class PlayerController : MonoBehaviour
         holdableLayerMask = LayerMask.GetMask("Boulder");
         animator = gameObject.GetComponent<Animator>();
         GameManager gm = ServiceLocator.Get<GameManager>();
-        if (gm.player == null)
-        {
+        if (gm.player == null) {
             gm.player = this;
-        }
-        else
-        {
+        } else {
             Debug.Log("Second instance of player instantiated, destrying it");
             Destroy(this);
         }
         movable.SetMovableSfx(walkingSfx);
+        currentSavePoint = null;
+        CheckSavePoint();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
-        {
+        if (Input.GetKeyDown(KeyCode.R) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0) {
             UseCheckpoint();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0)
-        {
+        if (Input.GetKeyDown(KeyCode.E) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0) {
             List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, movable.lookingDirection, gameObject);
-            foreach (GameObject g in objects)
-            {
+            foreach (GameObject g in objects) {
                 ExplodeBehavior eb = g.GetComponent<ExplodeBehavior>();
-                if (eb != null)
-                {
+                if (eb != null) {
                     eb.StartTimerToExplode();
                 }
             }
@@ -88,8 +84,7 @@ public class PlayerController : MonoBehaviour
         if (climbing && playingWalkingSfx) {
             movable.SetMovableSfx(climbingSfx);
             playingWalkingSfx = false;
-        }
-        else if (!climbing && !playingWalkingSfx) {
+        } else if (!climbing && !playingWalkingSfx) {
             movable.SetMovableSfx(walkingSfx);
             playingWalkingSfx = true;
         }
@@ -99,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Horizontal", animationDiretion.x);
         animator.SetFloat("Vertical", animationDiretion.y);
-        animator.SetBool("Walking", movable.isMoving);        
+        animator.SetBool("Walking", movable.isMoving);
         animator.SetBool("Pushing", pushing);
         animator.SetBool("Holding", holding);
         animator.SetBool("Dying", dying);
@@ -111,28 +106,21 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!movable.isMoving)
-        {
+        if (!movable.isMoving) {
             pushing = false;
             Vector2 desiredMovement = CheckInput();
-            if (desiredMovement != Vector2.zero)
-            {
+            if (desiredMovement != Vector2.zero) {
                 List<GameObject> objects = GridNav.GetObjectsInPath(movable.rigidbody.position, desiredMovement, movementCollisionMask, gameObject);
-                if (objects.Count == 0)
-                {
+                if (objects.Count == 0) {
                     // nothing on the way, move freely
                     movable.StartMovement(desiredMovement, movementSpeed);
-                }
-                else if (objects.Count == 1)
-                {
+                } else if (objects.Count == 1) {
 
                     // object ahead, pushable?
                     PushableBehavior pushable = objects[0].GetComponent<PushableBehavior>();
-                    if (pushable != null)
-                    {
+                    if (pushable != null) {
                         bool pushed = pushable.Push(desiredMovement);
-                        if (pushed)
-                        {
+                        if (pushed) {
                             movable.StartMovement(desiredMovement, pushable.pushSpeed);
                             pushing = true;
                         }
@@ -144,15 +132,13 @@ public class PlayerController : MonoBehaviour
                         collectable.Collect();
                         movable.StartMovement(desiredMovement, movementSpeed);
                     }
-                }
-                else
-                {
+                } else {
                     Debug.LogWarning(" more than 1 object ahead");
-                }  
+                }
             }
         }
     }
-    
+
     private Vector2 CheckInput()
     {
 
@@ -165,34 +151,24 @@ public class PlayerController : MonoBehaviour
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        
+
         // preference for horizontal movement over vertical 
-        if (horizontal != 0)
-        {
-            if (horizontal > 0)
-            {
+        if (horizontal != 0) {
+            if (horizontal > 0) {
                 desiredMovement = GridNav.right;
-            }
-            else
-            {
+            } else {
                 desiredMovement = GridNav.left;
             }
-        }
-        else if (vertical != 0)
-        {
-            if (vertical > 0)
-            {
+        } else if (vertical != 0) {
+            if (vertical > 0) {
                 desiredMovement = GridNav.up;
-            }
-            else
-            {
+            } else {
                 desiredMovement = GridNav.down;
             }
         }
-        if (desiredMovement != Vector2.zero)
-        {
+        if (desiredMovement != Vector2.zero) {
             movable.lookingDirection = desiredMovement;
-        }        
+        }
         return desiredMovement;
     }
 
@@ -201,22 +177,19 @@ public class PlayerController : MonoBehaviour
         if (c.IsActive()) {
             return;
         }
-        if (currentCheckpoint)
-        {
+        if (currentCheckpoint) {
             currentCheckpoint.SetCheckpointActive(false);
         }
         currentCheckpoint = c;
     }
-    
+
     public void UseCheckpoint()
     {
         movable.StopSfx();
-        if (currentCheckpoint != null)
-        {
-
+        if (currentCheckpoint != null) {
             //Debug.Log("CHECKPOINT");
             PortalBehavior pb = currentCheckpoint.GetComponent<PortalBehavior>();
-            if(pb != null) {
+            if (pb != null) {
                 pb.ChangeObjectBehavior(gameObject.GetComponent<TransportableBehavior>());
             } else {
                 TransportableBehavior tb = gameObject.GetComponent<TransportableBehavior>();
@@ -245,7 +218,7 @@ public class PlayerController : MonoBehaviour
     private void Revive()
     {
         //Debug.Log("ACABOU DE MORRER");
-        
+
         UseCheckpoint();
         dying = false;
         //Invoke("EnableMovement", 1f);
@@ -279,6 +252,21 @@ public class PlayerController : MonoBehaviour
     public void ChangeToNormalSpeed()
     {
         movementSpeed = normalMovementSpeed;
+    }
+
+    public void SetSavePoint(SavePoint sp)
+    {
+        currentSavePoint = sp;
+        ServiceLocator.Get<GameManager>().SaveSpawnPoint(sp.gameObject.transform.position);
+        currentCheckpoint = null;
+    }
+
+    public void CheckSavePoint(){
+        if(ServiceLocator.Get<GameManager>().UpdateSavePointData()) {
+            Vector2 point = ServiceLocator.Get<GameManager>().savedSpawnPos;
+            GetComponent<Movable>().rigidbody.position = (Vector3)GridNav.WorldToGridPosition(point);
+            Debug.Log("MAMA MIA");
+        }
     }
 
 }

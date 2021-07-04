@@ -28,14 +28,15 @@ public class SavesInfo : MonoBehaviour
             if (SaveSystem.savedGames[i] != null) {
                 saves[i].noSave.SetActive(false);
                 saves[i].info.SetActive(true);
-                saves[i].diamondsCount.text = SaveSystem.savedGames[i].totalScore.ToString() + " / 200";
-                saves[i].loreCount.text = SaveSystem.savedGames[i].totalLorePieces.ToString() + " / 10";
-                var ts = TimeSpan.FromSeconds(SaveSystem.savedGames[i].timer);
-                saves[i].time.text = "Time: " + string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.TotalSeconds) + " min";
-                if (SaveSystem.savedGames[i].completedGame) {
+                PlayerData data = SaveSystem.savedGames[i];
+                saves[i].diamondsCount.text = (data.totalScore + data.levelScore).ToString() + " / 200";
+                saves[i].loreCount.text = (data.totalLorePieces + data.levelLorePieces).ToString() + " / 10";
+                var ts = TimeSpan.FromSeconds(data.totalTimer + data.levelTimer);
+                saves[i].time.text = "Time: " + string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
+                if (data.completedGame) {
                     saves[i].level.text = "Completed";
                 } else {
-                    saves[i].level.text = ServiceLocator.Get<SceneReferences>().GetLevelName(SaveSystem.savedGames[i].scene);
+                    saves[i].level.text = ServiceLocator.Get<SceneReferences>().GetLevelName(data.scene);
                 }
             }
         }   

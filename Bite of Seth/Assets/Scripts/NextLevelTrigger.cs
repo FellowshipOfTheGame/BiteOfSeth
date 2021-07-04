@@ -60,9 +60,9 @@ public class NextLevelTrigger : MonoBehaviour
                     levelLoreLabel.text = levelCollectedLore.ToString() + " / " + levelTotalLore.ToString();
                     totalLoreLabel.text = totalCollectedLore.ToString();
 
-                    var ts = TimeSpan.FromSeconds(gm.GetTimer());
+                    var ts = TimeSpan.FromSeconds(gm.GetLevelTimer());
                     timeLabel.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
-                    ts = TimeSpan.FromSeconds(PlayerData.current.timer + gm.GetTimer());
+                    ts = TimeSpan.FromSeconds(gm.GetTotalTimer() + gm.GetLevelTimer());
                     totalTimeLabel.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
 
                     EndLevelMenu.SetActive(true);
