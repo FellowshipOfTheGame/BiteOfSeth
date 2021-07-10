@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.R) && !dying && ServiceLocator.Get<GameManager>().lockMovement == 0) {
             UseCheckpoint();
         }
@@ -257,15 +258,15 @@ public class PlayerController : MonoBehaviour {
     public void SetSavePoint(SavePoint sp)
     {
         currentSavePoint = sp;
-        ServiceLocator.Get<GameManager>().SaveSpawnPoint(sp.gameObject.transform.position);
         currentCheckpoint = null;
     }
 
     public void CheckSavePoint(){
         if(ServiceLocator.Get<GameManager>().UpdateSavePointData()) {
             Vector2 point = ServiceLocator.Get<GameManager>().savedSpawnPos;
-            GetComponent<Movable>().rigidbody.position = (Vector3)GridNav.WorldToGridPosition(point);
-            Debug.Log("MAMA MIA");
+            movable.isMoving = false;
+            movable.rigidbody.position = (Vector3)GridNav.WorldToGridPosition(point);
+            gameObject.transform.position = GridNav.WorldToGridPosition(point);
         }
     }
 

@@ -148,6 +148,8 @@ public class GameManager : GameService
         PlayerData.current.levelTimer = GetLevelTimer();
         Debug.Log("Timer salvo: " + PlayerData.current.levelTimer);
 
+        SaveSystem.Save();
+
     }
 
     //Return a boolean that indicates if there is a save point during the level
