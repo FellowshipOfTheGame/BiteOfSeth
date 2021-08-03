@@ -10,14 +10,21 @@ public class SymbolBehavior : MonoBehaviour {
 
     public SpriteRenderer symbol, shadow;
 
+    private bool collected = false;
+
     private void Start() {
         symbol.sprite = info.symbol;
         shadow.sprite = info.shadow;
+        collected = false;
     }
 
     public void Collect() {
         this.enabled = false;
         anim.SetTrigger("collect");
+        if (!collected) {
+            collected = true;
+            ServiceLocator.Get<GameManager>().AddLevelPiecesOfLore(1);
+        }
     }
 
     public void Explode() {

@@ -9,7 +9,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     public SpriteRenderer number;
     public Sprite[] digits;
 
-    private PuzzleManager.Id id;
+    public PuzzleManager.Id id;
     public string statueName;
 
     // Update is called once per frame
@@ -54,6 +54,11 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     public void SetId(PuzzleManager.Id _id)
     {
         id = _id;
+    }
+
+    public PuzzleManager.Id GetId()
+    {
+        return id;
     }
 
     public void UpdateCounter(int c) {

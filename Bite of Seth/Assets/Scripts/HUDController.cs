@@ -1,10 +1,12 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 public class HUDController : MonoBehaviour
 {
     public Text scoreText;
     public Text statuesText;
+    public Text piecesOfLoreText;
 
     private PuzzleManager pm;
     private string totalStatues;
@@ -27,5 +29,11 @@ public class HUDController : MonoBehaviour
         string currentStatues = pm.GetTipStatuesQuantity().ToString();
         statuesText.text = currentStatues + "/" + totalStatues;
 
+        string piecesOfLore = ServiceLocator.Get<GameManager>().GetLevelPiecesOfLore().ToString();
+        piecesOfLoreText.text = piecesOfLore + "/5";
+
     }
+
+   
+
 }

@@ -5,17 +5,45 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
+
+    public static PlayerData current;
+
+    public int id;
     public int scene;
-    public int score;
-    //int piecesOfLore;
-    //float time;
+    public bool completedGame;
 
-    //records...
+    public int levelScore;
+    public int levelLorePieces;
+    public float levelTimer;
 
-    public PlayerData(int _scene, int _score)
+    public int totalScore;
+    public int totalLorePieces;
+    public float totalTimer;
+
+    public float spawnPointX;
+    public float spawnPointY;
+
+    //In the future, if we need more than 5 statues, just add more
+    public int statue0;
+    public int statue1;
+    public int statue2;
+    public int statue3;
+    public int statue4;
+
+    // Settings info: only matters is the PlayerData with id 0
+    public float generalVolume;
+    public float BGMVolume;
+    public float dialogueVolume;
+
+    public PlayerData(int _id)
     {
-        scene = _scene;
-        score = _score;
+        id = _id;
+        completedGame = false;
+        scene = 1;
+        levelScore = totalScore = levelLorePieces = totalLorePieces = 0;
+        levelTimer = totalTimer = spawnPointX = spawnPointY = 0f;
+        generalVolume = BGMVolume = dialogueVolume = 1f;
+        statue0 = statue1 = statue2 = statue3 = statue4 = -1;
     }
     
 }

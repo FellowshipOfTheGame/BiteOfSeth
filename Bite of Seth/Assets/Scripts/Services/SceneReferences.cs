@@ -53,14 +53,15 @@ public class SceneReferences : GameService {
         Debug.Log("New Scene Loaded");
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
-        
-        ServiceLocator.Get<GameManager>().lockMovement = 0;
 
         //Try to Load a New Level
-
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
+            gm.loadingNewScene = false;
+            gm.lockMovement = 0;
+            gm.pause = false;
             gm.TryToSetNewLevel();
+            gm.GetCameraRef();
         }
     
     }
@@ -83,6 +84,9 @@ public class SceneReferences : GameService {
 
     public void GoToScene(SceneReference scene)
     {
+
+        curSceneIndex = GetSceneIndex(scene);
+
         //Load new scene
         if (scene != null) {
             SceneTransition st = FindObjectOfType<SceneTransition>();
@@ -96,11 +100,36 @@ public class SceneReferences : GameService {
         
     }
 
+    public void GoToSceneId(int sceneId)
+    {
+
+        curSceneIndex = sceneId;
+
+        SceneReference scene = GetSceneReference(sceneId);
+
+        //Load new scene
+        if (scene != null) {
+            SceneTransition st = FindObjectOfType<SceneTransition>();
+            if (st) {
+                st.StartAnimation();
+            }
+            SceneLoader.instance.LoadScene(scene);
+        } else {
+            Debug.LogError("Sem referência para a cena indicada.");
+        }
+
+    }
+
     public void ReloadCurrentScene()
     {
         //Load current scene again
         //SceneManager.LoadScene(curSceneIndex, LoadSceneMode.Single);
         SceneLoader.instance.LoadScene(scenesList[curSceneIndex]);
+    }
+
+    public int GetCurrentSceneIndex()
+    {
+        return curSceneIndex;
     }
 
     public SceneReference GetSceneReference(int id)
@@ -118,6 +147,15 @@ public class SceneReferences : GameService {
             i++;
         }
         return -1;
+    }
+
+    public string GetLevelName(int scene_id)
+    {
+
+        string[] aux = scenesList[scene_id].ScenePath.Split('/');
+        aux = aux[aux.Length - 1].Split('.');
+        return aux[0];
+
     }
 
 }

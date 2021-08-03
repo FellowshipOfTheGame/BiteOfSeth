@@ -88,7 +88,7 @@ public class TextScript : MonoBehaviour
     //Return true if the dialog has occurred
     public bool TryToDialogue() {
 
-        if (Input.GetKeyDown(KeyCode.E) && playerInRange) {
+        if (Input.GetKeyDown(KeyCode.E) && playerInRange && !ServiceLocator.Get<GameManager>().pause) {
             return Dialogue();
         }
 
@@ -123,6 +123,7 @@ public class TextScript : MonoBehaviour
                 if (index >= dialogueSequence.Count) {
                     curDialogue = dialogueSequence[index - 1];
                     endOfConversation = true;
+                    Debug.Log("Fim do diálogo!");
                 } else {
                     curDialogue = dialogueSequence[index++];
                 }

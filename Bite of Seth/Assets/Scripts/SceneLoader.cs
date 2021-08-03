@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(SceneReference scene)
     {
+        ServiceLocator.Get<GameManager>().loadingNewScene = true;
         ServiceLocator.Get<GameManager>().lockMovement++;
         StartCoroutine(LoadAsynchronously(scene));
     }

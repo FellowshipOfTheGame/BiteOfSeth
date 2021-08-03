@@ -12,6 +12,9 @@ public class DoorBehavior : MonoBehaviour
     public Vector3 openDistance;
     public float openSpeed;
 
+    public bool cameraFocus = true;
+    public float focusTime = 1.5f;
+
     private void Start()
     {
         startPos = doorMovable.rigidbody.position;
@@ -46,7 +49,12 @@ public class DoorBehavior : MonoBehaviour
             Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
             doorMovable.StartMovement(startPos + openDistance - pos, openSpeed);
             GetComponent<Collider2D>().enabled = false;
-            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            if (sfx) {
+                ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
+            if (cameraFocus) {
+                ServiceLocator.Get<GameManager>().FocusCameraOnXDuringYSeconds(gameObject.transform.position, focusTime);
+            }
         }
     }
 
@@ -58,7 +66,9 @@ public class DoorBehavior : MonoBehaviour
             Vector3 pos = GridNav.WorldToGridPosition(doorMovable.rigidbody.position);
             doorMovable.StartMovement(startPos - pos, openSpeed);
             GetComponent<Collider2D>().enabled = true;
-            ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            if (sfx) {
+                ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
         }
         
     }

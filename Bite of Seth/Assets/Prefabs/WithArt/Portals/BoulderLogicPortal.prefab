@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 657827890829273647, guid: 7011e5c4b08874049b46dce45165aa26,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 657827890829273647, guid: 7011e5c4b08874049b46dce45165aa26,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3928820451778728237, guid: 7011e5c4b08874049b46dce45165aa26,
         type: 3}
       propertyPath: canTransportPlayer
