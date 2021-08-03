@@ -240,6 +240,16 @@ public class GameManager : GameService
         player.Die();
     }
 
+    public void StopPlayerControls()
+    {
+        player.enabled = false;
+    }
+
+    public void ResumePlayerControls()
+    {
+        player.enabled = true;
+    }
+
     // PRIMEIRA FUNÇÃO CHAMADA QUANDO UMA CENA NOVA É CARREGADA
     // VERIFICA SE É UM LEVEL E INICIALIZA VALORES
     public void TryToSetNewLevel()
