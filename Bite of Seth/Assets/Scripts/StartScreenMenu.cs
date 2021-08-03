@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class StartScreenMenu : MonoBehaviour {
@@ -8,7 +9,7 @@ public class StartScreenMenu : MonoBehaviour {
     public Animator animator;
     public GameObject menu;
     public SelectButtonOnMenu firstButtonSelected;
-    
+
     // Start is called before the first frame update
     void Start() {
         menu.SetActive(false);
@@ -40,4 +41,5 @@ public class StartScreenMenu : MonoBehaviour {
         menu.SetActive(true);
         firstButtonSelected.Select();
     }
+
 }

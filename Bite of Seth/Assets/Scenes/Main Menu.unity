@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -411,6 +411,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f493e3b02b4d604fb95062eb38e94af, type: 3}
+--- !u!114 &840503735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3168527601446743024, guid: 087de4ab4fbcc5e4fb74c4c26dc41382,
+    type: 3}
+  m_PrefabInstance: {fileID: 1554630710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1554630710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5099,6 +5111,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 799.31
       objectReference: {fileID: 0}
+    - target: {fileID: 7826484199765463397, guid: 087de4ab4fbcc5e4fb74c4c26dc41382,
+        type: 3}
+      propertyPath: firstButton
+      value: 
+      objectReference: {fileID: 840503735}
     - target: {fileID: 7862881545206878521, guid: 087de4ab4fbcc5e4fb74c4c26dc41382,
         type: 3}
       propertyPath: m_AnchorMin.y
