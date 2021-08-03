@@ -15,6 +15,7 @@ public class NextLevelTrigger : MonoBehaviour
     public Text totalTimeLabel;
     public GameObject EndLevelMenu;
     public GameObject button;
+    public GameObject diamondImage;
 
     private int levelCollectedDiamonds;
     private int levelTotalDiamonds;
@@ -34,9 +35,10 @@ public class NextLevelTrigger : MonoBehaviour
     {
         gm = ServiceLocator.Get<GameManager>();
         if (showCongratsScreen) {
-            levelTotalDiamonds = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal();
+            levelTotalDiamonds = gm.GetLevelDiamondsTotal();
             Debug.Log("Level tem " + levelTotalDiamonds + " diamantes, no total.");
-            levelTotalLore = 5;
+            levelTotalLore = gm.GetLevelLoreTotal();
+            Debug.Log("Level tem " + levelTotalLore + " pieces of lore, no total.");
         }
     }
 
@@ -45,6 +47,7 @@ public class NextLevelTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Player") 
         {
             ServiceLocator.Get<GameManager>().StopTimer();
+            ServiceLocator.Get<GameManager>().lockMovement++;
             if (NextLevelScene != null) {
                 collision.gameObject.GetComponent<Movable>().StopSfx();
                 collision.gameObject.GetComponent<Movable>().enabled = false;
@@ -65,6 +68,8 @@ public class NextLevelTrigger : MonoBehaviour
                     ts = TimeSpan.FromSeconds(gm.GetTotalTimer() + gm.GetLevelTimer());
                     totalTimeLabel.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
 
+                    diamondImage.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+
                     EndLevelMenu.SetActive(true);
                     Selectable s = button.GetComponent<Selectable>();
                     s.Select();
@@ -79,6 +84,7 @@ public class NextLevelTrigger : MonoBehaviour
 
     public void GoToNextLevel()
     {
+        ServiceLocator.Get<GameManager>().lockMovement--;
         gm.FromLevelGoToScene(NextLevelScene);
     }
 

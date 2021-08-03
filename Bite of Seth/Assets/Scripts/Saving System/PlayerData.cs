@@ -23,6 +23,13 @@ public class PlayerData
     public float spawnPointX;
     public float spawnPointY;
 
+    //In the future, if we need more than 5 statues, just add more
+    public int statue0;
+    public int statue1;
+    public int statue2;
+    public int statue3;
+    public int statue4;
+
     // Settings info: only matters is the PlayerData with id 0
     public float generalVolume;
     public float BGMVolume;
@@ -36,6 +43,7 @@ public class PlayerData
         levelScore = totalScore = levelLorePieces = totalLorePieces = 0;
         levelTimer = totalTimer = spawnPointX = spawnPointY = 0f;
         generalVolume = BGMVolume = dialogueVolume = 1f;
+        statue0 = statue1 = statue2 = statue3 = statue4 = -1;
     }
     
 }

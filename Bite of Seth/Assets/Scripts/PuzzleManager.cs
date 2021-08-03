@@ -57,21 +57,18 @@ public class PuzzleManager : MonoBehaviour
     public void ResetPuzzle()
     {
         List<Id> statues = new List<Id>();
-        int i = 0;
         foreach (GameObject S in puzzleStatuesReferences) {
             PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
             if(pod != null) {
-                statues.Add((Id)i);
-                pod.SetId((Id)i);
+                Id id = pod.GetId();
+                statues.Add(id);
                 pod.ResetSelection();
-                names[i] = pod.statueName;
-                i++;
+                names[(int)id] = pod.statueName;
             }
         }
 
         //Getting a random sequence of the statues in statuesOrder array:
         nSelected = 0;
-        //int count = statuesQuantity;
         int count = totalStatuesQuantity;
         int random;
 
@@ -81,14 +78,53 @@ public class PuzzleManager : MonoBehaviour
             statues.RemoveAt(random);
             count--;
         }
-        if (statuesQuantity > 0) 
-        {
+
+        PrintStatuesOrder();
+    }
+
+    //Similar to ResetPuzzle but, instead of just picking random statues, it loads the order of the last game that was loaded
+    public void LoadPuzzle(List<int> statuesOrder)
+    {
+        List<Id> statues = new List<Id>();
+        foreach (GameObject S in puzzleStatuesReferences) {
+            PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
+            if (pod != null) {
+                Id id = pod.GetId();
+                statues.Add(id);
+                pod.ResetSelection();
+                names[(int)id] = pod.statueName;
+            }
+        }
+        
+        nSelected = 0;
+        
+        for(int i=0; i<totalStatuesQuantity; i++) {
+            statuesCorrectOrder[i] = statues[statuesOrder[i]];
+        }
+
+        PrintStatuesOrder();
+
+    }
+
+    private void PrintStatuesOrder()
+    {
+        if (statuesQuantity > 0) {
             Debug.Log("The correct order is: ");
-            for (int j = 0; j < statuesQuantity; j++) {
+            for (int j = 0; j < totalStatuesQuantity; j++) {
                 Debug.Log(j + 1 + "ª: " + names[(int)statuesCorrectOrder[j]]);
             }
         }
     }
+
+    public List<int> GetStatuesOrder()
+    {
+        List<int> order = new List<int>();
+        for (int j = 0; j < totalStatuesQuantity; j++) {
+            order.Add((int)statuesCorrectOrder[j]);
+        }
+        return order;
+    }
+    
 
     public int SelectStatue(Id id)
     {

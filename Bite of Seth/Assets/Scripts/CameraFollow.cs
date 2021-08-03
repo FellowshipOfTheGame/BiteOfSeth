@@ -23,23 +23,31 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector3 playerPos;
 
+    private Vector3 cameraPos;
+
     private bool inTransition = false;
 
     public float defaultSize = 3f;
 
+    private bool focusOnOthers = false;
+
     private void Start()
     {
         GetComponent<Camera>().orthographicSize = defaultSize;
+        focusOnOthers = false;
     }
 
     void LateUpdate()
     {
-        playerPos = player.transform.position + offset;
+        if (!focusOnOthers) {
+            cameraPos = player.transform.position + offset;
+        }
+
         if (!inTransition) {
-            transform.position = playerPos;
+            transform.position = cameraPos;
         } else {
-            transform.position = Vector3.SmoothDamp(transform.position, playerPos, ref velocity, smoothTime);
-            inTransition = (Vector3.Distance(transform.position, playerPos) > 0.1);
+            transform.position = Vector3.SmoothDamp(transform.position, cameraPos, ref velocity, smoothTime);
+            inTransition = (Vector3.Distance(transform.position, cameraPos) > 0.1);
             //transform.position = Vector3.SmoothDamp(transform.position, playerPos, ref velocity, smoothTime);
             //transform.position = Vector3.Lerp(transform.position, playerPos, smoothTime);
         }
@@ -58,6 +66,18 @@ public class CameraFollow : MonoBehaviour
     public void ChangeToDefaultSize()
     {
         GetComponent<Camera>().orthographicSize = defaultSize;
+    }
+
+    public void FocusCameraOnXDuringYSeconds(Vector3 x, float y)
+    {
+        focusOnOthers = true;
+        cameraPos = x + offset;
+        Invoke("FocusOnPlayer", y);
+    }
+
+    public void FocusOnPlayer()
+    {
+        focusOnOthers = false;
     }
 
 }

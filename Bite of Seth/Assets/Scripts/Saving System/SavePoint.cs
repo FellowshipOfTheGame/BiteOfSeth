@@ -12,12 +12,17 @@ public class SavePoint : MonoBehaviour
 
     private bool auxLoad = true;
 
+    public List<GameObject> pastStatues;
+
+    private GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
         // Start with a opened door
         trigger.SetState(true);
         Invoke("DisAuxLoad", 1f);
+        gm = ServiceLocator.Get<GameManager>();
 
     }
 
@@ -35,7 +40,8 @@ public class SavePoint : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().SetSavePoint(this);
 
             if (!auxLoad) {
-                // Player SAVED this SavePoint, not LOADED
+
+                // **** Player SAVED this SavePoint ****
    
                 // Play SFX:
                 if (congratsSfx) {
@@ -45,8 +51,31 @@ public class SavePoint : MonoBehaviour
                     ServiceLocator.Get<AudioManager>().PlayAudio(doorSfx);
                 }
 
-                ServiceLocator.Get<GameManager>().SaveSpawnPoint(gameObject.transform.position);
-            }               
+                gm.SaveSpawnPoint(gameObject.transform.position);
+            } else {
+
+                // **** Player LOADED this SavePoint ****
+
+                // Load the last puzzle
+                PuzzleManager pm = gm.GetLevelPuzzleManager();
+                pm.LoadPuzzle(gm.GetLoadedStatuesOrder());
+                
+                foreach(GameObject statue in pastStatues) {
+
+                    // LOAD ALL PAST STATUES LOG DIALOGUES
+                    TextScript ts = statue.GetComponentInChildren<TextScript>();
+                    foreach(DialogueBase dialogue in ts.dialogueSequence) {
+                        LogManager.instance.AddEntry(dialogue);
+                    }
+
+                    // COUNT ALL PAST STATUES
+                    if (statue.GetComponent<DialogueBehavior>().puzzleStatue) {
+                        pm.AddTipStatue();
+                    }
+                    
+                }
+
+            }
         }
     }
 

@@ -12,6 +12,9 @@ public class DoorBehavior : MonoBehaviour
     public Vector3 openDistance;
     public float openSpeed;
 
+    public bool cameraFocus = true;
+    public float focusTime = 1.5f;
+
     private void Start()
     {
         startPos = doorMovable.rigidbody.position;
@@ -48,6 +51,9 @@ public class DoorBehavior : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             if (sfx) {
                 ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
+            if (cameraFocus) {
+                ServiceLocator.Get<GameManager>().FocusCameraOnXDuringYSeconds(gameObject.transform.position, focusTime);
             }
         }
     }

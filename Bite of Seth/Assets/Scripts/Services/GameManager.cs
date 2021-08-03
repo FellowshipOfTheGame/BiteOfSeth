@@ -75,9 +75,16 @@ public class GameManager : GameService
         return count;
     }
 
+    public int GetLevelLoreTotal()
+    {
+        SymbolBehavior[] lorePieces = FindObjectsOfType<SymbolBehavior>();
+        return lorePieces.Length;
+    }
+
     public void StartNewGame(SceneReference scene)
     {
         score = lorePieces = 0;
+        timer = 0f;
         ServiceLocator.Get<SceneReferences>().GoToScene(scene);
     }
 
@@ -135,6 +142,34 @@ public class GameManager : GameService
         PlayerData.current.spawnPointY = savedSpawnPos.y;
         Debug.Log("Spawn Point salvo: ( " + PlayerData.current.spawnPointX + " , " + PlayerData.current.spawnPointY + " )");
 
+        List<int> puzzleOrder = GetLevelPuzzleManager().GetStatuesOrder();
+        int quantity = puzzleOrder.Count;
+
+        if(quantity > 0) {
+            PlayerData.current.statue0 = puzzleOrder[0];
+            Debug.Log("Ordem de puzzle salvo, estatua 0: " + PlayerData.current.statue0);
+        }
+
+        if (quantity > 1) {
+            PlayerData.current.statue1 = puzzleOrder[1];
+            Debug.Log("Ordem de puzzle salvo, estatua 1: " + PlayerData.current.statue1);
+        }
+
+        if (quantity > 2) {
+            PlayerData.current.statue2 = puzzleOrder[2];
+            Debug.Log("Ordem de puzzle salvo, estatua 2: " + PlayerData.current.statue2);
+        }
+
+        if (quantity > 3) {
+            PlayerData.current.statue3 = puzzleOrder[3];
+            Debug.Log("Ordem de puzzle salvo, estatua 3: " + PlayerData.current.statue3);
+        }
+
+        if (quantity > 4) {
+            PlayerData.current.statue4 = puzzleOrder[4];
+            Debug.Log("Ordem de puzzle salvo, estatua 4: " + PlayerData.current.statue4);
+        }
+
         int scene_index = ServiceLocator.Get<SceneReferences>().GetCurrentSceneIndex();
         PlayerData.current.scene = scene_index;
         Debug.Log("Cena salva: " + PlayerData.current.scene);
@@ -163,6 +198,34 @@ public class GameManager : GameService
         return (savedSpawnPos.x != 0 || savedSpawnPos.y != 0);
     }
 
+    public List<int> GetLoadedStatuesOrder()
+    {
+        List<int> puzzleOrder = new List<int>();
+
+        if(PlayerData.current.statue0 != -1) {
+            puzzleOrder.Add(PlayerData.current.statue0);
+        }
+
+        if (PlayerData.current.statue1 != -1) {
+            puzzleOrder.Add(PlayerData.current.statue1);
+        }
+
+        if (PlayerData.current.statue2 != -1) {
+            puzzleOrder.Add(PlayerData.current.statue2);
+        }
+
+        if (PlayerData.current.statue3 != -1) {
+            puzzleOrder.Add(PlayerData.current.statue3);
+        }
+
+        if (PlayerData.current.statue4 != -1) {
+            puzzleOrder.Add(PlayerData.current.statue4);
+        }
+
+        return puzzleOrder;
+
+    }
+
     public void ShowSavingWarning()
     {
         SaveWarning sw = FindObjectOfType<SaveWarning>();
@@ -185,19 +248,18 @@ public class GameManager : GameService
         lm = GameObject.FindGameObjectWithTag("LevelManager");
         if(lm != null) {
             curLevel = lm.GetComponent<LevelManager>();
+            if (PlayerData.current != null) {
+                SetLevelScore(PlayerData.current.levelScore);
+                SetLevelPiecesOfLore(PlayerData.current.levelLorePieces);
+                SetLevelTimer(PlayerData.current.levelTimer);
+            }
+            savedSpawnPos = Vector2.zero;
+            timerTrigger = true;
             Debug.Log("It's a Level Scene");
         } else {
             curLevel = null;
             Debug.Log("It's not a Level Scene");
         }
-
-        if (PlayerData.current != null) {
-            SetLevelScore(PlayerData.current.levelScore);
-            SetLevelPiecesOfLore(PlayerData.current.levelLorePieces);
-            SetLevelTimer(PlayerData.current.levelTimer);
-        }
-        savedSpawnPos = Vector2.zero;
-        timerTrigger = true;
     }
 
     public void GoToNextLevel()
@@ -262,6 +324,11 @@ public class GameManager : GameService
     public void GetCameraRef()
     {
         cf = FindObjectOfType<CameraFollow>();
+    }
+
+    public void FocusCameraOnXDuringYSeconds(Vector3 x, float y)
+    {
+        cf.FocusCameraOnXDuringYSeconds(x, y);
     }
 
     public void changeCameraToCustomSize(float size)
