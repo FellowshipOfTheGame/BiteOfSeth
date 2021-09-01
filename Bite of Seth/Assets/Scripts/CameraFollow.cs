@@ -72,7 +72,7 @@ public class CameraFollow : MonoBehaviour
     {
         focusOnOthers = true;
         cameraPos = x + offset;
-        ServiceLocator.Get<GameManager>().StopPlayerControls();
+        //ServiceLocator.Get<GameManager>().StopPlayerControls();
         Invoke("FocusOnPlayer", y);
     }
 

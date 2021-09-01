@@ -266,17 +266,13 @@ public class GameManager : GameService
             savedSpawnPos = Vector2.zero;
             timerTrigger = true;
             Debug.Log("It's a Level Scene");
+            Debug.Log("Level Score: " + GetLevelScore());
+            Debug.Log("Level Pieces of Lore: " + GetLevelPiecesOfLore());
+            Debug.Log("Level Timer: " + GetLevelTimer());
         } else {
             curLevel = null;
             Debug.Log("It's not a Level Scene");
         }
-    }
-
-    public void GoToNextLevel()
-    {
-        //Update with new values from finished level
-        if (curLevel != null) UpdateLevelValues();
-        ServiceLocator.Get<SceneReferences>().GoToNextScene();
     }
 
     public void FromLevelGoToScene(SceneReference scene)
@@ -300,15 +296,19 @@ public class GameManager : GameService
     //function to update Game Manager values with new values from Current Level
     public void UpdateLevelValues()
     {
-        int score = GetLevelScore();
+        Debug.Log("End of the level!");
+        Debug.Log("Total Score = " + GetTotalScore() + "(old) + " + GetLevelScore() + "(level) = " + (GetTotalScore() + GetLevelScore()));
+        Debug.Log("Total Lore = " + GetTotalPiecesOfLore() + "(old) + " + GetLevelPiecesOfLore() + "(level) = " + (GetTotalPiecesOfLore() + GetLevelPiecesOfLore()));
+        Debug.Log("Total Timer = " + GetTotalTimer() + "(old) + " + GetLevelTimer() + "(level) = " + (GetTotalTimer() + GetLevelTimer()));
+        score = GetLevelScore();
         int piecesOfLore = GetLevelPiecesOfLore();
         float timer = GetLevelTimer();
         AddTotalScore(score);
         AddTotalPiecesOfLore(piecesOfLore);
         AddTotalTimer(timer);
-        PrintTotalScore();
-        PrintTotalPiecesOfLore();
-        PrintTotalTimer();
+        //PrintTotalScore();
+        //PrintTotalPiecesOfLore();
+        //PrintTotalTimer();
     }
 
     public void RestartLevel()

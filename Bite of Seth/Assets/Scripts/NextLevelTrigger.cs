@@ -64,10 +64,10 @@ public class NextLevelTrigger : MonoBehaviour
                     totalLoreLabel.text = totalCollectedLore.ToString();
 
                     var ts = TimeSpan.FromSeconds(gm.GetLevelTimer());
-                    timeLabel.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
+                    timeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
                     ts = TimeSpan.FromSeconds(gm.GetTotalTimer() + gm.GetLevelTimer());
                     //Debug.Log(gm.GetTotalTimer() + "+" + gm.GetLevelTimer());
-                    totalTimeLabel.text = string.Format("{0:00}:{1:00}", ts.TotalMinutes, ts.Seconds) + " min";
+                    totalTimeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
 
                     diamondImage.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
 

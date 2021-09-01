@@ -1,12 +1,13 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
-using System.Collections;
+using System;
 
 public class HUDController : MonoBehaviour
 {
     public Text scoreText;
     public Text statuesText;
     public Text piecesOfLoreText;
+    public Text timerText;
 
     private PuzzleManager pm;
     private string totalStatues;
@@ -30,7 +31,12 @@ public class HUDController : MonoBehaviour
         statuesText.text = currentStatues + "/" + totalStatues;
 
         string piecesOfLore = ServiceLocator.Get<GameManager>().GetLevelPiecesOfLore().ToString();
+        string totalPieces = ServiceLocator.Get<GameManager>().GetLevelLoreTotal().ToString();
         piecesOfLoreText.text = piecesOfLore + "/5";
+
+        var ts = TimeSpan.FromSeconds(ServiceLocator.Get<GameManager>().GetLevelTimer());
+        //Debug.Log(ServiceLocator.Get<GameManager>().GetLevelTimer());
+        timerText.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds);
 
     }
 

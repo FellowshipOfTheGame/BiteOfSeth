@@ -32,6 +32,7 @@ public class PauseMenuController : MonoBehaviour
         canvas.SetActive(true);
         ServiceLocator.Get<GameManager>().lockMovement += 1;
         ServiceLocator.Get<GameManager>().pause = true;
+        ServiceLocator.Get<GameManager>().timerTrigger = false;
         Debug.Log("PAUSOU");
     }
 
@@ -88,6 +89,7 @@ public class PauseMenuController : MonoBehaviour
     private void ResumeGame()
     {
         ServiceLocator.Get<GameManager>().pause = false;
+        ServiceLocator.Get<GameManager>().timerTrigger = true;
         Debug.Log("DESPAUSOU");
     }
 
