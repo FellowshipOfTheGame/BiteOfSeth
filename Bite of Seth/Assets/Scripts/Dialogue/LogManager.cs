@@ -39,11 +39,13 @@ public class LogManager : MonoBehaviour
         if(!isDisplayingLogs){
             //toggle on Logs UI
             gm.lockMovement++;
+            gm.pause = true;
             logsList.SetActive(true);
             isDisplayingLogs = true;
         } else {
             //turn off Logs UI
             gm.lockMovement--;
+            gm.pause = false;
             logsList.SetActive(false);
             isDisplayingLogs = false;
         }

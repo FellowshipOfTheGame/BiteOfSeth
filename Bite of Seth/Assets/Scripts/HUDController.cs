@@ -11,17 +11,19 @@ public class HUDController : MonoBehaviour
 
     private PuzzleManager pm;
     private string totalStatues;
+    private string totalScore;
 
     private void Start()
     {
-        
+        totalScore = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal().ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
         string score = ServiceLocator.Get<GameManager>().GetLevelScore().ToString();
-        scoreText.text = $"{score}";
+        
+        scoreText.text = score + "/" + totalScore;
 
         pm = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager();
         //totalStatues = pm.GetStatuesQuantity().ToString();
