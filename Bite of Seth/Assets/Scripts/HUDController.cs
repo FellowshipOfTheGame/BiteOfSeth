@@ -9,9 +9,12 @@ public class HUDController : MonoBehaviour
     public Text piecesOfLoreText;
     public Text timerText;
 
+    public Text[] choosedStatues = new Text[5];
+
     private PuzzleManager pm;
     private string totalStatues;
     private string totalScore;
+    private int i;
 
     private void Start()
     {
@@ -40,8 +43,18 @@ public class HUDController : MonoBehaviour
         //Debug.Log(ServiceLocator.Get<GameManager>().GetLevelTimer());
         timerText.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds);
 
+        /*string[] statues = pm.GetSelectedStatues();
+        i = 0;
+        while (i < statues.Length) {
+            choosedStatues[i].text = statues[i];
+            i++;
+        }
+        while(i < choosedStatues.Length) {
+            choosedStatues[i].text = "";
+            i++;
+        }*/
+
+
     }
-
-   
-
+    
 }
