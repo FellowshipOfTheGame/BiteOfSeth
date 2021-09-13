@@ -129,7 +129,7 @@ public class PuzzleManager : MonoBehaviour
     public int SelectStatue(Id id)
     {
 
-        if (nSelected > statuesQuantity-1) {
+        /*if (nSelected > statuesQuantity-1) {
             Id aux = statuesSelectedOrder[statuesQuantity - 1];
             for (int i = statuesQuantity - 1; i >= 1; i--) {
                 statuesSelectedOrder[i] = statuesSelectedOrder[i - 1];
@@ -139,7 +139,9 @@ public class PuzzleManager : MonoBehaviour
             puzzleStatuesReferences[(int)aux].GetComponent<PuzzleOrderDialogue>().ResetSelection();
         } else {
             statuesSelectedOrder[nSelected++] = id;
-        }
+        }*/
+
+        statuesSelectedOrder[nSelected++] = id;
         Debug.Log("Selection number "+nSelected+": statue "+(int)id+" named "+names[(int)id] +"!");
 
         /*if(nSelected == statuesQuantity){
@@ -151,15 +153,25 @@ public class PuzzleManager : MonoBehaviour
 
     public void UnselectStatue(Id id){
         bool found = false;
-
+        
         for (int i = 0; i < nSelected; i++) {
             if (found) {
                 Id aux = statuesSelectedOrder[i];
                 statuesSelectedOrder[i - 1] = aux;
-                puzzleStatuesReferences[(int) aux].GetComponent<PuzzleOrderDialogue>().UpdateCounter(i);
+                Debug.Log("Atualiza a estátua " + i);
+                foreach (GameObject S in puzzleStatuesReferences) {
+                    PuzzleOrderDialogue pod = S.GetComponent<PuzzleOrderDialogue>();
+                    if (pod.GetId() == aux) {
+                        pod.UpdateCounter(i);
+                        break;
+                    }
+                }
             }
 
-            if (statuesSelectedOrder[i] == id) found = true;
+            if ((int)statuesSelectedOrder[i] == (int)id) {
+                found = true;
+                Debug.Log("Desseleciona a estátua "+ i);
+            }
         }
 
         if(found) nSelected--;
@@ -201,6 +213,18 @@ public class PuzzleManager : MonoBehaviour
         return namesInOrder;
     }
 
+    public string[] GetSelectedStatues()
+    {
+        string[] statuesNames = new string[nSelected];
+
+        if (nSelected > 0) {
+            for (int i = 0; i < nSelected; i++) {
+                statuesNames[i] = names[(int)statuesSelectedOrder[i]];
+                //Debug.Log(statuesNames[i]);
+            }
+        }
+        return statuesNames;
+    }
 
     public void ResetChoices()
     {

@@ -7,7 +7,12 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     private bool selected = false, locked = false;
 
     public SpriteRenderer number;
-    public Sprite[] digits;
+
+    public Sprite digit_1;
+    public Sprite digit_2;
+    public Sprite digit_3;
+    public Sprite digit_4;
+    public Sprite digit_5;
 
     public PuzzleManager.Id id;
     public string statueName;
@@ -34,7 +39,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
                 number.gameObject.SetActive(true);
                 number.transform.eulerAngles = Vector3.zero;
                 number.color = color;
-                number.sprite = digits[counter - 1];
+                UpdateCounter(counter);
                 selected = true;
             }
         } else {
@@ -62,7 +67,28 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     }
 
     public void UpdateCounter(int c) {
-        number.sprite = digits[c - 1];
+        Debug.Log("Atualiza o numero da estatua "+ statueName + " para " + c);
+        Debug.Log(number.sprite);
+        number.gameObject.SetActive(false);
+        switch (c) {
+            case 1:
+                number.sprite = digit_1;
+                break;
+            case 2:
+                number.sprite = digit_2;
+                break;
+            case 3:
+                number.sprite = digit_3;
+                break;
+            case 4:
+                number.sprite = digit_4;
+                break;
+            case 5:
+                number.sprite = digit_5;
+                break;
+        }
+        number.gameObject.SetActive(true);
+        Debug.Log(number.sprite);
     }
 
     public void SetLock(bool value) {

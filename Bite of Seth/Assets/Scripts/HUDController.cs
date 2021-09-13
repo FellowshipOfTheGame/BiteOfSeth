@@ -9,19 +9,24 @@ public class HUDController : MonoBehaviour
     public Text piecesOfLoreText;
     public Text timerText;
 
+    public Text[] choosedStatues = new Text[5];
+
     private PuzzleManager pm;
     private string totalStatues;
+    private string totalScore;
+    private int i;
 
     private void Start()
     {
-        
+        totalScore = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal().ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
         string score = ServiceLocator.Get<GameManager>().GetLevelScore().ToString();
-        scoreText.text = $"{score}";
+        
+        scoreText.text = score + "/" + totalScore;
 
         pm = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager();
         //totalStatues = pm.GetStatuesQuantity().ToString();
@@ -38,8 +43,18 @@ public class HUDController : MonoBehaviour
         //Debug.Log(ServiceLocator.Get<GameManager>().GetLevelTimer());
         timerText.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds);
 
+        /*string[] statues = pm.GetSelectedStatues();
+        i = 0;
+        while (i < statues.Length) {
+            choosedStatues[i].text = statues[i];
+            i++;
+        }
+        while(i < choosedStatues.Length) {
+            choosedStatues[i].text = "";
+            i++;
+        }*/
+
+
     }
-
-   
-
+    
 }
