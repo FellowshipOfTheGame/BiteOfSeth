@@ -40,6 +40,9 @@ public class DialogueManager : MonoBehaviour
 
     public Color normalColor, highlightColor;
 
+    [HideInInspector]
+    public DialogueBase.Info currentInfo = null;
+
     public void EnqueueDialogue(DialogueBase db){
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
@@ -57,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     public bool DequeueDialogue(){
         
         //Debug.Log("DequeueDialogue");
-        DialogueBase.Info Info = null;
+        currentInfo = null;
 
         //need to add code that detects when there is no more dialogue and return
         if(dialogueInfo.Count == 0 && isCurrentlyTyping){
@@ -66,14 +69,14 @@ public class DialogueManager : MonoBehaviour
             isCurrentlyTyping = false;
             return false;
         } else if (dialogueInfo.Count == 0 && isCurrentlyTyping == false){
-            EndOfDialogue();
+            EndOfDialogue(); 
             return true;
         }
 
         if(isCurrentlyTyping == true){
             CompleteText();
             StopCoroutine(inst);
-            isCurrentlyTyping = false;
+            isCurrentlyTyping = false; 
             return false;
         }
 
@@ -81,11 +84,11 @@ public class DialogueManager : MonoBehaviour
         if (dubAudSrc != null)
             dubAudSrc.Stop();
 
-        Info = dialogueInfo.Dequeue();
+        currentInfo = dialogueInfo.Dequeue();
 
-        string text = Info.myText;
+        string text = currentInfo.myText;
 
-        if (Info.needPuzzleInfo) {
+        if (currentInfo.needPuzzleInfo) {
             dialogueText.color = highlightColor;
             //Complete text with puzzle info
             string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
@@ -94,7 +97,7 @@ public class DialogueManager : MonoBehaviour
                 int fix = i + 1;
                 text = text.Replace("<ID " + fix + ">", names[i]);
             }
-            string ownName = Info.character.characterName;
+            string ownName = currentInfo.character.characterName;
             text = text.Replace(ownName + "'s", "my");
             //text = text.Replace(ownName, "my");
         } else {
@@ -103,12 +106,12 @@ public class DialogueManager : MonoBehaviour
 
         completeText = text;
 
-        dialogueName.text = Info.character.characterName;
+        dialogueName.text = currentInfo.character.characterName;
         dialogueText.text = text;
-        dialoguePortrait.sprite = Info.character.portrait;
+        dialoguePortrait.sprite = currentInfo.character.portrait;
 
         //play dub sound
-        currentVoicedLine = Info.voicedLine;
+        currentVoicedLine = currentInfo.voicedLine;
         if (currentVoicedLine != null)
             dubAudSrc = ServiceLocator.Get<AudioManager>().PlayDialogue(currentVoicedLine);
 

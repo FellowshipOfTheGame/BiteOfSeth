@@ -33,10 +33,12 @@ public class TextScript : MonoBehaviour
         statue.OnDialog();
         talking = true;
         DialogueManager.instance.EnqueueDialogue(curDialogue);
+        statue.OnUpdateDialog();
     }
 
     public bool ContinueDialogue(){
         bool dialogueEnded = DialogueManager.instance.DequeueDialogue();
+        statue.OnUpdateDialog();
         return dialogueEnded;
     }
 
