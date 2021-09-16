@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 6658359173084879206}
   - component: {fileID: 1992253378946115893}
   - component: {fileID: 5670307077624406721}
+  - component: {fileID: 1433933883077673654}
   m_Layer: 0
   m_Name: Art
   m_TagString: Untagged
@@ -312,6 +313,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1433933883077673654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542979748759577932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b048bea2462f96f4696b68c8b7d96b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5434937041691364924
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,13 +475,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   art: {fileID: 1992253378946115893}
   puzzleStatue: 0
+  PlayerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetProximity
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  PlayerExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetProximity
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DialogueStartEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetCommunication
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  DialogueUpdateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DialogueEndEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetCommunication
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   number: {fileID: 1356559665606166250}
-  digits:
-  - {fileID: -7542371115539988336, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
-  - {fileID: -1797931468360238817, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
-  - {fileID: 8660018047190439917, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
-  - {fileID: -3498881285385226111, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
-  - {fileID: 4377404233718576581, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
+  digit_1: {fileID: -7542371115539988336, guid: b4c1a342c4c2e0f48b7eacb5e59d296d,
+    type: 3}
+  digit_2: {fileID: -1797931468360238817, guid: b4c1a342c4c2e0f48b7eacb5e59d296d,
+    type: 3}
+  digit_3: {fileID: 8660018047190439917, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
+  digit_4: {fileID: -3498881285385226111, guid: b4c1a342c4c2e0f48b7eacb5e59d296d,
+    type: 3}
+  digit_5: {fileID: 4377404233718576581, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
+  id: 0
   statueName: 
 --- !u!1 &6347913915734871434
 GameObject:
