@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class DialogueBehavior : MonoBehaviour {
@@ -10,6 +11,12 @@ public class DialogueBehavior : MonoBehaviour {
     protected Color color;
 
     public bool puzzleStatue = false;
+    [Space(5)]
+    public UnityEvent PlayerEnterEvent;
+    public UnityEvent PlayerExitEvent;
+    public UnityEvent DialogueStartEvent;
+    public UnityEvent DialogueUpdateEvent;
+    public UnityEvent DialogueEndEvent;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,18 +34,28 @@ public class DialogueBehavior : MonoBehaviour {
     }
 
     public virtual void OnGetClose(){
-        if (art != null) art.SetBool("player", true);
+        //if (art != null) art.SetBool("player", true);
+        PlayerEnterEvent.Invoke();
     }
 
     public virtual void OnGetAway() {
-        if (art != null) art.SetBool("player", false);
+        //if (art != null) art.SetBool("player", false);
+        PlayerExitEvent.Invoke();
     }
 
     public virtual void OnDialog(){
-        if (art != null) art.SetBool("talk", true);
+        //if (art != null) art.SetBool("talk", true);
+        DialogueStartEvent.Invoke();
+    }
+
+    public virtual void OnUpdateDialog() {
+        DialogueUpdateEvent.Invoke();
     }
 
     public virtual void OnEndDialog(){
-        if (art != null) art.SetBool("talk", false);
+        //if (art != null) art.SetBool("talk", false);
+        DialogueEndEvent.Invoke();
     }
+
+    
 }
