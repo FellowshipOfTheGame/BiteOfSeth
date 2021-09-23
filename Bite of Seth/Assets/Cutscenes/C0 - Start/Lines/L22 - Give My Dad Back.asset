@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: L22 - Give My Dad Back
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  dialogueTitle: Muted Princess
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 21ccb19bc763c024aa40aec3e81914cd, type: 2}
+    myText: GIVE MY DAD BACK!
+    voicedLine: {fileID: 11400000, guid: 9192e9130d64f9a4bbdb99bcdfcbda48, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: You know, Horus is right, you ARE loud.
+    voicedLine: {fileID: 11400000, guid: cc1bfccd51bbccd46a4cae5d33cdc175, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: "Let\u2019s solve this too."
+    voicedLine: {fileID: 11400000, guid: 2ab8945bc5e4452428ddc82f8fe78a9e, type: 2}

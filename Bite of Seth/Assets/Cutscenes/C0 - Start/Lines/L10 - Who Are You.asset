@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: L10 - Who Are You
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  dialogueTitle: Who are you
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: Who are you?!
+    voicedLine: {fileID: 11400000, guid: 6556cdc4ea42a7445ab6219916e4368b, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: '@CaoticGod. Nubia and I follow each other on Sphinx.'
+    voicedLine: {fileID: 11400000, guid: 962dcb1c23509a44ab53ebbad769f02e, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: "WHY ARE YOU IN MY HOME?\r"
+    voicedLine: {fileID: 11400000, guid: 32501ca4859edcf4aa2fe851d8456e2b, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: "She just posted \u201CHeeelp! Father is sooo annoying #boredtodeath
+      #overit\u201D. So I am here to solve the problem."
+    voicedLine: {fileID: 11400000, guid: 2cd9684ce1126b8469fba3933bb2e298, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: "WE DON\u2019T NEED YOUR HELP! GET OUT OF MY PALACE!"
+    voicedLine: {fileID: 11400000, guid: b9affc4743839e14dab52c897fb91658, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 6fe14cff6d92edb4dbe38f4b9ce7b99a, type: 2}
+    myText: Lol, ok boomer. But you are coming with me.
+    voicedLine: {fileID: 11400000, guid: ba8ae14317504494e8f75b7ca3fe3f5b, type: 2}
