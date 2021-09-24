@@ -24,11 +24,13 @@ public static class SaveSystem
 
         string pathGeneral;
 
-        #if UNITY_WEBGL
+        pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
+
+        /*#if UNITY_WEBGL
             pathGeneral = System.IO.Path.Combine("/idbfs", Application.productName);
         #else
             pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
-        #endif
+        #endif*/
 
         FileStream stream = new FileStream(pathGeneral, FileMode.Create);
 
@@ -44,13 +46,15 @@ public static class SaveSystem
         savedGames[PlayerData.current.id] = PlayerData.current;
 
         BinaryFormatter formatter = new BinaryFormatter();
-
+        
         string path;
-        #if UNITY_WEBGL
+        path = Application.persistentDataPath + saveName;
+
+        /*#if UNITY_WEBGL
             path = System.IO.Path.Combine("/idbfs", Application.productName);
         #else   
             path = Application.persistentDataPath + saveName;
-        #endif
+        #endif*/
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -65,12 +69,17 @@ public static class SaveSystem
 
         string pathGeneral;
         string path;
-        #if UNITY_WEBGL
+
+        path = Application.persistentDataPath + saveName;
+        pathGeneral = Application.persistentDataPath + generalSaveName;
+
+        /*#if UNITY_WEBGL
             path = System.IO.Path.Combine("/idbfs", Application.productName);
+            pathGeneral = System.IO.Path.Combine("/idbfs", Application.productName);
         #else
             path = Application.persistentDataPath + saveName;
             pathGeneral = Application.persistentDataPath + generalSaveName;
-        #endif
+        #endif*/
 
         //File.Delete(pathGeneral);
 
@@ -111,11 +120,13 @@ public static class SaveSystem
     {
 
         string path;
-        #if UNITY_WEBGL
+        path = Application.persistentDataPath + SaveSystem.saveName;
+
+        /*#if UNITY_WEBGL
             path = System.IO.Path.Combine("/idbfs", Application.productName);
         #else
             path = Application.persistentDataPath + SaveSystem.saveName;
-        #endif
+        #endif*/
         
         File.Delete(path);
        
@@ -130,12 +141,16 @@ public static class SaveSystem
 
         string pathGeneral;
         string path;
-        #if UNITY_WEBGL
+
+        path = Application.persistentDataPath + SaveSystem.saveName;
+        pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
+
+        /*#if UNITY_WEBGL
             path = System.IO.Path.Combine("/idbfs", Application.productName);
         #else
             path = Application.persistentDataPath + SaveSystem.saveName;
             pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
-        #endif
+        #endif*/
 
         FileStream stream = new FileStream(path, FileMode.Create);
 
@@ -153,12 +168,13 @@ public static class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
 
         string pathGeneral;
+        pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
 
-        #if UNITY_WEBGL
-            path = System.IO.Path.Combine("/idbfs", Application.productName);
+        /*#if UNITY_WEBGL
+            pathGeneral = System.IO.Path.Combine("/idbfs", Application.productName);
         #else
             pathGeneral = Application.persistentDataPath + SaveSystem.generalSaveName;
-        #endif
+        #endif*/
 
         FileStream stream = new FileStream(pathGeneral, FileMode.Create);
 
