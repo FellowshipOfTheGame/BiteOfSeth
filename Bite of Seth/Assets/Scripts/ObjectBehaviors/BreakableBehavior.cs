@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BreakableBehavior : MonoBehaviour {
 
+    public bool propagate = true;
     public float propagationTime = 0.5f;
 
     private void TryToBreakAtDirection(Vector2 direction)
@@ -21,7 +22,7 @@ public class BreakableBehavior : MonoBehaviour {
     {
         gameObject.SetActive(false);
         //Propagate the destruction
-        Invoke("BreakPropagation", propagationTime);
+        if (propagate) Invoke("BreakPropagation", propagationTime);
         Destroy(gameObject, propagationTime + 0.5f);
     }
 
