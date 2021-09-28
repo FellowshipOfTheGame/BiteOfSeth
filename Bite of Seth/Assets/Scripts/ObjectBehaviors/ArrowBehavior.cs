@@ -71,6 +71,7 @@ public class ArrowBehavior : MonoBehaviour
             collision.GetComponent<PlayerController>().Die();
         } else{
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
