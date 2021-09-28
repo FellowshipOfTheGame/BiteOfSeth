@@ -341,6 +341,11 @@ public class GameManager : GameService
         cf.FocusCameraOnXDuringYSeconds(x, y);
     }
 
+    public void FocusCameraOnPlayer()
+    {
+        cf.FocusOnPlayer();
+    }
+
     public void changeCameraToCustomSize(float size)
     {
         cf.ChangeToCustomSize(size);
