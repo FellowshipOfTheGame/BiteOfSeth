@@ -8,6 +8,22 @@ public class RoomBehavior : MonoBehaviour
     [SerializeField] private Tilemap backupTilemap = null;
     [SerializeField] private TilesetObjects tilesetObjects = null;
 
+    [HideInInspector] public Vector3 center;
+    List<GameObject> objects;
+
+    void Awake() {
+        center = Vector3.zero; 
+        int count = 0;
+
+        foreach (Transform child in transform) {
+            if (child.gameObject.name == "base tilemap") continue;
+            center += child.position;
+            count++;
+        }
+
+        center = center/count;       
+    }
+
     public void SpawnRoom(TilesetObjects _tilesetObjects)
     {
         tilesetObjects = _tilesetObjects;

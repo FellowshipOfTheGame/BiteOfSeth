@@ -13,9 +13,13 @@ public class DisappearableBehavior : MonoBehaviour
         // check if collision layer is in disappearMask
         if (disappearMask == (disappearMask | (1 << collision.collider.gameObject.layer))) {
             //Destroy(gameObject);
-            this.GetComponent<BoxCollider2D>().enabled = false;
-            animator.SetTrigger("break");
+            Disappear();
         }
+    }
+
+    public void Disappear() {
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        animator.SetTrigger("break");
     }
 
     public void Explode(){

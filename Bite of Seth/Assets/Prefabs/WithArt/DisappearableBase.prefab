@@ -5246,7 +5246,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propagate: 0
-  propagationTime: 0.5
+  propagationTime: 1
+  OnBreakEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5356684780206350432}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: -971303692960422095}
+        m_MethodName: Disappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &6224671514217222176
 GameObject:
   m_ObjectHideFlags: 0
