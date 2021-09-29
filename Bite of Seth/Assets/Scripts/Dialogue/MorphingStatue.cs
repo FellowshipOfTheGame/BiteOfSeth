@@ -10,6 +10,7 @@ public class MorphingStatue : MonoBehaviour
     public class Pair {
         public string name;
         public CharacterInfo character;
+        public StatueAnimHandler handler;
         public SpriteRenderer art, eye, shine;
         public Light2D internalLight, externalLight;
 
@@ -37,6 +38,14 @@ public class MorphingStatue : MonoBehaviour
         transition = this.GetComponent<Animation>();
     }
 
+    void Update () {
+        for (int i = 1; i < form.Length; i++) {
+            form[i].handler.SetProximity( form[0].handler.GetProximity() );
+            form[i].handler.SetCommunication( form[0].handler.GetCommunication() );
+            form[i].handler.SetLock( form[0].handler.GetLock() );
+        }
+    }
+
     Pair FindForm(CharacterInfo character) {
         Debug.Log(character.characterName);
         foreach(Pair p in form) {
@@ -46,20 +55,41 @@ public class MorphingStatue : MonoBehaviour
         return null;
     }
 
+    Pair GetActiveForm() {
+        foreach(Pair p in form) {
+            if (p.art.gameObject.activeInHierarchy) 
+                return p;
+        }
+
+        return null;
+    }
+
     public void CheckCharacter() {
         DialogueBase.Info info = DialogueManager.instance.currentInfo;
         if (info == null) return;
 
         currentForm = FindForm(info.character);
+        if (currentForm == null) {
+            return;
+        }
+
+        Debug.Log("Checking " + currentForm.name);
+
         if (lastForm == null) {
             lastForm = currentForm;
         } else if (currentForm != lastForm && !transition.isPlaying) {
+            Debug.Log("CHANGE!");
             transition.Play();
         }
     }
 
-    public void ClearCharacter() {
-        lastForm = null;
+    public void MorphInto(int index) {
+        lastForm = GetActiveForm();
+
+        if (index < form.Length && lastForm != form[index]) {
+            currentForm = form[index];
+            transition.Play();
+        }
     }
 
     public void SwapCharacter() {

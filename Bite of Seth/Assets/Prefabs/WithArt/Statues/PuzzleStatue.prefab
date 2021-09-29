@@ -473,7 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc946a15741afe41915c7fa0cd912ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  art: {fileID: 1992253378946115893}
   puzzleStatue: 0
   PlayerEnterEvent:
     m_PersistentCalls:
@@ -545,6 +544,34 @@ MonoBehaviour:
   digit_5: {fileID: 4377404233718576581, guid: b4c1a342c4c2e0f48b7eacb5e59d296d, type: 3}
   id: 0
   statueName: 
+  OnSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetLock
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnUnselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433933883077673654}
+        m_MethodName: SetLock
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6347913915734871434
 GameObject:
   m_ObjectHideFlags: 0

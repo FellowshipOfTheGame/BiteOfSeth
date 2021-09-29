@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CutsceneScript : MonoBehaviour
 {
     public TimelineControl timeline;
+    public bool inGame = false;
     public List<DialogueBase> dialogueSequence;
     private int index;
     private DialogueBase curDialogue;
     bool talking = false, waiting = false, keepTalking = false, thenWait = false, emptyDialogue = false;
     public SceneReference NextLevelScene;
 
+    public UnityEvent OnUpdateDialogEvent;
+
     private void Start() {
         DialogueManager.instance.isDialogueActive = false;
         talking = false;
         index = 0;
         curDialogue = dialogueSequence[index++];
+        if (inGame) this.enabled = false;
     }
 
     public void TriggerDialogue(){
@@ -28,6 +33,7 @@ public class CutsceneScript : MonoBehaviour
         talking = true;
         OnDialogueStart();
         DialogueManager.instance.EnqueueDialogue(curDialogue);
+        OnUpdateDialogEvent.Invoke();
     }
 
     private void Update() {
@@ -41,6 +47,8 @@ public class CutsceneScript : MonoBehaviour
 
                     talking = false;
                     OnDialogueEnd();
+                } else {
+                    OnUpdateDialogEvent.Invoke();
                 }
             
             }
@@ -78,7 +86,7 @@ public class CutsceneScript : MonoBehaviour
             }
             
         }
-        
+        Debug.Log("CABEI");
     }
 
 

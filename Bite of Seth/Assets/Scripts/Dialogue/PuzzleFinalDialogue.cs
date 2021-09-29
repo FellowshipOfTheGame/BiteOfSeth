@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PuzzleFinalDialogue : DialogueBehavior {
 
+    public Animator art;
     public bool selectAllStatues = true;
     public int nSelections = 1;
 
@@ -20,6 +22,8 @@ public class PuzzleFinalDialogue : DialogueBehavior {
     public List<DialogueBase> successDialogue;
 
     public DoorTrigger doorTrigger = null;
+
+    public UnityEvent OnSuccessEvent;
 
     public bool IsAllStatuesSelectable()
     {
@@ -53,10 +57,13 @@ public class PuzzleFinalDialogue : DialogueBehavior {
                     success = true;
                     //Change dialogue to the success one
                     ts.ChangeCurrentDialogueSequence(successDialogue);
-                    ts.SetDoorTrigger(doorTrigger);
+                    //ts.SetDoorTrigger(doorTrigger);
                     art.SetBool("hold", true);
                     //Lock dialogue with all puzzle statues
                     ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().LockStatues();
+                    DialogueEndEvent.AddListener(() => {OnSuccessEvent.Invoke();} );
+                    //OnSuccessEvent;
+
                     if(winChime)
                     {
                         ServiceLocator.Get<AudioManager>().PlayAudio(winChime);
