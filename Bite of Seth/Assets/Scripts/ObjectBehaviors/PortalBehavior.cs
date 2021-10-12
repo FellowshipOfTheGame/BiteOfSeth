@@ -28,16 +28,28 @@ public class PortalBehavior : MonoBehaviour
     public bool customCamSize = true;
     public float customSize = 4f;
 
+    private bool active = true;
+    public List<PortalEnergy> energies;
+
     // Start is called before the first frame update
     void Start()
     {
         am = ServiceLocator.Get<AudioManager>();
+        if (energies.Count > 0) active = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
+
+        if (!active) {
+            active = true;
+            foreach (PortalEnergy pe in energies) {
+                active = active && pe.IsCollected();
+            }
+        }
+
+        if(active && otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
             if (sfx) {
                 am.PlayAudio(sfx);
             }
@@ -59,7 +71,7 @@ public class PortalBehavior : MonoBehaviour
             otpTranspBeh = tb;
             if (canTransportPlayer) {
                 PlayerController pc = otpRef.GetComponent<PlayerController>();
-                if (pc) {
+                if (pc && active) {
                     DialogueManager.instance.toggleInteractWithPortalAlert(true);
                 }
             }
