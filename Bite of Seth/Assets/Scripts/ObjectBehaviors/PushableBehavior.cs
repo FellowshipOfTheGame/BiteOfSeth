@@ -14,6 +14,9 @@ public class PushableBehavior : MonoBehaviour
     [SerializeField]
     private LayerMask collisionMask = default;
 
+    private Vector2 lastDirection = Vector2.zero;
+    public bool logicPush = false;
+
     private void Awake()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -41,7 +44,7 @@ public class PushableBehavior : MonoBehaviour
                 fb.isRolling = true;
                 fb.rollingDirection = desiredMovement.x;
             }
-
+            lastDirection = desiredMovement;
             return true;
         }
         return false;
@@ -50,11 +53,33 @@ public class PushableBehavior : MonoBehaviour
     public void ChangeToLogicSpeed()
     {
         pushSpeed = logicPushSpeed;
+        logicPush = true;
     }
 
     public void ChangeToNormalSpeed()
     {
         pushSpeed = normalPushSpeed;
+        logicPush = false;
+    }
+
+    // receiver for Movable message
+    public void OnStopedMoving()
+    {
+
+        if (!logicPush) return;
+
+        List<GameObject> oip = null;
+        DamageOnTouchBehavior dotb = GetComponent<DamageOnTouchBehavior>();
+
+        //Get objects in the next fall tile
+        oip = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(movable.rigidbody.position), lastDirection, collisionMask, gameObject);
+
+        if (oip != null && oip.Count > 0) {
+            if (dotb != null) {
+                dotb.TryToDestroy(oip);
+            }
+        }
+
     }
 
 }

@@ -19,6 +19,20 @@ public class DamageOnTouchBehavior : MonoBehaviour {
         }
     }
 
+    public void TryToDestroy(List<GameObject> objects)
+    {
+        if (damage > 0) {
+            foreach (GameObject obj in objects) {
+                if (obj.tag == "LogicDissolvable") {
+                    // Destroy logic dissolvable
+                    obj.GetComponent<BreakableBehavior>().Break();
+                } else {
+                    // destroy other entities here
+                }
+            }
+        }
+    }
+
     /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (damage > 0) {
