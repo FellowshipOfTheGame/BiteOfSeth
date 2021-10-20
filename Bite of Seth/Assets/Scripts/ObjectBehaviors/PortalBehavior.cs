@@ -29,13 +29,21 @@ public class PortalBehavior : MonoBehaviour
     public float customSize = 4f;
 
     private bool active = true;
-    public List<PortalEnergy> energies;
+    private List<PortalEnergy> energies;
+    public bool seachEnergies = false;
+    public SearchInRoom searchScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (seachEnergies) {
+            energies = searchScript.GetListOfPortalEnergy();
+            Debug.Log("Portais:");
+            foreach (PortalEnergy pe in energies) Debug.Log(pe);
+            Debug.Log("fim dos Portais");
+        }
         am = ServiceLocator.Get<AudioManager>();
-        if (energies.Count > 0) active = false;
+        if (energies != null && energies.Count > 0) active = false;
     }
 
     // Update is called once per frame
@@ -49,12 +57,19 @@ public class PortalBehavior : MonoBehaviour
             }
         }
 
+        //if(active) sprite...
+
         if(active && otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
             if (sfx) {
                 am.PlayAudio(sfx);
             }
             otpTranspBeh.TransportToPortal(otherSidePortalRef);
         }
+    }
+
+    public void SetNewEnergy(PortalEnergy pe)
+    {
+        energies.Add(pe);
     }
 
     public void ChangeObjectBehavior(TransportableBehavior tb)
