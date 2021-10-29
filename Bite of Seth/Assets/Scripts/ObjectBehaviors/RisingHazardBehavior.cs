@@ -7,18 +7,24 @@ public class RisingHazardBehavior : MonoBehaviour
 
     public Vector2 direction;
     public Vector2 maxScale;
+    public Vector2 minScale;
     public Vector2 expandingPerSec;
 
     private Vector2 dirNorm;
     private Vector2 size;
     private bool isMoving = false;
-    
+    private bool expand = true;
+    private SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        size = transform.localScale;
+        //size = transform.localScale;
+        sprite = GetComponent<SpriteRenderer>();
+        size = sprite.size;
+        //Debug.Log(size.x+" "+size.y);
         dirNorm = direction.normalized;
-        StartExpanding();
+        //StartExpanding();
     }
 
     // Update is called once per frame
@@ -31,25 +37,56 @@ public class RisingHazardBehavior : MonoBehaviour
     {
         if (isMoving) {
             //Expand
-            transform.localScale = new Vector3( transform.localScale.x + expandingPerSec.x,
+            /*transform.localScale = new Vector3( transform.localScale.x + expandingPerSec.x,
                                                 transform.localScale.y + expandingPerSec.y,
-                                                transform.localScale.z);
-            //Reposition
-            transform.position = new Vector3(   transform.position.x + (dirNorm.x * expandingPerSec.x / 2),
-                                                transform.position.y + (dirNorm.y * expandingPerSec.y / 2),
-                                                transform.position.z);
+                                                transform.localScale.z);*/
 
-            //If it reachs the final position, stop
-            if(transform.localScale.x >= maxScale.x || transform.localScale.y >= maxScale.y) {
-                isMoving = false;
+            if (expand) {
+
+                //Expand
+                sprite.size += new Vector2(expandingPerSec.x, expandingPerSec.y);
+
+                //Reposition
+                transform.position = new Vector3(transform.position.x + (dirNorm.x * expandingPerSec.x / 2),
+                                                    transform.position.y + (dirNorm.y * expandingPerSec.y / 2),
+                                                    transform.position.z);
+                //If it reachs the final position, stop
+                if (sprite.size.x >= maxScale.x || sprite.size.y >= maxScale.y) {
+                    isMoving = false;
+                }
+
+            } else {
+
+                //Shrink
+                sprite.size -= new Vector2(expandingPerSec.x, expandingPerSec.y);
+
+                //Reposition
+                transform.position = new Vector3(transform.position.x - (dirNorm.x * expandingPerSec.x / 2),
+                                                    transform.position.y - (dirNorm.y * expandingPerSec.y / 2),
+                                                    transform.position.z);
+                //If it reachs the final position, stop
+                if (sprite.size.x <= minScale.x || sprite.size.y <= minScale.y) {
+                    isMoving = false;
+                }
+
             }
+            
+            //Debug.Log(size.x + " " + size.y);
         }
     }
 
     public void StartExpanding()
     {
         isMoving = true;
+        expand = true;
     }
+
+    public void StartShrinking()
+    {
+        isMoving = true;
+        expand = false;
+    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
