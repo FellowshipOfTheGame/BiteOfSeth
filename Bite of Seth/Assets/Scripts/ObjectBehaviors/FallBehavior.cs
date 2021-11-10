@@ -23,6 +23,8 @@ public class FallBehavior : MonoBehaviour
 
     private AudioSource audSrc;
 
+    private float pushSpeed;
+
     void Start()
     {
         movable = gameObject.GetComponent<Movable>();
@@ -151,6 +153,45 @@ public class FallBehavior : MonoBehaviour
             }
         }
 
+    }
+
+    public void Deactivate()
+    {
+        enabled = false;
+    }
+
+    public void ActivateAfterXSeconds(float time)
+    {
+        Invoke("Activate", time);
+    }
+
+    public void Activate()
+    {
+        enabled = true;
+    }
+
+    public void PushUpAfterXSeconds(float speed, float time)
+    {
+        pushSpeed = speed;
+        Invoke("PushUp", time);
+    }
+
+    public void PushUp()
+    {
+        Deactivate();
+        movable.StartMovement(GridNav.up, pushSpeed);
+    }
+
+    public void PushUp(float speed)
+    {
+        Deactivate();
+        movable.StartMovement(GridNav.up, speed);
+    }
+
+    public void PushDown(float speed)
+    {
+        Deactivate();
+        movable.StartMovement(GridNav.down, speed);
     }
 
 }
