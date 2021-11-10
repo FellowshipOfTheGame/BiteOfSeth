@@ -503,4 +503,20 @@ public class GameManager : GameService
         }
     }
 
+    public void ResetAllRisingHazards()
+    {
+        RisingHazardBehavior[] hazards = FindObjectsOfType<RisingHazardBehavior>();
+        foreach (RisingHazardBehavior h in hazards) {
+            h.Reset();
+        }
+    }
+
+    public void ResetAllScales()
+    {
+        ScaleBehavior[] scales = FindObjectsOfType<ScaleBehavior>();
+        foreach (ScaleBehavior s in scales) {
+            s.Reset();
+        }
+    }
+
 }

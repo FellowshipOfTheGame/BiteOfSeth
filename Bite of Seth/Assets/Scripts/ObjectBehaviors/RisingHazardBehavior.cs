@@ -16,6 +16,10 @@ public class RisingHazardBehavior : MonoBehaviour
     private bool expand = true;
     private SpriteRenderer sprite;
 
+    private Vector2 initialSize;
+    private Vector2 initialPosition;
+    private bool initialExpand;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +28,11 @@ public class RisingHazardBehavior : MonoBehaviour
         size = sprite.size;
         //Debug.Log(size.x+" "+size.y);
         dirNorm = direction.normalized;
-        //StartExpanding();
+
+        initialSize = sprite.size;
+        initialPosition = transform.position;
+        initialExpand = expand;
+
     }
 
     // Update is called once per frame
@@ -93,6 +101,14 @@ public class RisingHazardBehavior : MonoBehaviour
         if(collision.tag == "Player") {
             collision.GetComponent<PlayerController>().Die();
         }
+    }
+
+    public void Reset()
+    {
+        sprite.size = initialSize;
+        transform.position = initialPosition;
+        expand = initialExpand;
+        isMoving = false;
     }
 
 }

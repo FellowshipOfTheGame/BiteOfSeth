@@ -94,4 +94,13 @@ public class ScaleBehavior : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        enabled = false;
+        movingPlates = 0;
+        plate1.Reset();
+        plate2.Reset();
+        enabled = true;
+    }
+
 }

@@ -30,12 +30,19 @@ public class PlateBehavior : MonoBehaviour
     private List<GameObject> objects;
     private List<GameObject> StopObjects;
 
+    private Vector2 initialPosition;
+
     // Start is called before the first frame update
     void Awake()
     {
         gameManager = ServiceLocator.Get<GameManager>();
         scale = transform.parent.GetComponent<ScaleBehavior>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        initialPosition = rb.position;
     }
 
     public void StartMovement(Vector2 desiredMovement, float _speed)
@@ -62,7 +69,7 @@ public class PlateBehavior : MonoBehaviour
         objects = GridNav.GetObjectsInPath(GridNav.WorldToGridPosition(detectPos), (weight + 1) * GridNav.up, weightMask, gameObject);
         weight = objects.Count;
 
-        Debug.Log(transform.name + ": weight = " + weight);
+        //Debug.Log(transform.name + ": weight = " + weight);
 
         if (isMoving) {
             
@@ -91,7 +98,7 @@ public class PlateBehavior : MonoBehaviour
         } else {
             moves--;
         }
-
+        
         for (int i = 0; i < StopObjects.Count; i++) {
             StopObjects[i].GetComponent<FallBehavior>().Activate();
         }
@@ -237,6 +244,18 @@ public class PlateBehavior : MonoBehaviour
     public float GetWeight()
     {
         return weight;
+    }
+
+    public void Reset()
+    {
+        enabled = false;
+        isMoving = false;
+        SetTemporaryCollider(false, true);
+        rb.position = initialPosition;
+        weight = 0;
+        moves = 0;
+        enabled = true;
+        Debug.Log(transform.name);
     }
 
 }
