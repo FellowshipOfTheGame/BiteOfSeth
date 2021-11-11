@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
-  m_Name: Cutscene 8
+  m_Name: Lines 6
   m_EditorClassIdentifier: 
   dialogueID: 0
-  dialogueTitle: What?
+  dialogueTitle: HEY
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "What?\r"
+    myText: HEY!
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "WHY CAN'T I LEAVE THIS BOAT ???\r"
+    myText: I am talking to you!
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "Hey you! Why can't I leave this boat?\r"
+    myText: Where are you taking me??
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "ANSWER ME!!\r"
+    myText: HEEEEEY! I ASKED YOU A QUESTION!
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: How dare you to stay quiet when the Pharaoh asks you a question?
     voicedLine: {fileID: 0}

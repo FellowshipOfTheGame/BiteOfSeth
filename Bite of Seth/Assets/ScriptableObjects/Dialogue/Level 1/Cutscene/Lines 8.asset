@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
-  m_Name: Cutscene 7
+  m_Name: Lines 8
   m_EditorClassIdentifier: 
   dialogueID: 0
-  dialogueTitle: I'm leaving
+  dialogueTitle: What?
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "Enough! I am leaving this boat.\r"
+    myText: "What?\r"
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "And WHEN I come back, YOU are gonna get in trouble for that!\r"
+    myText: "WHY CAN'T I LEAVE THIS BOAT ???\r"
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "Mark my words.\r"
+    myText: "Hey you! Why can't I leave this boat?\r"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: "ANSWER ME!!\r"
     voicedLine: {fileID: 0}
