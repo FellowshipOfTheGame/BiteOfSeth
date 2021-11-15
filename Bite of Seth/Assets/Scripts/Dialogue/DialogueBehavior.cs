@@ -46,6 +46,7 @@ public class DialogueBehavior : MonoBehaviour {
     public virtual void OnDialog(){
         //if (art != null) art.SetBool("talk", true);
         DialogueStartEvent.Invoke();
+        ServiceLocator.Get<GameManager>().FocusCameraOnPlayer();
     }
 
     public virtual void OnUpdateDialog() {

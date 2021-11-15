@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 5591789525576213048}
   - component: {fileID: 8788936103229650481}
   - component: {fileID: 3928820451778728237}
+  - component: {fileID: 8088116754746308127}
   - component: {fileID: 4148656507064651621}
   - component: {fileID: 39895259972309404}
   m_Layer: 13
@@ -332,6 +333,22 @@ MonoBehaviour:
   sfx: {fileID: 11400000, guid: 9a6934bb357d604459b5dd46d1acd8e1, type: 2}
   customCamSize: 1
   customSize: 4
+  seachEnergies: 0
+  searchScript: {fileID: 8088116754746308127}
+--- !u!114 &8088116754746308127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356684780206350432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e917706e042374281eed6f677e8a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finderPrefab: {fileID: 3280338308272508752, guid: 1d60b2b652da3c44ebeb1b4aa850db5d,
+    type: 3}
 --- !u!82 &4148656507064651621
 AudioSource:
   m_ObjectHideFlags: 0

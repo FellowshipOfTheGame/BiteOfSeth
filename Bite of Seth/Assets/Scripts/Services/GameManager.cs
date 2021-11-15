@@ -341,6 +341,11 @@ public class GameManager : GameService
         cf.FocusCameraOnXDuringYSeconds(x, y);
     }
 
+    public void FocusCameraOnPlayer()
+    {
+        cf.FocusOnPlayer();
+    }
+
     public void changeCameraToCustomSize(float size)
     {
         cf.ChangeToCustomSize(size);
@@ -495,6 +500,22 @@ public class GameManager : GameService
     {
         if (curLevel != null) {
             curLevel.SetTimer(value);
+        }
+    }
+
+    public void ResetAllRisingHazards()
+    {
+        RisingHazardBehavior[] hazards = FindObjectsOfType<RisingHazardBehavior>();
+        foreach (RisingHazardBehavior h in hazards) {
+            h.Reset();
+        }
+    }
+
+    public void ResetAllScales()
+    {
+        ScaleBehavior[] scales = FindObjectsOfType<ScaleBehavior>();
+        foreach (ScaleBehavior s in scales) {
+            s.Reset();
         }
     }
 

@@ -209,6 +209,9 @@ public class PlayerController : MonoBehaviour {
             currentCheckpoint.RewindRoom();
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().ResetChoices();
 
+            ServiceLocator.Get<GameManager>().ResetAllRisingHazards();
+
+            ServiceLocator.Get<GameManager>().ResetAllScales();
 
             movable.enabled = false;
             Invoke("EnableMovement", 1f);

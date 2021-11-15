@@ -10,6 +10,11 @@ public class BoulderTransportableBehavior : TransportableBehavior
 
     private PortalBehavior _portal;
 
+    public GameObject pointLight;
+    public GameObject trail;
+    public GameObject defaultSprite;
+    public GameObject logicSprite;
+
     public override void Start()
     {
         base.Start();
@@ -35,10 +40,21 @@ public class BoulderTransportableBehavior : TransportableBehavior
             fb.enabled = false;
             rd.enabled = false;
             pb.ChangeToLogicSpeed();
+
+            pointLight.SetActive(true);
+            trail.SetActive(true);
+            logicSprite.SetActive(true);
+            defaultSprite.SetActive(false);
+
         } else {
             rd.enabled = true;
             fb.enabled = true;
             pb.ChangeToNormalSpeed();
+
+            pointLight.SetActive(false);
+            trail.SetActive(false);
+            logicSprite.SetActive(false);
+            defaultSprite.SetActive(true);
         }
     }
 

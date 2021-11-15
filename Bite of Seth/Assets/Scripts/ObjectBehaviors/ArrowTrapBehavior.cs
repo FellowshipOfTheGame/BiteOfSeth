@@ -12,7 +12,7 @@ public class ArrowTrapBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Fire();
+        //Fire();
     }
 
     // Update is called once per frame

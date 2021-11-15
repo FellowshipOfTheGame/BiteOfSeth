@@ -28,21 +28,48 @@ public class PortalBehavior : MonoBehaviour
     public bool customCamSize = true;
     public float customSize = 4f;
 
+    private bool active = true;
+    private List<PortalEnergy> energies;
+    public bool seachEnergies = false;
+    public SearchInRoom searchScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (seachEnergies) {
+            energies = searchScript.GetListOfPortalEnergy();
+            Debug.Log("Portais:");
+            foreach (PortalEnergy pe in energies) Debug.Log(pe);
+            Debug.Log("fim dos Portais");
+        }
         am = ServiceLocator.Get<AudioManager>();
+        if (energies != null && energies.Count > 0) active = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
+
+        if (!active) {
+            active = true;
+            foreach (PortalEnergy pe in energies) {
+                active = active && pe.IsCollected();
+            }
+        }
+
+        //if(active) sprite...
+
+        if(active && otpInRange && otpTranspBeh.CanTransport(otherSidePortalRef, canTransportBoulder, canTransportPlayer)) {
             if (sfx) {
                 am.PlayAudio(sfx);
             }
             otpTranspBeh.TransportToPortal(otherSidePortalRef);
         }
+    }
+
+    public void SetNewEnergy(PortalEnergy pe)
+    {
+        energies.Add(pe);
     }
 
     public void ChangeObjectBehavior(TransportableBehavior tb)
@@ -59,7 +86,7 @@ public class PortalBehavior : MonoBehaviour
             otpTranspBeh = tb;
             if (canTransportPlayer) {
                 PlayerController pc = otpRef.GetComponent<PlayerController>();
-                if (pc) {
+                if (pc && active) {
                     DialogueManager.instance.toggleInteractWithPortalAlert(true);
                 }
             }
