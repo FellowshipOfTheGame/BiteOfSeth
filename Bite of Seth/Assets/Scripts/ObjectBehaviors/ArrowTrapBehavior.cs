@@ -9,10 +9,12 @@ public class ArrowTrapBehavior : MonoBehaviour
     public Vector2 direction;
     public float speed;
 
+    public float shootTime = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Fire();
+        Invoke("Fire", shootTime);
     }
 
     // Update is called once per frame
@@ -27,16 +29,19 @@ public class ArrowTrapBehavior : MonoBehaviour
         dir.x = direction.normalized.x;
         dir.y = direction.normalized.y;
         GameObject arrow = Instantiate(arrowPref, transform.position + dir, Quaternion.identity);
-        float angle = 0;
+        float angle = -90;
         if (dir.x == 1 && dir.y == 0) {
-            angle = -90;
+            angle = 0;
         } else if (dir.x == 0 && dir.y == -1) {
-            angle = -180;
-        } else if (dir.x == -1 && dir.y == 0) {
             angle = 90;
+        } else if (dir.x == -1 && dir.y == 0) {
+            angle = 180;
         }
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         arrow.GetComponent<ArrowBehavior>().StartMovement(direction, speed);
+
+        Invoke("Fire", shootTime);
+
     }
 
 }
