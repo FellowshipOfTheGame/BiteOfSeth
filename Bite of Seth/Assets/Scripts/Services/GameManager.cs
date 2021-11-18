@@ -311,6 +311,14 @@ public class GameManager : GameService
         //PrintTotalTimer();
     }
 
+    public void UpdateSceneBGM()
+    {
+        SceneBGM sceneBGM = FindObjectOfType<SceneBGM>();
+        if (sceneBGM) {
+            ServiceLocator.Get<AudioManager>().UpdateDefaultBGM(sceneBGM.BGM);
+        }
+    }
+
     public void RestartLevel()
     {
         ServiceLocator.Get<SceneReferences>().ReloadCurrentScene();

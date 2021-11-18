@@ -23,7 +23,7 @@ public class AudioManager : GameService
     public override void Start()
     {
         sources = new List<AudioSource>();
-        currentBGM = PlayDefaultBGM();
+        //currentBGM = PlayDefaultBGM();
     }
     public override void Update()
     {
@@ -95,6 +95,14 @@ public class AudioManager : GameService
             currentBGM.Stop();
             sources.Remove(currentBGM);
             currentBGM = null;
+        }
+    }
+
+    public void UpdateDefaultBGM(AudioObject newBGM)
+    {
+        if(newBGM != defaultBGM) {
+            defaultBGM = newBGM;
+            PlayDefaultBGM();
         }
     }
 
