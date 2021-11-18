@@ -13,6 +13,9 @@ public class ScaleBehavior : MonoBehaviour
 
     private int movingPlates = 0;
 
+    public LineRenderer line1;
+    public LineRenderer line2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,8 @@ public class ScaleBehavior : MonoBehaviour
     void FixedUpdate()
     {
         Balance();
+        line1.SetPosition(1, new Vector3(plate1.transform.position.x+0.5f, plate1.transform.position.y, 0));
+        line2.SetPosition(1, new Vector3(plate2.transform.position.x+0.5f, plate2.transform.position.y, 0));
     }
 
     public void Balance()

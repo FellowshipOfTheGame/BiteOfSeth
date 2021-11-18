@@ -53,15 +53,16 @@ public class SceneReferences : GameService {
         Debug.Log("New Scene Loaded");
         SceneManager.SetActiveScene(scene);
         Debug.Log("Active Scene : " + SceneManager.GetActiveScene().path);
-
-        //Try to Load a New Level
+        
         gm = ServiceLocator.Get<GameManager>();
         if (gm != null) {
             gm.loadingNewScene = false;
             gm.lockMovement = 0;
             gm.pause = false;
+            //Try to Load a New Level
             gm.TryToSetNewLevel();
             gm.GetCameraRef();
+            gm.UpdateSceneBGM();
         }
     
     }
