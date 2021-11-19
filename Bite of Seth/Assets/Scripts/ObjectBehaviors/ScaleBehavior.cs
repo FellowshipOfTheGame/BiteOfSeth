@@ -26,8 +26,9 @@ public class ScaleBehavior : MonoBehaviour
     void FixedUpdate()
     {
         Balance();
-        line1.SetPosition(1, new Vector3(plate1.transform.position.x+0.5f, plate1.transform.position.y, 0));
-        line2.SetPosition(1, new Vector3(plate2.transform.position.x+0.5f, plate2.transform.position.y, 0));
+        line1.SetPosition(1, new Vector3(plate1.transform.localPosition.x + transform.position.x + 2.5f, plate1.transform.localPosition.y + transform.position.y, 0));
+
+        line2.SetPosition(1, new Vector3(plate2.transform.localPosition.x + transform.position.x + 2.5f, plate2.transform.localPosition.y + transform.position.y, 0));
     }
 
     public void Balance()

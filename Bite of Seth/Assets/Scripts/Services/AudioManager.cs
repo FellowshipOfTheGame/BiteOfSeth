@@ -23,7 +23,7 @@ public class AudioManager : GameService
     public override void Start()
     {
         sources = new List<AudioSource>();
-        //currentBGM = PlayDefaultBGM();
+        currentBGM = PlayDefaultBGM();
     }
     public override void Update()
     {

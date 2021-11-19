@@ -29,11 +29,11 @@ public class ArrowTrapBehavior : MonoBehaviour
         dir.x = direction.normalized.x;
         dir.y = direction.normalized.y;
         GameObject arrow = Instantiate(arrowPref, transform.position + dir, Quaternion.identity);
-        float angle = -90;
+        float angle = 90;
         if (dir.x == 1 && dir.y == 0) {
             angle = 0;
         } else if (dir.x == 0 && dir.y == -1) {
-            angle = 90;
+            angle = -90;
         } else if (dir.x == -1 && dir.y == 0) {
             angle = 180;
         }
