@@ -11,6 +11,8 @@ public class ArrowTrapBehavior : MonoBehaviour
 
     public float shootTime = 3f;
 
+    public LayerMask arrowBlockersMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +27,19 @@ public class ArrowTrapBehavior : MonoBehaviour
 
     public void Fire()
     {
+
         Vector3 dir = Vector3.zero;
         dir.x = direction.normalized.x;
         dir.y = direction.normalized.y;
+
+        List<GameObject> blockers = GridNav.GetObjectsInPath(transform.position, dir, arrowBlockersMask, gameObject);
+        if (blockers.Count > 0) {
+            Invoke("Fire", shootTime);
+            return;
+        }
+
         GameObject arrow = Instantiate(arrowPref, transform.position + dir, Quaternion.identity);
+
         float angle = 90;
         if (dir.x == 1 && dir.y == 0) {
             angle = 0;

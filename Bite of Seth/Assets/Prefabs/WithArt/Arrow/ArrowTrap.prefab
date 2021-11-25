@@ -51,6 +51,9 @@ MonoBehaviour:
   direction: {x: 0, y: 1}
   speed: 5
   shootTime: 3
+  arrowBlockersMask:
+    serializedVersion: 2
+    m_Bits: 40448
 --- !u!61 &5274510165601267379
 BoxCollider2D:
   m_ObjectHideFlags: 0
