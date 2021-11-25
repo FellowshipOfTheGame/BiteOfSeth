@@ -258,4 +258,9 @@ public class PlateBehavior : MonoBehaviour
         Debug.Log(transform.name);
     }
 
+    public int GetMoves()
+    {
+        return moves;
+    }
+
 }
