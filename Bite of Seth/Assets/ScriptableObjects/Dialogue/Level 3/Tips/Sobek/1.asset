@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  dialogueTitle: Sobek
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3eb96365baea1154c885f838ac98b854, type: 2}
+    myText: "Well, THIS croc right here is not used to give\u2026 any kind of\u2026
+      I don\u2019t know! Advice? Is that the word?"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3eb96365baea1154c885f838ac98b854, type: 2}
+    myText: "Maybe that is because no one asks\u2026 I think\u2026 Thanks for asking
+      by the way!"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3eb96365baea1154c885f838ac98b854, type: 2}
+    myText: "Now! About your stuff. Hmmm\u2026"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 1
+    character: {fileID: 11400000, guid: 3eb96365baea1154c885f838ac98b854, type: 2}
+    myText: 'I mean, <ID5> is just as <ID5-good-trait> as you and me. Lovely lovely
+      one! My personal recommendation. But, if you want someone more... <ID1-good-trait>,
+      I think <ID1> is more your style: THAT ONE is TWICE of what you are looking
+      for! HA!'
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3eb96365baea1154c885f838ac98b854, type: 2}
+    myText: "Well\u2026 to be honest, I think I would pick anyone. Everyone is great!
+      Good people. I like them!"
+    voicedLine: {fileID: 0}

@@ -122,7 +122,9 @@ public class PlayerController : MonoBehaviour {
                     if (pushable != null) {
                         bool pushed = pushable.Push(desiredMovement);
                         if (pushed) {
-                            movable.StartMovement(desiredMovement, pushable.pushSpeed);
+                            if (!lm.enabled) {
+                                movable.StartMovement(desiredMovement, pushable.pushSpeed);
+                            }
                             pushing = true;
                         }
                     }
