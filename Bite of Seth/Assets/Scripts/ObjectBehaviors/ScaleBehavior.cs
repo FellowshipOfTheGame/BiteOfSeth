@@ -49,8 +49,8 @@ public class ScaleBehavior : MonoBehaviour
 
             if (canMove1 && canMove2) {
                 movingPlates = 2;
-                plate1.MoveDown(platesSpeed);
                 plate2.MoveUp(platesSpeed);
+                plate1.MoveDown(platesSpeed);
                 balanced = false;
             } else {
                 balanced = true;
