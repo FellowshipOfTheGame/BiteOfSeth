@@ -66,14 +66,19 @@ public class LogManager : MonoBehaviour
                     Text[] logInfo = (Text[]) newLog.GetComponentsInChildren<Text>(true);
 
                     string text = info.myText;
-               
+
                     //Complete text with puzzle info
                     string[] names = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNamesInOrder();
+                    string[] positiveTraits = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesPositiveTraitsInOrder();
+                    string[] negativeTraits = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().GetStatuesNegativeTraitsInOrder();
                     //Replace the statues names in the text on the respectives <x> where x is the Id of the statue;
                     for (int i = 0; i < names.Length; i++) {
                         int fix = i + 1;
                         text = text.Replace("<ID " + fix + ">", names[i]);
+                        text = text.Replace("<ID " + fix + "-good-trait>", positiveTraits[i]);
+                        text = text.Replace("<ID " + fix + "-bad-trait>", negativeTraits[i]);
                     }
+
                     string ownName = info.character.characterName;
                     text = text.Replace(ownName + "'s", "my");
                     //text = text.Replace(ownName, "my");

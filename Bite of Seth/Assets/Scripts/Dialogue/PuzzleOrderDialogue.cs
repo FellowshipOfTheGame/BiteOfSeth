@@ -16,6 +16,8 @@ public class PuzzleOrderDialogue : DialogueBehavior {
 
     public PuzzleManager.Id id;
     public string statueName;
+    public string statuePositiveTrait;
+    public string statueNegativeTrait;
 
     // Update is called once per frame
     void Update()

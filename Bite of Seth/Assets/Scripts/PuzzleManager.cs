@@ -19,6 +19,8 @@ public class PuzzleManager : MonoBehaviour
     private Id[] statuesCorrectOrder = new Id[maxIdsQuantity];
     private Id[] statuesSelectedOrder = new Id[maxIdsQuantity];
     private string[] names = new string[maxIdsQuantity];
+    private string[] positiveTraits = new string[maxIdsQuantity];
+    private string[] negativeTraits = new string[maxIdsQuantity];
 
     private int nSelected = 0;
 
@@ -64,6 +66,8 @@ public class PuzzleManager : MonoBehaviour
                 statues.Add(id);
                 pod.ResetSelection();
                 names[(int)id] = pod.statueName;
+                positiveTraits[(int)id] = pod.statuePositiveTrait;
+                negativeTraits[(int)id] = pod.statueNegativeTrait;
             }
         }
 
@@ -93,6 +97,8 @@ public class PuzzleManager : MonoBehaviour
                 statues.Add(id);
                 pod.ResetSelection();
                 names[(int)id] = pod.statueName;
+                positiveTraits[(int)id] = pod.statuePositiveTrait;
+                negativeTraits[(int)id] = pod.statueNegativeTrait;
             }
         }
         
@@ -211,6 +217,28 @@ public class PuzzleManager : MonoBehaviour
             }
         }
         return namesInOrder;
+    }
+    
+    public string[] GetStatuesPositiveTraitsInOrder()
+    {
+        string[] traitsInOrder = new string[totalStatuesQuantity];
+        if (totalStatuesQuantity > 0) {
+            for (int i = 0; i < totalStatuesQuantity; i++) {
+                traitsInOrder[i] = positiveTraits[(int)statuesCorrectOrder[i]];
+            }
+        }
+        return traitsInOrder;
+    }
+
+    public string[] GetStatuesNegativeTraitsInOrder()
+    {
+        string[] traitsInOrder = new string[totalStatuesQuantity];
+        if (totalStatuesQuantity > 0) {
+            for (int i = 0; i < totalStatuesQuantity; i++) {
+                traitsInOrder[i] = negativeTraits[(int)statuesCorrectOrder[i]];
+            }
+        }
+        return traitsInOrder;
     }
 
     public string[] GetSelectedStatues()
