@@ -38,7 +38,7 @@ public class ArrowTrapBehavior : MonoBehaviour
             return;
         }
 
-        GameObject arrow = Instantiate(arrowPref, transform.position + dir, Quaternion.identity);
+        GameObject arrow = Instantiate(arrowPref, transform.position, Quaternion.identity);
 
         float angle = 90;
         if (dir.x == 1 && dir.y == 0) {
