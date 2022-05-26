@@ -15,9 +15,12 @@ public class DoorBehavior : MonoBehaviour
     public bool cameraFocus = true;
     public float focusTime = 1.5f;
 
+    private SavePointTrigger savePointTrigger;
+
     private void Start()
     {
         startPos = doorMovable.rigidbody.position;
+        savePointTrigger = GetComponent<SavePointTrigger>();
     }
 
     void FixedUpdate()
@@ -55,6 +58,9 @@ public class DoorBehavior : MonoBehaviour
             if (cameraFocus) {
                 ServiceLocator.Get<GameManager>().FocusCameraOnXDuringYSeconds(gameObject.transform.position, focusTime);
             }
+            if(savePointTrigger != null) {
+                savePointTrigger.TriggerActiveTrue();
+            }
         }
     }
 
@@ -68,6 +74,9 @@ public class DoorBehavior : MonoBehaviour
             GetComponent<Collider2D>().enabled = true;
             if (sfx) {
                 ServiceLocator.Get<AudioManager>().PlayAudio(sfx);
+            }
+            if (savePointTrigger != null) {
+                savePointTrigger.TriggerActiveFalse();
             }
         }
         

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  dialogueTitle: Khepri
+  dialogueInfo:
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Well...
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Looks like I got promoted from a god buttler to a human nanny. Explendid!
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Let's get started, shall we?
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: My oh my! There is nothing like the feeling of "needing to figure out
+      what to do when someone does not bother telling you the plan"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Well, what information do we have? Let's see...
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 1
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Our goal is to bring the Pharaoh back before he gets to the afterlife,
+      correct?
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 1
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Well, he must pass through Anubis to get there, so let's talk to him!
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: 'Honestly I''m surprised Horus hasn''t done THAT sooner...
+
+'
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 114e5b64771df7e42b419b264154bba3, type: 2}
+    myText: Surprised not! Slightly disappointed.
+    voicedLine: {fileID: 0}

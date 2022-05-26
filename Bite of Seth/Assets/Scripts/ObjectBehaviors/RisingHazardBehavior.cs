@@ -44,10 +44,6 @@ public class RisingHazardBehavior : MonoBehaviour
     private void FixedUpdate()
     {
         if (isMoving) {
-            //Expand
-            /*transform.localScale = new Vector3( transform.localScale.x + expandingPerSec.x,
-                                                transform.localScale.y + expandingPerSec.y,
-                                                transform.localScale.z);*/
 
             if (expand) {
 
@@ -78,8 +74,6 @@ public class RisingHazardBehavior : MonoBehaviour
                 }
 
             }
-            
-            //Debug.Log(size.x + " " + size.y);
         }
     }
 
@@ -87,6 +81,7 @@ public class RisingHazardBehavior : MonoBehaviour
     {
         isMoving = true;
         expand = true;
+        Debug.Log("COMEÇOU");
     }
 
     public void StartShrinking()
