@@ -10,20 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
-  m_Name: Lines 12
+  m_Name: Lines 17
   m_EditorClassIdentifier: 
   dialogueID: 0
-  dialogueTitle: I'm leaving
+  dialogueTitle: Silent Conductor
   dialogueInfo:
   - needPuzzleInfo: 0
-    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "Enough! I am leaving this boat.\r"
+    character: {fileID: 11400000, guid: b28ced23e34609646acb9e91e5931975, type: 2}
+    myText: "It's a silent conductor, it can't speak.\r"
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "And WHEN I come back, YOU are gonna get in trouble for that!\r"
+    myText: "Oh, that's why I am yelling for 20 minutes straight and it didn't say
+      anything.\r"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: b28ced23e34609646acb9e91e5931975, type: 2}
+    myText: "Poor spirit...\r"
     voicedLine: {fileID: 0}
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: "Mark my words.\r"
+    myText: "WHAT DID YOU SAY?\r"
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: b28ced23e34609646acb9e91e5931975, type: 2}
+    myText: "Me? N-nothing!\r"
     voicedLine: {fileID: 0}
