@@ -6,7 +6,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class DialogueBehavior : MonoBehaviour {
     protected TextScript ts;
-    public Animator art;
 
     protected Color color;
 

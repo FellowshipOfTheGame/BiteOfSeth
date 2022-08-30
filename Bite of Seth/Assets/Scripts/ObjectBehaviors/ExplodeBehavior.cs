@@ -10,7 +10,7 @@ public class ExplodeBehavior : MonoBehaviour
     public Transform tt;
     private float timeCounter = 0f;
     public Animator anim;
-    public GameObject explosionObj;
+    public GameObject explosionObj, explosionCenterObj;
     public float explosionTimer = 0.5f;
 
     public AudioObject timerSfx;
@@ -59,7 +59,15 @@ public class ExplodeBehavior : MonoBehaviour
     public void Explode()
     {
         ServiceLocator.Get<AudioManager>().PlayAudio(explosionSfx);
+        if (explosionCenterObj) {
+            GameObject explosionInst = Instantiate(explosionCenterObj, transform.position, Quaternion.identity);
+            Destroy(explosionInst, explosionTimer);
+        }
+
         gameObject.SetActive(false);
+
+
+
         TryToDestroyAtDirection(GridNav.up);
         TryToDestroyAtDirection(GridNav.up + GridNav.right);
         TryToDestroyAtDirection(GridNav.right);
@@ -77,7 +85,7 @@ public class ExplodeBehavior : MonoBehaviour
         if(timeCounter > 0) {
             timeCounter -= Time.fixedDeltaTime;
             if (timerText != null) {
-                timerText.text = "" + (int)timeCounter;
+                timerText.text = "" + (int)Mathf.Ceil(timeCounter);
             }
         }
     }

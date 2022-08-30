@@ -1,33 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuzzleOrderDialogue : DialogueBehavior {
 
     private bool selected = false, locked = false;
 
     public SpriteRenderer number;
-
+    [Space(5)]
     public Sprite digit_1;
     public Sprite digit_2;
     public Sprite digit_3;
     public Sprite digit_4;
     public Sprite digit_5;
-
+    [Space(5)]
     public PuzzleManager.Id id;
     public string statueName;
+    public UnityEvent OnSelectEvent, OnUnselectEvent;
     public string statuePositiveTrait;
     public string statueNegativeTrait;
-
-    // Update is called once per frame
-    void Update()
-    {
-        //art.SetBool("hold", selected);
-        if (ts.TryToDialogue()) {
-            
-        }
-    }
-
     public override void OnDialog() {
         base.OnDialog();
 
@@ -44,11 +36,13 @@ public class PuzzleOrderDialogue : DialogueBehavior {
                 UpdateCounter(counter);
                 selected = true;
             }
+            OnSelectEvent.Invoke();
         } else {
             //If the statue is already selected, then unselect it
             number.gameObject.SetActive(false);
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().UnselectStatue(id);
             selected = false;
+            OnUnselectEvent.Invoke();
         }
     }
 

@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BreakableBehavior : MonoBehaviour {
 
+    public bool propagate = true;
     public float propagationTime = 0.5f;
+
+    public UnityEvent OnBreakEvent;
 
     private void TryToBreakAtDirection(Vector2 direction)
     {
@@ -20,8 +24,9 @@ public class BreakableBehavior : MonoBehaviour {
     public void Break()
     {
         gameObject.SetActive(false);
+        OnBreakEvent.Invoke();
         //Propagate the destruction
-        Invoke("BreakPropagation", propagationTime);
+        if (propagate) Invoke("BreakPropagation", propagationTime);
         Destroy(gameObject, propagationTime + 0.5f);
     }
 
