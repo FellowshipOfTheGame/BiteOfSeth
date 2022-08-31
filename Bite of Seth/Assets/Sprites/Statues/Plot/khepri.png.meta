@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1120
+  spritePixelsToUnits: 550
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -73,10 +73,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,10 +85,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -99,13 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: khepri_0
+      name: khepri_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1218
         y: 0
-        width: 2473
-        height: 3785
+        width: 1218.5
+        height: 1894
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,20 +113,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e0da926195e8df40800000000000000
-      internalID: 5753600936553140452
+      spriteID: cf98828086bf5c9d0800000000000000
+      internalID: -2754519172835145220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: khepri_1
+      name: khepri_0
       rect:
         serializedVersion: 2
-        x: 2473
+        x: 0
         y: 0
-        width: 2473
-        height: 3785
+        width: 1218.5
+        height: 1894
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3462947da81662ce0800000000000000
-      internalID: -1430348582698277309
+      spriteID: cb8b502d8b4c6f0e0800000000000000
+      internalID: -2236383866866255684
       vertices: []
       indices: 
       edges: []
