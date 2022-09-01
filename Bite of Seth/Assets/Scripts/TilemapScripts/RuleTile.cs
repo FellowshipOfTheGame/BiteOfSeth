@@ -93,7 +93,7 @@ public class RuleTile : CustomTile {
                         return GetConfig("pVert");
                     }
 
-                    if (neighbours[6]) return GetConfig("bVert");
+                    if (neighbours[8]) return GetConfig("bVert");
                     return GetConfig("leftGnd");
                 }
                 if (!neighbours[5]) {
