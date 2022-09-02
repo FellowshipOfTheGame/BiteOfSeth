@@ -8,11 +8,15 @@ public class ChangeToWall : MonoBehaviour
     public GameObject defaultSprite;
     public GameObject wallSprite;
 
+    public Animator animator;
+
+
+
     public void Change()
     {
         gameObject.layer = 9; //change layer to Wall layer
-        defaultSprite.SetActive(false);
-        wallSprite.SetActive(true);
+        //defaultSprite.SetActive(false);
+        //wallSprite.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
