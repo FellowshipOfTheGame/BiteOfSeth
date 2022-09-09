@@ -73,7 +73,8 @@ public class SearchInRoom : MonoBehaviour
                     bool isOnWall = false;
                     foreach (GameObject go in oip) {
                         if (go.tag == "LogicEnergy") {
-                            energies.Add(go.GetComponent<PortalEnergy>());
+                            PortalEnergy energy = go.GetComponent<PortalEnergy>();
+                            if (energy != null) energies.Add(energy);
                         } else if (go.layer == 9) {
                             // wall é layer 9
                             isOnWall = true;

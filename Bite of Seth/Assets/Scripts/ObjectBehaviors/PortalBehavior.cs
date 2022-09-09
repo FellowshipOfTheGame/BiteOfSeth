@@ -32,6 +32,7 @@ public class PortalBehavior : MonoBehaviour
     private List<PortalEnergy> energies;
     public bool seachEnergies = false;
     public SearchInRoom searchScript;
+    public GameObject portalLock;
 
     // Start is called before the first frame update
     void Start()
@@ -44,16 +45,22 @@ public class PortalBehavior : MonoBehaviour
         }
         am = ServiceLocator.Get<AudioManager>();
         if (energies != null && energies.Count > 0) active = false;
+        if (portalLock != null) portalLock.SetActive(!active);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (!active) {
-            active = true;
+            int energyRemaining = 0;
             foreach (PortalEnergy pe in energies) {
-                active = active && pe.IsCollected();
+                if (!pe.IsCollected()) 
+                    energyRemaining++;
+            }
+
+            if (energyRemaining == 0) {
+                active = true;
+                if (portalLock != null) portalLock.SetActive(false);
             }
         }
 
