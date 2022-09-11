@@ -9,18 +9,6 @@ public class SearchInRoom : MonoBehaviour
     public int roomMaxSizeX = 300;
     public int roomMaxSizeY = 300;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public List<PortalEnergy> GetListOfPortalEnergy()
     {
 
@@ -74,7 +62,7 @@ public class SearchInRoom : MonoBehaviour
                     foreach (GameObject go in oip) {
                         if (go.tag == "LogicEnergy") {
                             PortalEnergy energy = go.GetComponent<PortalEnergy>();
-                            if (energy != null) energies.Add(energy);
+                            if (energy != null && !energies.Contains(energy)) energies.Add(energy);
                         } else if (go.layer == 9) {
                             // wall é layer 9
                             isOnWall = true;
