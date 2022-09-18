@@ -44,46 +44,50 @@ public class NextLevelTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player") 
-        {
-            ServiceLocator.Get<GameManager>().StopTimer();
-            ServiceLocator.Get<GameManager>().lockMovement++;
-            if (NextLevelScene != null) {
-                collision.gameObject.GetComponent<Movable>().StopSfx();
-                collision.gameObject.GetComponent<Movable>().enabled = false;
-                if (showCongratsScreen) {
-
-                    levelCollectedDiamonds = gm.GetLevelScore();
-                    totalCollectedDiamonds = gm.GetTotalScore() + levelCollectedDiamonds;
-                    levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
-                    totalDiamondsLabel.text = totalCollectedDiamonds.ToString();
-
-                    levelCollectedLore = gm.GetLevelPiecesOfLore();
-                    totalCollectedLore = gm.GetTotalPiecesOfLore() + levelCollectedLore;
-                    levelLoreLabel.text = levelCollectedLore.ToString() + " / " + levelTotalLore.ToString();
-                    totalLoreLabel.text = totalCollectedLore.ToString();
-
-                    var ts = TimeSpan.FromSeconds(gm.GetLevelTimer());
-                    timeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
-                    ts = TimeSpan.FromSeconds(gm.GetTotalTimer() + gm.GetLevelTimer());
-                    //Debug.Log(gm.GetTotalTimer() + "+" + gm.GetLevelTimer());
-                    totalTimeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
-
-                    diamondImage.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
-
-                    EndLevelMenu.SetActive(true);
-                    Selectable s = button.GetComponent<Selectable>();
-                    s.Select();
-                } else{
-                    GoToNextLevel();
-                }
-            } else {
-                Debug.LogError("Sem referência para a próxima cena.");
-            }
+        if (collision.gameObject.tag == "Player") {
+            GoToNextLevel(collision.gameObject);
         }
     }
 
-    public void GoToNextLevel()
+    public void GoToNextLevel(GameObject player)
+    {
+        ServiceLocator.Get<GameManager>().StopTimer();
+        ServiceLocator.Get<GameManager>().lockMovement++;
+        if (NextLevelScene != null) {
+            player.GetComponent<Movable>().StopSfx();
+            player.GetComponent<Movable>().enabled = false;
+            if (showCongratsScreen) {
+
+                levelCollectedDiamonds = gm.GetLevelScore();
+                totalCollectedDiamonds = gm.GetTotalScore() + levelCollectedDiamonds;
+                levelDiamondsLabel.text = levelCollectedDiamonds.ToString() + " / " + levelTotalDiamonds.ToString();
+                totalDiamondsLabel.text = totalCollectedDiamonds.ToString();
+
+                levelCollectedLore = gm.GetLevelPiecesOfLore();
+                totalCollectedLore = gm.GetTotalPiecesOfLore() + levelCollectedLore;
+                levelLoreLabel.text = levelCollectedLore.ToString() + " / " + levelTotalLore.ToString();
+                totalLoreLabel.text = totalCollectedLore.ToString();
+
+                var ts = TimeSpan.FromSeconds(gm.GetLevelTimer());
+                timeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
+                ts = TimeSpan.FromSeconds(gm.GetTotalTimer() + gm.GetLevelTimer());
+                //Debug.Log(gm.GetTotalTimer() + "+" + gm.GetLevelTimer());
+                totalTimeLabel.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds) + " min";
+
+                diamondImage.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+
+                EndLevelMenu.SetActive(true);
+                Selectable s = button.GetComponent<Selectable>();
+                s.Select();
+            } else {
+                GoToNextScene();
+            }
+        } else {
+            Debug.LogError("Sem referência para a próxima cena.");
+        }
+    }
+
+    public void GoToNextScene()
     {
         ServiceLocator.Get<GameManager>().lockMovement--;
         gm.FromLevelGoToScene(NextLevelScene);

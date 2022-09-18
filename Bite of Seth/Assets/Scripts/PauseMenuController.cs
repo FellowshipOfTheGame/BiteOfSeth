@@ -76,6 +76,19 @@ public class PauseMenuController : MonoBehaviour
         CloseMenu();
     }
 
+    public void SkipLevel()
+    {
+        CloseMenu();
+        Invoke("SkipCurrentLevel", 0.5f);
+    }
+
+    private void SkipCurrentLevel()
+    {
+        //GameObject player = FindObjectOfType<PlayerController>().gameObject;
+        //FindObjectOfType<NextLevelTrigger>().GoToNextLevel(player);
+        FindObjectOfType<NextLevelTrigger>().GoToNextScene();
+    }
+
     public void Quit(){
         Resume();
         CloseMenu();
