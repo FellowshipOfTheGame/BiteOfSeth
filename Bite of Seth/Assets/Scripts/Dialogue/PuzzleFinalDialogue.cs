@@ -9,6 +9,7 @@ public class PuzzleFinalDialogue : DialogueBehavior {
     public Animator art;
     public bool selectAllStatues = true;
     public int nSelections = 1;
+    public bool isAnubisPuzzle  = false;
 
     public bool canDialogue = true;
     private bool firstTalk = true;

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -274,16 +274,20 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'This is a Beta Release made to test the new mechanics, Level 2''s design
-    and a bunch of cool stuff, including saving, cutscenes, voice acting and shiny
-    things!
+  m_Text: 'This is a Beta Release made to test the new mechanics and Level 3''s design.
 
 
-    If you find a bug or issue, please inform us so we can fix it on
-    a future release
+    You
+    can use a button in the pause menu[click ESC to open] to skip a level so you
+    can test the level 3 without playing previous levels.
 
 
-    Thanks a lot and please enjoy the game XD '
+    If you find a bug
+    or issue, please inform us so we can fix it on a future release.
+
+
+    Thanks
+    a lot and please enjoy the game XD '
 --- !u!222 &858296681
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -592,12 +596,12 @@ PrefabInstance:
         type: 3}
       propertyPath: NextLevelScene.sceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 8f48f306407f85143b01e0667470b3b9,
+      objectReference: {fileID: 102900000, guid: a0993940dfca2634f8b119332f74479a,
         type: 3}
     - target: {fileID: 317310458435618518, guid: 57f226973ef0d9e4281945f2964fc502,
         type: 3}
       propertyPath: NextLevelScene.scenePath
-      value: Assets/Scenes/Main Menu.unity
+      value: Assets/Cutscenes/C0 - Start/Cutscene0.unity
       objectReference: {fileID: 0}
     - target: {fileID: 469630301433899542, guid: 57f226973ef0d9e4281945f2964fc502,
         type: 3}

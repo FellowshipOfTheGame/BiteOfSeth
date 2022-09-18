@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2470,12 +2470,12 @@ PrefabInstance:
         type: 3}
       propertyPath: FirstScene.sceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: a0993940dfca2634f8b119332f74479a,
+      objectReference: {fileID: 102900000, guid: e4dd3794936d5354e9a88c6d3faff5e2,
         type: 3}
     - target: {fileID: 3168527601470525845, guid: 087de4ab4fbcc5e4fb74c4c26dc41382,
         type: 3}
       propertyPath: FirstScene.scenePath
-      value: Assets/Cutscenes/C0 - Start/Cutscene0.unity
+      value: Assets/Cutscenes/Beta_Warning.unity
       objectReference: {fileID: 0}
     - target: {fileID: 3168527601485464677, guid: 087de4ab4fbcc5e4fb74c4c26dc41382,
         type: 3}

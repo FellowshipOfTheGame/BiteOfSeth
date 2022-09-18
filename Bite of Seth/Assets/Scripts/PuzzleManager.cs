@@ -26,6 +26,8 @@ public class PuzzleManager : MonoBehaviour
 
     private int totalStatuesQuantity;
 
+    private bool isAnubisPuzzle;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -47,9 +49,11 @@ public class PuzzleManager : MonoBehaviour
             } else {
                 statuesQuantity = pfod.GetPuzzleTotalSelectionsQuantity();
             }
+            isAnubisPuzzle = pfod.isAnubisPuzzle;
         } else {
             statuesQuantity = 0;
-        } 
+            isAnubisPuzzle = false;
+        }
 
         ResetPuzzle();
 
@@ -187,6 +191,15 @@ public class PuzzleManager : MonoBehaviour
     {
         //Não selecionou o suficiente
         if (nSelected < statuesQuantity) return 0;
+
+        if (isAnubisPuzzle) {
+            // estatuas 3 e 5 precisam ser selecionadas em qualquer ordem
+            if (statuesSelectedOrder[0] == statuesCorrectOrder[2] && statuesSelectedOrder[1] == statuesCorrectOrder[4] ||
+                statuesSelectedOrder[0] == statuesCorrectOrder[4] && statuesSelectedOrder[1] == statuesCorrectOrder[2] ) {
+                return 1;
+            }
+            return 2;
+        }
 
         for(int i=0; i<statuesQuantity; i++)
         {
