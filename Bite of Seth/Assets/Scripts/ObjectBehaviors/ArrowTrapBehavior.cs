@@ -13,20 +13,28 @@ public class ArrowTrapBehavior : MonoBehaviour
 
     public LayerMask arrowBlockersMask;
 
+    private float time = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Fire", shootTime);
+        time = 0f;
+        //Invoke("Fire", shootTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        time += Time.fixedDeltaTime;
+        if (time >= shootTime) {
+            Fire();
+            time = 0f;
+        }
     }
 
     public void Fire()
     {
+
+        Debug.Log("FIRE");
 
         Vector3 dir = Vector3.zero;
         dir.x = direction.normalized.x;
@@ -34,7 +42,7 @@ public class ArrowTrapBehavior : MonoBehaviour
 
         List<GameObject> blockers = GridNav.GetObjectsInPath(transform.position, dir, arrowBlockersMask, gameObject);
         if (blockers.Count > 0) {
-            Invoke("Fire", shootTime);
+            //Invoke("Fire", shootTime);
             return;
         }
 
@@ -51,7 +59,7 @@ public class ArrowTrapBehavior : MonoBehaviour
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         arrow.GetComponent<ArrowBehavior>().StartMovement(direction, speed);
 
-        Invoke("Fire", shootTime);
+        //Invoke("Fire", shootTime);
 
     }
 

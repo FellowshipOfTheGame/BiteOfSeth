@@ -32,6 +32,8 @@ public class ArrowBehavior : MonoBehaviour
     {
         // return if movement blocked by game manager
         if (ServiceLocator.Get<GameManager>().lockMovement > 0) {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
             return;
         }
 

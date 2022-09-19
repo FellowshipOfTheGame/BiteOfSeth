@@ -1,6 +1,8 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class HUDController : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class HUDController : MonoBehaviour
     public Text statuesText;
     public Text piecesOfLoreText;
     public Text timerText;
+    public Text levelText;
 
     public Text[] choosedStatues = new Text[5];
 
@@ -19,6 +22,8 @@ public class HUDController : MonoBehaviour
     private void Start()
     {
         totalScore = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal().ToString();
+        Scene scene = SceneManager.GetActiveScene();
+        levelText.text = scene.name;
     }
 
     // Update is called once per frame
