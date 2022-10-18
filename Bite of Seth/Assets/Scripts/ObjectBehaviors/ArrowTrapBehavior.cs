@@ -34,7 +34,7 @@ public class ArrowTrapBehavior : MonoBehaviour
     public void Fire()
     {
 
-        Debug.Log("FIRE");
+        //Debug.Log("FIRE");
 
         Vector3 dir = Vector3.zero;
         dir.x = direction.normalized.x;

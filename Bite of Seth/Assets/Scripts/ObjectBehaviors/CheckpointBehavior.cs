@@ -5,6 +5,8 @@ using UnityEngine;
 public class CheckpointBehavior : MonoBehaviour
 {
     [SerializeField] RoomBehavior room = null;
+    [SerializeField] List<RoomBehavior> logicRooms = null;
+    [SerializeField] PortalBehavior portalWithEnergies = null;
     public GameObject spriteActive;
     public GameObject spriteOff;
     int curScore;
@@ -49,6 +51,15 @@ public class CheckpointBehavior : MonoBehaviour
         {
             room.DespawnRoom();
             room.SpawnRoom();
+        }
+
+        foreach (RoomBehavior r in logicRooms) {
+            r.DespawnRoom();
+            r.SpawnRoom();
+        }
+
+        if(portalWithEnergies) {
+            portalWithEnergies.SearchEnergies();
         }
     }
 
