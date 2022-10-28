@@ -1,31 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class GridOcclusion : MonoBehaviour {
     public float radius = 10f;
-    CameraFollow cam;
-    RoomBehavior[] rooms;
+    PlayerController player;
+    Animator[] animators;
+    Light2D[] lights;
 
 
     // Start is called before the first frame update
     void Start() {
-        rooms = GetComponentsInChildren<RoomBehavior>();
         GameManager gm = ServiceLocator.Get<GameManager>();
-        cam = FindObjectOfType<CameraFollow>();
+        player = FindObjectOfType<PlayerController>();
+        animators = GetComponentsInChildren<Animator>();
+        lights = GetComponentsInChildren<Light2D>();
     }
 
     // Update is called once per frame
     void Update() {
-        foreach (RoomBehavior room in rooms) {
-            Vector2 roomPos = new Vector2(room.center.x, room.center.y);
-            Vector2 camPos = new Vector2(cam.transform.position.x, cam.transform.position.y);
+        foreach (Animator obj in animators) {
+            Vector2 objPos = new Vector2(obj.transform.position.x, obj.transform.position.y);
+            Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+            obj.enabled = ((objPos - playerPos).magnitude <= radius);
+        }
 
-            if ((roomPos- camPos).magnitude > radius) {
-                room.gameObject.SetActive(false);
-            } else {
-                room.gameObject.SetActive(true);
-            }
+        foreach (Light2D obj in lights) {
+            Vector2 objPos = new Vector2(obj.transform.position.x, obj.transform.position.y);
+            Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
+            obj.enabled = ((objPos - playerPos).magnitude <= radius);
         }
     }
 }
