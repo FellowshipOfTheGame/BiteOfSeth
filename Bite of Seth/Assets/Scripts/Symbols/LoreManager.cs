@@ -14,15 +14,20 @@ public class LoreManager : GameService {
     public LoreBook book;
 
     public override void Start() {
-        //book = Instantiate(bookPrefab).GetComponent<LoreBook>();
-        //dialog = Instantiate(dialogPrefab).GetComponent<SymbolDialog>();
-        
+        book = Instantiate(bookPrefab).GetComponent<LoreBook>();
+        dialog = Instantiate(dialogPrefab).GetComponent<SymbolDialog>();   
     }
 
     public void Learn(Lore l){
         lore.Add(l);
         book.AddEntry(l, dialog);
         dialog.Present(l);
+    }
+
+    public void LearnPastLore(Lore l)
+    {
+        lore.Add(l);
+        book.AddEntry(l, dialog);
     }
 
     public void Forget(Lore l){
