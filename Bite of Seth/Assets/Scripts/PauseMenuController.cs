@@ -9,6 +9,7 @@ public class PauseMenuController : MonoBehaviour
     public KeyCode openMenuKey = KeyCode.None;
     public GameObject canvas = null;
     public GameObject mainLayout = null;
+    public GameObject loreLayout = null;
     public GameObject instructionLayout = null;
     public GameObject settingsLayout = null;
 
@@ -44,6 +45,16 @@ public class PauseMenuController : MonoBehaviour
         instructionLayout.SetActive(false);
         ServiceLocator.Get<GameManager>().lockMovement -= 1;
         Resume();
+    }
+
+    public void OpenLoreBook() {
+        mainLayout.SetActive(false);
+        loreLayout.SetActive(true);
+    }
+
+    public void CloseLoreBook() {
+        mainLayout.SetActive(true);
+        loreLayout.SetActive(false);
     }
 
     public void OpenInstructions()

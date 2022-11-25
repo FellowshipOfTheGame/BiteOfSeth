@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Manager/LoreManager")]
 public class LoreManager : GameService {
 
+    public bool[,] collectedLore = new bool[3,6];
+
+
     public List<Lore> lore;
     public int total = 0;
 
@@ -13,15 +16,23 @@ public class LoreManager : GameService {
     public SymbolDialog dialog;
     public LoreBook book;
 
-    public override void Start() {
-        book = Instantiate(bookPrefab).GetComponent<LoreBook>();
-        dialog = Instantiate(dialogPrefab).GetComponent<SymbolDialog>();   
-    }
-
     public void Learn(Lore l){
         lore.Add(l);
         book.AddEntry(l, dialog);
-        dialog.Present(l);
+    }
+
+    public void LoadCollectedLore(bool[,] collectedLore) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 6; j++) {
+                this.collectedLore[i, j] = collectedLore[i, j];
+            }
+        }
+        if (book != null) book.UpdateContent(collectedLore);
+    }
+
+    public void SetCollectedLore(SymbolBehavior symbol, bool collected) {
+        collectedLore[symbol.level - 1, symbol.index] = collected;
+        if (book != null) book.UpdateContent(collectedLore);
     }
 
     public void LearnPastLore(Lore l)

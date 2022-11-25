@@ -5,6 +5,8 @@ using UnityEngine;
 public class SymbolBehavior : MonoBehaviour {
 
     public Lore info;
+    public int index;
+    public int level;
     public ParticleSystem particles;
     public Animator anim;
 
@@ -29,7 +31,8 @@ public class SymbolBehavior : MonoBehaviour {
 
     public void Explode() {
         LoreManager lm = ServiceLocator.Get<LoreManager>();
-        lm.Learn(info);
+        //lm.Learn(info);
+        lm.SetCollectedLore(this, true);
         particles.Play();
     }
 
