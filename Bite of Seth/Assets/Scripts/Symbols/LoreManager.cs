@@ -31,7 +31,7 @@ public class LoreManager : GameService {
     }
 
     public void SetCollectedLore(SymbolBehavior symbol, bool collected) {
-        collectedLore[symbol.level - 1, symbol.index] = collected;
+        collectedLore[symbol.level, symbol.index] = collected;
         if (book != null) book.UpdateContent(collectedLore);
     }
 

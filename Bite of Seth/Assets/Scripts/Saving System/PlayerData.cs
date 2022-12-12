@@ -20,6 +20,8 @@ public class PlayerData
     public int totalLorePieces;
     public float totalTimer;
 
+    public bool[,] lorePiecesMap = new bool[3, 6];
+
     public float spawnPointX;
     public float spawnPointY;
 
@@ -44,6 +46,11 @@ public class PlayerData
         levelTimer = totalTimer = spawnPointX = spawnPointY = 0f;
         generalVolume = BGMVolume = dialogueVolume = 1f;
         statue0 = statue1 = statue2 = statue3 = statue4 = -1;
+        for(int i=0; i<3; i++) {
+            for (int j=0; j<6; j++) {
+                lorePiecesMap[i, j] = false;
+            }
+        }
     }
     
 }

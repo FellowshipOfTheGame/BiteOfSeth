@@ -152,11 +152,10 @@ public class SceneReferences : GameService {
 
     public string GetLevelName(int scene_id)
     {
-
         string[] aux = scenesList[scene_id].ScenePath.Split('/');
         aux = aux[aux.Length - 1].Split('.');
+        Debug.Log("Level Name: " + aux[0]);
         return aux[0];
-
     }
 
 }

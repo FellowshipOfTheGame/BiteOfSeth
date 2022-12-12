@@ -14,6 +14,7 @@ public class SavesInfo : MonoBehaviour
         public Text loreCount;
         public Text level;
         public Text time;
+        public bool[,] lorePiecesMap;
     }
 
     public static int nSaves = 3;

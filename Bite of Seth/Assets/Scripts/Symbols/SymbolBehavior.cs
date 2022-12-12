@@ -25,7 +25,7 @@ public class SymbolBehavior : MonoBehaviour {
         anim.SetTrigger("collect");
         if (!collected) {
             collected = true;
-            ServiceLocator.Get<GameManager>().AddLevelPiecesOfLore(1);
+            ServiceLocator.Get<GameManager>().UpdateLevelPieceOfLoreMap(level, index);
         }
     }
 

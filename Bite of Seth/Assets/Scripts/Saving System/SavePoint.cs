@@ -13,7 +13,6 @@ public class SavePoint : MonoBehaviour
     private bool auxLoad = true;
 
     public List<GameObject> pastStatues;
-    public List<GameObject> pastPiecesOfLore;
 
     private GameManager gm;
 
@@ -75,16 +74,6 @@ public class SavePoint : MonoBehaviour
                     }
                     
                 }
-
-                foreach (GameObject pieceOfLore in pastPiecesOfLore) {
-
-                    // LOAD ALL PAST PIECES OF LORE
-                    SymbolBehavior sb = pieceOfLore.GetComponent<SymbolBehavior>();
-                    LoreManager lm = ServiceLocator.Get<LoreManager>();
-                    lm.LearnPastLore(sb.info);
-                    pieceOfLore.SetActive(false);
-                }
-
             }
         }
     }

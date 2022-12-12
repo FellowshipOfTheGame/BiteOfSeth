@@ -11,6 +11,8 @@ public class SymbolDialog : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         icon = this.GetComponent<Image>();
+        Debug.Log("Lore: " + info);
+        Debug.Log("Image: " + icon);
         icon.sprite = info.icon;
     }
 }

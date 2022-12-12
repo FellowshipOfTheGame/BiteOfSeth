@@ -21,6 +21,7 @@ public class GameManager : GameService
 
     public int score;
     public int lorePieces;
+    private bool[,] lorePiecesMap = new bool[3, 6];
     private float timer = 0f;
     public bool timerTrigger = false;
     public Vector2 savedSpawnPos = Vector2.zero;
@@ -97,6 +98,12 @@ public class GameManager : GameService
     {
         score = PlayerData.current.totalScore;
         lorePieces = PlayerData.current.totalLorePieces;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 6; j++) {
+                lorePiecesMap[i, j] = PlayerData.current.lorePiecesMap[i, j];
+            }
+        }
+        ServiceLocator.Get<LoreManager>().LoadCollectedLore(lorePiecesMap);
         timer = PlayerData.current.totalTimer;
         ServiceLocator.Get<SceneReferences>().GoToSceneId(PlayerData.current.scene);
     }
@@ -177,12 +184,20 @@ public class GameManager : GameService
         PlayerData.current.levelScore = GetLevelScore();
         Debug.Log("Score salvo: " + PlayerData.current.levelScore);
 
-        PlayerData.current.levelLorePieces = GetLevelPiecesOfLore();
-        Debug.Log("Pieces of Lore salvo: " + PlayerData.current.levelLorePieces);
-
         PlayerData.current.levelTimer = GetLevelTimer();
         Debug.Log("Timer salvo: " + PlayerData.current.levelTimer);
 
+        PlayerData.current.levelLorePieces = GetLevelPiecesOfLore();
+        Debug.Log("Pieces of Lore salvo: " + PlayerData.current.levelLorePieces);
+
+        Debug.Log("Matriz de Pieces of Lore salva: ");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 6; j++) {
+                PlayerData.current.lorePiecesMap[i, j] = lorePiecesMap[i, j];
+                Debug.Log("Piece of Lore (Level: " + i + ", Index: " + j + ") : " + lorePiecesMap[i, j]);
+            }
+        }
+       
         SaveSystem.Save();
 
     }
@@ -459,6 +474,23 @@ public class GameManager : GameService
             return curLevel.GetPiecesOfLore();
         }
         return 0;
+    }
+
+    public void UpdateLevelPieceOfLoreMap(int level, int index)
+    {
+        if (curLevel != null) {
+            curLevel.AddPiecesOfLore(1);
+            lorePiecesMap[level, index] = true;
+            ServiceLocator.Get<LoreManager>().LoadCollectedLore(lorePiecesMap);
+        }
+    }
+
+    public bool[,] GetLevelPiecesOfLoreMap()
+    {
+        if (curLevel != null) {
+            return lorePiecesMap;
+        }
+        return null;
     }
 
     public void AddLevelPiecesOfLore(int value)
