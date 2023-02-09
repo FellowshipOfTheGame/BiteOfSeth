@@ -13,6 +13,7 @@ public class MorphingStatue : MonoBehaviour
         public StatueAnimHandler handler;
         public SpriteRenderer art, eye, shine;
         public Light2D internalLight, externalLight;
+        [HideInInspector] public Color internalLightColor, externalLightColor;
 
         public void SetVisibility(bool visibility) {
             art.gameObject.SetActive(true);
@@ -20,8 +21,14 @@ public class MorphingStatue : MonoBehaviour
             art.enabled = visibility;
             eye.enabled = visibility;
             shine.enabled = visibility;
-            internalLight.enabled = visibility;
-            externalLight.enabled = visibility;
+
+            if (visibility) {
+                internalLight.color = internalLightColor;
+                externalLight.color = externalLightColor;
+            } else {
+                internalLight.color = Color.black;
+                externalLight.color = Color.black;
+            }
         }
     }
     Animation transition;
@@ -29,11 +36,10 @@ public class MorphingStatue : MonoBehaviour
     Pair lastForm = null, currentForm = null;
 
     void Awake() {
-        if (form.Length > 0) {
-            form[0].SetVisibility(true);
-            foreach(Pair p in form) {
-                if (p != form[0]) p.SetVisibility(false);
-            }
+        foreach (Pair p in form) {
+            p.internalLightColor = p.internalLight.color;
+            p.externalLightColor = p.externalLight.color;
+            p.SetVisibility(p == form[0]);
         }
         transition = this.GetComponent<Animation>();
     }

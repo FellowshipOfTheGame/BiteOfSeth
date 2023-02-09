@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 6341245177138782240}
   - component: {fileID: 6341245177138782241}
   - component: {fileID: 6341245177138782242}
-  - component: {fileID: 6341245177138782244}
   m_Layer: 5
   m_Name: SymbolDialog (Canvas)
   m_TagString: Untagged
@@ -173,23 +172,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6341245177138782244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6341245177138782243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ffcff21db8c8a342bc0e80bc243e8d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 6341245177874317839}
-  dialogueText: {fileID: 6341245178158761452}
-  dialogueTitle: {fileID: 6341245177860451479}
-  dialogueIcon: {fileID: 8603953733472496278}
-  delay: 0.001
 --- !u!1 &6341245177860451473
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0462713, y: 0.09566491}
   m_AnchorMax: {x: 0.9658197, y: 0.8453278}
-  m_AnchoredPosition: {x: -4.0238953, y: 0.5469055}
+  m_AnchoredPosition: {x: -4.0238953, y: 0.546875}
   m_SizeDelta: {x: 4, y: 0.59399986}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6341245178158761443
@@ -456,7 +438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0462713, y: 0}
   m_AnchorMax: {x: 1, y: 0.09566491}
-  m_AnchoredPosition: {x: -4.0238953, y: 3.6000366}
+  m_AnchoredPosition: {x: -4.0238953, y: 3.6000977}
   m_SizeDelta: {x: -5.0065, y: -6.700001}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7496529109651813575

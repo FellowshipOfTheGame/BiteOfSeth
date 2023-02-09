@@ -39,10 +39,8 @@ public class PuzzleOrderDialogue : DialogueBehavior {
             OnSelectEvent.Invoke();
         } else {
             //If the statue is already selected, then unselect it
-            number.gameObject.SetActive(false);
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().UnselectStatue(id);
-            selected = false;
-            OnUnselectEvent.Invoke();
+            ResetSelection();
         }
     }
 
@@ -50,6 +48,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
     public void ResetSelection() {
         selected = false;
         number.gameObject.SetActive(false);
+        OnUnselectEvent.Invoke();
     }
 
     public void SetId(PuzzleManager.Id _id)
