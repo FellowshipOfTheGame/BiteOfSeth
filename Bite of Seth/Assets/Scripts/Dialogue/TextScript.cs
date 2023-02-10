@@ -59,7 +59,7 @@ public class TextScript : MonoBehaviour
                 TriggerDialogue();
                 UpdateLog();
             } else if (!DialogueManager.instance.isDialogueActive) {
-                DialogueManager.instance.SetInteractName(curDialogue.dialogueInfo[0].character.characterName);
+                DialogueManager.instance.SetInteractName(statue.character.characterName);
                 DialogueManager.instance.toggleInteractAlert(true);
             }
         }

@@ -395,7 +395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089a3abc14d647f49ba613f1d06c3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueSequence: []
+  dialogueSequence:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 4a0dbba7a53400e4c839f084753e536b, type: 2}
   statue: {fileID: 0}
   playerInRange: 0
   doorTrigger: {fileID: 0}
@@ -572,6 +574,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  statuePositiveTrait: 
+  statueNegativeTrait: 
 --- !u!1 &6347913915734871434
 GameObject:
   m_ObjectHideFlags: 0

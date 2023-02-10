@@ -7,8 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class DialogueBehavior : MonoBehaviour {
     protected TextScript ts;
 
-    protected Color color;
-
+    public CharacterInfo character;
     public bool puzzleStatue = false;
     [Space(5)]
     public UnityEvent PlayerEnterEvent;
@@ -21,7 +20,6 @@ public class DialogueBehavior : MonoBehaviour {
     void Start() {
         ts = GetComponentInChildren<TextScript>();
         ts.statue = this;
-        color = ts.dialogueSequence[0].dialogueInfo[0].character.color;
     }
 
     // Update is called once per frame

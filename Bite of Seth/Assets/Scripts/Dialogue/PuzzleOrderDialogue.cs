@@ -32,7 +32,7 @@ public class PuzzleOrderDialogue : DialogueBehavior {
             if(counter > 0) {
                 number.gameObject.SetActive(true);
                 number.transform.eulerAngles = Vector3.zero;
-                number.color = color;
+                number.color = character.color;
                 UpdateCounter(counter);
                 selected = true;
             }
@@ -40,13 +40,26 @@ public class PuzzleOrderDialogue : DialogueBehavior {
         } else {
             //If the statue is already selected, then unselect it
             ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().UnselectStatue(id);
-            ResetSelection();
+            selected = false;
+            number.gameObject.SetActive(false);
+            OnUnselectEvent.Invoke();
+        }
+    }
+
+    public override void OnEndDialog() {
+        base.OnEndDialog();
+        
+        if (selected) {
+
+        } else {
+            ts.ResetDialogue();
         }
     }
 
     //Reset statue selection
     public void ResetSelection() {
         selected = false;
+        if (ts != null) ts.ResetDialogue();
         number.gameObject.SetActive(false);
         OnUnselectEvent.Invoke();
     }
