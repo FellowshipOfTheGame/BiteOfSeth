@@ -24,6 +24,10 @@ public class PuzzleFinalDialogue : DialogueBehavior {
 
     public DoorTrigger doorTrigger = null;
 
+    public UnityEvent OnQuestionEvent;
+
+    public UnityEvent OnAnswerEvent;
+
     public UnityEvent OnSuccessEvent;
 
     public bool IsAllStatuesSelectable()
@@ -42,11 +46,7 @@ public class PuzzleFinalDialogue : DialogueBehavior {
         //if the player didnt win yet
         if (!success) {
 
-            //If its the first dialogue, set the default one 
-            if (firstTalk) {
-                ts.ChangeCurrentDialogueSequence(defaultDialogue);
-                firstTalk = false;
-            }
+            
 
             //get the players answer result
             int result = ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().CheckFinalAnswer();
@@ -55,28 +55,18 @@ public class PuzzleFinalDialogue : DialogueBehavior {
                 //If the answer was right
                 case 1:
                     Debug.Log("YOU WON, CONGRATULATIONS!");
+                    OnAnswerEvent.Invoke();
                     success = true;
                     //Change dialogue to the success one
                     ts.ChangeCurrentDialogueSequence(successDialogue);
-                    //ts.SetDoorTrigger(doorTrigger);
                     art.SetBool("hold", true);
                     //Lock dialogue with all puzzle statues
                     ServiceLocator.Get<GameManager>().GetLevelPuzzleManager().LockStatues();
-                    DialogueEndEvent.AddListener(() => {OnSuccessEvent.Invoke();} );
-                    //OnSuccessEvent;
-
-                    if(winChime)
-                    {
-                        ServiceLocator.Get<AudioManager>().PlayAudio(winChime);
-                    }
-                    else
-                    {
-                        Debug.LogError("Win Chime shouldn't be null");
-                    }
                     break;
                 //If the answer was wrong
                 case 2:
                     Debug.Log("YOU LOSE... TRY AGAIN!");
+                    OnAnswerEvent.Invoke();
                     //Change dialogue to the fail one
                     ts.ChangeCurrentDialogueSequence(failDialogue);
                     fail = true;
@@ -89,6 +79,25 @@ public class PuzzleFinalDialogue : DialogueBehavior {
     public override void OnEndDialog() {
         base.OnEndDialog();
 
+        //If its the first dialogue, set the default one 
+        if (firstTalk) {
+            ts.ChangeCurrentDialogueSequence(defaultDialogue);
+            OnQuestionEvent.Invoke();
+            firstTalk = false;
+        }
+
+        //If the player succeed in the puzzle then play the chime and call the event
+        if (success) {
+            if (winChime) {
+                ServiceLocator.Get<AudioManager>().PlayAudio(winChime);
+            }
+            else {
+                Debug.LogError("Win Chime shouldn't be null");
+            }
+
+            OnSuccessEvent.Invoke();
+        }
+
         //If the player failed in the puzzle then it dies and the choices are reseted
         if (fail) {
             if (ts.GetPlayerRef() != null) {
@@ -100,4 +109,13 @@ public class PuzzleFinalDialogue : DialogueBehavior {
         }
     }
 
+    void OnAskEnigma() {
+        OnQuestionEvent.Invoke();
+        DialogueEndEvent.RemoveListener(() => { OnAskEnigma(); });
+    }
+
+    void OnRightAnswer() {
+        OnSuccessEvent.Invoke();
+        DialogueEndEvent.RemoveListener(() => { OnRightAnswer(); });
+    }
 }

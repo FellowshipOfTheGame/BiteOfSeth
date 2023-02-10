@@ -12,9 +12,15 @@ public class HUDController : MonoBehaviour
     public Text timerText;
     public Text levelText;
 
+    [Space(5)]
+    public Animation EnigmaBlock;
+    public Text EnigmaTitle;
+    public Text EnigmaText;
+    public Image EnigmaMark;
     public Text[] choosedStatues = new Text[5];
 
     private PuzzleManager pm;
+    private bool enigmaStarted;
     private string totalStatues;
     private string totalScore;
     private int i;
@@ -24,6 +30,8 @@ public class HUDController : MonoBehaviour
         totalScore = ServiceLocator.Get<GameManager>().GetLevelDiamondsTotal().ToString();
         Scene scene = SceneManager.GetActiveScene();
         levelText.text = scene.name;
+        enigmaStarted = false;
+        EnigmaBlock.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,18 +56,35 @@ public class HUDController : MonoBehaviour
         //Debug.Log(ServiceLocator.Get<GameManager>().GetLevelTimer());
         timerText.text = string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, ts.Seconds);
 
-        /*string[] statues = pm.GetSelectedStatues();
-        i = 0;
-        while (i < statues.Length) {
-            choosedStatues[i].text = statues[i];
-            i++;
+        if (enigmaStarted) {
+            string[] statues = pm.GetSelectedStatues();
+            i = 0;
+            while (i < statues.Length) {
+                choosedStatues[i].text = (i + 1).ToString() + ". " + statues[i];
+                choosedStatues[i].gameObject.SetActive(true);
+                i++;
+            }
+            while (i < choosedStatues.Length) {
+                choosedStatues[i].text = (i + 1).ToString() + ". _______";
+                choosedStatues[i].gameObject.SetActive(false);
+                i++;
+            }
         }
-        while(i < choosedStatues.Length) {
-            choosedStatues[i].text = "";
-            i++;
-        }*/
-
-
     }
-    
+
+    public void OpenEnigma(DialogueBase question) {
+        DialogueBase.Info enigma = question.dialogueInfo[question.dialogueInfo.Length - 1];
+        
+        EnigmaTitle.text = question.dialogueTitle;
+        EnigmaText.text = enigma.myText;
+        EnigmaMark.sprite = enigma.character.portrait;
+
+        enigmaStarted = true;
+        EnigmaBlock.gameObject.SetActive(true);
+        EnigmaBlock.Play("enigma_open");
+    }
+
+    public void CloseEnigma() {
+        EnigmaBlock.Play("enigma_close");
+    }
 }

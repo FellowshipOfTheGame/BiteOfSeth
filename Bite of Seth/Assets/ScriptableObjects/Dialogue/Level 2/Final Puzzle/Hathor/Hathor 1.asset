@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Hathor 1
   m_EditorClassIdentifier: 
   dialogueID: 0
-  dialogueTitle: Hathor
+  dialogueTitle: Hathor and Sekhmet
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: a5a4965821c528a42b4edafe359b2c44, type: 2}
-    myText: "...Hmm? ...Ahh! Nubia? Hi!... Again\u2026 So\u2026 Like I said\u2026
-      I got EVERYTHING\u2026 Under\u2026 Under control\u2026 UFFF! Anyway, Did you\u2026
-      Did you find the impostor?"
+    myText: ...Hmm? ...Ahh! Nubia? Hi!... Again... So... Like I said... I got EVERYTHING...
+      Under... Under control... UFFF! Anyway!
+    voicedLine: {fileID: 0}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: a5a4965821c528a42b4edafe359b2c44, type: 2}
+    myText: 'Remember: everyone tells one truth and one lie. Now show me the fake
+      one... And fast... Please!'
     voicedLine: {fileID: 0}
