@@ -836,6 +836,7 @@ MonoBehaviour:
   interactBox: {fileID: 1696897470834801968}
   interactText: {fileID: 8873846755631188933}
   delay: 0.001
+  alertDuration: 2.5
   isDialogueActive: 0
   normalColor: {r: 0.735849, g: 0.6091135, b: 0.4269313, a: 1}
   highlightColor: {r: 0.990566, g: 0.9014295, b: 0.55602527, a: 1}
@@ -902,8 +903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.80784315}
+  m_Material: {fileID: 2100000, guid: 7db2d858462e85d449c30eb9bc787cd2, type: 3}
+  m_Color: {r: 0.05660379, g: 0.03924592, b: 0.033908874, a: 0.80784315}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -982,17 +983,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 7db2d858462e85d449c30eb9bc787cd2, type: 3}
-    m_FontSize: 100
+    m_Font: {fileID: 12800000, guid: b5373b6f7a7843d4caeb11422960bb46, type: 3}
+    m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Press [E] to interact
 --- !u!1 &8935478984162977322

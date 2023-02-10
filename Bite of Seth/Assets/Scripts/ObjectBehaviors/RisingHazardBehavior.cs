@@ -20,6 +20,8 @@ public class RisingHazardBehavior : MonoBehaviour
     private Vector2 initialPosition;
     private bool initialExpand;
 
+    private bool activated;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class RisingHazardBehavior : MonoBehaviour
         size = sprite.size;
         //Debug.Log(size.x+" "+size.y);
         dirNorm = direction.normalized;
+        activated = false;
 
         initialSize = sprite.size;
         initialPosition = transform.position;
@@ -79,6 +82,7 @@ public class RisingHazardBehavior : MonoBehaviour
 
     public void StartExpanding()
     {
+        activated = true;
         isMoving = true;
         expand = true;
         Debug.Log("COMEÇOU");
@@ -86,6 +90,7 @@ public class RisingHazardBehavior : MonoBehaviour
 
     public void StartShrinking()
     {
+        activated = true;
         isMoving = true;
         expand = false;
     }
@@ -93,7 +98,7 @@ public class RisingHazardBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player") {
+        if(activated && collision.tag == "Player") {
             collision.GetComponent<PlayerController>().Die();
         }
     }

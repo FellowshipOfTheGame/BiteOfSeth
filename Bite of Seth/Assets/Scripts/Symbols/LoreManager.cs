@@ -32,6 +32,7 @@ public class LoreManager : GameService {
 
     public void SetCollectedLore(SymbolBehavior symbol, bool collected) {
         collectedLore[symbol.level, symbol.index] = collected;
+        DialogueManager.instance.toggleLoreAlert(true);
         if (book != null) book.UpdateContent(collectedLore);
     }
 

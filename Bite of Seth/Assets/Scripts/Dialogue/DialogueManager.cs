@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     public Text interactText;
 
     public float delay = 0.001f;
+    public float alertDuration = 5f;
 
     public Queue<DialogueBase.Info> dialogueInfo = new Queue<DialogueBase.Info>();
 
@@ -175,13 +176,27 @@ public class DialogueManager : MonoBehaviour
     }
 
     public bool toggleInteractAlert(bool status){
+        CancelInvoke();
         interactText.text = "Press E to interact with " + interactName;
         interactBox.SetActive(status);
         return status;
     }
 
+    public bool toggleLoreAlert(bool status) {
+        CancelInvoke();
+        interactText.text = "New piece added to the Lorebook";
+        interactBox.SetActive(status);
+        Invoke("CloseTempAlert", alertDuration);
+        return status;
+    }
+
+    void CloseTempAlert() {
+        interactBox.SetActive(false);
+    }
+
     public bool toggleInteractWithDynamiteAlert(bool status)
     {
+        CancelInvoke();
         interactText.text = "Press E to explode the dynamite";
         interactBox.SetActive(status);
         return status;
@@ -189,12 +204,14 @@ public class DialogueManager : MonoBehaviour
 
     public bool toggleInteractWithPortalAlert(bool status)
     {
+        CancelInvoke();
         interactText.text = "Press E to enter the portal";
         interactBox.SetActive(status);
         return status;
     }
 
     public bool toggleInteractWithCutsceneAlert(bool status) {
+        CancelInvoke();
         interactText.text = "Press Esc to Skip the Cutscene";
         interactBox.SetActive(status);
         return status;
