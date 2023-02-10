@@ -9,12 +9,15 @@ public class RisingHazardBehavior : MonoBehaviour
     public Vector2 maxScale;
     public Vector2 minScale;
     public Vector2 expandingPerSec;
+    public int bugs = 100;
 
     private Vector2 dirNorm;
     private Vector2 size;
     private bool isMoving = false;
     private bool expand = true;
     private SpriteRenderer sprite;
+    private ParticleSystem particle;
+    private ParticleSystemForceField field;
 
     private Vector2 initialSize;
     private Vector2 initialPosition;
@@ -27,6 +30,8 @@ public class RisingHazardBehavior : MonoBehaviour
     {
         //size = transform.localScale;
         sprite = GetComponent<SpriteRenderer>();
+        particle = GetComponentInChildren<ParticleSystem>();
+        field = GetComponentInChildren<ParticleSystemForceField>();
         size = sprite.size;
         //Debug.Log(size.x+" "+size.y);
         dirNorm = direction.normalized;
@@ -36,6 +41,8 @@ public class RisingHazardBehavior : MonoBehaviour
         initialPosition = transform.position;
         initialExpand = expand;
 
+        ParticleSystem.EmissionModule emission = particle.emission;
+        emission.rateOverTime = bugs / 2;
     }
 
     // Update is called once per frame
@@ -52,6 +59,12 @@ public class RisingHazardBehavior : MonoBehaviour
 
                 //Expand
                 sprite.size += new Vector2(expandingPerSec.x, expandingPerSec.y);
+                ParticleSystem.ShapeModule shape = particle.shape;
+                ParticleSystem.EmissionModule emission = particle.emission;
+                emission.rateOverTime = bugs * sprite.size.x * sprite.size.y;
+                shape.scale = sprite.size;
+                field.endRange = sprite.size.x/2;
+                field.length = sprite.size.y;
 
                 //Reposition
                 transform.position = new Vector3(transform.position.x + (dirNorm.x * expandingPerSec.x / 2),
@@ -109,6 +122,9 @@ public class RisingHazardBehavior : MonoBehaviour
         transform.position = initialPosition;
         expand = initialExpand;
         isMoving = false;
+
+        ParticleSystem.EmissionModule emission = particle.emission;
+        emission.rateOverTime = bugs / 2;
     }
 
 }
