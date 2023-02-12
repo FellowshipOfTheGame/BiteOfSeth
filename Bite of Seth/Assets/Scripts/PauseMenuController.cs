@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenuController : MonoBehaviour
 {
     public KeyCode openMenuKey = KeyCode.None;
+    public Button resumeButton;
     public GameObject canvas = null;
     public GameObject mainLayout = null;
     public GameObject loreLayout = null;
@@ -35,6 +36,7 @@ public class PauseMenuController : MonoBehaviour
         ServiceLocator.Get<GameManager>().lockMovement += 1;
         ServiceLocator.Get<GameManager>().pause = true;
         ServiceLocator.Get<GameManager>().timerTrigger = false;
+        resumeButton.Select();
         Debug.Log("PAUSOU");
     }
 
@@ -55,6 +57,7 @@ public class PauseMenuController : MonoBehaviour
     public void CloseLoreBook() {
         mainLayout.SetActive(true);
         loreLayout.SetActive(false);
+        resumeButton.Select();
     }
 
     public void OpenInstructions()
@@ -67,6 +70,7 @@ public class PauseMenuController : MonoBehaviour
     {
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
+        resumeButton.Select();
     }
 
     public void OpenSettings()
@@ -79,6 +83,7 @@ public class PauseMenuController : MonoBehaviour
     {
         mainLayout.SetActive(true);
         settingsLayout.SetActive(false);
+        resumeButton.Select();
     }
 
     public void UseCheckpoint()

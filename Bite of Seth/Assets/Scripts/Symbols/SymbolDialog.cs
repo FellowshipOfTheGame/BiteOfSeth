@@ -7,12 +7,16 @@ public class SymbolDialog : MonoBehaviour {
 
     public Lore info;
     private Image icon;
+    private bool unlocked;
 
-    // Start is called before the first frame update
-    void Start() {
-        icon = this.GetComponent<Image>();
-        Debug.Log("Lore: " + info);
-        Debug.Log("Image: " + icon);
-        icon.sprite = info.icon;
+    public void SetUnlocked(bool value) {
+        unlocked = value;
+        if (icon == null) icon = this.GetComponent<Image>();
+        if (unlocked) icon.sprite = info.icon;
+        else icon.sprite = info.shadow;
+    }
+
+    public bool GetUnlocked() {
+        return unlocked;
     }
 }

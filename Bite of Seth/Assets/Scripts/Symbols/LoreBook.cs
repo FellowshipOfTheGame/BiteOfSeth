@@ -8,7 +8,7 @@ public class LoreBook : MonoBehaviour {
     public GameObject entryPrefab;
 
     private bool loreOpened;
-    private List<Button> lorePieces;
+    private List<SymbolDialog> lorePieces;
 
     Coroutine inst;
     public GameObject summary;
@@ -23,10 +23,10 @@ public class LoreBook : MonoBehaviour {
         LoreManager lm = ServiceLocator.Get<LoreManager>();
         lm.book = this;
 
-        lorePieces = new List<Button>();
+        lorePieces = new List<SymbolDialog>();
         
         for (int i = 0; i < loreCatalog.transform.childCount; i++) {
-            Button piece = loreCatalog.transform.GetChild(i).GetComponent<Button>();
+            SymbolDialog piece = loreCatalog.transform.GetChild(i).GetComponent<SymbolDialog>();
             if (piece != null) lorePieces.Add(piece);
         }
 
@@ -36,7 +36,7 @@ public class LoreBook : MonoBehaviour {
     }
 
     public void PresentLore(SymbolDialog symbol) {
-        if (loreOpened) return;
+        if (loreOpened || !symbol.GetUnlocked()) return;
 
         summary.SetActive(false);
         loreBox.SetActive(true);
@@ -72,7 +72,7 @@ public class LoreBook : MonoBehaviour {
     public void UpdateContent(bool[,] collectedLore) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 6; j++) {
-                lorePieces[i * 6 + j].interactable = collectedLore[i, j];
+                lorePieces[i * 6 + j].SetUnlocked(collectedLore[i, j]);
             }
         }
     }

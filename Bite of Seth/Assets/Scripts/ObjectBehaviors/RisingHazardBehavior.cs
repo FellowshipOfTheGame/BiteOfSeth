@@ -125,6 +125,7 @@ public class RisingHazardBehavior : MonoBehaviour
 
         ParticleSystem.EmissionModule emission = particle.emission;
         emission.rateOverTime = bugs / 2;
+        particle.Clear();
     }
 
 }

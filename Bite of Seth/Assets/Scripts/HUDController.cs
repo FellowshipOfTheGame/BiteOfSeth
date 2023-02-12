@@ -18,6 +18,8 @@ public class HUDController : MonoBehaviour
     public Text EnigmaText;
     public Image EnigmaMark;
     public Text[] choosedStatues = new Text[5];
+    [Space(5)]
+    public int loreCount = 6;
 
     private PuzzleManager pm;
     private bool enigmaStarted;
@@ -50,7 +52,7 @@ public class HUDController : MonoBehaviour
 
         string piecesOfLore = ServiceLocator.Get<GameManager>().GetLevelPiecesOfLore().ToString();
         string totalPieces = ServiceLocator.Get<GameManager>().GetLevelLoreTotal().ToString();
-        piecesOfLoreText.text = piecesOfLore + "/5";
+        piecesOfLoreText.text = piecesOfLore + "/" + loreCount;
 
         var ts = TimeSpan.FromSeconds(ServiceLocator.Get<GameManager>().GetLevelTimer());
         //Debug.Log(ServiceLocator.Get<GameManager>().GetLevelTimer());
