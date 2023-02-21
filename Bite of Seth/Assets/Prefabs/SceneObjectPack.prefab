@@ -306,7 +306,7 @@ Transform:
   - {fileID: 1649229766373539165}
   - {fileID: 3410148605959811354}
   - {fileID: 195519596693062641}
-  - {fileID: 2496725717403144929}
+  - {fileID: 8837898841868054895}
   - {fileID: 8622268434815642989}
   - {fileID: 2512076588751440090}
   m_Father: {fileID: 0}
@@ -800,7 +800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530899d69ee0c3f48941a8262769e96b, type: 3}
---- !u!224 &2496725717403144929 stripped
+--- !u!224 &8837898841868054895 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6341245177138782247, guid: 530899d69ee0c3f48941a8262769e96b,
     type: 3}
@@ -1919,6 +1919,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.39508057
       objectReference: {fileID: 0}
+    - target: {fileID: 8873846755631188933, guid: b634745d4cc8ea84696b2fe82d6fbd79,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ca0acc2293c480d4687d03fc19d52c28,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b634745d4cc8ea84696b2fe82d6fbd79, type: 3}
 --- !u!224 &3744402711693446598 stripped
