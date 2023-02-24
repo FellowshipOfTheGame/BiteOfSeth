@@ -48,9 +48,8 @@ public class DialogueManager : MonoBehaviour
         dialogueInfo.Clear();
         dialogueBox.SetActive(true);
         isDialogueActive = true;
-        GameManager gm = ServiceLocator.Get<GameManager>();
-        gm.lockMovement++;
-        //Debug.Log($"Encue lock++ ({gm.lockMovement})");
+        ServiceLocator.Get<GameManager>().StopPlayerControls();
+
         foreach (DialogueBase.Info info in db.dialogueInfo){
             dialogueInfo.Enqueue(info);
         }
@@ -164,8 +163,7 @@ public class DialogueManager : MonoBehaviour
             //Debug.Log("End of Dialogue");
             isDialogueActive = false;
             dialogueBox.SetActive(false);
-            GameManager gm = ServiceLocator.Get<GameManager>();
-            gm.lockMovement--;
+            ServiceLocator.Get<GameManager>().ResumePlayerControls();
 
             //stop dub sound
             if (dubAudSrc != null)

@@ -61,13 +61,6 @@ public class SavePoint : MonoBehaviour
                 pm.LoadPuzzle(gm.GetLoadedStatuesOrder());
                 
                 foreach(GameObject statue in pastStatues) {
-
-                    // LOAD ALL PAST STATUES LOG DIALOGUES
-                    TextScript ts = statue.GetComponentInChildren<TextScript>();
-                    foreach(DialogueBase dialogue in ts.dialogueSequence) {
-                        LogManager.instance.AddEntry(dialogue);
-                    }
-
                     // COUNT ALL PAST STATUES
                     if (statue.GetComponent<DialogueBehavior>().puzzleStatue) {
                         pm.AddTipStatue();

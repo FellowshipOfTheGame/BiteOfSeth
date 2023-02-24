@@ -11,6 +11,8 @@ public class Movable : MonoBehaviour
     public Vector2 lookingDirection = Vector2.zero;
     private Vector2 targetPosition = Vector2.zero;
     public GameObject tempCollider;
+    public bool CanBeLocked = true;
+
     private GameObject[] tc = new GameObject[2];
     private GameManager gameManager = null; // cache do manager
 
@@ -35,7 +37,7 @@ public class Movable : MonoBehaviour
     public void StartMovement(Vector2 desiredMovement, float _speed)
     {
         // return if movement blocked by game manager
-        if (ServiceLocator.Get<GameManager>().lockMovement > 0)
+        if (ServiceLocator.Get<GameManager>().lockMovement > 0 && CanBeLocked)
         {
             return;
         }
@@ -52,7 +54,6 @@ public class Movable : MonoBehaviour
                 audSrc = am.PlayAudio(sfx);
             } else {
                 am.ContinueAudio(audSrc);
-                Debug.Log(audSrc);
             }
         }
         
@@ -88,7 +89,7 @@ public class Movable : MonoBehaviour
         {
             // isMoving == true
             // return if movement blocked by game manager
-            if (gameManager.lockMovement > 0)
+            if (gameManager.lockMovement > 0 && CanBeLocked)
             {
                 return;
             }

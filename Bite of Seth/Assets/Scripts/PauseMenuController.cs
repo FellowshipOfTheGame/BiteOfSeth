@@ -33,7 +33,7 @@ public class PauseMenuController : MonoBehaviour
         mainLayout.SetActive(true);
         instructionLayout.SetActive(false);
         canvas.SetActive(true);
-        ServiceLocator.Get<GameManager>().lockMovement += 1;
+        ServiceLocator.Get<GameManager>().StopPlayerControls();
         ServiceLocator.Get<GameManager>().pause = true;
         ServiceLocator.Get<GameManager>().timerTrigger = false;
         resumeButton.Select();
@@ -45,7 +45,7 @@ public class PauseMenuController : MonoBehaviour
         canvas.SetActive(false);
         mainLayout.SetActive(false);
         instructionLayout.SetActive(false);
-        ServiceLocator.Get<GameManager>().lockMovement -= 1;
+        ServiceLocator.Get<GameManager>().ResumePlayerControls();
         Resume();
     }
 

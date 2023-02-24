@@ -17,11 +17,13 @@ public class TimelineControl : MonoBehaviour {
     public void Play() {
         timeline.Play();
         isPlaying = true;
+        ServiceLocator.Get<GameManager>().StopPlayerControls();
     }
 
     public void Stop() {
         timeline.Stop();
         isPlaying = false;
+        ServiceLocator.Get<GameManager>().ResumePlayerControls();
     }
 
     public void Pause() {

@@ -53,7 +53,6 @@ public class MorphingStatue : MonoBehaviour
     }
 
     Pair FindForm(CharacterInfo character) {
-        Debug.Log(character.characterName);
         foreach(Pair p in form) {
             if (p.character == character) 
                 return p;
@@ -79,12 +78,9 @@ public class MorphingStatue : MonoBehaviour
             return;
         }
 
-        Debug.Log("Checking " + currentForm.name);
-
         if (lastForm == null) {
             lastForm = currentForm;
         } else if (currentForm != lastForm && !transition.isPlaying) {
-            Debug.Log("CHANGE!");
             transition.Play();
         }
     }

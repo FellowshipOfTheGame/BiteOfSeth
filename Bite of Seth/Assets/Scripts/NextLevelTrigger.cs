@@ -52,7 +52,7 @@ public class NextLevelTrigger : MonoBehaviour
     public void GoToNextLevel(GameObject player)
     {
         ServiceLocator.Get<GameManager>().StopTimer();
-        ServiceLocator.Get<GameManager>().lockMovement++;
+        ServiceLocator.Get<GameManager>().StopPlayerControls();
         if (NextLevelScene != null) {
             player.GetComponent<Movable>().StopSfx();
             player.GetComponent<Movable>().enabled = false;
@@ -89,7 +89,7 @@ public class NextLevelTrigger : MonoBehaviour
 
     public void GoToNextScene()
     {
-        ServiceLocator.Get<GameManager>().lockMovement--;
+        ServiceLocator.Get<GameManager>().ResumePlayerControls();
         gm.FromLevelGoToScene(NextLevelScene);
     }
 

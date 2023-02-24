@@ -27,9 +27,8 @@ public class WarningPopupController : MonoBehaviour
     public void Close()
     {
         warningPopup.SetActive(false);
-        
-        GameManager gm = ServiceLocator.Get<GameManager>();
-        gm.lockMovement--;
+
+        ServiceLocator.Get<GameManager>().ResumePlayerControls();
         //Debug.Log($"Close TriggerWarningAlert lock-- ({gm.lockMovement})");
         dialogue.canDialogue = true;
     }

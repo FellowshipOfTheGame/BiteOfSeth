@@ -47,7 +47,7 @@ public class AudioManager : GameService
             Debug.LogError("Can't play null audioObject");
             return null;
         }
-        Debug.Log($"Playing {audio}");
+        //Debug.Log($"Playing {audio}");
         AudioSource audSrc = ServiceLocator.AddComponentToHelperObject<AudioSource>();
         sources.Add(audSrc);
         audioSources.Add(audio);
@@ -169,7 +169,7 @@ public class AudioManager : GameService
             Debug.LogError("Can't play null audioObject");
             return null;
         }
-        Debug.Log($"Playing {audio}");
+        //Debug.Log($"Playing {audio}");
         AudioSource audSrc = ServiceLocator.AddComponentToHelperObject<AudioSource>();
         sources.Add(audSrc);
         audioSources.Add(audio);

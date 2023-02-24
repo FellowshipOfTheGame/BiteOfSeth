@@ -41,11 +41,6 @@ public class TextScript : MonoBehaviour
         statue.OnUpdateDialog();
         return dialogueEnded;
     }
-
-    public void UpdateLog(){
-        //Update log with new entries
-        LogManager.instance.AddEntry(curDialogue);
-    }
     
     void OnTriggerEnter2D(Collider2D other){
         //Debug.Log("Player entered trigger with " + other.tag);
@@ -57,7 +52,6 @@ public class TextScript : MonoBehaviour
             if ((isAutoTriggered || repeatAutoTrigger) && !DialogueManager.instance.isDialogueActive) {
                 isAutoTriggered = false;
                 TriggerDialogue();
-                UpdateLog();
             } else if (!DialogueManager.instance.isDialogueActive) {
                 DialogueManager.instance.SetInteractName(statue.character.characterName);
                 DialogueManager.instance.toggleInteractAlert(true);
@@ -79,13 +73,6 @@ public class TextScript : MonoBehaviour
         
 
     }
-
-    // void Update(){
-    //     if(Input.GetKeyDown(KeyCode.E) && playerInRange){
-    //         TriggerDialogue();
-    //         UpdateLog();
-    //     }
-    // }
 
     //Return true if the dialog has occurred
     public bool TryToDialogue() {
@@ -113,7 +100,6 @@ public class TextScript : MonoBehaviour
             //Start the dialogue
             TriggerDialogue();
             DialogueManager.instance.toggleInteractAlert(false);
-            UpdateLog();
             return false;
         } else{
             //Try to continue dialoguing
@@ -125,7 +111,6 @@ public class TextScript : MonoBehaviour
                 if (index >= dialogueSequence.Count) {
                     curDialogue = dialogueSequence[index - 1];
                     endOfConversation = true;
-                    Debug.Log("Fim do diálogo!");
                 } else {
                     curDialogue = dialogueSequence[index++];
                 }

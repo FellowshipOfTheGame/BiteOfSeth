@@ -257,12 +257,13 @@ public class GameManager : GameService
 
     public void StopPlayerControls()
     {
-        player.enabled = false;
+        lockMovement++;
     }
 
     public void ResumePlayerControls()
     {
-        player.enabled = true;
+        lockMovement--;
+        if (lockMovement < 0) lockMovement = 0;
     }
 
     // PRIMEIRA FUNÇÃO CHAMADA QUANDO UMA CENA NOVA É CARREGADA

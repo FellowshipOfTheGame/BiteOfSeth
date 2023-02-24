@@ -86,7 +86,6 @@ public class CutsceneScript : MonoBehaviour
             }
             
         }
-        Debug.Log("CABEI");
     }
 
 
