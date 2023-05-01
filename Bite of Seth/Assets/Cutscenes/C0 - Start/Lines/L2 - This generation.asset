@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f66eefab2a58f249918db98ce1f382c, type: 3}
-  m_Name: L1 - SCREAM
+  m_Name: L2 - This generation
   m_EditorClassIdentifier: 
   dialogueID: 0
-  dialogueTitle: First Call
+  dialogueTitle: Another Tuesday
   dialogueInfo:
   - needPuzzleInfo: 0
     character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
-    myText: NUBIA!!!!
-    voicedLine: {fileID: 11400000, guid: cbea0b714e87a8847b13080be190950c, type: 2}
+    myText: Seriously, what are we going to do with this generation of yours...
+    voicedLine: {fileID: 11400000, guid: 44600b3f8b631614ba71550b893d5cb9, type: 2}
+  - needPuzzleInfo: 0
+    character: {fileID: 11400000, guid: 3756d0f28c0774b438d59168c0c17c1d, type: 2}
+    myText: I AM TALKING TO YOU, YOUNG LADY!
+    voicedLine: {fileID: 11400000, guid: 44600b3f8b631614ba71550b893d5cb9, type: 2}
